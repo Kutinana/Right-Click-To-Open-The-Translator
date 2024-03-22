@@ -11,14 +11,8 @@ namespace Kuchinashi
         {
             if (canvasGroup.alpha == alpha) yield break;
 
-            if (alpha == 1f)
-            {
-                canvasGroup.blocksRaycasts = true;
-            }
-            else
-            {
-                canvasGroup.interactable = false;
-            }
+            if (alpha == 1f) canvasGroup.blocksRaycasts = true;
+            else canvasGroup.interactable = false;
 
             while (!Mathf.Approximately(canvasGroup.alpha, alpha))
             {
@@ -27,14 +21,8 @@ namespace Kuchinashi
             }
             canvasGroup.alpha = alpha;
 
-            if (alpha == 0f)
-            {
-                canvasGroup.blocksRaycasts = false;
-            }
-            else
-            {
-                canvasGroup.interactable = true;
-            }
+            if (alpha == 0f) canvasGroup.blocksRaycasts = false;
+            else canvasGroup.interactable = true;
         }
 
         public static IEnumerator FadeCanvasGroupWithButton(CanvasGroup canvasGroup, Button button, float alpha, float speed = 0.05f)

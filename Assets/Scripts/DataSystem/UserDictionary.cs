@@ -10,7 +10,12 @@ namespace DataSystem
     public class UserDictionary : ISingleton, IUtility
     {
         public static readonly string userDictionaryPath = Application.persistentDataPath + "/UserDictionary.json";
-        public static Dictionary<string, string> userDictionary = new Dictionary<string, string>();
+        public static Dictionary<string, string> userDictionary
+        {
+            get => _userDictionary ??= DeSerialization();
+            set => _userDictionary = value;
+        }
+        private static Dictionary<string, string> _userDictionary;
 
         public static UserDictionary Instance
         {
@@ -24,8 +29,7 @@ namespace DataSystem
 
         public void OnSingletonInit()
         {
-            userDictionary = new Dictionary<string, string>();
-            DeSerialization();
+            
         }
 
         public static string Read(string id)
@@ -56,13 +60,14 @@ namespace DataSystem
             File.WriteAllText(userDictionaryPath, json);
         }
 
-        private static void DeSerialization()
+        private static Dictionary<string, string> DeSerialization()
         {
             if (File.Exists(userDictionaryPath))
             {
                 string json = File.ReadAllText(userDictionaryPath);
-                userDictionary = JsonMapper.ToObject<Dictionary<string, string>>(json);
+                return JsonMapper.ToObject<Dictionary<string, string>>(json);
             }
+            return new Dictionary<string, string>();
         }
     }
 }

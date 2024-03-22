@@ -27,6 +27,7 @@ namespace UI
             _confirmButton = transform.Find("Confirm").GetComponent<Button>();
 
             _canvasGroup.alpha = 0;
+            _inputField.text = "";
             _confirmButton.onClick.AddListener(() => {
                 UserDictionary.WriteInAndSave(character.data.Id, _inputField.text);
                 StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(_canvasGroup, 0f, 0.1f));
@@ -38,6 +39,7 @@ namespace UI
         public CharacterRecordPanelManager Init(Character c)
         {
             character = c;
+            _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id));
             StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(_canvasGroup, 1f, 0.1f));
 
             return this;

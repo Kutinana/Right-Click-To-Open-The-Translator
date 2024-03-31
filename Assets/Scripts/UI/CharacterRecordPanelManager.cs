@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSystem;
 using QFramework;
 using TMPro;
+using Translator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,6 @@ namespace UI
 
         private Character character;
 
-        private CanvasGroup _canvasGroup;
         private TMP_InputField _inputField;
         private Button _confirmButton;
 
@@ -22,15 +22,13 @@ namespace UI
         {
             Instance = this;
 
-            _canvasGroup = GetComponent<CanvasGroup>();
             _inputField = transform.Find("InputField").GetComponent<TMP_InputField>();
             _confirmButton = transform.Find("Confirm").GetComponent<Button>();
 
-            _canvasGroup.alpha = 0;
             _inputField.text = "";
             _confirmButton.onClick.AddListener(() => {
                 UserDictionary.WriteInAndSave(character.data.Id, _inputField.text);
-                StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(_canvasGroup, 0f, 0.1f));
+                TranslatorSM.StateMachine.ChangeState(States.Translation);
 
                 character.Refresh();
             });
@@ -40,7 +38,8 @@ namespace UI
         {
             character = c;
             _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id));
-            StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(_canvasGroup, 1f, 0.1f));
+            
+            TranslatorSM.StateMachine.ChangeState(States.Recorder);
 
             return this;
         }

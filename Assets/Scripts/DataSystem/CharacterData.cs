@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DataSystem
 {
-    [CreateAssetMenu(fileName = "CharacterData", menuName = "ScriptableObjects/CharacterData", order = 0)]
+    [CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Objects/Character Data", order = 0)]
     public class CharacterData : ScriptableObject
     {
         public string Id;

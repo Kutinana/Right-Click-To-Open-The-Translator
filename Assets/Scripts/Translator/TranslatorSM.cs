@@ -12,8 +12,6 @@ namespace Translator
         Translation,
         Recorder,
         Dictionary,
-        PuzzleList,
-        Puzzle,
         Settings
     }
 

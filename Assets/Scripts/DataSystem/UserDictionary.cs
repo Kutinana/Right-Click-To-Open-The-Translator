@@ -17,24 +17,36 @@ namespace DataSystem
         }
         private static Dictionary<string, string> _userDictionary;
 
-        public static UserDictionary Instance
-        {
-            get { return SingletonProperty<UserDictionary>.Instance; }
-        }
+        public static UserDictionary Instance => SingletonProperty<UserDictionary>.Instance;
 
         public void Dispose()
         {
             SingletonProperty<UserDictionary>.Dispose();
         }
 
-        public void OnSingletonInit()
-        {
-            
-        }
+        public void OnSingletonInit() {}
 
         public static string Read(string id)
         {
             return userDictionary.ContainsKey(id) ? userDictionary[id] : "";
+        }
+
+        public static void Unlock(string id)
+        {
+            if (userDictionary.ContainsKey(id)) return;
+
+            userDictionary.Add(id, "");
+            Serialization();
+        }
+
+        public static void Unlock(List<string> ids)
+        {
+            foreach (var id in ids)
+            {
+                if (userDictionary.ContainsKey(id)) continue;
+                userDictionary.Add(id, "");
+            }
+            Serialization();
         }
 
         public static void WriteInAndSave(string id, string content)

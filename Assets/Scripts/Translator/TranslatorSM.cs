@@ -74,6 +74,11 @@ namespace Translator
         {
             stateMachine.Update();
         }
+
+        public static void ReturnToPreviousState()
+        {
+            StateMachine.ChangeState(StateMachine.PreviousStateId);
+        }
     }
 
     public struct OnTranslatorEnabledEvent {}

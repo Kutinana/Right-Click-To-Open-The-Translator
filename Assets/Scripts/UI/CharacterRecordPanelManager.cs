@@ -9,6 +9,11 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    public struct OnCharacterRecordedEvent {
+        public string id;
+        public OnCharacterRecordedEvent(string _id) { id = _id; }
+    }
+
     public class CharacterRecordPanelManager : MonoBehaviour
     {
         public static CharacterRecordPanelManager Instance;
@@ -28,9 +33,9 @@ namespace UI
             _inputField.text = "";
             _confirmButton.onClick.AddListener(() => {
                 UserDictionary.WriteInAndSave(character.data.Id, _inputField.text);
-                TranslatorSM.StateMachine.ChangeState(States.Translation);
+                TranslatorSM.ReturnToPreviousState();
 
-                character.Refresh();
+                TypeEventSystem.Global.Send(new OnCharacterRecordedEvent(character.data.Id));
             });
         }
 

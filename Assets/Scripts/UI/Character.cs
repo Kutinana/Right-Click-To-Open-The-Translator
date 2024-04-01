@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 using Translator;
+using UnityEngine.EventSystems;
+using Kuchinashi;
 
 namespace UI
 {
@@ -25,18 +27,18 @@ namespace UI
 
         private Image _image;
         private TMP_Text _text;
-        private Button _button;
+        private ButtonExtension _buttonExtension;
 
         private void Awake()
         {
             _image = transform.Find("Image").GetComponent<Image>();
             _text = transform.Find("Text").GetComponent<TMP_Text>();
-            _button = GetComponent<Button>();
+            _buttonExtension = GetComponent<ButtonExtension>();
 
             stateMachine.AddState(States.NonInteractable, new NonInteractableState(stateMachine, this));
             stateMachine.AddState(States.Interactable, new InteractableState(stateMachine, this));
 
-            stateMachine.StartState(States.NonInteractable);
+            stateMachine.StartState(TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off ? States.Interactable : States.NonInteractable);
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 stateMachine.ChangeState(States.Interactable);
@@ -46,25 +48,46 @@ namespace UI
                 stateMachine.ChangeState(States.NonInteractable);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
+            TypeEventSystem.Global.Register<OnCharacterRecordedEvent>(e => {
+                if (e.id == data.Id) Refresh();
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
             Initialize();
         }
 
-        private void Initialize(bool isInteractable = false)
+        public void Initialize(bool isInteractable = false, bool isBlack = false)
         {
             _image.sprite = data.Sprite;
             _text.SetText(UserDictionary.Read(data.Id));
 
-            _button.onClick.AddListener(() => {
+            _buttonExtension.OnClick += () => {
                 CharacterRecordPanelManager.Instance.Init(this);
-            });
+            };
+            _buttonExtension.OnPressEnd += () => {
+                TypeEventSystem.Global.Send(new Dictionary.CallForPuzzleListEvent(data.Id));
+            };
 
             stateMachine.ChangeState(isInteractable ? States.Interactable : States.NonInteractable);
+
+            if (isBlack)
+            {
+                _image.color = Color.black;
+                _text.color = Color.black;
+            }
+        }
+
+        public void Initialize(CharacterData data, bool isInteractable = false, bool isBlack = false)
+        {
+            this.data = data;
+            Initialize(isInteractable, isBlack);
         }
 
         public void Refresh()
         {
             _image.sprite = data.Sprite;
             _text.SetText(UserDictionary.Read(data.Id));
+
+            stateMachine.ChangeState(TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off ? States.Interactable : States.NonInteractable);
         }
 
         public class NonInteractableState : AbstractState<States, Character>
@@ -74,7 +97,7 @@ namespace UI
 
             protected override void OnEnter()
             {
-                mTarget._button.interactable = false;
+                mTarget._buttonExtension.interactable = false;
                 mTarget._text.enabled = false;
             }
         }
@@ -86,7 +109,7 @@ namespace UI
 
             protected override void OnEnter()
             {
-                mTarget._button.interactable = true;
+                mTarget._buttonExtension.interactable = true;
                 mTarget._text.enabled = true;
             }
         }

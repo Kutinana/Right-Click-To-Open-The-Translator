@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using QFramework;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Puzzle.SamplePuzzle
 {
@@ -34,7 +35,8 @@ namespace Puzzle.SamplePuzzle
 
         public static Bottle HoldingBottle = null;
 
-        private static Coroutine CurrentCoroutine = null;
+        private Button backButton;
+        private Coroutine CurrentCoroutine = null;
 
         public static void Swap(Bottle bottleA, Bottle bottleB)
         {
@@ -87,14 +89,19 @@ namespace Puzzle.SamplePuzzle
             }
         }
 
-        protected override void OnEnter()
+        public override void OnEnter()
         {
             base.OnEnter();
 
             CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+
+            backButton = transform.Find("Menu/Back").GetComponent<Button>();
+            backButton.onClick.AddListener(() => {
+                TypeEventSystem.Global.Send<OnPuzzleExitEvent>();
+            });
         }
 
-        protected override void OnExit()
+        public override void OnExit()
         {
             base.OnExit();
 
@@ -105,7 +112,7 @@ namespace Puzzle.SamplePuzzle
             }
         }
 
-        protected override void OnComplete()
+        public override void OnComplete()
         {
             base.OnComplete();
 
@@ -114,9 +121,11 @@ namespace Puzzle.SamplePuzzle
 
         private IEnumerator CheckAnswerCoroutine()
         {
-            yield return new WaitUntil(() => PositionDictionary.Equals(CORRECT));
+            yield return new WaitUntil(() => {
+                return PositionDictionary[0] == CORRECT[0] && PositionDictionary[1] == CORRECT[1] && PositionDictionary[2] == CORRECT[2];
+            });
 
-            OnComplete();
+            TypeEventSystem.Global.Send<OnPuzzleSolvedEvent>();
             CurrentCoroutine = null;
         }
     }

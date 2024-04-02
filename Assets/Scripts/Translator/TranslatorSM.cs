@@ -142,6 +142,7 @@ namespace Translator
         IEnumerator OnEnterCoroutine()
         {
             TypeEventSystem.Global.Send<OnTranslatorEnabledEvent>();
+            mTarget.canvasGroup.interactable = false;
 
             switch (mFSM.PreviousStateId)
             {
@@ -157,6 +158,7 @@ namespace Translator
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
             mTarget.CurrentCoroutine = null;
+            mTarget.canvasGroup.interactable = true;
         }
     }
 
@@ -224,6 +226,7 @@ namespace Translator
 
         IEnumerator OnEnterCoroutine()
         {
+            mTarget.canvasGroup.interactable = false;
             switch (mFSM.PreviousStateId)
             {
                 case States.Settings:
@@ -236,6 +239,7 @@ namespace Translator
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.dictionaryCanvasGroup, 1f, 0.1f));
 
             mTarget.CurrentCoroutine = null;
+            mTarget.canvasGroup.interactable = true;
         }
     }
 
@@ -263,6 +267,7 @@ namespace Translator
 
         IEnumerator OnEnterCoroutine()
         {
+            mTarget.canvasGroup.interactable = false;
             switch (mFSM.PreviousStateId)
             {
                 case States.Dictionary:
@@ -275,6 +280,7 @@ namespace Translator
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.settingsCanvasGroup, 1f, 0.1f));
 
             mTarget.CurrentCoroutine = null;
+            mTarget.canvasGroup.interactable = true;
         }
     }
 }

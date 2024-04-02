@@ -6,17 +6,22 @@ namespace Puzzle
 {
     public abstract class PuzzleBase : MonoBehaviour
     {
-        protected virtual void OnEnter()
+        public virtual void OnEnter()
         {
 
         }
 
-        protected virtual void OnExit()
+        public virtual void OnUpdate()
+        {
+            
+        }
+
+        public virtual void OnExit()
         {
 
         }
 
-        protected virtual void OnComplete()
+        public virtual void OnComplete()
         {
 
         }

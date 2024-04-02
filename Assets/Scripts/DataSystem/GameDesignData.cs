@@ -10,6 +10,11 @@ namespace DataSystem
         {
             return Resources.Load<CharacterData>("ScriptableObjects/CharacterData/" + id);
         }
+
+        public static PuzzleData GetPuzzleDataById(string id)
+        {
+            return Resources.Load<PuzzleData>("ScriptableObjects/PuzzleData/" + id);
+        }
     }
 
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: sample
   m_EditorClassIdentifier: 
   Id: sample
-  PuzzlePrefab: {fileID: 0}
+  PuzzlePrefab: {fileID: 9065703008839568946, guid: 6c11046804108e5429e2c7ccc9700d6c, type: 3}
   Thumbnail: {fileID: 0}
   Description: 

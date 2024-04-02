@@ -6,26 +6,53 @@ public class PlayerController : MonoBehaviour
     PlayerInput playerInput;
     Rigidbody2D mrigidbody;
     SpriteRenderer spriteRenderer;
+    ObjectsDetector objectsDetector;
     int par = 0;
 
+    public bool touchable => objectsDetector.touchable;
     public float moveSpeed => Mathf.Abs(mrigidbody.velocity.x);
     private void Awake()
     {
         this.playerInput = GetComponent<PlayerInput>();
         this.mrigidbody = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.objectsDetector = GetComponent<ObjectsDetector>();
     }
     private void Start()
     {
         playerInput.EnableInputActions();
+        playerInput.AddInteractEvent(delegate () { Interact(); });
     }
     private void Update()
     {
-        
+        ActivateObject();
     }
     private void FixedUpdate()
     {
         
+    }
+    private void ActivateObject()
+    {
+        InteractiveObject interactiveObject;
+        if (touchable)
+        {
+            interactiveObject = objectsDetector.DetectClosestObject();
+            if (interactiveObject == null)
+            {
+                Debug.Log("Could not find corresponding InteractiveObject");
+                return;
+            }
+            InteractiveObjectPool.SetActiveObject(interactiveObject);
+        }
+        else
+        {
+            InteractiveObjectPool.SetActiveObject(null);
+        }
+    }
+    private void Interact()
+    {
+        if (InteractiveObjectPool.activeObject == null) return;
+        InteractiveObjectPool.activeObject.OnTrigger();
     }
     public void Move(float speed)
     {

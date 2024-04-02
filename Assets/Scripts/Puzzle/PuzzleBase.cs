@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DataSystem
+namespace Puzzle
 {
     public abstract class PuzzleBase : MonoBehaviour
     {

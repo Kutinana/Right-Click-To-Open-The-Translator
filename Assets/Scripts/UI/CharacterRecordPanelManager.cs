@@ -40,6 +40,18 @@ namespace UI
             });
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TranslatorSM.ReturnToPreviousState();
+            }
+		    if (Input.GetKeyDown(KeyCode.Return))
+		    {
+			    _confirmButton.onClick.Invoke();
+		    }
+        }
+
         public CharacterRecordPanelManager Init(Character c)
         {
             character = c;
@@ -49,6 +61,12 @@ namespace UI
             TranslatorSM.StateMachine.ChangeState(States.Recorder);
 
             return this;
+        }
+
+        public static void ActivateInputField()
+        {
+            Instance._inputField.ActivateInputField();
+            return;
         }
     }
 }

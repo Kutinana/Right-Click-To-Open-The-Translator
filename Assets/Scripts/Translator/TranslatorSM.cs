@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Dictionary;
 using QFramework;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -189,6 +190,8 @@ namespace Translator
         {
             TypeEventSystem.Global.Send<OnRecorderEnabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 1f, 0.1f));
+            
+            CharacterRecordPanelManager.ActivateInputField();
 
             mTarget.CurrentCoroutine = null;
         }

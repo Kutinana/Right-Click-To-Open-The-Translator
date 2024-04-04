@@ -72,7 +72,7 @@ namespace Puzzle
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.I)) Initialize("sample");
+            if (Input.GetKeyUp(KeyCode.I) && CurrentPuzzle == null) Initialize("sample");
             if (CurrentPuzzle != null)
             {
                 CurrentPuzzle.OnUpdate();

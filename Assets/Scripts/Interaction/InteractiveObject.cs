@@ -1,18 +1,40 @@
+using DataSystem;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using LitJson;
 
-public static class InteractiveObjectPool
+public class InteractiveObjectPool
 {
+    private static InteractiveObjectPool _instance;
+    public static InteractiveObjectPool Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new InteractiveObjectPool();
+                Init();
+            }
+            return _instance;
+        }
+        private set => _instance = value;
+    }
+    
     private static int MAX_CAPACITY = 64;
     private static List<InteractiveObject>[] ObjectPool = new List<InteractiveObject>[MAX_CAPACITY];
-    public static InteractiveObject activeObject = null;
-
     private static System.Action EventList;
+
+    public List<ItemConfig> itemConfigs = new List<ItemConfig>();
+    public List<NPCConfig> NPCConfigs = new List<NPCConfig>();
+    public InteractiveObject activeObject = null;
     private static void Init()
     {
-        
+        var r_itemConfig = Resources.Load<TextAsset>("Config/ItemConfig").text;
+        _instance.itemConfigs = JsonMapper.ToObject<List<ItemConfig>>(r_itemConfig);
+        var r_NPCConfig = Resources.Load<TextAsset>("Config/NPCConfig").text;
+        _instance.NPCConfigs = JsonMapper.ToObject<List<NPCConfig>>(r_NPCConfig);
     }
     public static int getMaxSize() => ObjectPool.Length;
     public static void LoadObject(InteractiveObject interactiveObject)
@@ -84,11 +106,11 @@ public static class InteractiveObjectPool
     }
     public static void SetActiveObject(InteractiveObject interactiveObject)
     {
-        if (activeObject != null && activeObject != interactiveObject) activeObject.Deactivate();
-        if (activeObject != interactiveObject)
+        if (_instance.activeObject != null && _instance.activeObject != interactiveObject) _instance.activeObject.Deactivate();
+        if (_instance.activeObject != interactiveObject)
         {
-            activeObject = interactiveObject;
-            if (activeObject != null) activeObject.Activate();
+            _instance.activeObject = interactiveObject;
+            if (_instance.activeObject != null) _instance.activeObject.Activate();
         }
     }
 }
@@ -100,12 +122,23 @@ public interface Interactive
     public void Activate();
     public void Deactivate();
 }
+
 public class InteractiveObject : MonoBehaviour, Interactive
 {
     public int identity_number;
+    public ItemConfig itemConfig;
+    private SpriteRenderer spriteRenderer;
+    private void Awake()
+    {
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     public int ID 
     {
         get { return identity_number; }
+    }
+    public virtual void LoadConfig()
+    {
+        itemConfig = InteractiveObjectPool.Instance.itemConfigs[ID];
     }
     public void Init()
     {
@@ -119,14 +152,19 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public virtual void TriggerEvent(){ }
     public virtual void Activate()
     {
-        Debug.Log(transform.name + " activate");
+        Sprite sprite = Resources.Load<Sprite>(itemConfig.OutlinedSpritePath) as Sprite;
+        spriteRenderer.sprite = sprite;
+        Debug.Log(transform.name + " activate" + " change to " + itemConfig.OutlinedSpritePath);
     }
     public virtual void Deactivate()
     {
-        Debug.Log(transform.name + " deactivate");
+        Sprite sprite = Resources.Load<Sprite>(itemConfig.UnoutlinedSpritePath) as Sprite;
+        spriteRenderer.sprite = sprite;
+        Debug.Log(transform.name + " deactivate" + " change to " + itemConfig.UnoutlinedSpritePath);
     }
     private void OnEnable()
     {
+        LoadConfig();
         InteractiveObjectPool.LoadObject(this);
     }
     private void OnDisable()

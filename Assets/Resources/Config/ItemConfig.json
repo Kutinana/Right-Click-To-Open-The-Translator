@@ -1,13 +1,20 @@
-{
-	"itemConfigs":[
-		{
-			"ID":0,
-			"TriggeredSpriteName":"",
-			"itemType":"DOOR"
-		},
-		{
-			"ID":0,
-			"TriggeredSpriteName":"",
-			"itemType":"DOOR"
-		}]
-}
+[
+	{
+		"ID":0,
+		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Outlined_object",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Unoutlined_object",
+		"itemType":"PUZZLE"
+	},
+	{
+		"ID":1,
+		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
+		"itemType":"PUZZLE"
+	},
+	{
+		"ID":2,
+		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
+		"itemType":"NPC"
+	}
+]

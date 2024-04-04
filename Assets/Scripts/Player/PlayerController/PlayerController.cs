@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D mrigidbody;
     SpriteRenderer spriteRenderer;
     ObjectsDetector objectsDetector;
+
     int par = 0;
     float CurrentMaxSpeed;
     public bool touchable => objectsDetector.touchable;
@@ -53,8 +54,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Interact()
     {
-        if (InteractiveObjectPool.activeObject == null) return;
-        InteractiveObjectPool.activeObject.OnTrigger();
+        if (InteractiveObjectPool.Instance.activeObject == null) return;
+        InteractiveObjectPool.Instance.activeObject.OnTrigger();
     }
     public void Move(float speed)
     {

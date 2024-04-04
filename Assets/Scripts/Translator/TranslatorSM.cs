@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Dictionary;
 using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,6 @@ namespace Translator
     {
         public static TranslatorSM Instance => SingletonProperty<TranslatorSM>.Instance;
         public static FSM<States> StateMachine => Instance.stateMachine;
-
         private FSM<States> stateMachine = new FSM<States>();
 
         public Coroutine CurrentCoroutine = null;
@@ -209,6 +209,7 @@ namespace Translator
 
         protected override void OnEnter()
         {
+            DictionarySM.Instance.GenerateCharacterList();
             mTarget.StartCoroutine(OnEnterCoroutine());
         }
 

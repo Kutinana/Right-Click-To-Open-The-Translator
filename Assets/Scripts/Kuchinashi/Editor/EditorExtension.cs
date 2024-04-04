@@ -14,7 +14,7 @@ namespace Kuchinashi
         [MenuItem ("Kuchinashi/Open Persistent Data Folder")]
         public static void OpenPersistentDataFolder()
         {
-            EditorUtility.RevealInFinder(Path.Combine(Application.persistentDataPath, "Larvend Kanata"));
+            EditorUtility.RevealInFinder(Path.Combine(Application.persistentDataPath, Application.productName));
         }
     }
 

@@ -71,8 +71,8 @@ namespace UI
 
             if (isBlack)
             {
-                _image.color = Color.black;
-                _text.color = Color.black;
+                _image.color = new Color(20f / 255, 24f / 255, 46f / 255);
+                _text.color = new Color(20f / 255, 24f / 255, 46f / 255);
             }
         }
 

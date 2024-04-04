@@ -45,13 +45,30 @@ namespace Dictionary
 
             TypeEventSystem.Global.Register<CallForPuzzleListEvent>(e => {
                 stateMachine.ChangeState(States.PuzzleList);
-            });
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             stateMachine.AddState(States.Home, new HomeState(stateMachine, this));
             stateMachine.AddState(States.PuzzleList, new PuzzleListState(stateMachine, this));
             stateMachine.AddState(States.Puzzle, new PuzzleState(stateMachine, this));
 
             stateMachine.StartState(States.Home);
+        }
+
+        public void GenerateCharacterList()
+        {
+            var parent = transform.Find("CharacterList/Scroll View/Viewport/Content");
+            for (var i = 0; i < parent.childCount; i++)
+            {
+                Destroy(parent.GetChild(i).gameObject);
+            }
+
+            if (UserDictionary.userDictionary == null || UserDictionary.userDictionary.Count == 0) return;
+            foreach (var c in UserDictionary.userDictionary)
+            {
+                var go = Instantiate(CharacterPrefab, parent);
+                go.GetComponent<Character>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);
+                go.transform.localScale = new Vector2(1.5f, 1.5f);
+            }
         }
     }
     
@@ -62,7 +79,6 @@ namespace Dictionary
 
         protected override void OnEnter()
         {
-            GenerateCharacterList();
             mTarget.StartCoroutine(OnEnterCoroutine());
         }
 
@@ -87,22 +103,6 @@ namespace Dictionary
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.characterListCanvasGroup, 0f, 0.1f));
 
             mTarget.CurrentCoroutine = null;
-        }
-
-        private void GenerateCharacterList()
-        {
-            var parent = mTarget.transform.Find("CharacterList/Scroll View/Viewport/Content");
-            for (var i = 0; i < parent.childCount; i++)
-            {
-                GameObject.Destroy(parent.GetChild(i).gameObject);
-            }
-
-            foreach (var c in UserDictionary.userDictionary)
-            {
-                var go = GameObject.Instantiate(mTarget.CharacterPrefab, parent);
-                go.GetComponent<Character>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);
-                go.transform.localScale = new Vector2(1.5f, 1.5f);
-            }
         }
     }
 

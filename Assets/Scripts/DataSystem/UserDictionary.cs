@@ -12,8 +12,15 @@ namespace DataSystem
         public static readonly string userDictionaryPath = Application.persistentDataPath + "/UserDictionary.json";
         public static Dictionary<string, string> userDictionary
         {
-            get => _userDictionary ??= DeSerialization();
-            set => _userDictionary = value;
+            get
+            {
+                if (_userDictionary == null) return DeSerialization();
+                return _userDictionary;
+            }
+            set
+            {
+                _userDictionary = value;
+            }
         }
         private static Dictionary<string, string> _userDictionary;
 
@@ -77,9 +84,11 @@ namespace DataSystem
             if (File.Exists(userDictionaryPath))
             {
                 string json = File.ReadAllText(userDictionaryPath);
-                return JsonMapper.ToObject<Dictionary<string, string>>(json);
+                _userDictionary = JsonMapper.ToObject<Dictionary<string, string>>(json);
             }
-            return new Dictionary<string, string>();
+            _userDictionary ??= new Dictionary<string, string>();
+            
+            return _userDictionary;
         }
     }
 }

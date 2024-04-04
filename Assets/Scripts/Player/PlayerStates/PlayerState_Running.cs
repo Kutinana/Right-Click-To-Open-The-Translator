@@ -13,6 +13,7 @@ public class PlayerState_Running: PlayerState
     protected override void StateInitialization()
     {
         InitialSpeed = playerController.moveSpeed;
+        playerController.SetCurrentMaxSpeed(runSpeed);
         LerpParameter = 0;
         base.StateInitialization();
     }
@@ -40,4 +41,5 @@ public class PlayerState_Running: PlayerState
         playerController.Move(currentSpeed);
         base.PhysicsUpdate();
     }
+    public float GetMaxSpeed() => runSpeed;
 }

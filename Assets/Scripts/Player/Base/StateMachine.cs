@@ -14,11 +14,10 @@ public class StateMachine: MonoBehaviour
     private void Update()
     {
         currentState?.LogicUpdate();
-        currentState?.PhysicsUpdate();
     }
     private void FixedUpdate()
     {
-        
+        currentState?.PhysicsUpdate();
     }
     public void SwitchOn(IState state)
     {
@@ -34,4 +33,5 @@ public class StateMachine: MonoBehaviour
     {
         SwitchState(statetable[type]);
     }
+    public IState GetCurrentState() => currentState;
 }

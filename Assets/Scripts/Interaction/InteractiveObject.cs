@@ -111,17 +111,17 @@ public class InteractiveObject : MonoBehaviour, Interactive
     {
         InteractiveObjectPool.LoadObject(this);
     }
-    public void OnTrigger()
+    public virtual void OnTrigger()
     {
         InteractiveObjectPool.ObjectTriggered(this);
     }
-    public void EndTrigger(){ }
+    public virtual void EndTrigger(){ }
     public virtual void TriggerEvent(){ }
-    public void Activate()
+    public virtual void Activate()
     {
         Debug.Log(transform.name + " activate");
     }
-    public void Deactivate()
+    public virtual void Deactivate()
     {
         Debug.Log(transform.name + " deactivate");
     }

@@ -13,6 +13,7 @@ public class PlayerState_Walking: PlayerState
     protected override void StateInitialization()
     {
         InitialSpeed = playerController.moveSpeed;
+        playerController.SetCurrentMaxSpeed(walkSpeed);
         LerpParameter = 0;
         base.StateInitialization();
     }
@@ -44,4 +45,5 @@ public class PlayerState_Walking: PlayerState
         playerController.Move(currentSpeed);
         base.PhysicsUpdate();
     }
+    public float GetMaxSpeed() => walkSpeed;
 }

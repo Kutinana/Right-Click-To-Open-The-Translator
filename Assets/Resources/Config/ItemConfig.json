@@ -1,0 +1,13 @@
+{
+	"itemConfigs":[
+		{
+			"ID":0,
+			"TriggeredSpriteName":"",
+			"itemType":"DOOR"
+		},
+		{
+			"ID":0,
+			"TriggeredSpriteName":"",
+			"itemType":"DOOR"
+		}]
+}

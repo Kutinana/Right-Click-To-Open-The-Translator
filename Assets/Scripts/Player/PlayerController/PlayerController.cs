@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     ObjectsDetector objectsDetector;
     int par = 0;
-
+    float CurrentMaxSpeed;
     public bool touchable => objectsDetector.touchable;
     public float moveSpeed => Mathf.Abs(mrigidbody.velocity.x);
+    public void SetCurrentMaxSpeed(float speed) => CurrentMaxSpeed = speed;
+    public float GetCurrentMaxSpeed() => CurrentMaxSpeed;
     private void Awake()
     {
         this.playerInput = GetComponent<PlayerInput>();
@@ -68,6 +70,10 @@ public class PlayerController : MonoBehaviour
     public void SetVelocityX(float VelocityX)
     {
         mrigidbody.velocity = new Vector3(VelocityX, mrigidbody.velocity.y);
+    }
+    public void SetVelocityY(float VelocityY)
+    {
+        mrigidbody.velocity = new Vector3(mrigidbody.velocity.x, VelocityY);
     }
     public void SetGravity(float value)
     {

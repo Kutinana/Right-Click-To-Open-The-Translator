@@ -6,12 +6,11 @@ using Translator;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Puzzle
+namespace Hint
 {
-    public struct OnPuzzleInitializedEvent {}
-    public struct OnPuzzleSolvedEvent {}
-    public struct OnPuzzleExitEvent {}
-    public partial class PuzzleManager : MonoBehaviour , ISingleton
+    public struct OnHintInitializedEvent {}
+    public struct OnHintExitEvent {}
+    public partial class HintManager : MonoBehaviour , ISingleton
     {
         public enum States
         {
@@ -20,15 +19,14 @@ namespace Puzzle
             Active
         }
 
-        public static PuzzleManager Instance => SingletonProperty<PuzzleManager>.Instance;
+        public static HintManager Instance => SingletonProperty<HintManager>.Instance;
         public void OnSingletonInit() {}
         public static FSM<States> StateMachine => Instance.stateMachine;
         public FSM<States> stateMachine = new FSM<States>();
 
         private CanvasGroup canvasGroup;
 
-        public static PuzzleBase CurrentPuzzle = null;
-        public static List<PuzzleBase> LoadedPuzzles = new List<PuzzleBase>();
+        public static HintBase CurrentHint = null;
         public Coroutine CurrentCoroutine = null;
 
         private void Awake()
@@ -38,20 +36,17 @@ namespace Puzzle
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
 
-            TypeEventSystem.Global.Register<OnPuzzleSolvedEvent>(e => {
-                if (CurrentPuzzle != null) CurrentPuzzle.OnComplete();
-            });
-            TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e => {
-                if (CurrentPuzzle != null) CurrentPuzzle.OnExit();
+            TypeEventSystem.Global.Register<OnHintExitEvent>(e => {
+                if (CurrentHint != null) CurrentHint.OnExit();
 
                 StateMachine.ChangeState(States.None);
             });
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
-                if (CurrentPuzzle != null) StateMachine.ChangeState(States.InActive);
+                if (CurrentHint != null) StateMachine.ChangeState(States.InActive);
             });
             TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
-                if (CurrentPuzzle != null) StateMachine.ChangeState(States.Active);
+                if (CurrentHint != null) StateMachine.ChangeState(States.Active);
             });
 
             stateMachine.AddState(States.None, new NoneState(stateMachine, this));
@@ -63,40 +58,31 @@ namespace Puzzle
 
         public static void Initialize(string _id)
         {
-            if (CurrentPuzzle != null) return;
+            if (CurrentHint != null) return;
 
-            CurrentPuzzle = LoadedPuzzles.Find(x => x.Id == _id);
-            if (CurrentPuzzle != null)
-            {
-                CurrentPuzzle.gameObject.SetActive(true);
-            }
-            else
-            {
-                var data = GameDesignData.GetPuzzleDataById(_id);
-                CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
-                CurrentPuzzle.Id = _id;
+            var data = GameDesignData.GetHintDataById(_id);
+            CurrentHint = Instantiate(data.HintPrefab, Instance.transform).GetComponent<HintBase>();
+            CurrentHint.Id = _id;
 
-                LoadedPuzzles.Add(CurrentPuzzle);
-            }
-            CurrentPuzzle.OnEnter();
+            CurrentHint.OnEnter();
             StateMachine.ChangeState(States.Active);
         }
 
         private void Update()
         {
-            // if (Input.GetKeyUp(KeyCode.I) && CurrentPuzzle == null) Initialize("puzzle1");
-            if (CurrentPuzzle != null)
+            if (Input.GetKeyUp(KeyCode.I) && CurrentHint == null) Initialize("hint5");
+            if (CurrentHint != null)
             {
-                CurrentPuzzle.OnUpdate();
+                CurrentHint.OnUpdate();
             }
         }
     }
 
-    public partial class PuzzleManager
+    public partial class HintManager
     {
-        public class NoneState : AbstractState<States, PuzzleManager>
+        public class NoneState : AbstractState<States, HintManager>
         {
-            public NoneState(FSM<States> fsm, PuzzleManager target) : base(fsm, target) {}
+            public NoneState(FSM<States> fsm, HintManager target) : base(fsm, target) {}
             protected override bool OnCondition() =>  mFSM.CurrentStateId != States.None;
 
             protected override void OnEnter()
@@ -107,19 +93,16 @@ namespace Puzzle
             IEnumerator OnEnterCoroutine()
             {
                 yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
-                if (CurrentPuzzle != null)
-                {
-                    CurrentPuzzle.gameObject.SetActive(false);
-                }
+                if (CurrentHint != null) Destroy(CurrentHint.gameObject);
                 
-                CurrentPuzzle = null;
+                CurrentHint = null;
                 mTarget.CurrentCoroutine = null;
             }
         }
 
-        public class ActiveState : AbstractState<States, PuzzleManager>
+        public class ActiveState : AbstractState<States, HintManager>
         {
-            public ActiveState(FSM<States> fsm, PuzzleManager target) : base(fsm, target) {}
+            public ActiveState(FSM<States> fsm, HintManager target) : base(fsm, target) {}
             protected override bool OnCondition() =>  mFSM.CurrentStateId != States.Active;
 
             protected override void OnEnter()
@@ -141,9 +124,9 @@ namespace Puzzle
             }
         }
 
-        public class InActiveState : AbstractState<States, PuzzleManager>
+        public class InActiveState : AbstractState<States, HintManager>
         {
-            public InActiveState(FSM<States> fsm, PuzzleManager target) : base(fsm, target) {}
+            public InActiveState(FSM<States> fsm, HintManager target) : base(fsm, target) {}
             protected override bool OnCondition() =>  mFSM.CurrentStateId != States.InActive;
 
             protected override void OnEnter()

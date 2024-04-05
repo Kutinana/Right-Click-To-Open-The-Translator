@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-namespace Puzzle.SamplePuzzle
+namespace Puzzle.Puzzle1
 {
     public class Bottle : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace Puzzle.SamplePuzzle
 
         private IEnumerator OnMouseDown()
         {
-            SamplePuzzle.HoldingBottle = this;
+            Puzzle1.HoldingBottle = this;
             col.enabled = false;
 
             m_TargetScreenVec = Camera.main.WorldToScreenPoint(transform.position);
@@ -41,33 +41,34 @@ namespace Puzzle.SamplePuzzle
 
         private void OnMouseOver()
         {
-            if (SamplePuzzle.HoldingBottle != null && SamplePuzzle.HoldingBottle != this)
+            if (Puzzle1.HoldingBottle != null && Puzzle1.HoldingBottle != this)
             {
-                MoveTo(SamplePuzzle.HoldingBottle.CurrentPosition);
+                MoveTo(Puzzle1.HoldingBottle.CurrentPosition);
             }
         }
 
         private void MoveTo(int position)
         {
+            col.enabled = false;
             switch (bottleType)
             {
                 case BottleType.Cube when position == 0:
-                    StartCoroutine(MoveToCoroutine(0));
-                    break;
-                case BottleType.Cube when position == 1:
-                    StartCoroutine(MoveToCoroutine(300));
-                    break;
-                case BottleType.Cube when position == 2:
-                    StartCoroutine(MoveToCoroutine(600));
-                    break;
-                case BottleType.Taper when position == 0:
                     StartCoroutine(MoveToCoroutine(-300));
                     break;
-                case BottleType.Taper when position == 1:
+                case BottleType.Cube when position == 1:
                     StartCoroutine(MoveToCoroutine(0));
                     break;
-                case BottleType.Taper when position == 2:
+                case BottleType.Cube when position == 2:
                     StartCoroutine(MoveToCoroutine(300));
+                    break;
+                case BottleType.Taper when position == 0:
+                    StartCoroutine(MoveToCoroutine(0));
+                    break;
+                case BottleType.Taper when position == 1:
+                    StartCoroutine(MoveToCoroutine(300));
+                    break;
+                case BottleType.Taper when position == 2:
+                    StartCoroutine(MoveToCoroutine(600));
                     break;
                 case BottleType.Ball when position == 0:
                     StartCoroutine(MoveToCoroutine(-600));
@@ -79,7 +80,9 @@ namespace Puzzle.SamplePuzzle
                     StartCoroutine(MoveToCoroutine(0));
                     break;
             }
-            SamplePuzzle.Swap(this, SamplePuzzle.HoldingBottle);
+            Puzzle1.Swap(this, Puzzle1.HoldingBottle);
+
+            col.enabled = true;
         }
 
         private IEnumerator MoveToCoroutine(int _x)
@@ -95,9 +98,9 @@ namespace Puzzle.SamplePuzzle
 
         private void OnMouseUp()
         {
-            SamplePuzzle.ReArrangePosition();
+            Puzzle1.ReArrangePosition();
 
-            SamplePuzzle.HoldingBottle = null;
+            Puzzle1.HoldingBottle = null;
             col.enabled = true;
         }
     }

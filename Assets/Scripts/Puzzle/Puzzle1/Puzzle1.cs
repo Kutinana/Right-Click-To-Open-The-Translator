@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using DataSystem;
 using QFramework;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Puzzle.SamplePuzzle
+namespace Puzzle.Puzzle1
 {
     public enum BottleType
     {
@@ -13,20 +15,20 @@ namespace Puzzle.SamplePuzzle
         Taper
     }
     
-    public class SamplePuzzle : PuzzleBase , ISingleton
+    public class Puzzle1 : PuzzleBase , ISingleton
     {
-        public static SamplePuzzle Instance => SingletonProperty<SamplePuzzle>.Instance;
+        public static Puzzle1 Instance => SingletonProperty<Puzzle1>.Instance;
         public void OnSingletonInit() {}
         public static Dictionary<int, BottleType> PositionDictionary = new Dictionary<int, BottleType>() {
-            {0, BottleType.Cube},
-            {1, BottleType.Taper},
+            {0, BottleType.Taper},
+            {1, BottleType.Cube},
             {2, BottleType.Ball}
         };
 
         public static readonly Dictionary<int, BottleType> CORRECT = new Dictionary<int, BottleType>() {
             {0, BottleType.Ball},
-            {1, BottleType.Cube},
-            {2, BottleType.Taper}
+            {1, BottleType.Taper},
+            {2, BottleType.Cube}
         };
 
         public Bottle Cube;
@@ -52,10 +54,10 @@ namespace Puzzle.SamplePuzzle
             switch (PositionDictionary[0])
             {
                 case BottleType.Cube:
-                    Instance.Cube.transform.localPosition = new Vector3(0, 0, 0);
+                    Instance.Cube.transform.localPosition = new Vector3(-300, 0, 0);
                     break;
                 case BottleType.Taper:
-                    Instance.Taper.transform.localPosition = new Vector3(-300, 0, 0);
+                    Instance.Taper.transform.localPosition = new Vector3(0, 0, 0);
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(-600, 0, 0);
@@ -65,10 +67,10 @@ namespace Puzzle.SamplePuzzle
             switch (PositionDictionary[1])
             {
                 case BottleType.Cube:
-                    Instance.Cube.transform.localPosition = new Vector3(300, 0, 0);
+                    Instance.Cube.transform.localPosition = new Vector3(0, 0, 0);
                     break;
                 case BottleType.Taper:
-                    Instance.Taper.transform.localPosition = new Vector3(0, 0, 0);
+                    Instance.Taper.transform.localPosition = new Vector3(300, 0, 0);
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(-300, 0, 0);
@@ -78,10 +80,10 @@ namespace Puzzle.SamplePuzzle
             switch (PositionDictionary[2])
             {
                 case BottleType.Cube:
-                    Instance.Cube.transform.localPosition = new Vector3(600, 0, 0);
+                    Instance.Cube.transform.localPosition = new Vector3(300, 0, 0);
                     break;
                 case BottleType.Taper:
-                    Instance.Taper.transform.localPosition = new Vector3(300, 0, 0);
+                    Instance.Taper.transform.localPosition = new Vector3(600, 0, 0);
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(0, 0, 0);
@@ -99,6 +101,13 @@ namespace Puzzle.SamplePuzzle
             backButton.onClick.AddListener(() => {
                 TypeEventSystem.Global.Send<OnPuzzleExitEvent>();
             });
+            
+            List<string> ids = new List<string>();
+            foreach (var c in GetComponentsInChildren<Character>())
+            {
+                ids.Add(c.data.Id);
+            }
+            UserDictionary.Unlock(ids);
         }
 
         public override void OnExit()

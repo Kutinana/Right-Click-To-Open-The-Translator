@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSystem;
 using QFramework;
 using Translator;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,8 @@ namespace Hint
         public FSM<States> stateMachine = new FSM<States>();
 
         private CanvasGroup canvasGroup;
+
+        public string ToInstantiateHintId { get; set; }
 
         public static HintBase CurrentHint = null;
         public Coroutine CurrentCoroutine = null;
@@ -70,7 +73,6 @@ namespace Hint
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.I) && CurrentHint == null) Initialize("hint5");
             if (CurrentHint != null)
             {
                 CurrentHint.OnUpdate();
@@ -139,4 +141,29 @@ namespace Hint
             }
         }
     }
+
+    #if UNITY_EDITOR
+
+    [CustomEditor(typeof(HintManager))]
+    [CanEditMultipleObjects]
+    public class HintManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            HintManager manager = (HintManager)target;
+
+            EditorGUILayout.Separator();
+
+            EditorGUILayout.BeginHorizontal();
+            manager.ToInstantiateHintId = EditorGUILayout.TextField(manager.ToInstantiateHintId);
+            if (GUILayout.Button("Initialize"))
+            {
+                HintManager.Initialize(manager.ToInstantiateHintId);
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+    #endif
 }

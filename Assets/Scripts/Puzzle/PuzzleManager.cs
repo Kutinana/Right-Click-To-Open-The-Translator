@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSystem;
 using QFramework;
 using Translator;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,7 @@ namespace Puzzle
 
         private CanvasGroup canvasGroup;
 
+        public string ToInstantiatePuzzleId { get; set; }
         public static PuzzleBase CurrentPuzzle = null;
         public static List<PuzzleBase> LoadedPuzzles = new List<PuzzleBase>();
         public Coroutine CurrentCoroutine = null;
@@ -84,7 +86,6 @@ namespace Puzzle
 
         private void Update()
         {
-            // if (Input.GetKeyUp(KeyCode.I) && CurrentPuzzle == null) Initialize("puzzle1");
             if (CurrentPuzzle != null)
             {
                 CurrentPuzzle.OnUpdate();
@@ -156,4 +157,29 @@ namespace Puzzle
             }
         }
     }
+    
+    #if UNITY_EDITOR
+
+    [CustomEditor(typeof(PuzzleManager))]
+    [CanEditMultipleObjects]
+    public class PuzzleManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            PuzzleManager manager = (PuzzleManager)target;
+
+            EditorGUILayout.Separator();
+
+            EditorGUILayout.BeginHorizontal();
+            manager.ToInstantiatePuzzleId = EditorGUILayout.TextField(manager.ToInstantiatePuzzleId);
+            if (GUILayout.Button("Initialize"))
+            {
+                PuzzleManager.Initialize(manager.ToInstantiatePuzzleId);
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+    #endif
 }

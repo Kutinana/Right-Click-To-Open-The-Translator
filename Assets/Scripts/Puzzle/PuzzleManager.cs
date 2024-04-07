@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DataSystem;
 using QFramework;
 using Translator;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,9 @@ namespace Puzzle
 
         private CanvasGroup canvasGroup;
 
+        public string ToInstantiatePuzzleId { get; set; }
         public static PuzzleBase CurrentPuzzle = null;
+        public static List<PuzzleBase> LoadedPuzzles = new List<PuzzleBase>();
         public Coroutine CurrentCoroutine = null;
 
         private void Awake()
@@ -60,19 +63,29 @@ namespace Puzzle
             stateMachine.StartState(States.None);
         }
 
-        public static void Initialize(string id)
+        public static void Initialize(string _id)
         {
-            var data = GameDesignData.GetPuzzleDataById(id);
-            CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
+            if (CurrentPuzzle != null) return;
 
+            CurrentPuzzle = LoadedPuzzles.Find(x => x.Id == _id);
+            if (CurrentPuzzle != null)
+            {
+                CurrentPuzzle.gameObject.SetActive(true);
+            }
+            else
+            {
+                var data = GameDesignData.GetPuzzleDataById(_id);
+                CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
+                CurrentPuzzle.Id = _id;
+
+                LoadedPuzzles.Add(CurrentPuzzle);
+            }
             CurrentPuzzle.OnEnter();
-
             StateMachine.ChangeState(States.Active);
         }
 
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.I)) Initialize("sample");
             if (CurrentPuzzle != null)
             {
                 CurrentPuzzle.OnUpdate();
@@ -95,7 +108,10 @@ namespace Puzzle
             IEnumerator OnEnterCoroutine()
             {
                 yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
-                if (CurrentPuzzle != null) Destroy(CurrentPuzzle.gameObject);
+                if (CurrentPuzzle != null)
+                {
+                    CurrentPuzzle.gameObject.SetActive(false);
+                }
                 
                 CurrentPuzzle = null;
                 mTarget.CurrentCoroutine = null;
@@ -141,4 +157,29 @@ namespace Puzzle
             }
         }
     }
+    
+    #if UNITY_EDITOR
+
+    [CustomEditor(typeof(PuzzleManager))]
+    [CanEditMultipleObjects]
+    public class PuzzleManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            PuzzleManager manager = (PuzzleManager)target;
+
+            EditorGUILayout.Separator();
+
+            EditorGUILayout.BeginHorizontal();
+            manager.ToInstantiatePuzzleId = EditorGUILayout.TextField(manager.ToInstantiatePuzzleId);
+            if (GUILayout.Button("Initialize"))
+            {
+                PuzzleManager.Initialize(manager.ToInstantiatePuzzleId);
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+    #endif
 }

@@ -15,6 +15,11 @@ namespace DataSystem
         {
             return Resources.Load<PuzzleData>("ScriptableObjects/PuzzleData/" + id);
         }
+
+        public static HintData GetHintDataById(string id)
+        {
+            return Resources.Load<HintData>("ScriptableObjects/HintData/" + id);
+        }
     }
 
 }

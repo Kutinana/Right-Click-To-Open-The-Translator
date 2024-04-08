@@ -49,7 +49,6 @@ public class Bubble: MonoBehaviour
         {
             Disappear();
             spriteRenderer.color = new Color(currColor.r, currColor.g, currColor.b, Alpha);
-            Debug.Log(spriteRenderer.color);
             if (Alpha == 0)
             {
                 Destroy(this.gameObject);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractiveNPC : InteractiveObject
 {
     private int currentConversationCount;
-    private NPCConfig NPC;
+    private NPCSentencesData NPCData;
     private Sprite[] Sentences;
     private BubbleController bubbleController;
 
@@ -20,22 +20,8 @@ public class InteractiveNPC : InteractiveObject
     }
     public override void LoadConfig()
     {
-        foreach (NPCConfig _NPCConfig in InteractiveObjectPool.Instance.NPCConfigs)
-        {
-            if (this.ID == _NPCConfig.ID) NPC = _NPCConfig;
-        }
-        if (NPC == null)
-        {
-            Debug.LogError("No corresponding NPC config. ID: " + ID);
-        }
-        else
-        {
-            Sentences = new Sprite[NPC.MaxConservationCount];
-            for (int i = 0; i < Sentences.Length; i++)
-            {
-                Sentences[i] = Resources.Load<Sprite>(NPC.SentencesPath[i]) as Sprite;
-            }
-        }
+        NPCData = Resources.Load<NPCSentencesData>("ScriptableObjects/NPCSentencesData/NPC" + ID);
+        Sentences = NPCData.SentencesData;
         base.LoadConfig();
     }
     public override void TriggerEvent()
@@ -72,6 +58,7 @@ public class BubbleController
         {
             GameObject bubble = Resources.Load<GameObject>("Prefabs/NPCBubble/SingleBubble");
             bubble = GameObject.Instantiate(bubble, NPC);
+            bubble.GetComponent<SpriteRenderer>().sprite = sprites[count];
             Bubbles.Add(bubble.GetComponent<Bubble>());
             foreach (Bubble _bubble in Bubbles)
             {

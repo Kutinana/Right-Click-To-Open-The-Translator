@@ -76,7 +76,8 @@ public class InteractiveObjectPool
     {
         int id = interactiveObject.ID;
         Debug.Log(id + " " + interactiveObject.name + " is triggered");
-        EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
+        interactiveObject.TriggerEvent();
+        //EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
     }
     public static void EventTrigger(params System.Action[] actions)
     {

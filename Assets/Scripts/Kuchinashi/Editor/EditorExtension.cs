@@ -16,6 +16,12 @@ namespace Kuchinashi
         {
             EditorUtility.RevealInFinder(Path.Combine(Application.persistentDataPath, Application.productName));
         }
+
+        [MenuItem ("Kuchinashi/Delete Persistent Data Folder")]
+        public static void DeletePersistentDataFolder()
+        {
+            Directory.Delete(Application.persistentDataPath, true);
+        }
     }
 
 }

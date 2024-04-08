@@ -149,7 +149,7 @@ Camera:
   m_GameObject: {fileID: 32421259}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -176,10 +176,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 32421259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.969389}
+  m_LocalPosition: {x: 8.390862, y: 0.6269681, z: -9.969389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 182432652}
   - component: {fileID: 182432651}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_FloorLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 235459092}
   - component: {fileID: 235459091}
+  - component: {fileID: 235459093}
   m_Layer: 6
   m_Name: Map1_Wall
   m_TagString: Untagged
@@ -374,6 +375,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1598837249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &235459093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235459090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f1a9df8135a9a4381e6b88a6a5ad0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358094811
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358094813}
   - component: {fileID: 358094812}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_nearbackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +485,7 @@ GameObject:
   - component: {fileID: 592370176}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,7 +507,7 @@ Camera:
   m_GameObject: {fileID: 592370172}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -521,10 +534,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5.5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -565,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minX: -10
   maxX: 10
-  slowRange: 1.5
+  slowRange: 2
 --- !u!1 &772516756
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +659,7 @@ GameObject:
   - component: {fileID: 958959371}
   - component: {fileID: 958959373}
   - component: {fileID: 958959374}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006317897}
   - component: {fileID: 1006317896}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_Middlebackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1073,8 +1086,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106206830}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.03060913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1157,7 +1170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273667142}
   - component: {fileID: 1273667141}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_farbackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1243,7 +1256,7 @@ GameObject:
   - component: {fileID: 1301247834}
   - component: {fileID: 1301247833}
   - component: {fileID: 1301247835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_puzzle2_Unoutlined_object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1324,7 +1337,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: bd86bbb1f364d5747a522c072438b735, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7193845aed1f3a1459b65ce5211d3f4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1390,7 +1403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1530654819}
   - component: {fileID: 1530654818}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_WallWindows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1489,7 @@ GameObject:
   - component: {fileID: 1598837248}
   - component: {fileID: 1598837247}
   - component: {fileID: 1598837246}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,7 +1571,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2112862073}
   - {fileID: 1301247832}
   - {fileID: 235459092}
   - {fileID: 1530654819}
@@ -1585,7 +1597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089417140}
   - component: {fileID: 2089417139}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Map1_Farfarbackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1683,7 @@ GameObject:
   - component: {fileID: 2112862072}
   - component: {fileID: 2112862071}
   - component: {fileID: 2112862070}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SampleNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8eb2c20899cde4c9496994071fd62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identity_number: 2
+  identity_number: 0
   itemConfig:
     ID: 0
     OutlinedSpritePath: 
@@ -1801,12 +1813,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112862069}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1143043, y: -25.412003, z: -842.0629}
-  m_LocalScale: {x: 9.353074, y: 9.353074, z: 9.353074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.51, y: -2.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1598837249}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1816,4 +1828,5 @@ SceneRoots:
   - {fileID: 32421261}
   - {fileID: 772516759}
   - {fileID: 1106206837}
+  - {fileID: 2112862073}
   - {fileID: 1598837249}

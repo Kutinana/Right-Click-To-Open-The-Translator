@@ -18,13 +18,6 @@ public class ItemConfig
     public String itemType;
 }
 
-[Serializable]
-public class NPCConfig
-{
-    public int ID;
-    public int MaxConservationCount;
-    public String[] SentencesPath;
-}
 public static class DoorConfig
 {
     public static Dictionary<int, String> nextSceneName = new Dictionary<int, string>()

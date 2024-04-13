@@ -1,10 +1,13 @@
 [
 	{
 		"ID":2,
-		"MaxConservationCount":5,
+		"MaxConservationCount":4,
 		"SentencesPath":
 		[
-
+			"Sprites/puzzles/Map1_puzzle1_Outlined_object",
+			"Sprites/puzzles/Map1_puzzle1_Unoutlined_object",
+			"Sprites/puzzles/Map1_puzzle2_Outlined_object",
+			"Sprites/puzzles/Map1_puzzle2_Unoutlined_object"
 		]
 	}
 ]

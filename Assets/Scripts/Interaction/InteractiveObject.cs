@@ -27,14 +27,11 @@ public class InteractiveObjectPool
     private static System.Action EventList;
 
     public List<ItemConfig> itemConfigs = new List<ItemConfig>();
-    public List<NPCConfig> NPCConfigs = new List<NPCConfig>();
     public InteractiveObject activeObject = null;
     private static void Init()
     {
         var r_itemConfig = Resources.Load<TextAsset>("Config/ItemConfig").text;
         _instance.itemConfigs = JsonMapper.ToObject<List<ItemConfig>>(r_itemConfig);
-        var r_NPCConfig = Resources.Load<TextAsset>("Config/NPCConfig").text;
-        _instance.NPCConfigs = JsonMapper.ToObject<List<NPCConfig>>(r_NPCConfig);
     }
     public static int getMaxSize() => ObjectPool.Length;
     public static void LoadObject(InteractiveObject interactiveObject)
@@ -76,7 +73,8 @@ public class InteractiveObjectPool
     {
         int id = interactiveObject.ID;
         Debug.Log(id + " " + interactiveObject.name + " is triggered");
-        EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
+        interactiveObject.TriggerEvent();
+        //EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
     }
     public static void EventTrigger(params System.Action[] actions)
     {
@@ -128,6 +126,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public int identity_number;
     public ItemConfig itemConfig;
     private SpriteRenderer spriteRenderer;
+    public int count = -1;
     private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -147,14 +146,18 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public virtual void OnTrigger()
     {
         InteractiveObjectPool.ObjectTriggered(this);
+        if (count > 0) count--;
     }
     public virtual void EndTrigger(){ }
     public virtual void TriggerEvent(){ }
     public virtual void Activate()
     {
-        Sprite sprite = Resources.Load<Sprite>(itemConfig.OutlinedSpritePath) as Sprite;
-        spriteRenderer.sprite = sprite;
-        Debug.Log(transform.name + " activate" + " change to " + itemConfig.OutlinedSpritePath);
+        if (count != 0)
+        {
+            Sprite sprite = Resources.Load<Sprite>(itemConfig.OutlinedSpritePath) as Sprite;
+            spriteRenderer.sprite = sprite;
+            Debug.Log(transform.name + " activate" + " change to " + itemConfig.OutlinedSpritePath);
+        }
     }
     public virtual void Deactivate()
     {

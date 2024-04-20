@@ -115,6 +115,7 @@ public class InteractiveObjectPool
 public interface Interactive
 {
     public int ID { get; }
+    public bool activable { get; }
     public void OnTrigger();
     public void EndTrigger();
     public void Activate();
@@ -126,6 +127,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public int identity_number;
     public ItemConfig itemConfig;
     private SpriteRenderer spriteRenderer;
+    private bool _activable;
     public int count = -1;
     private void Awake()
     {
@@ -135,12 +137,17 @@ public class InteractiveObject : MonoBehaviour, Interactive
     {
         get { return identity_number; }
     }
+    public bool activable
+    {
+        get { return _activable; }
+    }
     public virtual void LoadConfig()
     {
         itemConfig = InteractiveObjectPool.Instance.itemConfigs[ID];
     }
     public void Init()
     {
+        _activable = true;
         InteractiveObjectPool.LoadObject(this);
     }
     public virtual void OnTrigger()

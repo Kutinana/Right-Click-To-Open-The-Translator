@@ -17,6 +17,7 @@ public class ObjectsDetector : MonoBehaviour
         InteractiveObject closestObject = null;
         foreach(Collider2D o in colliders)
         {
+            if (!o.transform.GetComponent<InteractiveObject>().activable) continue;
             float dist = (o.Position2D() - transform.Position2D()).magnitude;
             if (dist < minDist)
             {

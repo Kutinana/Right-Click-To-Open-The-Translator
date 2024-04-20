@@ -52,7 +52,7 @@ namespace Puzzle.Puzzle2
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
-                TypeEventSystem.Global.Send<OnPuzzleExitEvent>();
+                PuzzleManager.Exit();
             });
 
             UserDictionary.Unlock("feu");
@@ -69,20 +69,13 @@ namespace Puzzle.Puzzle2
             }
         }
 
-        public override void OnComplete()
-        {
-            base.OnComplete();
-
-            Debug.Log("Complete");
-        }
-
         private IEnumerator CheckAnswerCoroutine()
         {
             yield return new WaitUntil(() => {
                 return correct == 6;
             });
 
-            TypeEventSystem.Global.Send<OnPuzzleSolvedEvent>();
+            PuzzleManager.Solved();
             CurrentCoroutine = null;
         }
     }

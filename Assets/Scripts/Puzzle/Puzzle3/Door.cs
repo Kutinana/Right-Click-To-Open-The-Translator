@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,11 @@ namespace Puzzle.Puzzle3
         private Button MiddleDown;
         private Button RightUp;
         private Button RightDown;
+
+        [SerializeField] private AnimationCurve animationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        [SerializeField] private Vector3 targetPosition = Vector3.zero;
+        [Range(0, 1)] public float Progress = 0f;
+        private Coroutine CurrentCoroutine = null;
 
         private void Awake()
         {
@@ -42,6 +48,8 @@ namespace Puzzle.Puzzle3
 
         private IEnumerator OnMouseDown()
         {
+            if (CurrentCoroutine != null) yield break;
+
             Puzzle3.IsHoldingDoor = true;
             col.enabled = false;
 
@@ -54,22 +62,28 @@ namespace Puzzle.Puzzle3
                 Vector3 res = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, 1f)) + m_Offset;
 
-                if (res.x >= -1) res = new Vector3(0, res.y, res.z);
-                
-                transform.position = new Vector3(res.x, transform.position.y, transform.position.z);
+                if (res.x < -1)
+                {
+                    CurrentCoroutine = StartCoroutine(MoveToCoroutine());
+                    yield break;
+                }
                 yield return new WaitForFixedUpdate();
             }
         }
 
-        private IEnumerator MoveToCoroutine(int _x)
+        private IEnumerator MoveToCoroutine()
         {
-            while (!Mathf.Approximately(transform.localPosition.x, _x))
+            while (!Mathf.Approximately(Progress, 1))
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(_x, 0, 0), 0.1f);
-            }
-            transform.localPosition = new Vector3(_x, 0, 0);
+                transform.localPosition = targetPosition * animationCurve.Evaluate(Progress);
+                Progress += Time.deltaTime;
 
-            yield return null;
+                yield return new WaitForFixedUpdate();
+            }
+            transform.localPosition = targetPosition;
+
+            CurrentCoroutine = null;
+            PuzzleManager.Solved(1f);
         }
 
         private void OnMouseUp()

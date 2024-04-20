@@ -99,7 +99,7 @@ namespace Puzzle.Puzzle1
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
-                TypeEventSystem.Global.Send<OnPuzzleExitEvent>();
+                PuzzleManager.Exit();
             });
             
             List<string> ids = new List<string>();
@@ -121,20 +121,13 @@ namespace Puzzle.Puzzle1
             }
         }
 
-        public override void OnComplete()
-        {
-            base.OnComplete();
-
-            Debug.Log("Complete");
-        }
-
         private IEnumerator CheckAnswerCoroutine()
         {
             yield return new WaitUntil(() => {
                 return PositionDictionary[0] == CORRECT[0] && PositionDictionary[1] == CORRECT[1] && PositionDictionary[2] == CORRECT[2];
             });
 
-            TypeEventSystem.Global.Send<OnPuzzleSolvedEvent>();
+            PuzzleManager.Solved();
             CurrentCoroutine = null;
         }
     }

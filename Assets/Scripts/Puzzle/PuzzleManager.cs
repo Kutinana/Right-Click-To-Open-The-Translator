@@ -9,9 +9,6 @@ using UnityEngine.UI;
 
 namespace Puzzle
 {
-    public struct OnPuzzleInitializedEvent {}
-    public struct OnPuzzleSolvedEvent {}
-    public struct OnPuzzleExitEvent {}
     public partial class PuzzleManager : MonoBehaviour , ISingleton
     {
         public enum States
@@ -40,21 +37,12 @@ namespace Puzzle
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
 
-            TypeEventSystem.Global.Register<OnPuzzleSolvedEvent>(e => {
-                if (CurrentPuzzle != null) CurrentPuzzle.OnComplete();
-            });
-            TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e => {
-                if (CurrentPuzzle != null) CurrentPuzzle.OnExit();
-
-                StateMachine.ChangeState(States.None);
-            });
-
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 if (CurrentPuzzle != null) StateMachine.ChangeState(States.InActive);
-            });
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
             TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
                 if (CurrentPuzzle != null) StateMachine.ChangeState(States.Active);
-            });
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             stateMachine.AddState(States.None, new NoneState(stateMachine, this));
             stateMachine.AddState(States.Active, new ActiveState(stateMachine, this));
@@ -90,6 +78,35 @@ namespace Puzzle
             {
                 CurrentPuzzle.OnUpdate();
             }
+        }
+
+        public static void Exit()
+        {
+            if (CurrentPuzzle != null)
+            {
+                CurrentPuzzle.OnExit();
+                TypeEventSystem.Global.Send(new OnPuzzleExitEvent(CurrentPuzzle));
+
+                StateMachine.ChangeState(States.None);
+            }
+        }
+
+        public static void Solved(float _delay = 0f)
+        {
+            if (CurrentPuzzle != null)
+            {
+                Instance.StartCoroutine(Instance.SolvedCoroutine(_delay));
+            }
+        }
+
+        private IEnumerator SolvedCoroutine(float _delay)
+        {
+            yield return new WaitForSeconds(_delay);
+
+            CurrentPuzzle.OnSolved();
+            TypeEventSystem.Global.Send(new OnPuzzleSolvedEvent(CurrentPuzzle));
+        
+            StateMachine.ChangeState(States.None);
         }
     }
 

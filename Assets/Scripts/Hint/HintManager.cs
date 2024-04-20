@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 namespace Hint
 {
-    public struct OnHintInitializedEvent {}
-    public struct OnHintExitEvent {}
     public partial class HintManager : MonoBehaviour , ISingleton
     {
         public enum States
@@ -39,12 +37,6 @@ namespace Hint
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
 
-            TypeEventSystem.Global.Register<OnHintExitEvent>(e => {
-                if (CurrentHint != null) CurrentHint.OnExit();
-
-                StateMachine.ChangeState(States.None);
-            });
-
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 if (CurrentHint != null) StateMachine.ChangeState(States.InActive);
             });
@@ -69,6 +61,8 @@ namespace Hint
 
             CurrentHint.OnEnter();
             StateMachine.ChangeState(States.Active);
+
+            GameProgressData.Unlock(CurrentHint);
         }
 
         private void Update()
@@ -76,6 +70,17 @@ namespace Hint
             if (CurrentHint != null)
             {
                 CurrentHint.OnUpdate();
+            }
+        }
+
+        public static void Exit()
+        {
+            if (CurrentHint != null)
+            {
+                CurrentHint.OnExit();
+                TypeEventSystem.Global.Send(new OnHintExitEvent(CurrentHint));
+
+                StateMachine.ChangeState(States.None);
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UI;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Puzzle
 
         }
 
-        public virtual void OnComplete()
+        public virtual void OnSolved()
         {
 
         }

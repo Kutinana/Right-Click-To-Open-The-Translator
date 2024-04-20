@@ -42,11 +42,9 @@ namespace Puzzle.Puzzle3
 
         public override void OnEnter()
         {
-            CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
-
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
-                TypeEventSystem.Global.Send<OnPuzzleExitEvent>();
+                PuzzleManager.Exit();
             });
             
             List<string> ids = new List<string>();
@@ -66,23 +64,6 @@ namespace Puzzle.Puzzle3
                 StopCoroutine(CurrentCoroutine);
                 CurrentCoroutine = null;
             }
-        }
-
-        public override void OnComplete()
-        {
-            base.OnComplete();
-
-            Debug.Log("Complete");
-        }
-
-        private IEnumerator CheckAnswerCoroutine()
-        {
-            yield return new WaitUntil(() => {
-                return Input.GetKeyUp(KeyCode.Space);
-            });
-
-            TypeEventSystem.Global.Send<OnPuzzleSolvedEvent>();
-            CurrentCoroutine = null;
         }
     }
 }

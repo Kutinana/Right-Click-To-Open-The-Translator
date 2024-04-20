@@ -48,7 +48,10 @@ namespace Puzzle.Puzzle2
 
         public override void OnEnter()
         {
-            CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+            if (GameProgressData.GetPuzzleProgress(Id) != PuzzleProgress.Solved)
+            {
+                CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+            }
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {

@@ -83,7 +83,7 @@ namespace Puzzle.Puzzle3
             transform.localPosition = targetPosition;
 
             CurrentCoroutine = null;
-            PuzzleManager.Solved(1f);
+            PuzzleManager.Solved();
         }
 
         private void OnMouseUp()

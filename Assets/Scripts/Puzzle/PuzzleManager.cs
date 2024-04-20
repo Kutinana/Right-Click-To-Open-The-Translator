@@ -67,6 +67,8 @@ namespace Puzzle
                 CurrentPuzzle.Id = _id;
 
                 LoadedPuzzles.Add(CurrentPuzzle);
+
+                GameProgressData.Unlock(CurrentPuzzle);
             }
             CurrentPuzzle.OnEnter();
             StateMachine.ChangeState(States.Active);
@@ -91,7 +93,7 @@ namespace Puzzle
             }
         }
 
-        public static void Solved(float _delay = 0f)
+        public static void Solved(float _delay = 1f)
         {
             if (CurrentPuzzle != null)
             {
@@ -107,6 +109,7 @@ namespace Puzzle
             TypeEventSystem.Global.Send(new OnPuzzleSolvedEvent(CurrentPuzzle));
         
             StateMachine.ChangeState(States.None);
+            GameProgressData.Solve(CurrentPuzzle);
         }
     }
 

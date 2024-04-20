@@ -21,7 +21,7 @@ namespace Hint.Hint2
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
-                TypeEventSystem.Global.Send<OnHintExitEvent>();
+                HintManager.Exit();
             });
             
             List<string> ids = new List<string>();

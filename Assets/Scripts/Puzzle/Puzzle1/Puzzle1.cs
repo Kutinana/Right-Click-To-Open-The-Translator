@@ -95,7 +95,17 @@ namespace Puzzle.Puzzle1
         {
             base.OnEnter();
 
-            CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+            if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
+            {
+                PositionDictionary = CORRECT;
+                ReArrangePosition();
+
+                transform.Find("Interactable").GetComponentsInChildren<Collider2D>().ForEach((x) => {x.enabled = false;});
+            }
+            else
+            {
+                CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+            }
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97dffa30f6b7fdd4fbba262e899e34ea, type: 3}
   m_Name: sample
   m_EditorClassIdentifier: 
-  Id: 
-  Sprite: {fileID: 0}
+  Id: sample
+  Sprite: {fileID: 21300000, guid: 6f036a114ca531149a9a96d1f05f13d9, type: 3}
   Description: "\u5FC6\u5883\u4E2D\u65E0\u5904\u4E0D\u5728\u7684\u788E\u7247\uFF0C\u6CDB\u7740\u5FAE\u5149\uFF0C\u5F62\u72B6\u4E07\u5343\u3002"
   SubDescription: "\u65E0\u8BBA\u662F\u8046\u542C\u795E\u79D8\u4E4B\u7269\u7684\u6084\u58F0\u7EC6\u8BED\uFF0C\u6291\u6216\u627E\u5BFB\u672A\u66FE\u542C\u95FB\u7684\u53E4\u8001\u4E50\u8C31\uFF0C\u90FD\u9700\u8981\u5B83\u7684\u6307\u5F15\u3002\u4F5C\u4E3A\u5FC6\u5883\u4E2D\u552F\u4E00\u7684\u8D27\u5E01\uFF0C\u4EFB\u4F55\u6709\u7075\u4E4B\u7269\u7686\u4F1A\u4E3A\u4E4B\u9894\u9996\u3002"
   MaxAmount: 0

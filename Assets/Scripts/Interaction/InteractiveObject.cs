@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using LitJson;
+using Newtonsoft.Json;
 
 public class InteractiveObjectPool
 {
@@ -31,7 +31,7 @@ public class InteractiveObjectPool
     private static void Init()
     {
         var r_itemConfig = Resources.Load<TextAsset>("Config/ItemConfig").text;
-        _instance.itemConfigs = JsonMapper.ToObject<List<ItemConfig>>(r_itemConfig);
+        _instance.itemConfigs = JsonConvert.DeserializeObject<List<ItemConfig>>(r_itemConfig);
     }
     public static int getMaxSize() => ObjectPool.Length;
     public static void LoadObject(InteractiveObject interactiveObject)

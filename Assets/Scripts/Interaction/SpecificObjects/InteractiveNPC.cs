@@ -8,11 +8,13 @@ public class InteractiveNPC : InteractiveObject
     private NPCSentencesData NPCData;
     private Sprite[] Sentences;
     private BubbleController bubbleController;
+    private CameraFollowController cameraFollowController;
 
     public override void Deactivate()
     {
         if (bubbleController != null)
         {
+            cameraFollowController.zoomSignal = 2;
             bubbleController.ClearAllBubbles();
             bubbleController = null;
         }
@@ -22,14 +24,20 @@ public class InteractiveNPC : InteractiveObject
     {
         NPCData = Resources.Load<NPCSentencesData>("ScriptableObjects/NPCSentencesData/NPC" + ID);
         Sentences = NPCData.SentencesData;
+        cameraFollowController = GameObject.Find("Main Camera").GetComponent<CameraFollowController>();
         base.LoadConfig();
     }
     public override void TriggerEvent()
     {
-        if (bubbleController == null) bubbleController = new BubbleController(this.transform, Sentences);
+        if (bubbleController == null)
+        {
+            cameraFollowController.zoomSignal = 1;
+            bubbleController = new BubbleController(this.transform, Sentences);
+        }
         if (bubbleController.count <= Sentences.Length) bubbleController.Next(); 
         if (bubbleController.count > Sentences.Length)
         {
+            cameraFollowController.zoomSignal = 2;
             bubbleController.ClearAllBubbles();
             bubbleController = null;
         }

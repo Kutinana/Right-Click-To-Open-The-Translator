@@ -42,14 +42,17 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (TranslatorSM.StateMachine.CurrentStateId == States.Recorder)
             {
-                TranslatorSM.ReturnToPreviousState();
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    TranslatorSM.ReturnToPreviousState();
+                }
+                if (Input.GetKeyDown(KeyCode.Return) && _inputField.IsActive())
+                {
+                    _confirmButton.onClick.Invoke();
+                }
             }
-		    if (Input.GetKeyDown(KeyCode.Return))
-		    {
-			    _confirmButton.onClick.Invoke();
-		    }
         }
 
         public CharacterRecordPanelManager Init(Character c)

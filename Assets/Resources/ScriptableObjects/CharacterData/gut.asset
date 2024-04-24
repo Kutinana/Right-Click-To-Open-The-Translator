@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: gut
   m_EditorClassIdentifier: 
-  Id: weis
-  Sprite: {fileID: 21300000, guid: 09aded75ff1a67d4ba2f5392444ae51a, type: 3}
-  Description: "\u7ED9\u4E0E"
+  Id: gut
+  Sprite: {fileID: 21300000, guid: 984e8b23892724e469c629a61d084cd7, type: 3}
+  Description: "\u597D\uFF0C\u548C\u8C10\uFF0C\u5584\u826F"

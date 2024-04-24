@@ -48,7 +48,12 @@ namespace Puzzle.Puzzle2
 
         public override void OnEnter()
         {
-            if (GameProgressData.GetPuzzleProgress(Id) != PuzzleProgress.Solved)
+            if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
+            {
+                transform.Find("Background/Answer").gameObject.SetActive(true);
+                transform.Find("Interactable").gameObject.SetActive(false);
+            }
+            else
             {
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using Kuchinashi;
 using QFramework;
 using UI;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Translator
 {
     public class MainMenuController : MonoBehaviour
     {
+        private CanvasGroup mCanvasGroup;
+
         private Button mStartGameBtn;
         private Button mQuitGameBtn;
         private Button mSettingsBtn;
@@ -17,10 +20,16 @@ namespace Translator
 
         private void Awake()
         {
+            mCanvasGroup = GetComponent<CanvasGroup>();
+
             mStartGameBtn = transform.Find("Menu/Start").GetComponent<Button>();
             mQuitGameBtn = transform.Find("Menu/Quit").GetComponent<Button>();
             mSettingsBtn = transform.Find("Menu/Settings").GetComponent<Button>();
             mCreditBtn = transform.Find("Menu/Credit").GetComponent<Button>();
+
+            mStartGameBtn.onClick.AddListener(() => {
+                StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
+            });
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 ToggleInteractability(false);
@@ -41,9 +50,16 @@ namespace Translator
         private void ToggleInteractability(bool _flag)
         {
             mStartGameBtn.interactable = _flag;
+            mStartGameBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+
             mQuitGameBtn.interactable = _flag;
+            mQuitGameBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+
             mSettingsBtn.interactable = _flag;
+            mSettingsBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+
             mCreditBtn.interactable = _flag;
+            mCreditBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
         }
     }
 }

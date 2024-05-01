@@ -282,9 +282,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: la
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -607,7 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 175139555}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +792,7 @@ GameObject:
   - component: {fileID: 206246417}
   - component: {fileID: 206246419}
   - component: {fileID: 206246418}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,10 +816,10 @@ RectTransform:
   - {fileID: 1828018061}
   m_Father: {fileID: 679033888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &206246418
 CanvasGroup:
@@ -817,9 +829,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206246416}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &206246419
 MonoBehaviour:
@@ -939,9 +951,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: rec
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -1057,9 +1081,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: schl
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -1721,7 +1757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465981053}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,9 +1796,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: geb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -1952,98 +2000,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!1 &519420028
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 519420032}
-  - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
---- !u!20 &519420031
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 34
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 0
-  m_HDR: 1
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &519420032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &624322491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2011,7 @@ GameObject:
   - component: {fileID: 624322494}
   - component: {fileID: 624322493}
   - component: {fileID: 624322492}
+  - component: {fileID: 624322495}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2112,6 +2069,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624322495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624322491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa03e59b80bf414c9332d73662fb527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &650729832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,7 +2094,7 @@ GameObject:
   - component: {fileID: 650729836}
   - component: {fileID: 650729835}
   - component: {fileID: 650729834}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2401,8 +2370,9 @@ GameObject:
   - component: {fileID: 679033887}
   - component: {fileID: 679033886}
   - component: {fileID: 679033885}
-  m_Layer: 5
-  m_Name: Canvas
+  - component: {fileID: 679033889}
+  m_Layer: 10
+  m_Name: TranslatorCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2487,6 +2457,7 @@ RectTransform:
   - {fileID: 1250645831}
   - {fileID: 1983425328}
   - {fileID: 206246417}
+  - {fileID: 1050293127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2494,6 +2465,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &679033889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679033882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1965e99bb949541a591ac4f6b20c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &750750160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2506,9 +2489,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_IsActive
@@ -3109,6 +3104,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047188641}
   m_CullTransparentMesh: 1
+--- !u!1 &1050293125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1050293127}
+  - component: {fileID: 1050293126}
+  m_Layer: 10
+  m_Name: Post Processing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1050293126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050293125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: ac781316846d7e043b983139a7cb9a85, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &1050293127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050293125}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10800}
+  m_LocalScale: {x: 108, y: 108, z: 108}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 679033888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098325530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,7 +3162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1098325531}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3156,8 +3200,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1151936760}
   - component: {fileID: 1151936759}
-  m_Layer: 0
-  m_Name: UICamera
+  - component: {fileID: 1151936761}
+  - component: {fileID: 1151936762}
+  m_Layer: 10
+  m_Name: TranslatorCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3229,6 +3275,224 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1151936761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151936757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3f868fc57d9d7418b0a18fbc209bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1151936762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151936757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1151936760}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles:
+  - assemblyQualifiedName: XPostProcessing.PixelizeLed, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeQuad, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeDiamond, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeHexagonGrid, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeCircle, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeSector, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeLeaf, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeTriangle, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.PixelizeHexagon, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_AfterStackBundles:
+  - assemblyQualifiedName: XPostProcessing.GlitchRGBSplitV4, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentContrast, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchRGBSplit, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionSobelNeon, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentContrastV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchScreenJump, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.TentBlur, Assembly-CSharp-firstpass, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionScharrNeon, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchImageBlock, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchImageBlockV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchLineBlock, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchAnalogNoise, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchRGBSplitV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.DirectionalBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionScharr, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionSobelNeonV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.KawaseBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchWaveJitter, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchImageBlockV3, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.TiltShiftBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorReplaceV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.TiltShiftBlurV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentBrightness, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionSobel, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionRoberts, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RadialBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.DualBoxBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.SharpenV3, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentWhiteBalance, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GaussianBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionRobertsNeon, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RapidVignette, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.DualTentBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentTechnicolor, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchImageBlockV4, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchRGBSplitV5, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.IrisBlurV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GrainyBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RadialBlurV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.SharpenV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorReplace, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RapidOldTVVignetteV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchScanLineJitter, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.AuroraVignette, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.DualKawaseBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.BokehBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.DualGaussianBlur, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionScharrNeonV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.IrisBlur, Assembly-CSharp-firstpass, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RapidVignetteV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentLensFilter, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentSaturation, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchScreenShake, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentContrastV3, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentBleachBypass, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentTint, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.SharpenV1, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.EdgeDetectionRobertsNeonV2, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.BoxBlur, Assembly-CSharp-firstpass, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchDigitalStripe, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchTileJitter, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.ColorAdjustmentHue, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.RapidOldTVVignette, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: XPostProcessing.GlitchRGBSplitV3, Assembly-CSharp-firstpass,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1154381198
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,7 +3506,7 @@ GameObject:
   - component: {fileID: 1154381202}
   - component: {fileID: 1154381201}
   - component: {fileID: 1154381200}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Credit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3381,7 +3645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163357508}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3421,9 +3685,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: offen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -3731,7 +4007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265090506}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3980,9 +4256,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: masc
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -4099,7 +4387,7 @@ GameObject:
   - component: {fileID: 1472870190}
   - component: {fileID: 1472870189}
   - component: {fileID: 1472870188}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4467,9 +4755,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -4675,7 +4975,7 @@ GameObject:
   - component: {fileID: 1656304502}
   - component: {fileID: 1656304501}
   - component: {fileID: 1656304500}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4699,7 +4999,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1820, y: 980.09814}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &1656304500
 VideoPlayer:
@@ -4784,7 +5084,7 @@ GameObject:
   - component: {fileID: 1666150890}
   - component: {fileID: 1666150889}
   - component: {fileID: 1666150888}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5210,7 +5510,7 @@ GameObject:
   - component: {fileID: 1827083380}
   - component: {fileID: 1827083382}
   - component: {fileID: 1827083381}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HintManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5269,7 +5569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1828018061}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5401,9 +5701,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: geb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -5519,9 +5831,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: credit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -5673,9 +5997,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: ubrs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -6049,7 +6385,7 @@ GameObject:
   - component: {fileID: 2023457720}
   - component: {fileID: 2023457719}
   - component: {fileID: 2023457718}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6196,9 +6532,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2049206328614847114, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261744035546814356, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Name
       value: offen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759100647274056557, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5904592439761878321, guid: 9b63c64643f0e3548b7fa3e1899b8d81, type: 3}
       propertyPath: m_Pivot.x
@@ -6647,7 +6995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145178694}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6804,7 +7152,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 1151936760}
   - {fileID: 679033888}
   - {fileID: 624322494}

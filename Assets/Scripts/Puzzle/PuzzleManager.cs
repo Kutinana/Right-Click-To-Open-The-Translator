@@ -27,7 +27,7 @@ namespace Puzzle
 
         public string ToInstantiatePuzzleId { get; set; }
         public static PuzzleBase CurrentPuzzle = null;
-        public static List<PuzzleBase> LoadedPuzzles = new List<PuzzleBase>();
+        // public static List<PuzzleBase> LoadedPuzzles = new List<PuzzleBase>();
         public Coroutine CurrentCoroutine = null;
 
         private void Awake()
@@ -55,21 +55,14 @@ namespace Puzzle
         {
             if (CurrentPuzzle != null) return;
 
-            CurrentPuzzle = LoadedPuzzles.Find(x => x.Id == _id);
-            if (CurrentPuzzle != null)
-            {
-                CurrentPuzzle.gameObject.SetActive(true);
-            }
-            else
-            {
-                var data = GameDesignData.GetPuzzleDataById(_id);
-                CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
-                CurrentPuzzle.Id = _id;
+            var data = GameDesignData.GetPuzzleDataById(_id);
+            CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
+            CurrentPuzzle.Id = _id;
 
-                LoadedPuzzles.Add(CurrentPuzzle);
+            // LoadedPuzzles.Add(CurrentPuzzle);
 
-                GameProgressData.Unlock(CurrentPuzzle);
-            }
+            GameProgressData.Unlock(CurrentPuzzle);
+
             CurrentPuzzle.OnEnter();
             StateMachine.ChangeState(States.Active);
         }
@@ -130,7 +123,7 @@ namespace Puzzle
                 yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
                 if (CurrentPuzzle != null)
                 {
-                    CurrentPuzzle.gameObject.SetActive(false);
+                    Destroy(CurrentPuzzle.gameObject);
                 }
                 
                 CurrentPuzzle = null;

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum ItemType
 {
-    DOOR,
-    PUZZLE,
-    NPC
+    DOOR = 0,
+    PUZZLE = 1,
+    NPC = 2,
+    Hint = 3
 }
 
 [Serializable]
@@ -15,7 +16,8 @@ public class ItemConfig
     public int ID;
     public String OutlinedSpritePath;
     public String UnoutlinedSpritePath;
-    public String itemType;
+    public ItemType itemType;
+    public String target_string;
 }
 
 public static class DoorConfig

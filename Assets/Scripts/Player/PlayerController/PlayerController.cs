@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput;
     Rigidbody2D mrigidbody;
+    Animator animator;
     SpriteRenderer spriteRenderer;
     ObjectsDetector objectsDetector;
 
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         this.mrigidbody = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.objectsDetector = GetComponent<ObjectsDetector>();
+        this.animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -29,10 +31,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ActivateObject();
-    }
-    private void FixedUpdate()
-    {
-        
     }
     private void ActivateObject()
     {
@@ -59,7 +57,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(float speed)
     {
-        if (speed != 0) spriteRenderer.flipX = playerInput.Move.x < 0;
+        if (playerInput.Move.x != 0) spriteRenderer.flipX = playerInput.Move.x < 0;
         if (playerInput.Move.x > 0) par = 1;
         else if (playerInput.Move.x < 0) par = -1;
         SetVelocityX(speed * par);

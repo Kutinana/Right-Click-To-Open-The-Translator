@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Events;
 
 public class InteractiveObjectPool
 {
@@ -127,7 +128,8 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public int identity_number;
     public ItemConfig itemConfig;
     private SpriteRenderer spriteRenderer;
-    private bool _activable;
+
+    private bool _activable = true;
     public int count = -1;
     private void Awake()
     {

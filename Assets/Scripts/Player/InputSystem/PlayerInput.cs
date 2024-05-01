@@ -34,4 +34,8 @@ public class PlayerInput: MonoBehaviour
         inputActions.GamePlay.Enable();
         //Cursor.lockState = CursorLockMode.Locked;
     }
+    public void DisableInputActions()
+    {
+        inputActions.GamePlay.Disable();
+    }
 }

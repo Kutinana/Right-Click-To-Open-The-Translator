@@ -1,6 +1,7 @@
 
 using QFramework;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bubble: MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class Bubble: MonoBehaviour
         {
             Disappear();
             spriteRenderer.color = new Color(currColor.r, currColor.g, currColor.b, Alpha);
+            gameObject.transform.Find("content").GetComponent<SpriteRenderer>().color = new Color(currColor.r, currColor.g, currColor.b, Alpha);
             if (Alpha == 0)
             {
                 Destroy(this.gameObject);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d1441066cf66b408b218d2b934e30d, type: 3}
   m_Name: PlayerState_Walking
   m_EditorClassIdentifier: 
-  animationName: 
+  animationName: Player_Moving
   transitionDuration: 0.1
   walkSpeed: 5
   acceleration: 2

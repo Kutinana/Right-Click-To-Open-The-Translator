@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFramework;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class AudioMng : MonoBehaviour
+public class AudioMng : MonoSingleton<AudioMng>
 {
-    public static AudioMng Instance;
     private readonly char[] randTab = new char[] { '0', '2', '1', '1', '0', '1', '3', '2', '1', '1', '3', '0', '3', '0', '2' };
     private int pRandTab = 0;
     AudioSource ambientChannel;
@@ -19,15 +17,8 @@ public class AudioMng : MonoBehaviour
     private Dictionary<string, AudioClip> bcakGroundMusics;
     private void Awake()
     {
-        if (Instance.IsUnityNull())
-        {
-            Instance = gameObject.GetComponent<AudioMng>();
-            Instance.DontDestroyOnLoad();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
+
         ambientChannel = transform.Find("Ambient").GetComponent<AudioSource>();
         BGM1 = transform.Find("Music1").GetComponent<AudioSource>();
         BGM2 = transform.Find("Music2").GetComponent<AudioSource>();

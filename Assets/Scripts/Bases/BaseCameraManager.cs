@@ -7,10 +7,7 @@ namespace Cameras
 {
     public class BaseCameraManager : MonoSingleton<BaseCameraManager>
     {
-        void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        
     }
 
 }

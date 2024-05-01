@@ -101,7 +101,11 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
         else
         {
-            AudioClip audioClip = Resources.Load<AudioClip>("Audios/BGM/" + name);
+            ResKit.Init();
+            var res = ResLoader.Allocate();
+
+            AudioClip audioClip = res.LoadSync<AudioClip>("audio", name);
+            // AudioClip audioClip = Resources.Load<AudioClip>("Audios/BGM/" + name);
             bcakGroundMusics.Add(name, audioClip);
         }
     }

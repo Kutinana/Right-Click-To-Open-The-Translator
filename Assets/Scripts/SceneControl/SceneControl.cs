@@ -17,7 +17,7 @@ namespace SceneControl
         public static bool CanTransition;
 
         private TMP_Text mTips;
-        // private ParticleSystem mLoadingParticle;
+        private Slider mLoadingProgress;
         private CanvasGroup mLoadingPanelCG;
         private CanvasGroup mBackgroundImageCG;
         private CanvasGroup mBlackLayerCG;
@@ -30,7 +30,9 @@ namespace SceneControl
         void Awake()
         {            
             mTips = transform.Find("Tips").GetComponent<TMP_Text>();
-            // mLoadingParticle = transform.Find("Ring").GetComponent<ParticleSystem>();
+            
+            mLoadingProgress = transform.Find("LoadingProgress").GetComponent<Slider>();
+            mLoadingProgress.value = 0;
 
             mLoadingPanelCG = GetComponent<CanvasGroup>();
             mLoadingPanelCG.alpha = 0;
@@ -140,6 +142,12 @@ namespace SceneControl
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             CurrentScene = sceneName;
             
+            while (mAsyncOperation.progress < 0.9f)
+            {
+                mLoadingProgress.value = mAsyncOperation.progress;
+                yield return null;
+            }
+            mLoadingProgress.value = 1;
             mAsyncOperation.allowSceneActivation = true;
 
             yield return mAsyncOperation;
@@ -163,6 +171,13 @@ namespace SceneControl
             
             mAsyncOperation.allowSceneActivation = true;
 
+            while (mAsyncOperation.progress < 0.9f)
+            {
+                mLoadingProgress.value = mAsyncOperation.progress;
+                yield return null;
+            }
+            mLoadingProgress.value = 1;
+
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
@@ -185,6 +200,12 @@ namespace SceneControl
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             CurrentScene = sceneName;
             
+            while (mAsyncOperation.progress < 0.9f)
+            {
+                mLoadingProgress.value = mAsyncOperation.progress;
+                yield return null;
+            }
+            mLoadingProgress.value = 1;
             mAsyncOperation.allowSceneActivation = true;
 
             yield return mAsyncOperation;

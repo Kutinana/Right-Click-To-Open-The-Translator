@@ -4,6 +4,7 @@ using DataSystem;
 using Kuchinashi;
 using QFramework;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,12 +29,21 @@ namespace Translator
             mCreditBtn = transform.Find("Menu/Credit").GetComponent<Button>();
 
             mStartGameBtn.onClick.AddListener(() => {
+                AudioMng.Instance.PlayBtnPressed(1);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
             });
-
             mSettingsBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.PlayFootsteps();
+                AudioMng.Instance.PlayBtnPressed(0);
+                AudioMng.Instance.D_PlayBGM("TestAudio");
             });
+            mCreditBtn.onClick.AddListener(()=>{
+                AudioMng.Instance.PlayBtnPressed(0);
+                AudioMng.Instance.StopBGM();
+            });
+            mQuitGameBtn.onClick.AddListener(()=>{
+                AudioMng.Instance.PlayBtnPressed(2);
+            });
+            
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 ToggleInteractability(false);
@@ -50,7 +60,6 @@ namespace Translator
             }
             UserDictionary.Unlock(ids);
         }
-
         private void ToggleInteractability(bool _flag)
         {
             mStartGameBtn.interactable = _flag;

@@ -11,7 +11,6 @@ namespace DataSystem
         public Sprite Sprite;
         public string Description;
 
-        public List<PuzzleData> RelatedPuzzles;
-        public List<HintData> RelatedHints;
+        public List<PuzzleDataBase> RelatedPuzzles;
     }
 }

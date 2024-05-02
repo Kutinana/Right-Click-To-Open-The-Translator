@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFramework;
+using Settings;
 using UnityEngine;
 
 public class AudioMng : MonoSingleton<AudioMng>
@@ -14,24 +15,43 @@ public class AudioMng : MonoSingleton<AudioMng>
     AudioSource BGM2;
     [SerializeField] AudioClip ambientClip;
     [SerializeField] float fadeTime = 100;
-    private Dictionary<string, AudioClip> bcakGroundMusics;
+    private Dictionary<string, AudioClip> backGroundMusics;
+
+    private float backgroundVolume;
+    private float effectVolume;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        ResKit.Init();
 
         ambientChannel = transform.Find("Ambient").GetComponent<AudioSource>();
         BGM1 = transform.Find("Music1").GetComponent<AudioSource>();
         BGM2 = transform.Find("Music2").GetComponent<AudioSource>();
-        bcakGroundMusics = new Dictionary<string, AudioClip>();
+        backGroundMusics = new Dictionary<string, AudioClip>();
         ambientChannel.clip = ambientClip;
         ambientChannel.Play();
+
+        UpdateVolume();
+
+        TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
+
     private void Start()
     {
         ambientChannel.clip = ambientClip;
         ambientChannel.Play();
         current = BGM1;
     }
+
+    private void UpdateVolume()
+    {
+        backgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
+        if (current != null) current.volume = backgroundVolume;
+
+        effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
+    }
+
     public void PlayFootsteps()
     {
         AudioKit.PlaySound("ftstp-2-" + randTab[pRandTab++]);
@@ -42,28 +62,26 @@ public class AudioMng : MonoSingleton<AudioMng>
     /// 0: Click; 1: Apply; 2:Cancel
     /// </summary>
     /// <param name="type">the type of button that change the sfx it plays. 0: click; 1: Apply; 2:Cancel</param>
-    public void PlayBtnPressed(int type)
+    public void PlayBtnPressed(int type, float volumeScale = 1f)
     {
         if (type == 0)
         {
-            AudioKit.PlaySound("click");
+            AudioKit.PlaySound("click", volumeScale: effectVolume * volumeScale);
         }
         else if (type == 1)
         {
-            AudioKit.PlaySound("apply");
+            AudioKit.PlaySound("apply", volumeScale: effectVolume * volumeScale);
         }
         else if (type == 2)
         {
-            AudioKit.PlaySound("cancel");
+            AudioKit.PlaySound("cancel", volumeScale: effectVolume * volumeScale);
         }
     }
 
     public void D_PlayBGM(string name)
     {
-        if (bcakGroundMusics.ContainsKey(name))
+        if (backGroundMusics.TryGetValue(name, out var audioClip))
         {
-            AudioClip audioClip;
-            bcakGroundMusics.TryGetValue(name, out audioClip);
             current.clip = audioClip;
             current.Play();
         }
@@ -74,7 +92,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
     }
 
-    public void StopBGM(){
+    public void StopBGM()
+    {
         FadeMusic(current,0f);
     }
 
@@ -88,25 +107,24 @@ public class AudioMng : MonoSingleton<AudioMng>
         for (float i = audioSource.volume; i < target - 0.01 || i > target + 0.01; i += delV)
         {
             audioSource.volume = i;
-            yield return 0;
+            yield return new WaitForFixedUpdate();
         }
         audioSource.volume = target;
     }
 
     public void LoadBGM(string name)
     {
-        if (bcakGroundMusics.ContainsKey(name))
+        if (backGroundMusics.ContainsKey(name))
         {
             Debug.Log("Duplicated loading music source.");
         }
         else
         {
-            ResKit.Init();
             var res = ResLoader.Allocate();
 
             AudioClip audioClip = res.LoadSync<AudioClip>("audio", name);
             // AudioClip audioClip = Resources.Load<AudioClip>("Audios/BGM/" + name);
-            bcakGroundMusics.Add(name, audioClip);
+            backGroundMusics.Add(name, audioClip);
         }
     }
 }

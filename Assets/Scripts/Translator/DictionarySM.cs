@@ -24,6 +24,7 @@ namespace Dictionary
         private FSM<States> stateMachine = new FSM<States>();
 
         public GameObject CharacterPrefab;
+        public GameObject PuzzlePrefab;
         public Coroutine CurrentCoroutine = null;
 
         internal CanvasGroup characterListCanvasGroup;
@@ -44,6 +45,7 @@ namespace Dictionary
             puzzleListBackButton.onClick.AddListener(() => stateMachine.ChangeState(States.Home));
 
             TypeEventSystem.Global.Register<CallForPuzzleListEvent>(e => {
+                GeneratePuzzleList(e.id);
                 stateMachine.ChangeState(States.PuzzleList);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
@@ -68,6 +70,24 @@ namespace Dictionary
                 var go = Instantiate(CharacterPrefab, parent);
                 go.GetComponent<Character>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);
                 go.transform.localScale = new Vector2(1.5f, 1.5f);
+            }
+        }
+
+        public void GeneratePuzzleList(string _id)
+        {
+            var parent = transform.Find("PuzzleList/Scroll View/Viewport/Content");
+            for (var i = 0; i < parent.childCount; i++)
+            {
+                Destroy(parent.GetChild(i).gameObject);
+            }
+
+            foreach (var p in GameDesignData.GetCharacterDataById(_id).RelatedPuzzles)
+            {
+                if (GameProgressData.GetPuzzleProgress(p.Id) == PuzzleProgress.NotFound) continue;
+
+                var go = Instantiate(PuzzlePrefab, parent);
+                go.GetComponent<PuzzleThumbnailController>().Initialize(p);
+                // go.transform.localScale = new Vector2(1.5f, 1.5f);
             }
         }
     }
@@ -135,6 +155,7 @@ namespace Dictionary
 
         IEnumerator OnEnterCoroutine()
         {
+            
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.puzzleListCanvasGroup, 1f, 0.1f));
 
             mTarget.CurrentCoroutine = null;
@@ -146,6 +167,12 @@ namespace Dictionary
 
             mTarget.CurrentCoroutine = null;
         }
+    }
+
+    public struct CallForPuzzleEvent {
+        public PuzzleType type;
+        public string id;
+        public CallForPuzzleEvent(PuzzleType _type, string _id) { type = _type; id = _id; }
     }
 
     public class PuzzleState : AbstractState<States, DictionarySM>

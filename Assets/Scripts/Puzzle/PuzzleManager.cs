@@ -56,7 +56,7 @@ namespace Puzzle
             if (CurrentPuzzle != null) return;
 
             var data = GameDesignData.GetPuzzleDataById(_id);
-            CurrentPuzzle = Instantiate(data.PuzzlePrefab, Instance.transform).GetComponent<PuzzleBase>();
+            CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>();
             CurrentPuzzle.Id = _id;
 
             // LoadedPuzzles.Add(CurrentPuzzle);

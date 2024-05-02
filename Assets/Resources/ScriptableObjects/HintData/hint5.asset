@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: hint5
   m_EditorClassIdentifier: 
   Id: hint5
-  HintPrefab: {fileID: 5775849724857332843, guid: e0926f8f6c1e95f4d9562453ce464936, type: 3}
+  Prefab: {fileID: 5775849724857332843, guid: e0926f8f6c1e95f4d9562453ce464936, type: 3}
   Thumbnail: {fileID: 21300000, guid: b25590aa81954b84aa2dcf663c53f29f, type: 3}
+  Name: 
   Description: 

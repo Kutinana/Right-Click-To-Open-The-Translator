@@ -56,7 +56,7 @@ namespace Hint
             if (CurrentHint != null) return;
 
             var data = GameDesignData.GetHintDataById(_id);
-            CurrentHint = Instantiate(data.HintPrefab, Instance.transform).GetComponent<HintBase>();
+            CurrentHint = Instantiate(data.Prefab, Instance.transform).GetComponent<HintBase>();
             CurrentHint.Id = _id;
 
             CurrentHint.OnEnter();

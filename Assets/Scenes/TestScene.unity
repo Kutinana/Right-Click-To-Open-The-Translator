@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map1
       objectReference: {fileID: 0}
+    - target: {fileID: 454125981109711342, guid: 1a4993b7fb4bec64a8d63aca3c55c215, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4087898177243544003, guid: 1a4993b7fb4bec64a8d63aca3c55c215, type: 3}
       propertyPath: m_Camera
       value: 

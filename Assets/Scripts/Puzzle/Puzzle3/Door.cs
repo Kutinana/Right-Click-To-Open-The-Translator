@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cameras;
 using DataSystem;
 using QFramework;
 using UnityEngine;
@@ -53,13 +54,13 @@ namespace Puzzle.Puzzle3
             Puzzle3.IsHoldingDoor = true;
             col.enabled = false;
 
-            m_TargetScreenVec = Camera.main.WorldToScreenPoint(transform.position);
-            m_Offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3
+            m_TargetScreenVec = TranslatorCameraManager.Camera.WorldToScreenPoint(transform.position);
+            m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
                 (Input.mousePosition.x, Input.mousePosition.y, 1f));
 
             while (Input.GetMouseButton(0) && Puzzle3.Instance.IsUnlocked)
             {
-                Vector3 res = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                Vector3 res = TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, 1f)) + m_Offset;
 
                 if (res.x < -1)

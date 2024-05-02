@@ -34,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Transition
+  - Post Processing
   - 
   m_SortingLayers:
   - name: Default

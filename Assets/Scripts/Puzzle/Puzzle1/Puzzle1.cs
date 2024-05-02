@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DataSystem;
 using QFramework;
 using UI;
@@ -55,12 +56,15 @@ namespace Puzzle.Puzzle1
             {
                 case BottleType.Cube:
                     Instance.Cube.transform.localPosition = new Vector3(-300, 0, 0);
+                    Instance.Cube.CurrentPosition = 0;
                     break;
                 case BottleType.Taper:
                     Instance.Taper.transform.localPosition = new Vector3(0, 0, 0);
+                    Instance.Taper.CurrentPosition = 0;
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(-600, 0, 0);
+                    Instance.Ball.CurrentPosition = 0;
                     break;
             }
 
@@ -68,12 +72,15 @@ namespace Puzzle.Puzzle1
             {
                 case BottleType.Cube:
                     Instance.Cube.transform.localPosition = new Vector3(0, 0, 0);
+                    Instance.Cube.CurrentPosition = 1;
                     break;
                 case BottleType.Taper:
                     Instance.Taper.transform.localPosition = new Vector3(300, 0, 0);
+                    Instance.Taper.CurrentPosition = 1;
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(-300, 0, 0);
+                    Instance.Ball.CurrentPosition = 1;
                     break;
             }
 
@@ -81,12 +88,15 @@ namespace Puzzle.Puzzle1
             {
                 case BottleType.Cube:
                     Instance.Cube.transform.localPosition = new Vector3(300, 0, 0);
+                    Instance.Cube.CurrentPosition = 2;
                     break;
                 case BottleType.Taper:
                     Instance.Taper.transform.localPosition = new Vector3(600, 0, 0);
+                    Instance.Taper.CurrentPosition = 2;
                     break;
                 case BottleType.Ball:
                     Instance.Ball.transform.localPosition = new Vector3(0, 0, 0);
+                    Instance.Ball.CurrentPosition = 2;
                     break;
             }
         }
@@ -100,7 +110,10 @@ namespace Puzzle.Puzzle1
                 PositionDictionary = CORRECT;
                 ReArrangePosition();
 
-                transform.Find("Interactable").GetComponentsInChildren<Collider2D>().ForEach((x) => {x.enabled = false;});
+                foreach (var col in transform.Find("Interactable").GetComponentsInChildren<Bottle>())
+                {
+                    col.enabled = false;
+                }
             }
             else
             {

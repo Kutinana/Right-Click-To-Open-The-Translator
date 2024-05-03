@@ -22,6 +22,12 @@ namespace Kuchinashi
         {
             Directory.Delete(Application.persistentDataPath, true);
         }
+
+        [MenuItem ("Kuchinashi/Reset PlayerPrefs")]
+        public static void ResetPlayerPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
 }

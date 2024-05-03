@@ -23,6 +23,7 @@ namespace Translator
         public static FSM<States> StateMachine => Instance.stateMachine;
         private FSM<States> stateMachine = new FSM<States>();
 
+        public static bool CanActivate = true;
         public Coroutine CurrentCoroutine = null;
 
         public void OnSingletonInit() {}
@@ -125,7 +126,9 @@ namespace Translator
     public class TranslationState : AbstractState<States, TranslatorSM>
     {
         public TranslationState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Translation;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Translation
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -173,7 +176,9 @@ namespace Translator
     public class RecorderState : AbstractState<States, TranslatorSM>
     {
         public RecorderState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Recorder;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Recorder
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -217,7 +222,9 @@ namespace Translator
     public class DictionaryState : AbstractState<States, TranslatorSM>
     {
         public DictionaryState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Dictionary;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Dictionary
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -262,7 +269,9 @@ namespace Translator
     public class SettingsState : AbstractState<States, TranslatorSM>
     {
         public SettingsState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Settings;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Settings
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {

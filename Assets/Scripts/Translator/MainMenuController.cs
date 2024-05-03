@@ -94,12 +94,14 @@ namespace Translator
         IEnumerator QuitGameCoroutine()
         {
             yield return new WaitForSeconds(0.5f);
+
+            yield return CanvasGroupHelper.FadeCanvasGroup(mBlank, 1f, 0.02f);
             AudioMng.StopAll();
-            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 1f, 0.01f);
+            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 1f, 0.02f);
 
             yield return new WaitForSeconds(1f);
 
-            yield return CanvasGroupHelper.FadeCanvasGroup(mBlank, 1f, 0.01f);
+            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 0f, 0.02f);
 
             Application.Quit();
         }

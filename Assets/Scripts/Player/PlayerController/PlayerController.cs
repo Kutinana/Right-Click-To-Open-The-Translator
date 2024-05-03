@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     SpriteRenderer spriteRenderer;
     ObjectsDetector objectsDetector;
+    GroundDetector groundDetector;
 
     int par = 0;
     float CurrentMaxSpeed;
@@ -22,15 +23,21 @@ public class PlayerController : MonoBehaviour
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.objectsDetector = GetComponent<ObjectsDetector>();
         this.animator = GetComponent<Animator>();
+        this.groundDetector = GetComponent<GroundDetector>();
     }
     private void Start()
     {
         playerInput.EnableInputActions();
         playerInput.AddInteractEvent(delegate () { Interact(); });
     }
+    Vector3 destUp;
     private void Update()
     {
         ActivateObject();
+        while (!groundDetector.isGrounded)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+        }
     }
     private void ActivateObject()
     {

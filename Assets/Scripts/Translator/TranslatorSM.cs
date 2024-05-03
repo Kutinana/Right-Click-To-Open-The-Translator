@@ -51,15 +51,18 @@ namespace Translator
 
             translatorToggle = transform.Find("Menu/Translator").GetComponent<Toggle>();
             translatorToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Translation);
             });
             translatorToggle.SetIsOnWithoutNotify(true);
             dictionaryToggle = transform.Find("Menu/Dictionary").GetComponent<Toggle>();
             dictionaryToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Dictionary);
             });
             settingsToggle = transform.Find("Menu/Settings").GetComponent<Toggle>();
             settingsToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Settings);
             });
 

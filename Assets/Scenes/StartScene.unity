@@ -731,6 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357df01d3dce58a4c8630ca78fb55979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitialCGs: []
   InitialClips:
   - {fileID: 32900000, guid: 519193679b37efb478eb37455f3c2148, type: 3}
   - {fileID: 32900000, guid: 56afe0bc67da3f44ebd6523c9a58911f, type: 3}

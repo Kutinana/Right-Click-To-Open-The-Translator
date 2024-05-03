@@ -15,7 +15,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     AudioSource BGM2;
     [SerializeField] AudioClip ambientClip;
     [SerializeField] float fadeTime = 100;
-    private Dictionary<string, AudioClip> backGroundMusics;
+    private Dictionary<string, AudioClip> backGroundMusics = new();
 
     private float backgroundVolume;
     private float ambientVolume = 0.8f;
@@ -30,20 +30,11 @@ public class AudioMng : MonoSingleton<AudioMng>
         ambientChannel = transform.Find("Ambient").GetComponent<AudioSource>();
         BGM1 = transform.Find("Music1").GetComponent<AudioSource>();
         BGM2 = transform.Find("Music2").GetComponent<AudioSource>();
-        backGroundMusics = new Dictionary<string, AudioClip>();
-        ambientChannel.clip = ambientClip;
-        ambientChannel.Play();
+        current = BGM1;
 
         UpdateVolume();
 
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
-    }
-
-    private void Start()
-    {
-        ambientChannel.clip = ambientClip;
-        ambientChannel.Play();
-        current = BGM1;
     }
 
     private void UpdateVolume()
@@ -52,6 +43,14 @@ public class AudioMng : MonoSingleton<AudioMng>
         if (current != null) current.volume = backgroundVolume;
         effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
         ambientVolume = PlayerPrefs.HasKey("Ambient Volume") ? PlayerPrefs.GetFloat("Ambient Volume") : 1.0f;
+    }
+
+    public void PlayAmbient()
+    {
+        ambientChannel.clip = ambientClip;
+        ambientChannel.loop = true;
+        ambientChannel.volume = ambientVolume;
+        ambientChannel.Play();
     }
 
     public void PlayFootsteps()

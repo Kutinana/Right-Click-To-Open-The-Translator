@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Video;
+using DataSystem;
 
 namespace StartScene
 {
@@ -22,6 +23,7 @@ namespace StartScene
 
         private PostProcessVolume mPostProcessVolume;
 
+        public List<Sprite> InitialCGs;
         public List<VideoClip> InitialClips;
 
         private void Awake()
@@ -55,15 +57,21 @@ namespace StartScene
 
         private void FirstTimeEnterGame()
         {
+            UserDictionary.WriteInAndSave("la", "来");
+            UserDictionary.WriteInAndSave("schl", "按键");
+            UserDictionary.WriteInAndSave("rec", "右");
+            UserDictionary.WriteInAndSave("offen", "启动");
+            UserDictionary.WriteInAndSave("masc", "机器");
+            UserDictionary.WriteInAndSave("ubrs", "翻译");
+            UserDictionary.WriteInAndSave("geb", "游戏");
+
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 1f)))
                 .Delay(2f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
                 .Delay(1f)
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f)))
-                .Condition(() => Input.GetMouseButtonUp(0))
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f)))
+                .Coroutine(InitialCG)
                 .Delay(1f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mInitialVideoCanvasGroup, 1f)))
                 .Coroutine(InitialPerformance)
@@ -74,6 +82,19 @@ namespace StartScene
                 .Start(this);
 
             PlayerPrefs.SetInt("Played", 1);
+        }
+
+        private IEnumerator InitialCG()
+        {
+            yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
+            foreach (var cg in InitialCGs)
+            {
+                mInitialCG.sprite = cg;
+
+                yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
+                yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+                yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
+            }
         }
 
         private IEnumerator InitialPerformance()
@@ -119,8 +140,8 @@ namespace StartScene
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
-                .Delay(1f)
                 .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
+                .Delay(1f)
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Start(this);
         }

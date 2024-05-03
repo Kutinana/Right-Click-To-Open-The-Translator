@@ -16,7 +16,6 @@ public class AudioMng : MonoSingleton<AudioMng>
     [SerializeField] AudioClip ambientClip;
     [SerializeField] float fadeTime = 100;
     private Dictionary<string, AudioClip> backGroundMusics;
-    ResLoader res;
 
     private float backgroundVolume;
     private float ambientVolume = 0.8f;
@@ -25,8 +24,9 @@ public class AudioMng : MonoSingleton<AudioMng>
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
         ResKit.Init();
-        res = ResLoader.Allocate();
+
         ambientChannel = transform.Find("Ambient").GetComponent<AudioSource>();
         BGM1 = transform.Find("Music1").GetComponent<AudioSource>();
         BGM2 = transform.Find("Music2").GetComponent<AudioSource>();
@@ -64,19 +64,19 @@ public class AudioMng : MonoSingleton<AudioMng>
     /// 0: Click; 1: Apply; 2:Cancel
     /// </summary>
     /// <param name="type">the type of button that change the sfx it plays. 0: click; 1: Apply; 2:Cancel</param>
-    public void PlayBtnPressed(int type, float volumeScale = 1f)
+    public static void PlayBtnPressed(int type, float volumeScale = 1f)
     {
         if (type == 0)
         {
-            AudioKit.PlaySound("click", volumeScale: effectVolume * volumeScale);
+            AudioKit.PlaySound("click", volumeScale: Instance.effectVolume * volumeScale);
         }
         else if (type == 1)
         {
-            AudioKit.PlaySound("apply", volumeScale: effectVolume * volumeScale);
+            AudioKit.PlaySound("apply", volumeScale: Instance.effectVolume * volumeScale);
         }
         else if (type == 2)
         {
-            AudioKit.PlaySound("cancel", volumeScale: effectVolume * volumeScale);
+            AudioKit.PlaySound("cancel", volumeScale: Instance.effectVolume * volumeScale);
         }
     }
 
@@ -107,6 +107,8 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void FadeMusic(AudioSource audioSource, float target)
     {
+        if (audioSource == null) return;
+
         float delV = (target - audioSource.volume) / fadeTime;
         StartCoroutine(FadeMusicTo(audioSource, target, delV));
     }
@@ -141,15 +143,20 @@ public class AudioMng : MonoSingleton<AudioMng>
         StartCoroutine(IEChangeAmbient(name));
     }
 
-    IEnumerator IEChangeAmbient(string name){
+    IEnumerator IEChangeAmbient (string name)
+    {
         AudioSource temp = GetAuxChannel();
         temp.volume = 0;
         temp.clip = ambientChannel.clip;
         temp.Play();
         FadeMusic(temp, ambientVolume);
         FadeMusic(ambientChannel, 0);
+
+        var res = ResLoader.Allocate();
         AudioClip newAmbient = res.LoadSync<AudioClip>(name);
-        while(ambientChannel.volume!=0) yield return 0;
+
+        yield return new WaitUntil(() => ambientChannel.volume == 0);
+
         ambientChannel.clip = newAmbient;
         ambientChannel.Play();
         FadeMusic(temp, 0);

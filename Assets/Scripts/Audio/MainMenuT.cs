@@ -29,19 +29,13 @@ namespace Translator
             mCreditBtn = transform.Find("Menu/Credit").GetComponent<Button>();
 
             mStartGameBtn.onClick.AddListener(() => {
-                AudioMng.Instance.PlayBtnPressed(1);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
             });
             mSettingsBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.PlayBtnPressed(0);
                 AudioMng.Instance.ChangeAmbient("TestAudio");
             });
             mCreditBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.PlayBtnPressed(0);
                 AudioMng.Instance.StopBGM();
-            });
-            mQuitGameBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.PlayBtnPressed(2);
             });
             
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cameras;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace Puzzle.Puzzle1

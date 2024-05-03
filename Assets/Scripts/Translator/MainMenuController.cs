@@ -21,6 +21,7 @@ namespace Translator
         private CanvasGroup mCreditPanel;
         private Button mCreditPanelBtn;
         private CanvasGroup mQuitPanel;
+        private CanvasGroup mBlank;
 
         private void Awake()
         {
@@ -32,19 +33,27 @@ namespace Translator
             mCreditBtn = transform.Find("Menu/Credit").GetComponent<Button>();
 
             mCreditPanel = transform.Find("Credit").GetComponent<CanvasGroup>();
+            mCreditPanel.alpha = 0;
             mCreditPanelBtn = mCreditPanel.GetComponent<Button>();
             mQuitPanel = transform.Find("QuitPanel").GetComponent<CanvasGroup>();
+            mQuitPanel.alpha = 0;
+            mBlank = transform.Find("Blank").GetComponent<CanvasGroup>();
+            mBlank.alpha = 0;
 
             mStartGameBtn.onClick.AddListener(() => {
+                AudioMng.PlayBtnPressed(1);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
             });
             mQuitGameBtn.onClick.AddListener(() => {
+                AudioMng.PlayBtnPressed(2);
                 StartCoroutine(QuitGameCoroutine());
             });
             mSettingsBtn.onClick.AddListener(() => {
+                AudioMng.PlayBtnPressed(0);
                 TranslatorSM.StateMachine.ChangeState(States.Settings);
             });
             mCreditBtn.onClick.AddListener(() => {
+                AudioMng.PlayBtnPressed(0);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCreditPanel, 1f, 0.2f));
             });
             mCreditPanelBtn.onClick.AddListener(() => {
@@ -84,10 +93,13 @@ namespace Translator
 
         IEnumerator QuitGameCoroutine()
         {
+            yield return new WaitForSeconds(0.5f);
             AudioMng.StopAll();
-            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 1f, 0.02f);
+            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 1f, 0.01f);
 
             yield return new WaitForSeconds(1f);
+
+            yield return CanvasGroupHelper.FadeCanvasGroup(mBlank, 1f, 0.01f);
 
             Application.Quit();
         }

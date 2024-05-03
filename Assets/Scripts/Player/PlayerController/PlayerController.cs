@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour
     ObjectsDetector objectsDetector;
     GroundDetector groundDetector;
 
+    bool flag = false;
     int par = 0;
     float CurrentMaxSpeed;
+    public bool EnableGroundCheck = true;
     public bool touchable => objectsDetector.touchable;
     public float moveSpeed => Mathf.Abs(mrigidbody.velocity.x);
     public void SetCurrentMaxSpeed(float speed) => CurrentMaxSpeed = speed;
@@ -34,10 +36,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ActivateObject();
-        while (!groundDetector.isGrounded)
+        while (flag && !groundDetector.isGrounded && EnableGroundCheck)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
         }
+        flag = groundDetector.isGrounded;
     }
     private void ActivateObject()
     {

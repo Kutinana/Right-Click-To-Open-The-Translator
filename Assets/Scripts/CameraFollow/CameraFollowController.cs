@@ -45,10 +45,21 @@ public class CameraFollowController : MonoBehaviour
     private void PositionUpdate()
     {
         MaxCameraSpeed = playerController.GetCurrentMaxSpeed();
-        TargetPosition.x = Mathf.Clamp(Player.transform.position.x, minX, maxX);
-        TargetPosition.y = transform.position.y;
-        parameter = Mathf.Abs(Player.transform.position.x - transform.position.x) / slowRange;
-        currentPosition = Vector2.Lerp(transform.position, TargetPosition, MaxCameraSpeed * (parameter/(1+parameter)) * Time.deltaTime);
+        if (transform.position.x < minX || transform.position.x > maxX)
+        {
+            TargetPosition.x = transform.position.x < minX ? minX + 0.5f : maxX - 0.5f;
+            TargetPosition.y = transform.position.y;
+            parameter = 1;
+            currentPosition = Vector2.Lerp(transform.position, TargetPosition, MaxCameraSpeed * parameter * Time.deltaTime);
+        }
+        else
+        {
+            TargetPosition.x = Mathf.Clamp(Player.transform.position.x, minX, maxX);
+            TargetPosition.y = transform.position.y;
+            parameter = Mathf.Abs(Player.transform.position.x - transform.position.x) / slowRange;
+            currentPosition = Vector2.Lerp(transform.position, TargetPosition, MaxCameraSpeed * (parameter/(1+parameter)) * Time.deltaTime);
+        }
+        
     }
     private void ZoomIn()
     {
@@ -86,5 +97,18 @@ public class CameraFollowController : MonoBehaviour
                 break;
         }
         this.gameObject.GetComponent<Camera>().fieldOfView = currentFieldofView;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector2(minX + 10.2f, 5.7f), new Vector2(minX - 10.2f, 5.7f));
+        Gizmos.DrawLine(new Vector2(minX + 10.2f, 5.7f), new Vector2(minX + 10.2f, -5.7f));
+        Gizmos.DrawLine(new Vector2(minX + 10.2f, -5.7f), new Vector2(minX - 10.2f, -5.7f));
+        Gizmos.DrawLine(new Vector2(minX - 10.2f, -5.7f), new Vector2(minX - 10.2f, 5.7f));
+
+        Gizmos.DrawLine(new Vector2(maxX + 10.2f, 5.7f), new Vector2(maxX - 10.2f, 5.7f));
+        Gizmos.DrawLine(new Vector2(maxX + 10.2f, 5.7f), new Vector2(maxX + 10.2f, -5.7f));
+        Gizmos.DrawLine(new Vector2(maxX + 10.2f, -5.7f), new Vector2(maxX - 10.2f, -5.7f));
+        Gizmos.DrawLine(new Vector2(maxX - 10.2f, -5.7f), new Vector2(maxX - 10.2f, 5.7f));
     }
 }

@@ -999,6 +999,7 @@ GameObject:
   - component: {fileID: 1106206831}
   - component: {fileID: 1106206838}
   - component: {fileID: 1106206840}
+  - component: {fileID: 1106206841}
   m_Layer: 7
   m_Name: TempPlayer
   m_TagString: Player
@@ -1252,6 +1253,23 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1106206841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106206830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c485723acd4d2f419f35d6e75701ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {x: 0, y: 0}
+  pointB: {x: 0, y: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1273667140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,7 +1405,8 @@ MonoBehaviour:
     ID: 0
     OutlinedSpritePath: 
     UnoutlinedSpritePath: 
-    itemType: 
+    itemType: 0
+    target_string: 
   count: -1
 --- !u!212 &1301247834
 SpriteRenderer:
@@ -1973,7 +1992,8 @@ MonoBehaviour:
     ID: 0
     OutlinedSpritePath: 
     UnoutlinedSpritePath: 
-    itemType: 
+    itemType: 0
+    target_string: 
   count: -1
 --- !u!61 &2112862071
 BoxCollider2D:

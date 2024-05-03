@@ -10,10 +10,7 @@ namespace Cameras
     public class TranslatorCameraManager : MonoSingleton<TranslatorCameraManager>
     {
         public static Camera Camera => Instance.GetComponent<Camera>();
-        void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        void Awake() {}
     }
 
 }

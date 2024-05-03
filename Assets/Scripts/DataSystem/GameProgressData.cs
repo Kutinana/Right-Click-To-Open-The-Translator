@@ -25,10 +25,10 @@ namespace DataSystem
             return Instance.PuzzleProgress.ContainsKey(_id) ? Instance.PuzzleProgress[_id] : PuzzleProgress.UnSolved;
         }
 
-        public static HintProgress GetHintProgress(string _id)
-        {
-            return Instance.HintProgress.ContainsKey(_id) ? Instance.HintProgress[_id] : HintProgress.NotFound;
-        }
+        // public static HintProgress GetHintProgress(string _id)
+        // {
+        //     return Instance.HintProgress.ContainsKey(_id) ? Instance.HintProgress[_id] : HintProgress.NotFound;
+        // }
 
         public static void Unlock(PuzzleBase puzzle)
         {
@@ -40,9 +40,9 @@ namespace DataSystem
 
         public static void Unlock(HintBase hint)
         {
-            if (Instance.HintProgress.ContainsKey(hint.Id)) return;
+            if (Instance.PuzzleProgress.ContainsKey(hint.Id)) return;
 
-            Instance.HintProgress.Add(hint.Id, HintProgress.Found);
+            Instance.PuzzleProgress.Add(hint.Id, PuzzleProgress.Solved);
             Serialization(Path, Instance);
         }
 

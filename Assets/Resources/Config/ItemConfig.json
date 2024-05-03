@@ -3,18 +3,21 @@
 		"ID":0,
 		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Outlined_object",
 		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Unoutlined_object",
-		"itemType":"PUZZLE"
+		"itemType": 1,
+		"target_string":"puzzle1"
 	},
 	{
 		"ID":1,
 		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
 		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
-		"itemType":"PUZZLE"
+		"itemType": 3,
+		"target_string":"hint1"
 	},
 	{
 		"ID":2,
 		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
 		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
-		"itemType":"NPC"
+		"itemType": 2,
+		"target_string":""
 	}
 ]

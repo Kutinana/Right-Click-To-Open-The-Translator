@@ -76,8 +76,9 @@ namespace StartScene
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mInitialVideoCanvasGroup, 1f)))
                 .Coroutine(InitialPerformance)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
+                .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
                 .Delay(1f)
-                .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
+                // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Start(this);
 
@@ -140,7 +141,7 @@ namespace StartScene
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
-                .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
+                // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Delay(1f)
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Start(this);

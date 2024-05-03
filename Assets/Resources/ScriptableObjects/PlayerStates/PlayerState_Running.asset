@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264c576912f1c024786988d6ea296aef, type: 3}
   m_Name: PlayerState_Running
   m_EditorClassIdentifier: 
-  animationName: 
+  animationName: Player_Moving
   transitionDuration: 0.1
   runSpeed: 10
   acceleration: 3

@@ -34,7 +34,6 @@ namespace Cameras
             yield return new WaitForSeconds(0.5f);
 
             videoPlayer.Play();
-            TranslatorSM.StateMachine.ChangeState(States.Translation);
         }
     }
 

@@ -5,8 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput;
     Rigidbody2D mrigidbody;
+    Animator animator;
     SpriteRenderer spriteRenderer;
     ObjectsDetector objectsDetector;
+    GroundDetector groundDetector;
 
     int par = 0;
     float CurrentMaxSpeed;
@@ -20,19 +22,22 @@ public class PlayerController : MonoBehaviour
         this.mrigidbody = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.objectsDetector = GetComponent<ObjectsDetector>();
+        this.animator = GetComponent<Animator>();
+        this.groundDetector = GetComponent<GroundDetector>();
     }
     private void Start()
     {
         playerInput.EnableInputActions();
         playerInput.AddInteractEvent(delegate () { Interact(); });
     }
+    Vector3 destUp;
     private void Update()
     {
         ActivateObject();
-    }
-    private void FixedUpdate()
-    {
-        
+        while (!groundDetector.isGrounded)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+        }
     }
     private void ActivateObject()
     {
@@ -59,7 +64,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(float speed)
     {
-        if (speed != 0) spriteRenderer.flipX = playerInput.Move.x < 0;
+        if (playerInput.Move.x != 0) spriteRenderer.flipX = playerInput.Move.x < 0;
         if (playerInput.Move.x > 0) par = 1;
         else if (playerInput.Move.x < 0) par = -1;
         SetVelocityX(speed * par);

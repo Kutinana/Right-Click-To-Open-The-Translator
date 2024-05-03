@@ -17,6 +17,7 @@ public class PlayerState_Idle : PlayerState
     }
     public override void Enter()
     {
+        
         StateInitialization();
         base.Enter();
     }

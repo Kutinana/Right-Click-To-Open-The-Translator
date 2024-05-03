@@ -34,7 +34,7 @@ namespace Translator
             });
             mSettingsBtn.onClick.AddListener(()=>{
                 AudioMng.Instance.PlayBtnPressed(0);
-                AudioMng.Instance.D_PlayBGM("TestAudio");
+                AudioMng.Instance.ChangeAmbient("TestAudio");
             });
             mCreditBtn.onClick.AddListener(()=>{
                 AudioMng.Instance.PlayBtnPressed(0);

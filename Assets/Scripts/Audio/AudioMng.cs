@@ -16,15 +16,17 @@ public class AudioMng : MonoSingleton<AudioMng>
     [SerializeField] AudioClip ambientClip;
     [SerializeField] float fadeTime = 100;
     private Dictionary<string, AudioClip> backGroundMusics;
+    ResLoader res;
 
     private float backgroundVolume;
+    private float ambientVolume = 0.8f;
     private float effectVolume;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         ResKit.Init();
-
+        res = ResLoader.Allocate();
         ambientChannel = transform.Find("Ambient").GetComponent<AudioSource>();
         BGM1 = transform.Find("Music1").GetComponent<AudioSource>();
         BGM2 = transform.Find("Music2").GetComponent<AudioSource>();
@@ -48,8 +50,8 @@ public class AudioMng : MonoSingleton<AudioMng>
     {
         backgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
         if (current != null) current.volume = backgroundVolume;
-
         effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
+        ambientVolume = PlayerPrefs.HasKey("Ambient Volume") ? PlayerPrefs.GetFloat("Ambient Volume") : 1.0f;
     }
 
     public void PlayFootsteps()
@@ -126,5 +128,29 @@ public class AudioMng : MonoSingleton<AudioMng>
             // AudioClip audioClip = Resources.Load<AudioClip>("Audios/BGM/" + name);
             backGroundMusics.Add(name, audioClip);
         }
+    }
+    public void ChangeAmbient(string name)
+    {
+        StartCoroutine(IEChangeAmbient(name));
+    }
+
+    IEnumerator IEChangeAmbient(string name){
+        AudioSource temp = GetAuxChannel();
+        temp.volume = 0;
+        temp.clip = ambientChannel.clip;
+        temp.Play();
+        FadeMusic(temp, ambientVolume);
+        FadeMusic(ambientChannel, 0);
+        AudioClip newAmbient = res.LoadSync<AudioClip>(name);
+        while(ambientChannel.volume!=0) yield return 0;
+        ambientChannel.clip = newAmbient;
+        ambientChannel.Play();
+        FadeMusic(temp, 0);
+        FadeMusic(ambientChannel, ambientVolume);
+    }
+
+    private AudioSource GetAuxChannel()
+    {
+        return current == BGM1 ? BGM2 : BGM1;
     }
 }

@@ -96,7 +96,13 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void StopBGM()
     {
-        FadeMusic(current,0f);
+        FadeMusic(current, 0f);
+    }
+
+    public static void StopAll()
+    {
+        Instance.FadeMusic(Instance.current, 0f);
+        Instance.FadeMusic(Instance.ambientChannel, 0f);
     }
 
     public void FadeMusic(AudioSource audioSource, float target)
@@ -104,6 +110,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         float delV = (target - audioSource.volume) / fadeTime;
         StartCoroutine(FadeMusicTo(audioSource, target, delV));
     }
+
     IEnumerator FadeMusicTo(AudioSource audioSource, float target, float delV)
     {
         for (float i = audioSource.volume; i < target - 0.01 || i > target + 0.01; i += delV)

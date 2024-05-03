@@ -32,9 +32,9 @@ namespace Translator
         [HideInInspector] public CanvasGroup dictionaryCanvasGroup;
         [HideInInspector] public CanvasGroup settingsCanvasGroup;
 
-        private Toggle translatorToggle;
-        private Toggle dictionaryToggle;
-        private Toggle settingsToggle;
+        public Toggle translatorToggle;
+        public Toggle dictionaryToggle;
+        public Toggle settingsToggle;
 
         private void Awake()
         {
@@ -114,6 +114,10 @@ namespace Translator
             TypeEventSystem.Global.Send<OnTranslatorDisabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
+            mTarget.dictionaryCanvasGroup.blocksRaycasts = false;
+            mTarget.settingsCanvasGroup.blocksRaycasts = false;
+
             mTarget.CurrentCoroutine = null;
         }
     }
@@ -158,6 +162,9 @@ namespace Translator
             }
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
+            mTarget.translatorToggle.SetIsOnWithoutNotify(true);
+
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;
         }
@@ -191,6 +198,7 @@ namespace Translator
             TypeEventSystem.Global.Send<OnRecorderEnabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 1f, 0.1f));
             
+            mTarget.recorderCanvasGroup.blocksRaycasts = true;
             CharacterRecordPanelManager.ActivateInputField();
 
             mTarget.CurrentCoroutine = null;
@@ -201,6 +209,7 @@ namespace Translator
             TypeEventSystem.Global.Send<OnRecorderDisabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 0f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.CurrentCoroutine = null;
         }
     }
@@ -242,6 +251,9 @@ namespace Translator
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.dictionaryCanvasGroup, 1f, 0.1f));
 
+            mTarget.dictionaryCanvasGroup.blocksRaycasts = true;
+            mTarget.dictionaryToggle.SetIsOnWithoutNotify(true);
+
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;
         }
@@ -282,6 +294,9 @@ namespace Translator
             }
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.settingsCanvasGroup, 1f, 0.1f));
+
+            mTarget.settingsCanvasGroup.blocksRaycasts = true;
+            mTarget.settingsToggle.SetIsOnWithoutNotify(true);
 
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;

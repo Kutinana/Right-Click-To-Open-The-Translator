@@ -18,6 +18,10 @@ namespace Translator
         private Button mSettingsBtn;
         private Button mCreditBtn;
 
+        private CanvasGroup mCreditPanel;
+        private Button mCreditPanelBtn;
+        private CanvasGroup mQuitPanel;
+
         private void Awake()
         {
             mCanvasGroup = GetComponent<CanvasGroup>();
@@ -27,8 +31,24 @@ namespace Translator
             mSettingsBtn = transform.Find("Menu/Settings").GetComponent<Button>();
             mCreditBtn = transform.Find("Menu/Credit").GetComponent<Button>();
 
+            mCreditPanel = transform.Find("Credit").GetComponent<CanvasGroup>();
+            mCreditPanelBtn = mCreditPanel.GetComponent<Button>();
+            mQuitPanel = transform.Find("QuitPanel").GetComponent<CanvasGroup>();
+
             mStartGameBtn.onClick.AddListener(() => {
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
+            });
+            mQuitGameBtn.onClick.AddListener(() => {
+                StartCoroutine(QuitGameCoroutine());
+            });
+            mSettingsBtn.onClick.AddListener(() => {
+                TranslatorSM.StateMachine.ChangeState(States.Settings);
+            });
+            mCreditBtn.onClick.AddListener(() => {
+                StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCreditPanel, 1f, 0.2f));
+            });
+            mCreditPanelBtn.onClick.AddListener(() => {
+                StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCreditPanel, 0f, 0.2f));
             });
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
@@ -60,6 +80,16 @@ namespace Translator
 
             mCreditBtn.interactable = _flag;
             mCreditBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+        }
+
+        IEnumerator QuitGameCoroutine()
+        {
+            AudioMng.StopAll();
+            yield return CanvasGroupHelper.FadeCanvasGroup(mQuitPanel, 1f, 0.02f);
+
+            yield return new WaitForSeconds(1f);
+
+            Application.Quit();
         }
     }
 }

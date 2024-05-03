@@ -65,6 +65,7 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.unitypackage.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
@@ -101,3 +102,7 @@ crashlytics-build.properties
 # Standard Assets
 # /[Aa]ssets/[Ss]tandard Assets
 # /[Aa]ssets/[Ss]tandard Assets.meta
+
+# QFramework Examples
+/[Aa]ssets/QFramework/ToolKits/*/*.unitypackage*
+/[Aa]ssets/QFramework/ToolKits/*/*.unitypackage.meta*

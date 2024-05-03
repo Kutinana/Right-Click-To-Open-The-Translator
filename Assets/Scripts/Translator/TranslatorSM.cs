@@ -23,6 +23,7 @@ namespace Translator
         public static FSM<States> StateMachine => Instance.stateMachine;
         private FSM<States> stateMachine = new FSM<States>();
 
+        public static bool CanActivate = true;
         public Coroutine CurrentCoroutine = null;
 
         public void OnSingletonInit() {}
@@ -32,9 +33,9 @@ namespace Translator
         [HideInInspector] public CanvasGroup dictionaryCanvasGroup;
         [HideInInspector] public CanvasGroup settingsCanvasGroup;
 
-        private Toggle translatorToggle;
-        private Toggle dictionaryToggle;
-        private Toggle settingsToggle;
+        public Toggle translatorToggle;
+        public Toggle dictionaryToggle;
+        public Toggle settingsToggle;
 
         private void Awake()
         {
@@ -50,15 +51,18 @@ namespace Translator
 
             translatorToggle = transform.Find("Menu/Translator").GetComponent<Toggle>();
             translatorToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Translation);
             });
             translatorToggle.SetIsOnWithoutNotify(true);
             dictionaryToggle = transform.Find("Menu/Dictionary").GetComponent<Toggle>();
             dictionaryToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Dictionary);
             });
             settingsToggle = transform.Find("Menu/Settings").GetComponent<Toggle>();
             settingsToggle.onValueChanged.AddListener(value => {
+                AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Settings);
             });
 
@@ -114,6 +118,10 @@ namespace Translator
             TypeEventSystem.Global.Send<OnTranslatorDisabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
+            mTarget.dictionaryCanvasGroup.blocksRaycasts = false;
+            mTarget.settingsCanvasGroup.blocksRaycasts = false;
+
             mTarget.CurrentCoroutine = null;
         }
     }
@@ -121,7 +129,9 @@ namespace Translator
     public class TranslationState : AbstractState<States, TranslatorSM>
     {
         public TranslationState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Translation;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Translation
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -158,6 +168,9 @@ namespace Translator
             }
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
+            mTarget.translatorToggle.SetIsOnWithoutNotify(true);
+
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;
         }
@@ -166,7 +179,9 @@ namespace Translator
     public class RecorderState : AbstractState<States, TranslatorSM>
     {
         public RecorderState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Recorder;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Recorder
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -191,6 +206,7 @@ namespace Translator
             TypeEventSystem.Global.Send<OnRecorderEnabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 1f, 0.1f));
             
+            mTarget.recorderCanvasGroup.blocksRaycasts = true;
             CharacterRecordPanelManager.ActivateInputField();
 
             mTarget.CurrentCoroutine = null;
@@ -201,6 +217,7 @@ namespace Translator
             TypeEventSystem.Global.Send<OnRecorderDisabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 0f, 0.1f));
 
+            mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.CurrentCoroutine = null;
         }
     }
@@ -208,7 +225,9 @@ namespace Translator
     public class DictionaryState : AbstractState<States, TranslatorSM>
     {
         public DictionaryState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Dictionary;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Dictionary
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -242,6 +261,9 @@ namespace Translator
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.dictionaryCanvasGroup, 1f, 0.1f));
 
+            mTarget.dictionaryCanvasGroup.blocksRaycasts = true;
+            mTarget.dictionaryToggle.SetIsOnWithoutNotify(true);
+
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;
         }
@@ -250,7 +272,9 @@ namespace Translator
     public class SettingsState : AbstractState<States, TranslatorSM>
     {
         public SettingsState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Settings;
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Settings
+            && TranslatorSM.CanActivate;
 
         protected override void OnEnter()
         {
@@ -282,6 +306,9 @@ namespace Translator
             }
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.settingsCanvasGroup, 1f, 0.1f));
+
+            mTarget.settingsCanvasGroup.blocksRaycasts = true;
+            mTarget.settingsToggle.SetIsOnWithoutNotify(true);
 
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;

@@ -45,7 +45,7 @@ MonoBehaviour:
     value: 5.3
   RGBSplitIndensity:
     overrideState: 1
-    value: 2.7
+    value: 9.4
   BlockVisualizeDebug:
     overrideState: 0
     value: 0

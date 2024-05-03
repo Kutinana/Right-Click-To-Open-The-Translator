@@ -173,7 +173,7 @@ Camera:
     height: 1080
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -300,7 +300,6 @@ GameObject:
   m_Component:
   - component: {fileID: 235459092}
   - component: {fileID: 235459091}
-  - component: {fileID: 235459093}
   m_Layer: 6
   m_Name: Map1_Wall
   m_TagString: Untagged
@@ -375,18 +374,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1598837249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &235459093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235459090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f1a9df8135a9a4381e6b88a6a5ad0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &358094811
 GameObject:
   m_ObjectHideFlags: 0

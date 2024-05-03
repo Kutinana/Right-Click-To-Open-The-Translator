@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/StartScene_Profiles/Post Processing Profile.asset.meta
+guid: 88c8cc32cc6df564aaedf29eaaf7862c
+NativeFormatImporter:
+========
+guid: d0a01e293c5899f4ab05999352290780
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> origin/Middle-branch:Assets/Scripts/Interaction/SpecificObjects/Conversation.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

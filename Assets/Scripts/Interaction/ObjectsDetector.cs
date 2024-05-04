@@ -1,5 +1,4 @@
 using QFramework;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectsDetector : MonoBehaviour
@@ -13,7 +12,8 @@ public class ObjectsDetector : MonoBehaviour
     {
         colliders = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
         if (colliders.IsNullOrEmpty()) return null;
-        float minDist = 2*radius + 1;
+
+        float minDist = 2 * radius + 1;
         InteractiveObject closestObject = null;
         foreach(Collider2D o in colliders)
         {
@@ -25,6 +25,7 @@ public class ObjectsDetector : MonoBehaviour
                 closestObject = o.transform.GetComponent<InteractiveObject>();
             }
         }
+        
         return closestObject;
     }
     //public void OnDrawGizmosSelected()

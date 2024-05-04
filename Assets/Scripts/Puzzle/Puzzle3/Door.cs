@@ -29,19 +29,19 @@ namespace Puzzle.Puzzle3
             col = GetComponent<Collider2D>();
 
             LeftUp = transform.Find("LeftButtonUp").GetComponent<Button>();
-            LeftUp.onClick.AddListener(() => Puzzle3.UpdateNumber(0, 1));
+            LeftUp.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(0, 1));
             LeftDown = transform.Find("LeftButtonDown").GetComponent<Button>();
-            LeftDown.onClick.AddListener(() => Puzzle3.UpdateNumber(0, -1));
+            LeftDown.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(0, -1));
 
             MiddleUp = transform.Find("MiddleButtonUp").GetComponent<Button>();
-            MiddleUp.onClick.AddListener(() => Puzzle3.UpdateNumber(1, 1));
+            MiddleUp.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(1, 1));
             MiddleDown = transform.Find("MiddleButtonDown").GetComponent<Button>();
-            MiddleDown.onClick.AddListener(() => Puzzle3.UpdateNumber(1, -1));
+            MiddleDown.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(1, -1));
 
             RightUp = transform.Find("RightButtonUp").GetComponent<Button>();
-            RightUp.onClick.AddListener(() => Puzzle3.UpdateNumber(2, 1));
+            RightUp.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(2, 1));
             RightDown = transform.Find("RightButtonDown").GetComponent<Button>();
-            RightDown.onClick.AddListener(() => Puzzle3.UpdateNumber(2, -1));
+            RightDown.onClick.AddListener(() => Puzzle3.Instance.UpdateNumber(2, -1));
         }
         
         Vector3 m_Offset;

@@ -5,6 +5,8 @@ using QFramework;
 using Kuchinashi;
 using UnityEngine.Video;
 using Translator;
+using Puzzle;
+using Hint;
 
 namespace Cameras
 {
@@ -29,6 +31,10 @@ namespace Cameras
         private IEnumerator StartMainMenuCoroutine()
         {
             AudioMng.Instance.PlayAmbient();
+
+            TranslatorSM.StateMachine.ChangeState(States.Off);
+            PuzzleManager.Exit();
+            HintManager.Exit();
 
             yield return CanvasGroupHelper.FadeCanvasGroup(Instance.mMainMenu, 1f, 0.02f);
             yield return new WaitForSeconds(0.5f);

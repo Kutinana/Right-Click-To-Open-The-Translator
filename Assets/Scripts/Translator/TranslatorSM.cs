@@ -105,7 +105,7 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                mFSM.ChangeState(mFSM.PreviousStateId == States.Off ? States.Translation : mFSM.PreviousStateId);
+                mFSM.ChangeState(States.Translation);
             }
         }
 
@@ -155,17 +155,9 @@ namespace Translator
             TypeEventSystem.Global.Send<OnTranslatorEnabledEvent>();
             mTarget.canvasGroup.interactable = false;
 
-            switch (mFSM.PreviousStateId)
-            {
-                case States.Dictionary:
-                    yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.dictionaryCanvasGroup, 0f, 0.1f));
-                    break;
-                case States.Settings:
-                    yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.settingsCanvasGroup, 0f, 0.1f));
-                    break;
-                default:
-                    break;
-            }
+            yield return mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.dictionaryCanvasGroup, 0f, 0.1f));
+            yield return mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.settingsCanvasGroup, 0f, 0.1f));
+
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
             mTarget.recorderCanvasGroup.blocksRaycasts = false;

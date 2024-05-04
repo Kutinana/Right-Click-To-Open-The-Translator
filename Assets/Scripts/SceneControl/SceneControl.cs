@@ -209,10 +209,19 @@ namespace SceneControl
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             CurrentScene = sceneName;
             
-            while (mAsyncOperation.progress < 0.9f)
+            while (mAsyncOperation.progress <= 0.9f)
             {
-                mLoadingProgress.value = mAsyncOperation.progress;
-                yield return null;
+                mLoadingProgress.value = Mathf.Lerp(mLoadingProgress.value, Mathf.Min(mAsyncOperation.progress + 0.5f, 0.9f), 0.05f);
+                yield return new WaitForFixedUpdate();
+
+                if (mAsyncOperation.progress == 0.9f)
+                {
+                    for (int i = 0; i < 30; i++)
+                    {
+                        mLoadingProgress.value = Mathf.Lerp(mLoadingProgress.value, 1f, 0.05f);
+                        yield return new WaitForFixedUpdate();
+                    }
+                }
             }
             mLoadingProgress.value = 1;
             mAsyncOperation.allowSceneActivation = true;

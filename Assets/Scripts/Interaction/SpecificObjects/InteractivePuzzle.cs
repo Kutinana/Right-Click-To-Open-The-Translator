@@ -17,7 +17,8 @@ public class InteractivePuzzle: InteractiveObject
         base.LoadConfig();
         itemType = itemConfig.itemType;
         this.animatorHash = Animator.StringToHash(animationName);
-        animator.enabled = false;
+        
+        if (animator != null) animator.enabled = false;
     }
     public override void TriggerEvent()
     {

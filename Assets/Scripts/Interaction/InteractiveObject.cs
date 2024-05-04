@@ -28,7 +28,8 @@ public class InteractiveObject : MonoBehaviour, Interactive
     private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.animator = GetComponent<Animator>();
+        
+        TryGetComponent<Animator>(out animator);
     }
     public int ID 
     {

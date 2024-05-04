@@ -10,10 +10,9 @@ using UnityEngine.UI;
 
 namespace Puzzle.Puzzle3
 {
-    public class Puzzle3 : PuzzleBase , ISingleton
+    public class Puzzle3 : PuzzleBase
     {
-        public static Puzzle3 Instance => SingletonProperty<Puzzle3>.Instance;
-        public void OnSingletonInit() {}
+        public static Puzzle3 Instance;
 
         public static bool IsHoldingDoor = false;
 
@@ -27,17 +26,18 @@ namespace Puzzle.Puzzle3
 
         private void Awake()
         {
+            Instance = this;
         }
 
-        public static void UpdateNumber(int pos, int direction)
+        public void UpdateNumber(int pos, int direction)
         {
-            var newValue = Instance.Numbers[Instance.Characters[pos].data] + direction;
+            var newValue = Numbers[Characters[pos].data] + direction;
             newValue = (newValue + 8) % 8;
 
-            var newCharacter = Instance.NumbersReverse[newValue];
+            var newCharacter = NumbersReverse[newValue];
             UserDictionary.Unlock(newCharacter.Id);
 
-            Instance.Characters[pos].Initialize(newCharacter, true, true);
+            Characters[pos].Initialize(newCharacter, true, true);
             AudioKit.PlaySound("Cube-Slide");
         }
 

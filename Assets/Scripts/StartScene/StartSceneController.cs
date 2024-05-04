@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Video;
 using DataSystem;
+using Settings;
 
 namespace StartScene
 {
@@ -68,7 +69,7 @@ namespace StartScene
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 1f)))
-                .Delay(2f)
+                .Delay(3f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Coroutine(InitialCG)
@@ -100,6 +101,8 @@ namespace StartScene
 
         private IEnumerator InitialPerformance()
         {
+            mInitialVideoPlayer.clip = InitialClips[0];
+            mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();
 
             yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
@@ -137,7 +140,7 @@ namespace StartScene
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 1f)))
-                .Delay(2f)
+                .Delay(3f)
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
@@ -155,6 +158,26 @@ namespace StartScene
                 PlayerPrefs.HasKey("BackgroundVolume") ? PlayerPrefs.GetFloat("BackgroundVolume") : 0.8f);
             AudioKit.Settings.SoundVolume.SetValueWithoutEvent(
                 PlayerPrefs.HasKey("EffectVolume") ? PlayerPrefs.GetFloat("EffectVolume") : 0.8f);
+
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            if (PlayerPrefs.HasKey("Window Mode"))
+            {
+                if (PlayerPrefs.GetInt("Window Mode") == 1)
+                {
+                    var width = Screen.resolutions[^1].width;
+                    Screen.SetResolution(width, width / 16 * 9, true);
+                }
+                else if (PlayerPrefs.HasKey("Resolution"))
+                {
+                    Screen.SetResolution(SettingsSM.AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item1,
+                        SettingsSM.AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item2, false);
+                }
+            }
+            else
+            {
+                var width = Screen.resolutions[^1].width;
+                Screen.SetResolution(width, width / 16 * 9, true);
+            }
         }
     }
 }

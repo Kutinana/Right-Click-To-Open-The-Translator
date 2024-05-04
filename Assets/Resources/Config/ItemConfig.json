@@ -19,5 +19,12 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
 		"itemType": 2,
 		"target_string":""
+	},
+	{
+		"ID":3,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
 	}
 ]

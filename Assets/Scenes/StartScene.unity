@@ -733,9 +733,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialCGs: []
   InitialClips:
-  - {fileID: 32900000, guid: 519193679b37efb478eb37455f3c2148, type: 3}
-  - {fileID: 32900000, guid: 56afe0bc67da3f44ebd6523c9a58911f, type: 3}
-  - {fileID: 32900000, guid: c54554deeaada8f418da2d26e9198196, type: 3}
+  - {fileID: 32900000, guid: ee853343254404c438cfcf3222792057, type: 3}
+  - {fileID: 32900000, guid: 496c7bc2e8daa7e4e9479f88c1c25f6a, type: 3}
+  - {fileID: 32900000, guid: 0dac32e5806625844ba143bc9fb17a49, type: 3}
   - {fileID: 32900000, guid: ce4c51f0087dc7c4e88035264732e30a, type: 3}
 --- !u!1 &1348888217
 GameObject:

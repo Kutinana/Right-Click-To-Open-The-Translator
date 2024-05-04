@@ -173,7 +173,7 @@ Camera:
     height: 1080
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -677,7 +677,7 @@ Camera:
     height: 1080
   near clip plane: 3
   far clip plane: 1000
-  field of view: 57
+  field of view: 60
   orthographic: 0
   orthographic size: 5.5
   m_Depth: 0
@@ -986,6 +986,7 @@ GameObject:
   - component: {fileID: 1106206831}
   - component: {fileID: 1106206838}
   - component: {fileID: 1106206840}
+  - component: {fileID: 1106206841}
   m_Layer: 7
   m_Name: TempPlayer
   m_TagString: Player
@@ -1021,6 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d76262d4265b548aa18c73b25ad77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableGroundCheck: 1
 --- !u!114 &1106206833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,6 +1241,23 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1106206841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106206830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c485723acd4d2f419f35d6e75701ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
+  radius: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1273667140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1393,8 @@ MonoBehaviour:
     ID: 0
     OutlinedSpritePath: 
     UnoutlinedSpritePath: 
-    itemType: 
+    itemType: 0
+    target_string: 
   count: -1
 --- !u!212 &1301247834
 SpriteRenderer:
@@ -1960,7 +1980,8 @@ MonoBehaviour:
     ID: 0
     OutlinedSpritePath: 
     UnoutlinedSpritePath: 
-    itemType: 
+    itemType: 0
+    target_string: 
   count: -1
 --- !u!61 &2112862071
 BoxCollider2D:

@@ -173,7 +173,7 @@ Camera:
     height: 1080
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -677,7 +677,7 @@ Camera:
     height: 1080
   near clip plane: 3
   far clip plane: 1000
-  field of view: 57
+  field of view: 60
   orthographic: 0
   orthographic size: 5.5
   m_Depth: 0
@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d76262d4265b548aa18c73b25ad77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableGroundCheck: 1
 --- !u!114 &1106206833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,8 +1253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c485723acd4d2f419f35d6e75701ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0, y: 0}
-  pointB: {x: 0, y: 0}
+  offset: 0
+  radius: 0
   layer:
     serializedVersion: 2
     m_Bits: 0

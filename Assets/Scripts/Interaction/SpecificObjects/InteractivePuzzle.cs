@@ -1,5 +1,6 @@
 using Hint;
 using Puzzle;
+using QFramework;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,5 +56,11 @@ public class InteractivePuzzle: InteractiveObject
         animator.enabled = true;
         animator?.CrossFade(animatorHash, 0.1f);
     }
+
+    public void PlaySound(string name)
+    {
+        AudioKit.PlaySound(name);
+    }
+    
     public void AnimatorDisabled() => animator.enabled = false;
 }

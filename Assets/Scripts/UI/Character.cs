@@ -52,6 +52,8 @@ namespace UI
                 if (e.id == data.Id) Refresh();
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
+            TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => Refresh()).UnRegisterWhenGameObjectDestroyed(gameObject);
+
             Initialize();
         }
 

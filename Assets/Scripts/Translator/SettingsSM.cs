@@ -7,6 +7,7 @@ using UI;
 using Translator;
 using UnityEngine.UI;
 using TMPro;
+using Cameras;
 
 namespace Settings
 {
@@ -39,6 +40,7 @@ namespace Settings
         #endregion
 
         private Button mClearPlayerPrefs;
+        private Button mBackToMainMenu;
 
         private void Awake()
         {
@@ -63,6 +65,12 @@ namespace Settings
             mClearPlayerPrefs.onClick.AddListener(() => {
                 PlayerPrefs.DeleteAll();
             });
+            mBackToMainMenu = transform.Find("Content/Scroll View/Viewport/Content/BackToMainMenu").GetComponent<Button>();
+            mBackToMainMenu.onClick.AddListener(() => {
+                SceneControl.SceneControl.SwitchSceneWithoutConfirm("EmptyScene");
+                TranslatorCanvasManager.StartMainMenu();
+                TranslatorSM.StateMachine.ChangeState(States.Off);
+            });
 
             TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => Refresh()).UnRegisterWhenGameObjectDestroyed(gameObject);
 
@@ -79,7 +87,7 @@ namespace Settings
             {
                 mResolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{resolution.Item1}x{resolution.Item2}"));
             }
-            mResolutionDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Resolution") ? PlayerPrefs.GetInt("Resolution") : 1);
+            mResolutionDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Resolution") ? PlayerPrefs.GetInt("Resolution") : 0);
             mResolutionDropdown.RefreshShownValue();
 
             mResolutionDropdown.onValueChanged.AddListener(value => {
@@ -89,7 +97,7 @@ namespace Settings
                 Refresh();
             });
 
-            mWindowModeDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Window Mode") ? PlayerPrefs.GetInt("Window Mode") : 0);
+            mWindowModeDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Window Mode") ? PlayerPrefs.GetInt("Window Mode") : 1);
             mWindowModeDropdown.onValueChanged.AddListener(value => {
                 if (value == 1)
                 {

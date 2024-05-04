@@ -10,6 +10,7 @@ using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Video;
 using DataSystem;
 using Settings;
+using UI;
 
 namespace StartScene
 {
@@ -69,6 +70,8 @@ namespace StartScene
             UserDictionary.WriteInAndSave("ubrs", "翻译");
             UserDictionary.WriteInAndSave("geb", "游戏");
 
+            TypeEventSystem.Global.Send<OnCharacterRefreshEvent>();
+
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => mFirstSplashCanvasGroup.gameObject.SetActive(true))
@@ -81,10 +84,10 @@ namespace StartScene
                 .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mInitialVideoCanvasGroup, 1f)))
                 .Coroutine(InitialPerformance)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
-                .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
-                .Delay(1f)
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
+                .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
+                .Delay(1f)
                 .Start(this);
 
             PlayerPrefs.SetInt("Played", 1);

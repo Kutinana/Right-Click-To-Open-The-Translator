@@ -14,6 +14,8 @@ namespace UI
         public OnCharacterRecordedEvent(string _id) { id = _id; }
     }
 
+    public struct OnCharacterRefreshEvent {}
+
     public class CharacterRecordPanelManager : MonoBehaviour
     {
         public static CharacterRecordPanelManager Instance;

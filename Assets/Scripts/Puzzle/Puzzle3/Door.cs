@@ -75,7 +75,7 @@ namespace Puzzle.Puzzle3
         private IEnumerator MoveToCoroutine()
         {
             AudioKit.PlaySound("DoorOpen1");
-            while (!Mathf.Approximately(Progress, 0.9f))
+            while (Progress < 0.99f)
             {
                 transform.localPosition = targetPosition * animationCurve.Evaluate(Progress);
                 Progress += Time.deltaTime * 0.3f;

@@ -135,8 +135,11 @@ namespace SceneControl
             mCurrentCoroutine = null;
         }
 
-        IEnumerator SwitchSceneEnumerator(string sceneName)
+        IEnumerator SwitchSceneEnumerator(string sceneName, float delay = 0)
         {
+            yield return new WaitForSeconds(delay);
+            
+            mLoadingProgress.value = 0;
             yield return Fade(1);
 
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -162,8 +165,11 @@ namespace SceneControl
             mAsyncOperation = null;
         }
 
-        IEnumerator SwitchSceneWithEventEnumerator(string sceneName, Action action)
+        IEnumerator SwitchSceneWithEventEnumerator(string sceneName, Action action, float delay = 0)
         {
+            yield return new WaitForSeconds(delay);
+
+            mLoadingProgress.value = 0;
             yield return Fade(1);
             
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -197,6 +203,7 @@ namespace SceneControl
         {
             yield return new WaitForSeconds(delay);
 
+            mLoadingProgress.value = 0;
             yield return Fade(1);
 
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);

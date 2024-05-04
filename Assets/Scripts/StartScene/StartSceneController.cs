@@ -15,7 +15,8 @@ namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        private CanvasGroup mSplashCanvasGroup;
+        private CanvasGroup mFirstSplashCanvasGroup;
+        private CanvasGroup mSecondSplashCanvasGroup;
 
         private CanvasGroup mInitialCGCanvasGroup;
         private Image mInitialCG;
@@ -29,8 +30,10 @@ namespace StartScene
 
         private void Awake()
         {
-            mSplashCanvasGroup = transform.Find("Splash").GetComponent<CanvasGroup>();
-            mSplashCanvasGroup.alpha = 0;
+            mFirstSplashCanvasGroup = transform.Find("FirstSplash").GetComponent<CanvasGroup>();
+            mFirstSplashCanvasGroup.alpha = 0;
+            mSecondSplashCanvasGroup = transform.Find("SecondSplash").GetComponent<CanvasGroup>();
+            mSecondSplashCanvasGroup.alpha = 0;
 
             mInitialCGCanvasGroup = transform.Find("FirstTimeCG").GetComponent<CanvasGroup>();
             mInitialCGCanvasGroup.alpha = 0;
@@ -68,9 +71,10 @@ namespace StartScene
 
             ActionKit.Sequence()
                 .Delay(1f)
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 1f)))
+                .Callback(() => mFirstSplashCanvasGroup.gameObject.SetActive(true))
+                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mFirstSplashCanvasGroup, 1f)))
                 .Delay(3f)
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
+                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mFirstSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Coroutine(InitialCG)
                 .Delay(1f)
@@ -139,9 +143,10 @@ namespace StartScene
         {
             ActionKit.Sequence()
                 .Delay(1f)
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 1f)))
-                .Delay(3f)
-                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSplashCanvasGroup, 0f)))
+                .Callback(() => mSecondSplashCanvasGroup.gameObject.SetActive(true))
+                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSecondSplashCanvasGroup, 1f)))
+                .Delay(4f)
+                .Callback(() => StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mSecondSplashCanvasGroup, 0f)))
                 .Delay(1f)
                 .Callback(() => TranslatorCanvasManager.StartMainMenu())
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))

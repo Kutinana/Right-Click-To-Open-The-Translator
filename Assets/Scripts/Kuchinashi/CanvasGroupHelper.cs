@@ -7,9 +7,11 @@ namespace Kuchinashi
 {
     public class CanvasGroupHelper
     {
-        public static IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float alpha, float speed = 0.05f)
+        public static IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float alpha, float speed = 0.05f, float delay = 0f)
         {
             if (canvasGroup.alpha == alpha) yield break;
+
+            yield return new WaitForSeconds(delay);
 
             if (alpha == 1f) canvasGroup.blocksRaycasts = true;
             else canvasGroup.interactable = false;

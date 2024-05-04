@@ -18,8 +18,8 @@ namespace SceneControl
 
         private TMP_Text mTips;
         private Slider mLoadingProgress;
+        private CanvasGroup mCanvasGroup;
         private CanvasGroup mLoadingPanelCG;
-        private CanvasGroup mBackgroundImageCG;
         private CanvasGroup mBlackLayerCG;
 
         private static Coroutine mCurrentCoroutine;
@@ -29,17 +29,17 @@ namespace SceneControl
 
         void Awake()
         {            
-            mTips = transform.Find("Tips").GetComponent<TMP_Text>();
+            // mTips = transform.Find("Tips").GetComponent<TMP_Text>();
+
+            mCanvasGroup = GetComponent<CanvasGroup>();
             
-            mLoadingProgress = transform.Find("LoadingProgress").GetComponent<Slider>();
+            mLoadingProgress = transform.Find("LoadingPanel/LoadingProgress").GetComponent<Slider>();
             mLoadingProgress.value = 0;
 
-            mLoadingPanelCG = GetComponent<CanvasGroup>();
+            mLoadingPanelCG = transform.Find("LoadingPanel").GetComponent<CanvasGroup>();
             mLoadingPanelCG.alpha = 0;
-            mBackgroundImageCG = transform.Find("Background").GetComponent<CanvasGroup>();
-            mBackgroundImageCG.alpha = 0;
-            mBlackLayerCG = transform.Find("Layer").GetComponent<CanvasGroup>();
-            mBlackLayerCG.alpha = 1;
+            mBlackLayerCG = transform.Find("Blank").GetComponent<CanvasGroup>();
+            mBlackLayerCG.alpha = 0;
 
             StartCoroutine(InitializeSceneControl());
         }
@@ -76,12 +76,12 @@ namespace SceneControl
             mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithEventEnumerator(targetSceneName, action));
         }
 
-        public static void SwitchSceneWithoutConfirm(string targetSceneName)
+        public static void SwitchSceneWithoutConfirm(string targetSceneName, float delay = 0f)
         {
             if (IsLoading || mCurrentCoroutine != null) return;
             IsLoading = true;
 
-            mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithoutConfirmEnumerator(targetSceneName));
+            mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithoutConfirmEnumerator(targetSceneName, delay));
         }
 
         public static void LoadScene(string targetSceneName)
@@ -193,8 +193,10 @@ namespace SceneControl
             mAsyncOperation = null;
         }
 
-        IEnumerator SwitchSceneWithoutConfirmEnumerator(string sceneName)
+        IEnumerator SwitchSceneWithoutConfirmEnumerator(string sceneName, float delay = 0)
         {
+            yield return new WaitForSeconds(delay);
+
             yield return Fade(1);
 
             mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -224,23 +226,21 @@ namespace SceneControl
 
             if (targetAlpha == 1)
             {
-                yield return CanvasGroupHelper.FadeCanvasGroup(mLoadingPanelCG, 1, 0.02f);
-                mBackgroundImageCG.alpha = 1;
+                mBlackLayerCG.alpha = 1;
+                mLoadingPanelCG.alpha = 0;
+
+                yield return CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 1, 0.02f);
+                mLoadingPanelCG.alpha = 1;
                 yield return CanvasGroupHelper.FadeCanvasGroup(mBlackLayerCG, 0);
 
-                // mLoadingParticle.gameObject.SetActive(true);
-                mTips.CrossFadeAlpha(1, 0.5f, true);
 
                 yield return new WaitForSeconds(0.5f);
             }
             else if (targetAlpha == 0)
             {
-                // mLoadingParticle.gameObject.SetActive(false);
-                mTips.gameObject.SetActive(false);
-
-                yield return CanvasGroupHelper.FadeCanvasGroup(mBlackLayerCG, 1, 0.02f);
-                mBackgroundImageCG.alpha = 0;
-                yield return CanvasGroupHelper.FadeCanvasGroup(mLoadingPanelCG, 0);
+                yield return CanvasGroupHelper.FadeCanvasGroup(mBlackLayerCG, 1);
+                mLoadingPanelCG.alpha = 0;
+                yield return CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0);
             }
         }
     }

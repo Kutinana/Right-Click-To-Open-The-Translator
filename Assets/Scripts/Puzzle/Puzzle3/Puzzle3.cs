@@ -38,6 +38,7 @@ namespace Puzzle.Puzzle3
             UserDictionary.Unlock(newCharacter.Id);
 
             Instance.Characters[pos].Initialize(newCharacter, true, true);
+            AudioKit.PlaySound("Cube-Slide");
         }
 
         public override void OnEnter()

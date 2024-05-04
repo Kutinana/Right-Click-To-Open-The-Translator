@@ -49,18 +49,18 @@ namespace Translator
             settingsCanvasGroup = transform.Find("Settings").GetComponent<CanvasGroup>();
             settingsCanvasGroup.alpha = 0;
 
-            translatorToggle = transform.Find("Menu/Translator").GetComponent<Toggle>();
+            translatorToggle = transform.Find("Menu/Image/Translator").GetComponent<Toggle>();
             translatorToggle.onValueChanged.AddListener(value => {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Translation);
             });
             translatorToggle.SetIsOnWithoutNotify(true);
-            dictionaryToggle = transform.Find("Menu/Dictionary").GetComponent<Toggle>();
+            dictionaryToggle = transform.Find("Menu/Image/Dictionary").GetComponent<Toggle>();
             dictionaryToggle.onValueChanged.AddListener(value => {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Dictionary);
             });
-            settingsToggle = transform.Find("Menu/Settings").GetComponent<Toggle>();
+            settingsToggle = transform.Find("Menu/Image/Settings").GetComponent<Toggle>();
             settingsToggle.onValueChanged.AddListener(value => {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Settings);

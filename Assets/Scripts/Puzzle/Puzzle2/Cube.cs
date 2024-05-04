@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UnityEngine;
 
 namespace Puzzle.Puzzle2
@@ -39,6 +40,7 @@ namespace Puzzle.Puzzle2
                 if (Vector2.Distance(Puzzle2.HoldingCube.CurrentPosition, CurrentPosition) == 1)
                 {
                     Swap(Puzzle2.HoldingCube);
+                    AudioKit.PlaySound("Cube-Slide");
                     if (Puzzle2.CORRECT.TryGetValue(CurrentPosition, out var _id))
                     {
                         UserDictionary.Unlock(_id);

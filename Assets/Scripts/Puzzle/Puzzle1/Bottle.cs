@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cameras;
+using QFramework;
 using UnityEngine;
 
 namespace Puzzle.Puzzle1
@@ -24,6 +25,8 @@ namespace Puzzle.Puzzle1
         {
             Puzzle1.HoldingBottle = this;
             col.enabled = false;
+
+            AudioKit.PlaySound("ItemUp");
 
             m_TargetScreenVec = TranslatorCameraManager.Camera.WorldToScreenPoint(transform.position);
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
@@ -99,6 +102,8 @@ namespace Puzzle.Puzzle1
         private void OnMouseUp()
         {
             Puzzle1.ReArrangePosition();
+
+            AudioKit.PlaySound("BottleDown");
 
             Puzzle1.HoldingBottle = null;
             col.enabled = true;

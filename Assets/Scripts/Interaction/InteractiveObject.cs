@@ -21,12 +21,14 @@ public class InteractiveObject : MonoBehaviour, Interactive
     public int identity_number;
     public ItemConfig itemConfig;
     private SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
-    private bool _activable = true;
+    protected bool _activable = true;
     public int count = -1;
     private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.animator = GetComponent<Animator>();
     }
     public int ID 
     {

@@ -1,14 +1,22 @@
 using Hint;
 using Puzzle;
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractivePuzzle: InteractiveObject
 {
     private ItemType itemType;
+    public UnityEvent OnT;
+    private int animatorHash;
+    public string animationName;
+
     public override void LoadConfig()
     {
         base.LoadConfig();
         itemType = itemConfig.itemType;
+        this.animatorHash = Animator.StringToHash(animationName);
+        animator.enabled = false;
     }
     public override void TriggerEvent()
     {
@@ -36,4 +44,16 @@ public class InteractivePuzzle: InteractiveObject
         GameObject.Find("TempPlayer").GetComponent<Rigidbody2D>().simulated = true;
         base.EndTrigger();
     }
+    public void ChangeObject(int id)
+    {
+        Deactivate();
+        _activable = false;
+        InteractiveObjectPool.RemoveObject(this);
+        identity_number = id;
+        Init();
+        LoadConfig();
+        animator.enabled = true;
+        animator?.CrossFade(animatorHash, 0.1f);
+    }
+    public void AnimatorDisabled() => animator.enabled = false;
 }

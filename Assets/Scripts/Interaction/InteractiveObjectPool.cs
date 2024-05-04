@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Puzzle;
+using QFramework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,12 @@ public class InteractiveObjectPool
     {
         var r_itemConfig = Resources.Load<TextAsset>("Config/ItemConfig").text;
         _instance.itemConfigs = JsonConvert.DeserializeObject<List<ItemConfig>>(r_itemConfig);
+
+        TypeEventSystem.Global.Register<OnPuzzleSolvedEvent>(e =>
+        {
+            //e.puzzle.Id
+            Instance.activeObject.gameObject.GetComponent<InteractivePuzzle>()?.OnT.Invoke();
+        });
     }
     public static int getMaxSize() => ObjectPool.Length;
     public static void LoadObject(InteractiveObject interactiveObject)

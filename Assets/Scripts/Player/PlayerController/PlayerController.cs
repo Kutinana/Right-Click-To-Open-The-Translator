@@ -2,6 +2,7 @@ using Hint;
 using Puzzle;
 using QFramework;
 using System.Runtime.Serialization.Configuration;
+using Translator;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,6 +50,18 @@ public class PlayerController : MonoBehaviour
         TypeEventSystem.Global.Register<OnHintExitEvent>(e =>
         {
             mrigidbody.simulated = true;
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
+        {
+            mrigidbody.simulated = false;
+            playerInput.DisableInputActions();
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
+        {
+            mrigidbody.simulated = true;
+            playerInput.EnableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
     private void Start()

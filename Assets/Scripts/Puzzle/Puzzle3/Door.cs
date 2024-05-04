@@ -74,10 +74,11 @@ namespace Puzzle.Puzzle3
 
         private IEnumerator MoveToCoroutine()
         {
-            while (!Mathf.Approximately(Progress, 1))
+            AudioKit.PlaySound("DoorOpen1");
+            while (!Mathf.Approximately(Progress, 0.9f))
             {
                 transform.localPosition = targetPosition * animationCurve.Evaluate(Progress);
-                Progress += Time.deltaTime;
+                Progress += Time.deltaTime * 0.3f;
 
                 yield return new WaitForFixedUpdate();
             }

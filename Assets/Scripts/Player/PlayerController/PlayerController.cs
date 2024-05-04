@@ -1,3 +1,7 @@
+using Hint;
+using Puzzle;
+using QFramework;
+using System.Runtime.Serialization.Configuration;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +30,26 @@ public class PlayerController : MonoBehaviour
         this.objectsDetector = GetComponent<ObjectsDetector>();
         this.animator = GetComponent<Animator>();
         this.groundDetector = GetComponent<GroundDetector>();
+
+        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
+        {
+            mrigidbody.simulated = false;
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e =>
+        {
+            mrigidbody.simulated = true;
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e =>
+        {
+            mrigidbody.simulated = false;
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnHintExitEvent>(e =>
+        {
+            mrigidbody.simulated = true;
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
     private void Start()
     {

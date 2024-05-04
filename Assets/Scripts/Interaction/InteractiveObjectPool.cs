@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Puzzle;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,6 +73,10 @@ public class InteractiveObjectPool
         Debug.Log(id + " " + interactiveObject.name + " is triggered");
         interactiveObject.TriggerEvent();
         //EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
+    }
+    public static void ObjectEndTrigger()
+    {
+        Instance.activeObject.EndTrigger();
     }
     public static void EventTrigger(params System.Action[] actions)
     {

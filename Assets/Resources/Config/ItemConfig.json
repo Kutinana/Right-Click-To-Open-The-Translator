@@ -15,10 +15,10 @@
 	},
 	{
 		"ID":2,
-		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
-		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
-		"itemType": 2,
-		"target_string":""
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Outlined",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Unoutlined",
+		"itemType": 1,
+		"target_string":"puzzle3"
 	},
 	{
 		"ID":3,
@@ -26,5 +26,26 @@
 		"UnoutlinedSpritePath":"None",
 		"itemType": 2,
 		"target_string":""
+	},
+	{
+		"ID":4,
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Outlined_object",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Unoutlined_object",
+		"itemType": 1,
+		"target_string":"puzzle2"
+	},
+	{
+		"ID":5,
+		"OutlinedSpritePath":"Sprites/hints/hint3/Hint3_object_Outlined",
+		"UnoutlinedSpritePath":"Sprites/hints/hint3/Hint3_object_Unoutlined",
+		"itemType": 3,
+		"target_string":"hint3"
+	},
+	{
+		"ID":6,
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/Map1_puzzle1_Outlined_object",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/Map1_puzzle1_Unoutlined_object",
+		"itemType": 1,
+		"target_string":"puzzle1"
 	}
 ]

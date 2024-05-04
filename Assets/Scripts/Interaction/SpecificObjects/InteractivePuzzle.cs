@@ -1,5 +1,6 @@
 using Hint;
 using Puzzle;
+using UnityEngine;
 
 public class InteractivePuzzle: InteractiveObject
 {
@@ -26,7 +27,13 @@ public class InteractivePuzzle: InteractiveObject
             default:
                 break;
         }
-        
+        //GameObject.Find("TempPlayer").GetComponent<PlayerInput>().DisableInputActions();
+        //GameObject.Find("TempPlayer").GetComponent<Rigidbody2D>().simulated = false;
         base.TriggerEvent();
+    }
+    public override void EndTrigger()
+    {
+        GameObject.Find("TempPlayer").GetComponent<Rigidbody2D>().simulated = true;
+        base.EndTrigger();
     }
 }

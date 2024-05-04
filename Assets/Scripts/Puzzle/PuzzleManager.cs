@@ -55,6 +55,8 @@ namespace Puzzle
         {
             if (CurrentPuzzle != null) return;
 
+            TypeEventSystem.Global.Send<OnPuzzleInitializedEvent>();
+
             var data = GameDesignData.GetPuzzleDataById(_id);
             CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>();
             CurrentPuzzle.Id = _id;
@@ -80,7 +82,6 @@ namespace Puzzle
             if (CurrentPuzzle != null)
             {
                 CurrentPuzzle.OnExit();
-                TypeEventSystem.Global.Send(new OnPuzzleExitEvent(CurrentPuzzle));
 
                 StateMachine.ChangeState(States.None);
             }
@@ -124,6 +125,8 @@ namespace Puzzle
                 if (CurrentPuzzle != null)
                 {
                     Destroy(CurrentPuzzle.gameObject);
+
+                    TypeEventSystem.Global.Send(new OnPuzzleExitEvent(CurrentPuzzle));
                 }
                 
                 CurrentPuzzle = null;

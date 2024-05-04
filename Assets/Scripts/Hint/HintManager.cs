@@ -55,6 +55,8 @@ namespace Hint
         {
             if (CurrentHint != null) return;
 
+            TypeEventSystem.Global.Send<OnHintInitializedEvent>();
+
             var data = GameDesignData.GetHintDataById(_id);
             CurrentHint = Instantiate(data.Prefab, Instance.transform).GetComponent<HintBase>();
             CurrentHint.Id = _id;
@@ -78,7 +80,6 @@ namespace Hint
             if (CurrentHint != null)
             {
                 CurrentHint.OnExit();
-                TypeEventSystem.Global.Send(new OnHintExitEvent(CurrentHint));
 
                 StateMachine.ChangeState(States.None);
             }
@@ -100,7 +101,11 @@ namespace Hint
             IEnumerator OnEnterCoroutine()
             {
                 yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
-                if (CurrentHint != null) Destroy(CurrentHint.gameObject);
+                if (CurrentHint != null)
+                {
+                    Destroy(CurrentHint.gameObject);
+                    TypeEventSystem.Global.Send(new OnHintExitEvent(CurrentHint));
+                }
                 
                 CurrentHint = null;
                 mTarget.CurrentCoroutine = null;

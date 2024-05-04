@@ -24,6 +24,7 @@ public class InteractivePuzzle: InteractiveObject
         switch (itemType)
         {
             case ItemType.DOOR:
+                SwitchScene();
                 break;
             case ItemType.PUZZLE:
                 PuzzleManager.Initialize(itemConfig.target_string);
@@ -53,6 +54,9 @@ public class InteractivePuzzle: InteractiveObject
         identity_number = id;
         Init();
         LoadConfig();
+    }
+    public void PlayAnimation()
+    {
         animator.enabled = true;
         animator?.CrossFade(animatorHash, 0.1f);
     }
@@ -61,6 +65,19 @@ public class InteractivePuzzle: InteractiveObject
     {
         AudioKit.PlaySound(name);
     }
-    
+
+    public void Refresh()
+    {
+        InteractiveObjectPool.RefreshActiveObject(this);
+    }
+    public void RefreshAfterSeconds(float t)
+    {
+        Invoke(nameof(Refresh), t);
+    }
+    public void SwitchScene()
+    {
+        SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);
+    }
+
     public void AnimatorDisabled() => animator.enabled = false;
 }

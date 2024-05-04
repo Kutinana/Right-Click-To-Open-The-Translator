@@ -1,17 +1,17 @@
 [
 	{
 		"ID":0,
-		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Outlined_object",
-		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle1_Unoutlined_object",
-		"itemType": 1,
-		"target_string":"puzzle1"
+		"OutlinedSpritePath":"Sprites/hints/hint1/Hint1_object_Outlined",
+		"UnoutlinedSpritePath":"Sprites/hints/hint1/Hint1_object_Unoutlined",
+		"itemType": 3,
+		"target_string":"hint1"
 	},
 	{
 		"ID":1,
-		"OutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Outlined_object",
-		"UnoutlinedSpritePath":"Sprites/puzzles/Map1_puzzle2_Unoutlined_object",
+		"OutlinedSpritePath":"Sprites/hints/hint2/Hint2_object_Outlined",
+		"UnoutlinedSpritePath":"Sprites/hints/hint2/Hint2_object_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint1"
+		"target_string":"hint2"
 	},
 	{
 		"ID":2,

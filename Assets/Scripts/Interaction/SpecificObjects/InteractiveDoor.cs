@@ -29,4 +29,8 @@ public class InteractiveDoor: InteractiveObject
         CameraFollowController camera = GameObject.Find("Main Camera").GetComponent<CameraFollowController>();
         camera.maxX = range;
     }
+    public void SwitchScene()
+    {
+        SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);
+    }
 }

@@ -120,4 +120,11 @@ public class InteractiveObjectPool
             if (_instance.activeObject != null) _instance.activeObject.Activate();
         }
     }
+    public static void RefreshActiveObject(InteractiveObject interactiveObject)
+    {
+        if (interactiveObject == _instance.activeObject)
+        {
+            _instance.activeObject.Activate();
+        }
+    }
 }

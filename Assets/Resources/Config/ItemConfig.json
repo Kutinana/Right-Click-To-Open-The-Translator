@@ -47,13 +47,26 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/Map1_puzzle1_Unoutlined_object",
 		"itemType": 1,
 		"target_string":"puzzle1"
-	}
-	,
+	},
 	{
 		"ID":7,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Unoutlined",
 		"itemType": 3,
 		"target_string":"hint4"
+	},
+	{
+		"ID":8,
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door Open_Outlined",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door Open_Unoutlined",
+		"itemType": 0,
+		"target_string":""
+	},
+	{
+		"ID":9,
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Outlined",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Unoutline",
+		"itemType": 3,
+		"target_string":"hint6"
 	}
 ]

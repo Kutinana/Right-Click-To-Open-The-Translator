@@ -1560,6 +1560,30 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 187242647}
         m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: DrawOpen
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 187242647}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: RefreshAfterSeconds
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0.8
+          m_StringArgument: DrawOpen
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 187242647}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
         m_MethodName: PlaySound
         m_Mode: 5
         m_Arguments:
@@ -1958,6 +1982,7 @@ GameObject:
   - component: {fileID: 225987911}
   - component: {fileID: 225987913}
   - component: {fileID: 225987912}
+  - component: {fileID: 225987914}
   m_Layer: 6
   m_Name: puzzle1
   m_TagString: Untagged
@@ -2058,8 +2083,56 @@ MonoBehaviour:
   count: -1
   OnT:
     m_PersistentCalls:
-      m_Calls: []
-  animationName: 
+      m_Calls:
+      - m_Target: {fileID: 225987912}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: ChangeObject
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 225987912}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 225987912}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: RefreshAfterSeconds
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.8
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 225987912}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DrawOpen
+          m_BoolArgument: 0
+        m_CallState: 2
+  animationName: Puzzle1_Solved
 --- !u!61 &225987913
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2105,6 +2178,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 3.84}
   m_EdgeRadius: 0
+--- !u!95 &225987914
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225987909}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb7ed9ae400fbcb48b5c28c78656b3a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &233294705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,6 +3958,7 @@ GameObject:
   - component: {fileID: 556942798}
   - component: {fileID: 556942800}
   - component: {fileID: 556942799}
+  - component: {fileID: 556942801}
   m_Layer: 6
   m_Name: puzzle3_door
   m_TagString: Untagged
@@ -3964,7 +4059,31 @@ MonoBehaviour:
   count: -1
   OnT:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 556942799}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: ChangeObject
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 556942799}
+        m_TargetAssemblyTypeName: InteractivePuzzle, Assembly-CSharp
+        m_MethodName: Refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   animationName: 
 --- !u!61 &556942800
 BoxCollider2D:
@@ -4011,6 +4130,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.92, y: 10.4}
   m_EdgeRadius: 0
+--- !u!95 &556942801
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556942796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &702325728
 GameObject:
   m_ObjectHideFlags: 0

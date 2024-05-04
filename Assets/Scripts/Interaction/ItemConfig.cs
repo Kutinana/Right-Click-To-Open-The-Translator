@@ -24,7 +24,7 @@ public static class DoorConfig
 {
     public static Dictionary<int, String> nextSceneName = new Dictionary<int, string>()
     {
-
+        {8, "StartScene" }
     };
 }
 

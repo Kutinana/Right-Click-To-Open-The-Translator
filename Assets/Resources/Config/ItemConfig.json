@@ -68,5 +68,26 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Unoutline",
 		"itemType": 3,
 		"target_string":"hint6"
+	},
+	{
+		"ID":10,
+		"OutlinedSpritePath":"None",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 3,
+		"target_string":""
+	},
+	{
+		"ID":11,
+		"OutlinedSpritePath":"Sprites/InitialHint/graffitiwall_2_highlight",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 3,
+		"target_string":"hint5"
+	},
+	{
+		"ID":12,
+		"OutlinedSpritePath":"Sprites/doors/switch_1",
+		"UnoutlinedSpritePath":"Sprites/doors/switch_0",
+		"itemType": 0,
+		"target_string":""
 	}
 ]

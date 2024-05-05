@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CameraFollowController : MonoBehaviour
 {
-    private GameObject Player;
+    public GameObject Player;
     private Rigidbody2D mrigidbody;
     private PlayerController playerController;
     public float minX;
@@ -27,7 +27,6 @@ public class CameraFollowController : MonoBehaviour
     private float PlayerSpeed => mrigidbody.velocity.x;
     private void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         mrigidbody = Player.GetComponent<Rigidbody2D>();
         playerController = Player.GetComponent<PlayerController>();
         defaultFieldofView = this.gameObject.GetComponent<Camera>().fieldOfView;

@@ -9,10 +9,9 @@ using UnityEngine.UI;
 
 namespace Puzzle.Puzzle2
 {
-    public class Puzzle2 : PuzzleBase , ISingleton
+    public class Puzzle2 : PuzzleBase
     {
-        public static Puzzle2 Instance => SingletonProperty<Puzzle2>.Instance;
-        public void OnSingletonInit() {}
+        public static Puzzle2 Instance;
 
         public static Cube HoldingCube = null;
         public static Dictionary<Vector2, string> CORRECT = new Dictionary<Vector2, string>() {
@@ -38,6 +37,8 @@ namespace Puzzle.Puzzle2
 
         private void Awake()
         {
+            Instance = this;
+            
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 transform.Find("Interactable").GetComponent<GraphicRaycaster>().enabled = false;
             }).UnRegisterWhenGameObjectDestroyed(gameObject);

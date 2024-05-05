@@ -16,10 +16,9 @@ namespace Puzzle.Puzzle1
         Taper
     }
     
-    public class Puzzle1 : PuzzleBase , ISingleton
+    public class Puzzle1 : PuzzleBase
     {
-        public static Puzzle1 Instance => SingletonProperty<Puzzle1>.Instance;
-        public void OnSingletonInit() {}
+        public static Puzzle1 Instance;
         public static Dictionary<int, BottleType> PositionDictionary = new Dictionary<int, BottleType>() {
             {0, BottleType.Taper},
             {1, BottleType.Cube},
@@ -40,6 +39,11 @@ namespace Puzzle.Puzzle1
 
         private Button backButton;
         private Coroutine CurrentCoroutine = null;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         public static void Swap(Bottle bottleA, Bottle bottleB)
         {

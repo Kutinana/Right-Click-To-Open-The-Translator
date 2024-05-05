@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour
             interactiveObject = objectsDetector.DetectClosestObject();
             if (interactiveObject == null)
             {
-                Debug.Log("Could not find corresponding InteractiveObject");
+                InteractiveObjectPool.SetActiveObject(null);
+                // Debug.Log("Could not find corresponding InteractiveObject");
                 return;
             }
             InteractiveObjectPool.SetActiveObject(interactiveObject);

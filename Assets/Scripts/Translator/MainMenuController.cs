@@ -81,16 +81,22 @@ namespace Translator
         private void ToggleInteractability(bool _flag)
         {
             mStartGameBtn.interactable = _flag;
-            mStartGameBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+            var start = mStartGameBtn.transform.Find("Characters");
+            start.gameObject.SetActive(!_flag);
 
             mQuitGameBtn.interactable = _flag;
-            mQuitGameBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+            var quit = mQuitGameBtn.transform.Find("Characters");
+            quit.gameObject.SetActive(!_flag);
 
             mSettingsBtn.interactable = _flag;
-            mSettingsBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+            var settings = mSettingsBtn.transform.Find("Characters");
+            settings.gameObject.SetActive(!_flag);
 
             mCreditBtn.interactable = _flag;
-            mCreditBtn.transform.Find("Characters").gameObject.SetActive(!_flag);
+            var credit = mCreditBtn.transform.Find("Characters");
+            credit.gameObject.SetActive(!_flag);
+
+            mStartGameBtn.transform.parent.GetComponentsInChildren<Character>().ForEach(x => x.Refresh());
         }
 
         IEnumerator QuitGameCoroutine()

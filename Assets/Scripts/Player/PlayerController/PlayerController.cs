@@ -73,11 +73,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ActivateObject();
-        //while (flag && !groundDetector.isGrounded && EnableGroundCheck)
-        //{
-        //    transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
-        //}
-        //flag = groundDetector.isGrounded;
+        while (flag && !groundDetector.isGrounded && EnableGroundCheck)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+        }
+        flag = groundDetector.isGrounded;
     }
     private void ActivateObject()
     {

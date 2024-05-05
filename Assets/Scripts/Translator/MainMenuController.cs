@@ -44,7 +44,7 @@ namespace Translator
                 AudioMng.PlayBtnPressed(1);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
 
-                SceneControl.SceneControl.SwitchSceneWithoutConfirm("First", delay: 1f);
+                SceneControl.SceneControl.SwitchSceneWithoutConfirm("Zero", delay: 1f);
             });
             mQuitGameBtn.onClick.AddListener(() => {
                 AudioMng.PlayBtnPressed(2);

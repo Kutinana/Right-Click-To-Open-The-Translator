@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71148c5e31028a940a45514b78562eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 882247787}
   minX: -15
   maxX: 15
   slowRange: 1.5
@@ -1361,6 +1361,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12435ca932e8eef4fbb49530563b5d6f, type: 3}
+--- !u!1 &882247787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1286118690079615139, guid: 12435ca932e8eef4fbb49530563b5d6f, type: 3}
+  m_PrefabInstance: {fileID: 882247786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &976059751
 GameObject:
   m_ObjectHideFlags: 0

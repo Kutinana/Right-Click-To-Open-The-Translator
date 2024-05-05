@@ -132,7 +132,7 @@ namespace StartScene
             var index = 0;
             foreach (var cg in InitialCGs)
             {
-                if (index < 4)
+                if (index < 5)
                 {
                     mInitialCG.sprite = cg;
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
@@ -152,6 +152,8 @@ namespace StartScene
                 }
                 else if (index < InitialPlot.Count)
                 {
+                    if (index == 12) yield return new WaitForSeconds(2f);
+
                     mInitialCG.sprite = cg;
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
                     yield return new WaitForSeconds(0.5f);

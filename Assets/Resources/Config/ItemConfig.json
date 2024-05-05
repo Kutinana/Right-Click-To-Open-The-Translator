@@ -81,7 +81,7 @@
 		"OutlinedSpritePath":"Sprites/InitialHint/graffitiwall_2_highlight",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
-		"target_string":"hint1"
+		"target_string":"hint0"
 	},
 	{
 		"ID":12,

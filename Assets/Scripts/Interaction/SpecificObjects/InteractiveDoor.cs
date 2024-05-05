@@ -1,10 +1,17 @@
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class InteractiveDoor: InteractiveObject
 {
     public UnityEvent OnT;
+    bool startFall = false;
+    private void Update()
+    {
+        if (startFall) StartCoroutine(playerFall());
+    }
     public override void LoadConfig()
     {
         base.LoadConfig();
@@ -50,6 +57,10 @@ public class InteractiveDoor: InteractiveObject
     {
         Invoke(nameof(AnimatorDisabled), t);
     }
+    public void PlayerFall()
+    {
+        startFall = true;
+    }
     public void PlayAnimation(string animationName)
     {
         int animatorHash = Animator.StringToHash(animationName);
@@ -61,5 +72,30 @@ public class InteractiveDoor: InteractiveObject
     public void SwitchScene()
     {
         SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);
+    }
+    IEnumerator playerFall()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerController>().EnableGroundCheck = false;
+        player.GetComponent<Rigidbody2D>().simulated = false;
+        player.GetComponent<PlayerInput>().DisableInputActions();
+
+        yield return new WaitForSeconds(0.3f);
+
+        Color color = GameObject.Find("storage_9.2-warpgate").GetComponent<SpriteRenderer>().color;
+        GameObject.Find("storage_9.2-warpgate").GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0);
+        player.GetComponent<Animator>().enabled = false;
+        player.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/player_falling") as Sprite;
+
+        yield return new WaitForSeconds(0.7f);
+        
+        float startTime = Time.time;
+        Vector3 position = player.transform.position;
+        while (Time.time - startTime < 0.8f)
+        {
+            player.transform.position = Vector3.Lerp(position, new Vector3(position.x, position.y - 2.0f, position.z), Time.deltaTime * 10);
+
+            yield return null;
+        }
     }
 }

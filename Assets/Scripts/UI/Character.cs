@@ -62,7 +62,7 @@ namespace UI
             _image.sprite = data.Sprite;
             _text.SetText(UserDictionary.Read(data.Id));
 
-            _buttonExtension.OnClick += () => {
+            _buttonExtension.OnLeftClick += () => {
                 CharacterRecordPanelManager.Instance.Init(this);
             };
             _buttonExtension.OnPressEnd += () => {

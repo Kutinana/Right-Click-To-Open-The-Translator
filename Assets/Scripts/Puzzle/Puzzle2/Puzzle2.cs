@@ -38,13 +38,6 @@ namespace Puzzle.Puzzle2
         private void Awake()
         {
             Instance = this;
-            
-            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
-                transform.Find("Interactable").GetComponent<GraphicRaycaster>().enabled = false;
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
-                transform.Find("Interactable").GetComponent<GraphicRaycaster>().enabled = true;
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         public override void OnEnter()

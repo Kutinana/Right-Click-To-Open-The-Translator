@@ -1,3 +1,4 @@
+using DataSystem;
 using Hint;
 using Puzzle;
 using QFramework;
@@ -18,6 +19,13 @@ public class InteractivePuzzle: InteractiveObject
         itemType = itemConfig.itemType;
         this.animatorHash = Animator.StringToHash(animationName);
         animator.enabled = false;
+    }
+    private void Start()
+    {
+        if (GameProgressData.GetPuzzleProgress(itemConfig.target_string) == PuzzleProgress.Solved)
+        {
+            OnT.Invoke();
+        }
     }
     public override void TriggerEvent()
     {

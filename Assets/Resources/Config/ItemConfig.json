@@ -53,7 +53,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint4"
+		"target_string":"hint5"
 	},
 	{
 		"ID":8,
@@ -67,7 +67,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Unoutline",
 		"itemType": 3,
-		"target_string":"hint6"
+		"target_string":"hint4"
 	},
 	{
 		"ID":10,
@@ -81,7 +81,7 @@
 		"OutlinedSpritePath":"Sprites/InitialHint/graffitiwall_2_highlight",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
-		"target_string":"hint5"
+		"target_string":"hint1"
 	},
 	{
 		"ID":12,
@@ -89,5 +89,19 @@
 		"UnoutlinedSpritePath":"Sprites/doors/switch_0",
 		"itemType": 0,
 		"target_string":""
+	},
+	{
+		"ID":13,
+		"OutlinedSpritePath":"None",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 3,
+		"target_string":""
+	},
+	{
+		"ID":14,
+		"OutlinedSpritePath":"Sprites/hints/hint6/hint6_set_Outlined",
+		"UnoutlinedSpritePath":"Sprites/hints/hint6/hint6_set_Unoutlined",
+		"itemType": 3,
+		"target_string":"hint6"
 	}
 ]

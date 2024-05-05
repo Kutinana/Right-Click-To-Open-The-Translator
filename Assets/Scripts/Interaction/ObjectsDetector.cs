@@ -28,9 +28,9 @@ public class ObjectsDetector : MonoBehaviour
         
         return closestObject;
     }
-    //public void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(transform.position, radius);
-    //}
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

@@ -75,6 +75,7 @@ namespace Puzzle
             {
                 CurrentPuzzle.OnUpdate();
             }
+            stateMachine.CurrentState.Update();
         }
 
         public static void Exit()
@@ -149,6 +150,14 @@ namespace Puzzle
                 foreach (var col in mTarget.GetComponentsInChildren<Collider2D>())
                 {
                     col.enabled = true;
+                }
+            }
+
+            protected override void OnUpdate()
+            {
+                if (Input.GetKeyUp(KeyCode.Escape))
+                {
+                    PuzzleManager.Exit();
                 }
             }
 

@@ -20,7 +20,7 @@ namespace Puzzle.Puzzle3
         private Button RightDown;
 
         [SerializeField] private AnimationCurve animationCurve = AnimationCurve.Linear(0, 0, 1, 1);
-        [SerializeField] private Vector3 targetPosition = Vector3.zero;
+        [SerializeField] public Vector3 targetPosition = Vector3.zero;
         [Range(0, 1)] public float Progress = 0f;
         private Coroutine CurrentCoroutine = null;
 

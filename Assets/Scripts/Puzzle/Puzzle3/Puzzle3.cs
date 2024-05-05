@@ -43,6 +43,14 @@ namespace Puzzle.Puzzle3
 
         public override void OnEnter()
         {
+            if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
+            {
+                var door = transform.Find("Interactable/Door").GetComponent<Door>();
+                door.Progress = 1;
+                door.GetComponent<Collider2D>().enabled = false;
+                door.transform.localPosition = new Vector3(-1094, 0, 0);
+            }
+
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
                 PuzzleManager.Exit();

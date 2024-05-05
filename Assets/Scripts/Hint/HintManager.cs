@@ -73,6 +73,7 @@ namespace Hint
             {
                 CurrentHint.OnUpdate();
             }
+            stateMachine.CurrentState.Update();
         }
 
         public static void Exit()
@@ -125,6 +126,14 @@ namespace Hint
                 foreach (var col in mTarget.GetComponentsInChildren<Collider2D>())
                 {
                     col.enabled = true;
+                }
+            }
+
+            protected override void OnUpdate()
+            {
+                if (Input.GetKeyUp(KeyCode.Escape))
+                {
+                    HintManager.Exit();
                 }
             }
 

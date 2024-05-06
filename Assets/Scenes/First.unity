@@ -527,7 +527,7 @@ MonoBehaviour:
     UnoutlinedSpritePath: 
     itemType: 0
     target_string: 
-  count: 1
+  count: -1
   OnT:
     m_PersistentCalls:
       m_Calls: []

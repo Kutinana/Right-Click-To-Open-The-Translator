@@ -1,4 +1,5 @@
 using Hint;
+using JetBrains.Annotations;
 using Puzzle;
 using QFramework;
 using System.Runtime.Serialization.Configuration;
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     bool flag = false;
     int par = 0;
     float CurrentMaxSpeed;
+    int enableCount = 0;
+    int lastEnableCount = 0;
+
     public bool EnableGroundCheck = true;
     public bool touchable => objectsDetector.touchable;
     public float moveSpeed => Mathf.Abs(mrigidbody.velocity.x);
@@ -34,34 +38,40 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
         {
-            mrigidbody.simulated = false;
+            enableCount += 1;
+            //mrigidbody.simulated = false;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e =>
         {
-            mrigidbody.simulated = true;
+            enableCount -= 1;
+            //mrigidbody.simulated = true;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnHintInitializedEvent>(e =>
         {
-            mrigidbody.simulated = false;
+            enableCount += 1;
+            //mrigidbody.simulated = false;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnHintExitEvent>(e =>
         {
-            mrigidbody.simulated = true;
+            enableCount -= 1;
+            //mrigidbody.simulated = true;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
         {
-            mrigidbody.simulated = false;
-            playerInput.DisableInputActions();
+            enableCount += 1;
+            //mrigidbody.simulated = false;
+            //playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
         {
-            mrigidbody.simulated = true;
-            playerInput.EnableInputActions();
+            enableCount -= 1;
+            //mrigidbody.simulated = true;
+            //playerInput.EnableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
     private void Start()
@@ -72,6 +82,20 @@ public class PlayerController : MonoBehaviour
     Vector3 destUp;
     private void Update()
     {
+        if (lastEnableCount != enableCount)
+        {
+            if (enableCount > 0)
+            {
+                mrigidbody.simulated = false;
+                playerInput.DisableInputActions();
+            }
+            else
+            {
+                mrigidbody.simulated = true;
+                playerInput.EnableInputActions();
+            }
+        }
+        lastEnableCount = enableCount;
         ActivateObject();
         while (flag && !groundDetector.isGrounded && EnableGroundCheck)
         {

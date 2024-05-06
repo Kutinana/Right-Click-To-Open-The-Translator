@@ -83,7 +83,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     /// 0: Click; 1: Apply; 2:Cancel
     /// </summary>
     /// <param name="type">the type of button that change the sfx it plays. 0: click; 1: Apply; 2:Cancel</param>
-    public static void PlayBtnPressed(int type, float volumeScale = 1f)
+    public static void PlayBtnPressed(int type, float volumeScale = 0.8f)
     {
         if (type == 0)
         {

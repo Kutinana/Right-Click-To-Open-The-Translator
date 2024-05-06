@@ -13,7 +13,6 @@ public class AudioMng : MonoSingleton<AudioMng>
     AudioSource current;
     AudioSource BGM1;
     AudioSource BGM2;
-    [SerializeField] AudioClip ambientClip;
     [SerializeField] float fadeTime = 100;
     private Dictionary<string, AudioClip> backGroundMusics = new();
 
@@ -21,6 +20,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     private float ambientVolume = 0.8f;
     private float effectVolume;
 
+    ResLoader res;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -35,6 +35,18 @@ public class AudioMng : MonoSingleton<AudioMng>
         UpdateVolume();
 
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        res = ResLoader.Allocate();
+        if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
+        {
+            AudioClip audioClip = res.LoadSync<AudioClip>("AmbientResearcher");
+            ambientChannel.clip = audioClip;
+        }
+        else
+        {
+            AudioClip audioClip = res.LoadSync<AudioClip>("AmbientRain");
+            ambientChannel.clip = audioClip;
+        }
     }
 
     private void UpdateVolume()
@@ -47,10 +59,18 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void PlayAmbient()
     {
-        ambientChannel.clip = ambientClip;
         ambientChannel.loop = true;
         ambientChannel.volume = ambientVolume;
         ambientChannel.Play();
+    }
+    public void PlayAmbient(string name)
+    {
+        if (name != ambientChannel.clip.name)
+        {
+            AudioClip audioClip = res.LoadSync<AudioClip>(name);
+            ambientChannel.clip = audioClip;
+        }
+        PlayAmbient();
     }
 
     public void PlayFootsteps()
@@ -93,9 +113,13 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
     }
 
-    public void StopBGM()
+    public static void StopBGM()
     {
-        FadeMusic(current, 0f);
+        Instance.FadeMusic(Instance.current, 0f);
+    }
+    public static void StopAmbient()
+    {
+        Instance.FadeMusic(Instance.ambientChannel, 0f);
     }
 
     public static void StopAll()
@@ -130,9 +154,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
         else
         {
-            var res = ResLoader.Allocate();
 
-            AudioClip audioClip = res.LoadSync<AudioClip>("audio", name);
+            AudioClip audioClip = res.LoadSync<AudioClip>(name);
             // AudioClip audioClip = Resources.Load<AudioClip>("Audios/BGM/" + name);
             backGroundMusics.Add(name, audioClip);
         }
@@ -141,8 +164,17 @@ public class AudioMng : MonoSingleton<AudioMng>
     {
         StartCoroutine(IEChangeAmbient(name));
     }
+    public void ChangeBGM(string name)
+    {
+        AudioSource temp = GetAuxChannel();
+        temp.volume = 0;
+        current = temp;
+        D_PlayBGM(name);
+        FadeMusic(temp, backgroundVolume);
+        FadeMusic(GetAuxChannel(), 0);
+    }
 
-    IEnumerator IEChangeAmbient (string name)
+    IEnumerator IEChangeAmbient(string name)
     {
         AudioSource temp = GetAuxChannel();
         temp.volume = 0;
@@ -151,7 +183,6 @@ public class AudioMng : MonoSingleton<AudioMng>
         FadeMusic(temp, ambientVolume);
         FadeMusic(ambientChannel, 0);
 
-        var res = ResLoader.Allocate();
         AudioClip newAmbient = res.LoadSync<AudioClip>(name);
 
         yield return new WaitUntil(() => ambientChannel.volume == 0);

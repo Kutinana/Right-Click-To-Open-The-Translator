@@ -80,7 +80,7 @@ namespace StartScene
             mInitialVideoPlayer = transform.Find("FirstTimeVideo/RawImage").GetComponent<VideoPlayer>();
 
             mPostProcessVolume = transform.Find("Post Processing").GetComponent<PostProcessVolume>();
-            
+
             InitialSettings();
 
             TranslatorSM.CanActivate = false;
@@ -130,8 +130,10 @@ namespace StartScene
 
         private IEnumerator InitialCG()
         {
-            yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
 
+            yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
+            AudioMng.Instance.PlayAmbient();
+            AudioMng.Instance.D_PlayBGM("BGM0");
             var index = 0;
             foreach (var cg in InitialCGs)
             {
@@ -155,7 +157,12 @@ namespace StartScene
                 }
                 else if (index < InitialPlot.Count)
                 {
-                    if (index == 12) yield return new WaitForSeconds(2f);
+                    if (index == 9){
+                        AudioMng.StopAmbient();
+                        AudioMng.Instance.ChangeBGM("BGM1");
+                    }
+                        if (index == 12) yield return new WaitForSeconds(2f);
+
 
                     mInitialCG.sprite = cg;
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
@@ -188,6 +195,7 @@ namespace StartScene
                 }
 
                 index++;
+                if(index==15) AudioMng.StopAll();
             }
         }
 
@@ -262,7 +270,7 @@ namespace StartScene
             if (!PlayerPrefs.HasKey("Version") || PlayerPrefs.GetString("Version") != Version)
             {
                 PlayerPrefs.DeleteAll();
-                
+
                 PlayerPrefs.SetString("Version", Version);
             }
 

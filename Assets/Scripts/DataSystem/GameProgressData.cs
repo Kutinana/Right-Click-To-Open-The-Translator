@@ -130,13 +130,9 @@ namespace DataSystem
 
         public static void Clean()
         {
-            if (Directory.Exists(Application.persistentDataPath))
+            if (Directory.Exists(Path))
             {
-                var list = Directory.GetFiles(Application.persistentDataPath);
-                foreach (var file in list)
-                {
-                    File.Delete(file);
-                }
+                File.Delete(Path);
             }
         }
     }

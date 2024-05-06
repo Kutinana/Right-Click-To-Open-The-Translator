@@ -196,9 +196,6 @@ namespace StartScene
                             AudioKit.PlaySound("Cube-Slide");
                         }
                         yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGTextACG, 0f);
-
-                        AudioMng.StopAll();
-
                         yield return new WaitForSeconds(2f);
                     }
 
@@ -237,6 +234,7 @@ namespace StartScene
 
         private IEnumerator InitialPerformance()
         {
+            AudioMng.StopAll();
             mInitialVideoPlayer.clip = InitialClips[0];
             mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();

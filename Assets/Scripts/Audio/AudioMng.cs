@@ -13,7 +13,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     AudioSource current;
     AudioSource BGM1;
     AudioSource BGM2;
-    [SerializeField] float fadeTime = 100;
+    [SerializeField] float fadeTime = 60;
     private Dictionary<string, AudioClip> backGroundMusics = new();
 
     private float backgroundVolume;

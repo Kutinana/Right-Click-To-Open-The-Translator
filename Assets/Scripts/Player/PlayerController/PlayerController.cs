@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     float CurrentMaxSpeed;
     int enableCount = 0;
     int lastEnableCount = 0;
+    string lastLayer = "";
 
     public bool EnableGroundCheck = true;
     public bool touchable => objectsDetector.touchable;
@@ -38,7 +39,8 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
         {
-            enableCount += 1;
+            if (lastLayer != "puzzle") enableCount += 1;
+            lastLayer = "puzzle";
             //mrigidbody.simulated = false;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
@@ -50,7 +52,8 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnHintInitializedEvent>(e =>
         {
-            enableCount += 1;
+            if (lastLayer != "hint") enableCount += 1;
+            lastLayer = "hint";
             //mrigidbody.simulated = false;
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
@@ -62,7 +65,8 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
         {
-            enableCount += 1;
+            if (lastLayer != "trans") enableCount += 1;
+            lastLayer = "trans";
             //mrigidbody.simulated = false;
             //playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
@@ -84,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (lastEnableCount != enableCount)
         {
+            //Debug.Log(enableCount);
             if (enableCount > 0)
             {
                 mrigidbody.simulated = false;

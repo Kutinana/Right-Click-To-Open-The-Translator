@@ -18,7 +18,7 @@ namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        public static string Version => "0.1.1";
+        public static string Version => "0.1.2";
 
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;
@@ -196,9 +196,6 @@ namespace StartScene
                             AudioKit.PlaySound("Cube-Slide");
                         }
                         yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGTextACG, 0f);
-
-                        AudioMng.StopAll();
-
                         yield return new WaitForSeconds(2f);
                     }
 
@@ -237,6 +234,7 @@ namespace StartScene
 
         private IEnumerator InitialPerformance()
         {
+            AudioMng.StopAll();
             mInitialVideoPlayer.clip = InitialClips[0];
             mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();

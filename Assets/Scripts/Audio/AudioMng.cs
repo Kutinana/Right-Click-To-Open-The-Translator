@@ -13,7 +13,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     AudioSource current;
     AudioSource BGM1;
     AudioSource BGM2;
-    [SerializeField] float fadeTime = 100;
+    [SerializeField] float fadeTime = 60;
     private Dictionary<string, AudioClip> backGroundMusics = new();
 
     private float backgroundVolume;
@@ -83,7 +83,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     /// 0: Click; 1: Apply; 2:Cancel
     /// </summary>
     /// <param name="type">the type of button that change the sfx it plays. 0: click; 1: Apply; 2:Cancel</param>
-    public static void PlayBtnPressed(int type, float volumeScale = 1f)
+    public static void PlayBtnPressed(int type, float volumeScale = 0.8f)
     {
         if (type == 0)
         {

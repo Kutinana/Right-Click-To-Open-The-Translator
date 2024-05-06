@@ -12,11 +12,14 @@ using DataSystem;
 using Settings;
 using UI;
 using TMPro;
+using System;
 
 namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
+        public static string Version => "0.1.1";
+
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;
 
@@ -132,7 +135,7 @@ namespace StartScene
             var index = 0;
             foreach (var cg in InitialCGs)
             {
-                if (index < 4)
+                if (index < 5)
                 {
                     mInitialCG.sprite = cg;
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
@@ -152,6 +155,8 @@ namespace StartScene
                 }
                 else if (index < InitialPlot.Count)
                 {
+                    if (index == 12) yield return new WaitForSeconds(2f);
+
                     mInitialCG.sprite = cg;
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
                     yield return new WaitForSeconds(0.5f);
@@ -241,6 +246,25 @@ namespace StartScene
         private void InitialSettings()
         {
             Application.targetFrameRate = 240;
+
+            // Version Validating
+            if (PlayerPrefs.HasKey("Version"))
+            {
+                var localVersion = PlayerPrefs.GetString("Version").Split(".");
+                if (Int32.Parse(localVersion[0]) < Int32.Parse(Version.Split(".")[0])
+                    || Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) < Int32.Parse(Version.Split(".")[1])
+                    || Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2]))
+                {
+                    GameProgressData.Clean();
+                }
+            }
+
+            if (!PlayerPrefs.HasKey("Version") || PlayerPrefs.GetString("Version") != Version)
+            {
+                PlayerPrefs.DeleteAll();
+                
+                PlayerPrefs.SetString("Version", Version);
+            }
 
             AudioKit.Settings.MusicVolume.SetValueWithoutEvent(
                 PlayerPrefs.HasKey("BackgroundVolume") ? PlayerPrefs.GetFloat("BackgroundVolume") : 0.8f);

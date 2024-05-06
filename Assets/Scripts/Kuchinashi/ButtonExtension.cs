@@ -14,7 +14,8 @@ namespace Kuchinashi
             None,
             PointerDown,
             PointerUp,
-            Click,
+            LeftClick,
+            RightClick,
             DoubleClick,
             PressBegin,
             Press,
@@ -27,12 +28,17 @@ namespace Kuchinashi
         [SerializeField] private float mPressBeginTime = 0.3f;
         [SerializeField] private float mPressIntervalTime = 0.2f;
         private float mPressCacheTime = 0f;
+
+        private PointerEventData pointerEventData = null;
     
-        public Action OnClick { get; set; }
+        public Action OnLeftClick { get; set; }
+        public Action<PointerEventData> OnRightClick { get; set; }
         public Action OnDoubleClick { get; set; }
         public Action OnPressBegin { get; set; }
         public Action OnPress { get; set; }
         public Action OnPressEnd { get; set; }
+
+        private int mPressedButton = 0;
     
         public override void OnPointerDown(PointerEventData eventData)
         {
@@ -70,10 +76,18 @@ namespace Kuchinashi
                 }
             }
     
-            if (OnClick != null)
+            if (OnLeftClick != null && eventData.button == PointerEventData.InputButton.Left)
             {
                 mButtonState = EnumExButtonState.PointerDown;
+                mPressedButton = 0;
             }
+            else if (OnRightClick != null && eventData.button == PointerEventData.InputButton.Right)
+            {
+                mButtonState = EnumExButtonState.PointerDown;
+                mPressedButton = 1;
+            }
+
+            pointerEventData = eventData;
         }
     
         public override void OnPointerUp(PointerEventData eventData)
@@ -102,11 +116,18 @@ namespace Kuchinashi
                 }
             }
     
-            if (OnClick != null)
+            if (OnLeftClick != null && eventData.button == PointerEventData.InputButton.Left)
             {
                 if (mButtonState == EnumExButtonState.PointerDown)
                     mButtonState = EnumExButtonState.PointerUp;
             }
+            else if (OnRightClick != null && eventData.button == PointerEventData.InputButton.Right)
+            {
+                if (mButtonState == EnumExButtonState.PointerDown)
+                    mButtonState = EnumExButtonState.PointerUp;
+            }
+
+            pointerEventData = eventData;
         }
     
         private void Update()
@@ -132,18 +153,33 @@ namespace Kuchinashi
                 }
             }
     
-            if (OnClick != null)
+            if (OnLeftClick != null && mPressedButton == 0)
             {
                 if (mButtonState == EnumExButtonState.PointerUp)
                 {
                     if (OnDoubleClick != null)
                     {
                         if (Time.time - mPointerDownTime > mDoubleClickInterval)
-                            mButtonState = EnumExButtonState.Click;
+                            mButtonState = EnumExButtonState.LeftClick;
                     }
                     else
                     {
-                        mButtonState = EnumExButtonState.Click;
+                        mButtonState = EnumExButtonState.LeftClick;
+                    }
+                }
+            }
+            else if (OnRightClick != null && mPressedButton == 1)
+            {
+                if (mButtonState == EnumExButtonState.PointerUp)
+                {
+                    if (OnDoubleClick != null)
+                    {
+                        if (Time.time - mPointerDownTime > mDoubleClickInterval)
+                            mButtonState = EnumExButtonState.RightClick;
+                    }
+                    else
+                    {
+                        mButtonState = EnumExButtonState.RightClick;
                     }
                 }
             }
@@ -155,8 +191,12 @@ namespace Kuchinashi
             {
                 case EnumExButtonState.None:
                     break;
-                case EnumExButtonState.Click:
-                    OnClick?.Invoke();
+                case EnumExButtonState.LeftClick:
+                    OnLeftClick?.Invoke();
+                    mButtonState = EnumExButtonState.None;
+                    break;
+                case EnumExButtonState.RightClick:
+                    OnRightClick?.Invoke(pointerEventData);
                     mButtonState = EnumExButtonState.None;
                     break;
                 case EnumExButtonState.DoubleClick:

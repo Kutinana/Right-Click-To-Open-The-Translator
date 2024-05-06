@@ -2,6 +2,7 @@ using DataSystem;
 using Hint;
 using Puzzle;
 using QFramework;
+using System;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,13 +13,15 @@ public class InteractivePuzzle: InteractiveObject
     public UnityEvent OnT;
     private int animatorHash;
     public string animationName;
+    public bool setActivable = true;
 
     public override void LoadConfig()
     {
         base.LoadConfig();
         itemType = itemConfig.itemType;
         this.animatorHash = Animator.StringToHash(animationName);
-        
+        SetActivable(setActivable);
+
         if (animator != null) animator.enabled = false;
     }
     private void Start()
@@ -89,4 +92,11 @@ public class InteractivePuzzle: InteractiveObject
     }
 
     public void AnimatorDisabled() => animator.enabled = false;
+
+    public void ActivateHint(String hint)
+    {
+        Color color = GameObject.Find(hint).GetComponent<SpriteRenderer>().color;
+        GameObject.Find(hint).GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 1);
+        GameObject.Find(hint).GetComponent<InteractivePuzzle>().SetActivable(true);
+    }
 }

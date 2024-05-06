@@ -15,6 +15,7 @@ public class interactivePool: InteractiveObject
     {
         base.LoadConfig();
         this.animatorHash = Animator.StringToHash(animationName);
+
         
         animator = GameObject.Find("TempPlayer").GetComponent<Animator>();
         //

@@ -134,6 +134,11 @@ public class PlayerController : MonoBehaviour
         else if (playerInput.Move.x < 0) par = -1;
         SetVelocityX(speed * par);
     }
+    public void MoveWithoutPlayerInput(float speed)
+    {
+        par = spriteRenderer.flipX ? -1 : 1;
+        SetVelocityX(speed * par);
+    }
     public void SetVelocity(Vector3 velocity)
     {
         mrigidbody.velocity = velocity;

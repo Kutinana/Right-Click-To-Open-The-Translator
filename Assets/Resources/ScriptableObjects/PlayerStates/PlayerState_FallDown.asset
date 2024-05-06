@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationName: Player_Pooling
   transitionDuration: 0.1
-  deceleration: 10
+  deceleration: 1

@@ -24,7 +24,7 @@ public class interactivePool: InteractiveObject
 
     public override void Activate()
     {
-        if (count > 0)
+        if (count != 0)
         {
             PlayAnimation();
             count--;

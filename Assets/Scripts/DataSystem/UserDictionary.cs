@@ -62,5 +62,13 @@ namespace DataSystem
 
             Serialization(Path, Instance);
         }
+
+        public static void Clean()
+        {
+            if (Directory.Exists(Path))
+            {
+                File.Delete(Path);
+            }
+        }
     }
 }

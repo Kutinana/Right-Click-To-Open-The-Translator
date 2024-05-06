@@ -214,27 +214,15 @@ namespace StartScene
 
                     yield return new WaitForSeconds(0.5f);
                 }
-                // else
-                // {
-                    
-
-                //     mInitialCGFront.sprite = cg;
-                //     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGFrontCanvasGroup, 1f);
-
-                //     mInitialCGCanvasGroup.alpha = 1;
-                //     mInitialCG.sprite = cg;
-                //     mInitialCGFrontCanvasGroup.alpha = 0f;
-
-                //     yield return new WaitForSeconds(1f);
-                // }
 
                 index++;
             }
+            
+            AudioMng.StopAll();
         }
 
         private IEnumerator InitialPerformance()
         {
-            AudioMng.StopAll();
             mInitialVideoPlayer.clip = InitialClips[0];
             mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();
@@ -298,6 +286,7 @@ namespace StartScene
                     || Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2]))
                 {
                     GameProgressData.Clean();
+                    UserDictionary.Clean();
                 }
             }
 

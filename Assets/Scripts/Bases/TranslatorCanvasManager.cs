@@ -30,7 +30,7 @@ namespace Cameras
 
         private IEnumerator StartMainMenuCoroutine()
         {
-            AudioMng.Instance.PlayAmbient();
+            AudioMng.Instance.PlayAmbient("AmbientResearcher");
 
             TranslatorSM.StateMachine.ChangeState(States.Off);
             PuzzleManager.Exit();

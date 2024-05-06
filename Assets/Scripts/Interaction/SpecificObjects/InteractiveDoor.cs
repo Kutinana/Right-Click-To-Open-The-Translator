@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using DataSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -72,6 +73,11 @@ public class InteractiveDoor: InteractiveObject
     public void SwitchScene()
     {
         SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);
+
+        if (DoorConfig.nextSceneName[this.ID] is not "StartScene")
+        {
+            GameProgressData.SaveLastScene(DoorConfig.nextSceneName[this.ID]);
+        }
     }
     IEnumerator playerFall()
     {

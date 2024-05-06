@@ -20,15 +20,21 @@ namespace DataSystem
         private static SaveData _instance;
         public void OnSingletonInit() {}
 
+        public static string GetLastScene()
+        {
+            return Instance.LastScene ??= "Zero";
+        }
+
+        public static void SaveLastScene(string name)
+        {
+            Instance.LastScene = name;
+            Serialization(Path, Instance);
+        }
+
         public static PuzzleProgress GetPuzzleProgress(string _id)
         {
             return Instance.PuzzleProgress.ContainsKey(_id) ? Instance.PuzzleProgress[_id] : PuzzleProgress.UnSolved;
         }
-
-        // public static HintProgress GetHintProgress(string _id)
-        // {
-        //     return Instance.HintProgress.ContainsKey(_id) ? Instance.HintProgress[_id] : HintProgress.NotFound;
-        // }
 
         public static void Unlock(PuzzleBase puzzle)
         {

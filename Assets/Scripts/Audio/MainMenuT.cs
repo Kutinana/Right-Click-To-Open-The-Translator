@@ -32,10 +32,10 @@ namespace Translator
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
             });
             mSettingsBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.ChangeAmbient("TestAudio");
+                AudioMng.Instance.D_PlayBGM("Test");
             });
             mCreditBtn.onClick.AddListener(()=>{
-                AudioMng.Instance.StopBGM();
+                AudioMng.StopBGM();
             });
             
 

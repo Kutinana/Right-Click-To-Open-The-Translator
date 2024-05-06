@@ -131,7 +131,7 @@ namespace Hint
 
             protected override void OnUpdate()
             {
-                if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E))
+                if (Input.GetKeyUp(KeyCode.Escape))
                 {
                     HintManager.Exit();
                 }

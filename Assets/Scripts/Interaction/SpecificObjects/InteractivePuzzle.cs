@@ -15,12 +15,17 @@ public class InteractivePuzzle: InteractiveObject
     public string animationName;
     public bool setActivable = true;
 
+    public override void Init()
+    {
+        base.Init();
+        SetActivable(setActivable);
+    }
+
     public override void LoadConfig()
     {
         base.LoadConfig();
         itemType = itemConfig.itemType;
         this.animatorHash = Animator.StringToHash(animationName);
-        SetActivable(setActivable);
 
         if (animator != null) animator.enabled = false;
     }

@@ -155,7 +155,7 @@ namespace Puzzle
 
             protected override void OnUpdate()
             {
-                if (Input.GetKeyUp(KeyCode.Escape))
+                if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E))
                 {
                     PuzzleManager.Exit();
                 }

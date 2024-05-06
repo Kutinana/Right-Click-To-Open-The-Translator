@@ -52,8 +52,8 @@
 		"ID":7,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Unoutlined",
-		"itemType": 3,
-		"target_string":"hint5"
+		"itemType": 1,
+		"target_string":"puzzle2"
 	},
 	{
 		"ID":8,
@@ -66,8 +66,8 @@
 		"ID":9,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Unoutline",
-		"itemType": 3,
-		"target_string":"hint4"
+		"itemType": 1,
+		"target_string":"puzzle1"
 	},
 	{
 		"ID":10,
@@ -103,5 +103,19 @@
 		"UnoutlinedSpritePath":"Sprites/hints/hint6/hint6_set_Unoutlined",
 		"itemType": 3,
 		"target_string":"hint6"
+	},
+	{
+		"ID":15,
+		"OutlinedSpritePath":"Sprites/hints/hint4/puzzle1_Correct_Outline1_enhanced",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 3,
+		"target_string":"hint4"
+	},
+	{
+		"ID":16,
+		"OutlinedSpritePath":"Sprites/hints/hint5/Map1_puzzle2_Correct_Outlined16_enhanced",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 3,
+		"target_string":"hint5"
 	}
 ]

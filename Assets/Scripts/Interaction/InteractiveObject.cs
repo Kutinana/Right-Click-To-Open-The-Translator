@@ -85,4 +85,6 @@ public class InteractiveObject : MonoBehaviour, Interactive
     {
         //InteractiveObjectPool.RemoveObject(this);
     }
+
+    public void SetActivable(bool activate) => _activable = activate;
 }

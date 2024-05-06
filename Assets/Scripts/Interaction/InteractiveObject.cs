@@ -28,7 +28,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
     private void Awake()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        Init();
         TryGetComponent<Animator>(out animator);
     }
     public int ID 
@@ -43,7 +43,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
     {
         itemConfig = InteractiveObjectPool.Instance.itemConfigs[ID];
     }
-    public void Init()
+    public virtual void Init()
     {
         _activable = true;
         InteractiveObjectPool.LoadObject(this);

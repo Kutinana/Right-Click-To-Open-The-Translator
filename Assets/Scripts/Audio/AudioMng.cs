@@ -39,7 +39,6 @@ public class AudioMng : MonoSingleton<AudioMng>
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
-
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
         {

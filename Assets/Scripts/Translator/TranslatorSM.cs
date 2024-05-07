@@ -17,7 +17,7 @@ namespace Translator
         Settings
     }
 
-    public class TranslatorSM : MonoBehaviour , ISingleton
+    public class TranslatorSM : MonoBehaviour, ISingleton
     {
         public static TranslatorSM Instance => SingletonProperty<TranslatorSM>.Instance;
         public static FSM<States> StateMachine => Instance.stateMachine;
@@ -26,7 +26,7 @@ namespace Translator
         public static bool CanActivate = true;
         public Coroutine CurrentCoroutine = null;
 
-        public void OnSingletonInit() {}
+        public void OnSingletonInit() { }
 
         [HideInInspector] public CanvasGroup canvasGroup;
         [HideInInspector] public CanvasGroup recorderCanvasGroup;
@@ -50,18 +50,21 @@ namespace Translator
             settingsCanvasGroup.alpha = 0;
 
             translatorToggle = transform.Find("Menu/Image/Translator").GetComponent<Toggle>();
-            translatorToggle.onValueChanged.AddListener(value => {
+            translatorToggle.onValueChanged.AddListener(value =>
+            {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Translation);
             });
             translatorToggle.SetIsOnWithoutNotify(true);
             dictionaryToggle = transform.Find("Menu/Image/Dictionary").GetComponent<Toggle>();
-            dictionaryToggle.onValueChanged.AddListener(value => {
+            dictionaryToggle.onValueChanged.AddListener(value =>
+            {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Dictionary);
             });
             settingsToggle = transform.Find("Menu/Image/Settings").GetComponent<Toggle>();
-            settingsToggle.onValueChanged.AddListener(value => {
+            settingsToggle.onValueChanged.AddListener(value =>
+            {
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Settings);
             });
@@ -86,14 +89,14 @@ namespace Translator
         }
     }
 
-    public struct OnTranslatorEnabledEvent {}
-    public struct OnTranslatorDisabledEvent {}
-    public struct OnRecorderEnabledEvent {}
-    public struct OnRecorderDisabledEvent {}
+    public struct OnTranslatorEnabledEvent { }
+    public struct OnTranslatorDisabledEvent { }
+    public struct OnRecorderEnabledEvent { }
+    public struct OnRecorderDisabledEvent { }
 
     public class OffState : AbstractState<States, TranslatorSM>
     {
-        public OffState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
+        public OffState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
         protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Off;
 
         protected override void OnEnter()
@@ -105,12 +108,14 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
+                AudioKit.PlaySound("TranslatorOn", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Translation);
             }
         }
 
         protected override void OnExit()
         {
+
         }
 
         IEnumerator OnEnterCoroutine()
@@ -128,7 +133,7 @@ namespace Translator
 
     public class TranslationState : AbstractState<States, TranslatorSM>
     {
-        public TranslationState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
+        public TranslationState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
         protected override bool OnCondition() => mTarget.CurrentCoroutine == null
             && mFSM.CurrentStateId != States.Translation
             && TranslatorSM.CanActivate;
@@ -142,6 +147,7 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
+                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }
@@ -170,7 +176,7 @@ namespace Translator
 
     public class RecorderState : AbstractState<States, TranslatorSM>
     {
-        public RecorderState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
+        public RecorderState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
         protected override bool OnCondition() => mTarget.CurrentCoroutine == null
             && mFSM.CurrentStateId != States.Recorder
             && TranslatorSM.CanActivate;
@@ -197,7 +203,7 @@ namespace Translator
         {
             TypeEventSystem.Global.Send<OnRecorderEnabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 1f, 0.1f));
-            
+
             mTarget.recorderCanvasGroup.blocksRaycasts = true;
             CharacterRecordPanelManager.ActivateInputField();
 
@@ -216,7 +222,7 @@ namespace Translator
 
     public class DictionaryState : AbstractState<States, TranslatorSM>
     {
-        public DictionaryState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
+        public DictionaryState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
         protected override bool OnCondition() => mTarget.CurrentCoroutine == null
             && mFSM.CurrentStateId != States.Dictionary
             && TranslatorSM.CanActivate;
@@ -231,6 +237,7 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
+                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }
@@ -263,7 +270,7 @@ namespace Translator
 
     public class SettingsState : AbstractState<States, TranslatorSM>
     {
-        public SettingsState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) {}
+        public SettingsState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
         protected override bool OnCondition() => mTarget.CurrentCoroutine == null
             && mFSM.CurrentStateId != States.Settings
             && TranslatorSM.CanActivate;
@@ -277,6 +284,7 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
+                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }

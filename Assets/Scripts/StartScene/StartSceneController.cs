@@ -149,6 +149,7 @@ namespace StartScene
 
         private IEnumerator InitialCG()
         {
+            if (Input.GetKey(KeyCode.Escape)) yield break;
 
             yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
             AudioMng.Instance.PlayAmbient();
@@ -247,14 +248,14 @@ namespace StartScene
             }
             mPostProcessVolume.weight = 1f;
 
-            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false);
+            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
             mInitialVideoPlayer.clip = InitialClips[3];
             mInitialVideoPlayer.isLooping = false;
             mPostProcessVolume.weight = 0;
 
             mInitialVideoPlayer.Play();
 
-            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false);
+            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
         }
 
         private void NormalEnterGame()

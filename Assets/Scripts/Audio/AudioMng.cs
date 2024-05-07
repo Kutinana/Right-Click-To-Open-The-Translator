@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Hint;
+using Puzzle;
 using QFramework;
 using Settings;
 using UnityEngine;
@@ -16,9 +18,9 @@ public class AudioMng : MonoSingleton<AudioMng>
     [SerializeField] float fadeTime = 60;
     private Dictionary<string, AudioClip> backGroundMusics = new();
 
-    private float backgroundVolume;
-    private float ambientVolume = 0.8f;
-    private float effectVolume;
+    public float backgroundVolume { get; private set; }
+    public float ambientVolume { get; private set; } = 0.8f;
+    public float effectVolume { get; private set; }
 
     ResLoader res;
     private void Awake()
@@ -35,6 +37,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         UpdateVolume();
 
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
@@ -75,7 +79,7 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void PlayFootsteps()
     {
-        AudioKit.PlaySound("ftstp-2-" + randTab[pRandTab++]);
+        AudioKit.PlaySound("ftstp-1-" + randTab[pRandTab++], volumeScale: 0.6f);
         if (pRandTab == 15) pRandTab = 0;
     }
     /// <summary>

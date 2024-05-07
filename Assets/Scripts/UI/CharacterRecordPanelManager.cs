@@ -9,12 +9,13 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public struct OnCharacterRecordedEvent {
+    public struct OnCharacterRecordedEvent
+    {
         public string id;
         public OnCharacterRecordedEvent(string _id) { id = _id; }
     }
 
-    public struct OnCharacterRefreshEvent {}
+    public struct OnCharacterRefreshEvent { }
 
     public class CharacterRecordPanelManager : MonoBehaviour
     {
@@ -27,6 +28,7 @@ namespace UI
 
         private void Awake()
         {
+
             Instance = this;
 
             _image = transform.Find("Character").GetComponent<Image>();
@@ -34,7 +36,9 @@ namespace UI
             _confirmButton = transform.Find("Confirm").GetComponent<Button>();
 
             _inputField.text = "";
-            _confirmButton.onClick.AddListener(() => {
+            _confirmButton.onClick.AddListener(() =>
+            {
+                AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 UserDictionary.WriteInAndSave(character.data.Id, _inputField.text);
                 TranslatorSM.ReturnToPreviousState();
 
@@ -62,7 +66,7 @@ namespace UI
             character = c;
             _image.sprite = c.data.Sprite;
             _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id));
-            
+            AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
             TranslatorSM.StateMachine.ChangeState(States.Recorder);
 
             return this;

@@ -9,6 +9,7 @@ public class PlayerStateMachine: StateMachine
     private PlayerState lastState = null;
     
     public PlayerState[] states;
+    public PlayerState InitialState;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class PlayerStateMachine: StateMachine
     }
     private void Start()
     {
-        SwitchOn(statetable[typeof(PlayerState_Idle)]);
+        SwitchOn(InitialState);
     }
     public PlayerState GetLastState()
     {

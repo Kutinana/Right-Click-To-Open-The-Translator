@@ -1,0 +1,589 @@
+fileFormatVersion: 2
+guid: 0a8c6fb2bd5c05f498f762f5e3488ee0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04d6108230687c4eb52606d9a38d8bb
+      internalID: -1943292703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cddf5ecda88d4429bfb50973dc2e8c
+      internalID: -1510027790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a63a7ba8cbcfbf245b89c9afc8937c91
+      internalID: 1526099547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5523c8916dbf8734285f5d7dabf59c33
+      internalID: -1845150529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a250e6ea0ae89dc42a3144a02a700073
+      internalID: -445787270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d601e406114e349ac34fd6030b3a4c
+      internalID: -2014741613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 768
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a37db1af6cfd34289843f3ec4a3823
+      internalID: -890778056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa761d71629671d49a361a47fb30adb9
+      internalID: 1438115654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e746f64edf73d4d81f65da760ba742
+      internalID: 333469965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8692a65d5c7ee924691aa8064bd19272
+      internalID: -1598119417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35fe46a442211942977ca75f61ffa2d
+      internalID: 1844745258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392fc0ad54255ca43bf652ac98268f11
+      internalID: -1538784148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 691a0cdd76fe05148a2a96ea519575d4
+      internalID: 192979388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 384
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3030b33ece82a5046b2505e6eec54b41
+      internalID: -1232245813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb577bf099138a46baa4f8f335a3b03
+      internalID: -650991577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad9d67b4fb0eed4a86016885ca93e9a
+      internalID: -937327054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1a4dfdb7bc0d54c9778e1ed9526a4a
+      internalID: 823614470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2ef267f2b12054a869ee9ff90e37e1
+      internalID: 587067527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4171716c70e5b4e8d7bd20d49a52b0
+      internalID: 1920418839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586de585968300f4581d4dd2a61cde47
+      internalID: 907055299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_ontheground_sleeping_OUTPUTTEST-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 320
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e74a33a5b84ec428235ba5cbd9de23
+      internalID: 305169354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_0: -1943292703
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_1: -1510027790
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_10: 1844745258
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_11: -1538784148
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_12: 192979388
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_13: -1232245813
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_14: -650991577
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_15: -937327054
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_16: 823614470
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_17: 587067527
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_18: 1920418839
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_19: 907055299
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_2: 1526099547
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_20: 305169354
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_3: -1845150529
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_4: -445787270
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_5: -2014741613
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_6: -890778056
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_7: 1438115654
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_8: 333469965
+      player_ontheground_sleeping_OUTPUTTEST-Sheet_9: -1598119417
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

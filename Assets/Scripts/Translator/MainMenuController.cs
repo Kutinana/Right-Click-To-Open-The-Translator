@@ -5,6 +5,7 @@ using Kuchinashi;
 using QFramework;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Translator
@@ -47,7 +48,13 @@ namespace Translator
                 switch (GameProgressData.GetLastScene())
                 {
                     case "Zero":
-                        SceneControl.SceneControl.SwitchSceneWithoutConfirm("Zero", delay: 1f);
+                        SceneControl.SceneControl.SwitchSceneWithEvent("Zero", delay: 1f, action: () => {
+                            SceneControl.SceneControl.CanTransition = true;
+                            if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
+                            {
+                                NarrationManager.ShowInitialNarration();
+                            }
+                        });
                         break;
                     case "First":
                         SceneControl.SceneControl.SwitchSceneWithoutConfirm("First", delay: 1f);

@@ -163,4 +163,10 @@ public class PlayerController : MonoBehaviour
     public void PlayFootStep(){
         AudioMng.Instance.PlayFootsteps();
     }
+    public void PlaySpinFall1(){
+        AudioKit.PlaySound("Spinfall1");
+    }
+    public void PlaySpinFall2(){
+        AudioKit.PlaySound("Spinfall2");
+    }
 }

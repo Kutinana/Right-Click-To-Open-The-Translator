@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,9 @@ public class InteractiveDoor: InteractiveObject
     bool startFall = false;
     private void Update()
     {
-        if (startFall) StartCoroutine(playerFall());
+        if (startFall){
+            AudioKit.PlaySound("Fall-Zero",volumeScale:0.8f);
+            StartCoroutine(playerFall());}
     }
     public override void LoadConfig()
     {
@@ -103,5 +106,9 @@ public class InteractiveDoor: InteractiveObject
 
             yield return null;
         }
+    }
+    public void SwitchSound ()
+    {
+        AudioKit.PlaySound("Switch");
     }
 }

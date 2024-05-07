@@ -160,4 +160,7 @@ public class PlayerController : MonoBehaviour
     {
         mrigidbody.gravityScale = value;
     } 
+    public void PlayFootStep(){
+        AudioMng.Instance.PlayFootsteps();
+    }
 }

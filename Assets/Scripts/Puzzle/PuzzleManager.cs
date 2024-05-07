@@ -100,7 +100,7 @@ namespace Puzzle
         {
             yield return new WaitForSeconds(_delay);
 
-            AudioKit.PlaySound("Accomplish");
+            AudioKit.PlaySound("Accomplish",volumeScale: AudioMng.Instance.effectVolume);
 
             CurrentPuzzle.OnSolved();
             TypeEventSystem.Global.Send(new OnPuzzleSolvedEvent(CurrentPuzzle));

@@ -381,7 +381,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 243323287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35933dcfe075e904ba0ce78e3fd8cfbf, type: 3}
+  m_Script: {fileID: 11500000, guid: ff8eb2c20899cde4c9496994071fd62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   identity_number: 17
@@ -392,21 +392,6 @@ MonoBehaviour:
     itemType: 0
     target_string: 
   count: -1
-  OnT:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 243323291}
-        m_TargetAssemblyTypeName: InteractiveDoor, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &299651664
 GameObject:
   m_ObjectHideFlags: 0

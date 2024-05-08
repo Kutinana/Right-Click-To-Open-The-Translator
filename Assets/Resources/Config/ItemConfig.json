@@ -122,7 +122,7 @@
 		"ID":17,
 		"OutlinedSpritePath":"Sprites/NPCs/NPC1/RS1_6-nainiu2",
 		"UnoutlinedSpritePath":"Sprites/NPCs/NPC1/RS1_6-nainiu1",
-		"itemType": 1,
+		"itemType": 2,
 		"target_string":""
 	},
 	{

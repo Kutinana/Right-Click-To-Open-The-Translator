@@ -147,6 +147,7 @@ public class AudioMng : MonoSingleton<AudioMng>
             yield return new WaitForFixedUpdate();
         }
         audioSource.volume = target;
+        if(target==0f) audioSource.Stop();
     }
 
     public void LoadBGM(string name)

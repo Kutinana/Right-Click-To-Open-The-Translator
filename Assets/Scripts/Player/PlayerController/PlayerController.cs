@@ -19,9 +19,7 @@ public class PlayerController : MonoBehaviour
     bool flag = false;
     int par = 0;
     float CurrentMaxSpeed;
-    int enableCount = 0;
-    int lastEnableCount = 0;
-    string lastLayer = "";
+    bool enableCount = false;
 
     public bool EnableGroundCheck = true;
     public bool touchable => objectsDetector.touchable;
@@ -39,43 +37,53 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
         {
-            if (lastLayer != "puzzle") enableCount += 1;
-            lastLayer = "puzzle";
-            //mrigidbody.simulated = false;
+            enableCount = true;
+            mrigidbody.simulated = false;
+            playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e =>
         {
-            enableCount -= 1;
-            //mrigidbody.simulated = true;
+            if (enableCount && CanDeactive)
+            {
+                mrigidbody.simulated = true;
+                playerInput.EnableInputActions();
+                enableCount = false;
+            }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnHintInitializedEvent>(e =>
         {
-            if (lastLayer != "hint") enableCount += 1;
-            lastLayer = "hint";
-            //mrigidbody.simulated = false;
+            enableCount = true;
+            mrigidbody.simulated = false;
+            playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnHintExitEvent>(e =>
         {
-            enableCount -= 1;
-            //mrigidbody.simulated = true;
+            if (enableCount && CanDeactive)
+            {
+                mrigidbody.simulated = true;
+                playerInput.EnableInputActions();
+                enableCount = false;
+            }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
         {
-            if (lastLayer != "trans") enableCount += 1;
-            lastLayer = "trans";
-            //mrigidbody.simulated = false;
-            //playerInput.DisableInputActions();
+            enableCount = true;
+            mrigidbody.simulated = false;
+            playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
         {
-            enableCount -= 1;
-            //mrigidbody.simulated = true;
-            //playerInput.EnableInputActions();
+            if (enableCount && CanDeactive)
+            {
+                mrigidbody.simulated = true;
+                playerInput.EnableInputActions();
+                enableCount = false;
+            }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
     private void Start()
@@ -86,21 +94,6 @@ public class PlayerController : MonoBehaviour
     Vector3 destUp;
     private void Update()
     {
-        if (lastEnableCount != enableCount)
-        {
-            //Debug.Log(enableCount);
-            if (enableCount > 0)
-            {
-                mrigidbody.simulated = false;
-                playerInput.DisableInputActions();
-            }
-            else
-            {
-                mrigidbody.simulated = true;
-                playerInput.EnableInputActions();
-            }
-        }
-        lastEnableCount = enableCount;
         ActivateObject();
         while (flag && !groundDetector.isGrounded && EnableGroundCheck)
         {
@@ -169,4 +162,8 @@ public class PlayerController : MonoBehaviour
     public void PlaySpinFall2(){
         AudioKit.PlaySound("Spinfall2");
     }
+
+    private bool CanDeactive => PuzzleManager.StateMachine.CurrentStateId == PuzzleManager.States.None
+        && HintManager.StateMachine.CurrentStateId == HintManager.States.None
+        && TranslatorSM.StateMachine.CurrentStateId == Translator.States.Off;
 }

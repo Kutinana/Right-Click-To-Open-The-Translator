@@ -45,8 +45,6 @@ namespace UI
             mPersonImage.transform.localPosition = targetPosition;
             mCatImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
 
-            yield return CanvasGroupHelper.FadeCanvasGroup(canvasGroup, 0f);
-
             Application.Quit();
         }
     }

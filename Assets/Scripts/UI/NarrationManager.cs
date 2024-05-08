@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace UI
 {
+    public struct OnInitialNarrationStartEvent {}
     public class NarrationManager : MonoSingleton<NarrationManager>
     {
         private CanvasGroup mCanvasGroup;
@@ -27,6 +28,13 @@ namespace UI
         {
             mCanvasGroup = GetComponent<CanvasGroup>();
             mText = transform.Find("Text").GetComponent<TMP_Text>();
+
+            TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e => {
+                if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
+                {
+                    ShowInitialNarration();
+                }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         public static void ShowNarration(string text)

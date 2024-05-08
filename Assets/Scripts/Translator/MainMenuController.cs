@@ -21,7 +21,6 @@ namespace Translator
 
         private CanvasGroup mCreditPanel;
         private Button mCreditPanelBtn;
-        private CanvasGroup mQuitPanel;
         private CanvasGroup mBlank;
 
         private void Awake()
@@ -36,8 +35,6 @@ namespace Translator
             mCreditPanel = transform.Find("Credit").GetComponent<CanvasGroup>();
             mCreditPanel.alpha = 0;
             mCreditPanelBtn = mCreditPanel.GetComponent<Button>();
-            mQuitPanel = transform.Find("QuitPanel").GetComponent<CanvasGroup>();
-            mQuitPanel.alpha = 0;
             mBlank = transform.Find("Blank").GetComponent<CanvasGroup>();
             mBlank.alpha = 0;
 
@@ -48,13 +45,7 @@ namespace Translator
                 switch (GameProgressData.GetLastScene())
                 {
                     case "Zero":
-                        SceneControl.SceneControl.SwitchSceneWithEvent("Zero", delay: 1f, action: () => {
-                            SceneControl.SceneControl.CanTransition = true;
-                            if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
-                            {
-                                NarrationManager.ShowInitialNarration();
-                            }
-                        });
+                        SceneControl.SceneControl.SwitchSceneWithoutConfirm("Zero", delay: 1f);
                         break;
                     case "First":
                         SceneControl.SceneControl.SwitchSceneWithoutConfirm("First", delay: 1f);

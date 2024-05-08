@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DataSystem;
 using QFramework;
 using Translator;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -114,6 +115,6 @@ public class InteractiveDoor: InteractiveObject
     }
     public void QuitGame()
     {
-        
+        QuitPanelController.StartQuitting();
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Dictionary;
 using QFramework;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,9 +34,11 @@ namespace Translator
         [HideInInspector] public CanvasGroup dictionaryCanvasGroup;
         [HideInInspector] public CanvasGroup settingsCanvasGroup;
 
-        public Toggle translatorToggle;
-        public Toggle dictionaryToggle;
-        public Toggle settingsToggle;
+        [HideInInspector] public Toggle translatorToggle;
+        [HideInInspector] public Toggle dictionaryToggle;
+        [HideInInspector] public Toggle settingsToggle;
+
+        [HideInInspector] public TMP_Text mHintWord;
 
         private void Awake()
         {
@@ -68,6 +71,9 @@ namespace Translator
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Settings);
             });
+
+            mHintWord = transform.Find("HintWord").GetComponent<TMP_Text>();
+            mHintWord.gameObject.SetActive(false);
 
             stateMachine.AddState(States.Off, new OffState(stateMachine, this));
             stateMachine.AddState(States.Translation, new TranslationState(stateMachine, this));
@@ -126,6 +132,8 @@ namespace Translator
             mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.dictionaryCanvasGroup.blocksRaycasts = false;
             mTarget.settingsCanvasGroup.blocksRaycasts = false;
+
+            mTarget.mHintWord.gameObject.SetActive(false);
 
             mTarget.CurrentCoroutine = null;
         }

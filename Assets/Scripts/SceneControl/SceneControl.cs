@@ -7,6 +7,7 @@ using System;
 using Kuchinashi;
 using TMPro;
 using UnityEngine.Events;
+using UnityEditor;
 
 namespace SceneControl
 {
@@ -26,6 +27,8 @@ namespace SceneControl
         private static UnityAction mOnSceneLoaded;
 
         private AsyncOperation mAsyncOperation;
+
+        public string ToSwitchSceneName { get; set; }
 
         void Awake()
         {            
@@ -260,4 +263,30 @@ namespace SceneControl
             }
         }
     }
+
+    #if UNITY_EDITOR
+
+    [CustomEditor(typeof(SceneControl))]
+    [CanEditMultipleObjects]
+    public class SceneControlEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            SceneControl manager = (SceneControl)target;
+
+            EditorGUILayout.Separator();
+
+            EditorGUILayout.BeginHorizontal();
+            manager.ToSwitchSceneName = EditorGUILayout.TextField(manager.ToSwitchSceneName);
+            if (GUILayout.Button("Switch"))
+            {
+                SceneControl.SwitchSceneWithoutConfirm(manager.ToSwitchSceneName);
+            }
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+    #endif
+
 }

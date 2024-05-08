@@ -15,7 +15,7 @@ public class PlayerAnswerBubble: Bubble
     {
         Debug.Log("hello");
         this.ThoughtsList = Resources.Load<GameObject>("Prefabs/NPCBubble/ThoughtsList1");
-        this.ThoughtsList = GameObject.Instantiate(ThoughtsList, GameObject.Find("Map1").transform);
+        this.ThoughtsList = GameObject.Instantiate(ThoughtsList, GameObject.Find("Canvas").transform);
         GameObject.Find("TempPlayer").GetComponent<PlayerInput>().DisableInputActions();
         this.ThoughtsList.SetActive(true);
     }

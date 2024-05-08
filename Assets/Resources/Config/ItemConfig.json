@@ -117,5 +117,19 @@
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
 		"target_string":"hint5"
+	},
+	{
+		"ID":17,
+		"OutlinedSpritePath":"Sprites/NPCs/NPC1/RS1_6-nainiu2",
+		"UnoutlinedSpritePath":"Sprites/NPCs/NPC1/RS1_6-nainiu1",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":18,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 0,
+		"target_string":""
 	}
 ]

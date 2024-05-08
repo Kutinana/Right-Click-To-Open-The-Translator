@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
 using QFramework;
+using Translator;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -110,5 +111,9 @@ public class InteractiveDoor: InteractiveObject
     public void SwitchSound ()
     {
         AudioKit.PlaySound("Switch");
+    }
+    public void QuitGame()
+    {
+        
     }
 }

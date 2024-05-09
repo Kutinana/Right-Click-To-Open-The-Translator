@@ -1,3 +1,5 @@
+using QFramework;
+using UI;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,6 +29,7 @@ public class PlayerState_Sleeping : PlayerState
     {
         if(Input.anyKeyDown)
         {
+            TypeEventSystem.Global.Send<OnInitialNarrationStartEvent>();
             stateMachine.SwitchState(typeof(PlayerState_Middle));
         }
         base.LogicUpdate();

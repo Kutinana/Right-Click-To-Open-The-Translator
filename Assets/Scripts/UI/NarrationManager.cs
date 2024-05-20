@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Kuchinashi;
+using Localization;
 using QFramework;
 using TMPro;
 using UnityEngine;
@@ -12,15 +13,6 @@ namespace UI
     {
         private CanvasGroup mCanvasGroup;
         private TMP_Text mText;
-
-        private static List<string> InitialNarration = new() {
-            "这到底…是怎么回事……",
-            "突然出现的发光的涂鸦，刚刚好像在加载的什么程序，屏幕上的信息，奇怪的符号…",
-            "面前看起来一模一样的墙和完全不一样的地板…",
-            "还有身上这一身…不会是变成章鱼了吧",
-            "……",
-            "先四处看看吧…"
-        };
 
         private static Coroutine CurrentCoroutine;
 
@@ -60,7 +52,7 @@ namespace UI
         {
             yield return new WaitForSeconds(2f);
             
-            foreach (var text in InitialNarration)
+            foreach (var text in LocalizationManager.GetPlot().InitialNarration)
             {
                 ShowNarration(text);
                 yield return new WaitForSeconds(2f);

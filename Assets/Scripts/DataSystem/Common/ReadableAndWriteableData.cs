@@ -1,34 +1,54 @@
 using System;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace DataSystem
 {
-    public class ReadableAndWriteableData : IReadableData , IWriteableData
+    public abstract partial class ReadableAndWriteableData : IReadableData , IWriteableData
     {
-        public static void Serialization(string _path, object _object)
+        public abstract string Path { get; }
+
+        public void Serialization()
         {
-            if (File.Exists(_path)) File.Delete(_path);
-            File.Create(_path).Dispose();
+            if (File.Exists(Path)) File.Delete(Path);
+            File.Create(Path).Dispose();
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            File.WriteAllText(_path, JsonConvert.SerializeObject(_object, Formatting.Indented, settings));
+            File.WriteAllText(Path, JsonConvert.SerializeObject(this, Formatting.Indented, settings));
+        }
+        
+        public virtual ReadableData DeSerialization()
+        {
+            if (string.IsNullOrEmpty(Path) || !File.Exists(Path)) return null;
+
+            var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
+            return JsonConvert.DeserializeObject<ReadableData>(File.ReadAllText(Path), settings);
         }
 
-        public static ReadableData DeSerialization(string _path)
+        public virtual T DeSerialization<T>() where T : new()
         {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return null;
+            if (string.IsNullOrEmpty(Path) || !File.Exists(Path)) return new T();
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<ReadableData>(File.ReadAllText(_path), settings);
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path), settings);
         }
 
-        public static T DeSerialization<T>(string _path) where T : new()
+        public virtual bool Validation<T>(out T value) where T : new()
         {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return new T();
-
-            var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(_path), settings);
+            value = new T();
+            try
+            {
+                // Ability of reading
+                value = DeSerialization<T>();
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return false;
+            }
         }
     }
 }

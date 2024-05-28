@@ -1,0 +1,11 @@
+{
+    "zh_CN": {
+        "Str_FirstTimeActivateTranslator": "- 单击字符以修改其含义 -"
+    },
+    "en_US": {
+        "Str_FirstTimeActivateTranslator": "- Click on the character to modify its meaning -"
+    },
+    "ja_JP": {
+        "Str_FirstTimeActivateTranslator": "- 文字をクリックして意味を変更します -"
+    }
+}

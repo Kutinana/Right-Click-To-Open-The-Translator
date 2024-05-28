@@ -68,12 +68,19 @@
             ["“Shiro!!!!!”"]
         ],
         "InitialMiddlePlot": [
-            "Adopted for a while, seems like a piece of cake",
-            "Though shiro is a bit irregular with those normal kitties......but I don't really get annoyed by this new routine",
+            "Adopted for a while, seems like a piece of cake.",
+            "Though shiro is a bit irregular with those normal kitties......but I don't really get annoyed by this new routine.",
             "Hoping the good life goes on......",
             "Well, it would be better if shiro doesn't pop up onto the window at night...",
             "“Night night...”"
         ],
-        "InitialNarration": []
+        "InitialNarration": [
+            "What in Chirst sake is going on here......",
+            "The illuminating graffiti, the program seems to be loading some stuff, the strange characters...",
+            "This wall that looks like completely identical but a floor that's 100% different...",
+            "...and what is this suit?... Have I become an octopus?",
+            "......",
+            "Well, seems like I should try to hang around and see if there's something useful"
+        ]
     }
 }

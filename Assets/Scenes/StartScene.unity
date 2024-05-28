@@ -993,11 +993,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a6d06ccbc989e6941bbcbe079a0b053a, type: 3}
   - {fileID: 21300000, guid: 02e79869dcb5aa143a8e9c9e358a62a1, type: 3}
   - {fileID: 21300000, guid: c5bde2f38d42f6144b91a02c17dc01c2, type: 3}
-  InitialClips:
-  - {fileID: 32900000, guid: ee853343254404c438cfcf3222792057, type: 3}
-  - {fileID: 32900000, guid: 496c7bc2e8daa7e4e9479f88c1c25f6a, type: 3}
-  - {fileID: 32900000, guid: 0dac32e5806625844ba143bc9fb17a49, type: 3}
-  - {fileID: 32900000, guid: 0cb46e0ecbac2fc469447f356b5dbda6, type: 3}
 --- !u!1 &1270197518
 GameObject:
   m_ObjectHideFlags: 0

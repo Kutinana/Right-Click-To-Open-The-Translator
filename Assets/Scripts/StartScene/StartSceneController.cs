@@ -34,15 +34,19 @@ namespace StartScene
         private CanvasGroup mInitialCGTextBCG;
         private TMP_Text mInitialCGTextB;
         private CanvasGroup mInitialVideoCanvasGroup;
+
         private VideoPlayer mInitialVideoPlayer;
+        private VideoPlayer mSecondTimeVideoPlayer;
 
         private PostProcessVolume mPostProcessVolume;
 
         public List<Sprite> InitialCGs;
-        public List<VideoClip> InitialClips;
+        private List<VideoClip> InitialClips = new();
 
         private void Awake()
         {
+            ResKit.Init();
+
             mFirstSplashCanvasGroup = transform.Find("FirstSplash").GetComponent<CanvasGroup>();
             mFirstSplashCanvasGroup.alpha = 0;
             mSecondSplashCanvasGroup = transform.Find("SecondSplash").GetComponent<CanvasGroup>();
@@ -61,7 +65,9 @@ namespace StartScene
 
             mInitialVideoCanvasGroup = transform.Find("FirstTimeVideo").GetComponent<CanvasGroup>();
             mInitialVideoCanvasGroup.alpha = 0;
+
             mInitialVideoPlayer = transform.Find("FirstTimeVideo/RawImage").GetComponent<VideoPlayer>();
+            mSecondTimeVideoPlayer = transform.Find("SecondSplash/RawImage").GetComponent<VideoPlayer>();
 
             mPostProcessVolume = transform.Find("Post Processing").GetComponent<PostProcessVolume>();
 
@@ -83,6 +89,7 @@ namespace StartScene
 
         private void FirstTimeEnterGame()
         {
+            var resLoader = ResLoader.Allocate();
             switch (LocalizationManager.Instance.CurrentLanguage)
             {
                 case Localization.Language.en_US:
@@ -93,6 +100,13 @@ namespace StartScene
                     UserDictionary.WriteInAndSave("masc", "Machine");
                     UserDictionary.WriteInAndSave("ubrs", "Translation");
                     UserDictionary.WriteInAndSave("geb", "Game");
+
+                    InitialClips = new() {
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part1_en"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part2"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part3"),
+                        resLoader.LoadSync<VideoClip>("videos", "coding effect_long_en")
+                    };
                     break;
                 case Localization.Language.zh_CN:
                     UserDictionary.WriteInAndSave("la", "来");
@@ -102,6 +116,13 @@ namespace StartScene
                     UserDictionary.WriteInAndSave("masc", "机器");
                     UserDictionary.WriteInAndSave("ubrs", "翻译");
                     UserDictionary.WriteInAndSave("geb", "游戏");
+
+                    InitialClips = new() {
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part1_cn"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part2"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part3"),
+                        resLoader.LoadSync<VideoClip>("videos", "coding effect_long_cn")
+                    };
                     break;
             }
 
@@ -122,6 +143,7 @@ namespace StartScene
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
+                .Callback(() => TranslatorSM.Instance.mHintWord.SetText(LocalizationManager.GetCommonString("Str_FirstTimeActivateTranslator")))
                 .Callback(() => TranslatorSM.Instance.mHintWord.gameObject.SetActive(true))
                 .Delay(1f)
                 .Start(this);
@@ -263,6 +285,13 @@ namespace StartScene
 
         private void NormalEnterGame()
         {
+            var resLoader = ResLoader.Allocate();
+            mSecondTimeVideoPlayer.clip = LocalizationManager.Instance.CurrentLanguage switch
+            {
+                Localization.Language.zh_CN => resLoader.LoadSync<VideoClip>("videos", "coding effect_short_cn"),
+                _ => resLoader.LoadSync<VideoClip>("videos", "coding effect_short_en"),
+            };
+            
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => mSecondSplashCanvasGroup.gameObject.SetActive(true))

@@ -28,7 +28,6 @@ namespace UI
 
         private void Awake()
         {
-
             Instance = this;
 
             _image = transform.Find("Character").GetComponent<Image>();

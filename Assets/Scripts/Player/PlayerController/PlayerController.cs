@@ -4,6 +4,7 @@ using Puzzle;
 using QFramework;
 using System.Runtime.Serialization.Configuration;
 using Translator;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -77,6 +78,23 @@ public class PlayerController : MonoBehaviour
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
+        {
+            if (enableCount && CanDeactive)
+            {
+                mrigidbody.simulated = true;
+                playerInput.EnableInputActions();
+                enableCount = false;
+            }
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnNarrationStartEvent>(e =>
+        {
+            enableCount = true;
+            mrigidbody.simulated = false;
+            playerInput.DisableInputActions();
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        TypeEventSystem.Global.Register<OnNarrationEndEvent>(e =>
         {
             if (enableCount && CanDeactive)
             {
@@ -165,5 +183,6 @@ public class PlayerController : MonoBehaviour
 
     private bool CanDeactive => PuzzleManager.StateMachine.CurrentStateId == PuzzleManager.States.None
         && HintManager.StateMachine.CurrentStateId == HintManager.States.None
-        && TranslatorSM.StateMachine.CurrentStateId == Translator.States.Off;
+        && TranslatorSM.StateMachine.CurrentStateId == Translator.States.Off
+        && !NarrationManager.IsNarrating;
 }

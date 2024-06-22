@@ -9,66 +9,65 @@ namespace DataSystem
 {
     public class UserDictionary : ReadableAndWriteableData , ISingleton
     {
-        [JsonIgnore] public static string Path { get => System.IO.Path.Combine(Application.persistentDataPath, "UserDictionary.json"); }
-        public static Dictionary<string, string> Instance
+        [JsonIgnore] public override string Path { get => System.IO.Path.Combine(Application.persistentDataPath, "UserDictionary.json"); }
+        public static UserDictionary Instance
         {
-            get
-            {
-                return _instance ??= DeSerialization<Dictionary<string, string>>(Path);
-            }
-            set
-            {
-                _instance = value;
-            }
+            get => _instance ??= new UserDictionary().DeSerialization<UserDictionary>();
+            private set => _instance = value;
         }
-        private static Dictionary<string, string> _instance;
+        private static UserDictionary _instance;
         public void OnSingletonInit() {}
+
+        [JsonProperty] internal Dictionary<string, string> Dictionary { get; set; } = new Dictionary<string, string>();
+
+        public static Dictionary<string, string> GetDictionary()
+        {
+            return Instance.Dictionary;
+        }
 
         public static bool IsEmpty()
         {
-            return Instance.Count == 0;
+            return Instance.Dictionary.Count == 0;
         }
 
         public static string Read(string id)
         {
-            return Instance.ContainsKey(id) ? Instance[id] : "";
+            return Instance.Dictionary.ContainsKey(id) ? Instance.Dictionary[id] : "";
         }
 
         public static void Unlock(string id)
         {
-            if (Instance.ContainsKey(id)) return;
+            if (Instance.Dictionary.ContainsKey(id)) return;
 
-            Instance.Add(id, "");
-            Serialization(Path, Instance);
+            Instance.Dictionary.Add(id, "");
+            Instance.Serialization();
         }
 
         public static void Unlock(List<string> ids)
         {
             foreach (var id in ids)
             {
-                if (Instance.ContainsKey(id)) continue;
-                Instance.Add(id, "");
+                if (Instance.Dictionary.ContainsKey(id)) continue;
+                Instance.Dictionary.Add(id, "");
             }
-            Serialization(Path, Instance);
+            Instance.Serialization();
         }
 
         public static void WriteInAndSave(string id, string content)
         {
-            if (Instance.ContainsKey(id))
+            if (Instance.Dictionary.ContainsKey(id))
             {
-                Instance.Remove(id);
+                Instance.Dictionary.Remove(id);
             }
-            Instance.Add(id, content);
+            Instance.Dictionary.Add(id, content);
 
-            Serialization(Path, Instance);
+            Instance.Serialization();
         }
 
         public static void Clean()
         {
-            if (Directory.Exists(Path))
-            {
-                File.Delete(Path);
-            }
+            _instance = new();
+            Instance.Serialization();
         }
     }
 }

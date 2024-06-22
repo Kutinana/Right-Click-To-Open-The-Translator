@@ -6,22 +6,50 @@ using UnityEngine;
 
 namespace DataSystem
 {
-    public class ReadableData : IReadableData
+    public abstract partial class ReadableData
     {
-        public static ReadableData DeSerialization(string _path)
+        public abstract string Path { get; }
+
+        public virtual T DeSerialization<T>() where T : new()
         {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return null;
+            if (string.IsNullOrEmpty(Path) || !File.Exists(Path)) return new T();
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<ReadableData>(File.ReadAllText(_path), settings);
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path), settings);
         }
 
+        public virtual bool Validation<T>(out T value) where T : new()
+        {
+            value = new T();
+            try
+            {
+                // Ability of reading
+                value = DeSerialization<T>();
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return false;
+            }
+        }
+    }
+
+    public partial class ReadableData
+    {
         public static T DeSerialization<T>(string _path) where T : new()
         {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return new T();
+            if (string.IsNullOrEmpty(_path)) return new T();
+
+            string json = "";
+            if (!File.Exists(_path)) json = Resources.Load<TextAsset>(_path).text;
+            else json = File.ReadAllText(_path);
+
+            if (string.IsNullOrEmpty(json)) return new T();
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(_path), settings);
+            return JsonConvert.DeserializeObject<T>(json, settings);
         }
 
         public static T DeSerialization<T>(string _bundle, string _id) where T : new()
@@ -40,6 +68,23 @@ namespace DataSystem
             {
                 Debug.LogError(e);
                 return new T();
+            }
+        }
+
+        public static bool Validation<T>(string _path, out T value) where T : new()
+        {
+            value = new T();
+            try
+            {
+                // Ability of reading
+                value = DeSerialization<T>(_path);
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return false;
             }
         }
 
@@ -63,20 +108,10 @@ namespace DataSystem
 
     public interface IReadableData
     {
-        public virtual ReadableData DeSerialization(string _path)
-        {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return null;
+        public abstract ReadableData DeSerialization();
 
-            var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<ReadableData>(File.ReadAllText(_path), settings);
-        }
+        public abstract T DeSerialization<T>() where T : new();
 
-        public virtual T DeSerialization<T>(string _path) where T : new()
-        {
-            if (string.IsNullOrEmpty(_path) || !File.Exists(_path)) return new T();
-
-            var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(_path), settings);
-        }
+        public abstract bool Validation<T>(out T value) where T : new();
     }
 }

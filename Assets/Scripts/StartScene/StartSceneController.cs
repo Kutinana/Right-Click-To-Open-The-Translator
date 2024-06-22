@@ -13,12 +13,13 @@ using Settings;
 using UI;
 using TMPro;
 using System;
+using Localization;
 
 namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        public static string Version => "0.1.3";
+        public static string Version => "0.1.4";
 
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;
@@ -33,49 +34,19 @@ namespace StartScene
         private CanvasGroup mInitialCGTextBCG;
         private TMP_Text mInitialCGTextB;
         private CanvasGroup mInitialVideoCanvasGroup;
+
         private VideoPlayer mInitialVideoPlayer;
+        private VideoPlayer mSecondTimeVideoPlayer;
 
         private PostProcessVolume mPostProcessVolume;
 
         public List<Sprite> InitialCGs;
-        private static readonly List<List<string>> InitialPlot = new()
-        {
-            new() {"又是下雨天...好烦...", "湿漉漉的", "总算快到家了"},
-            new() {"？", "怎么回事"},
-            new() {"错觉吗...？", "果然是这几天太累了"},
-            new() {"…呃嗯…？"},
-            new() {"有点在意......"},
-            new() {"原来是猫啊...", "好可怜", "刚刚那个，应该是哪里的灯吧。"},
-            new() {"哎，居然还活着吗", "不过这种天气...也活不过今晚吧", "我...唉......"},
-            new() {"这个眼神...", "只是跟我来这套也没用啊......", "“很抱歉。”"},
-            new() {"（盯）", "“就算你这么看着我也——”"},
-            new() {"带回家了。", "算了，一个晚上而已。", "“只有今晚哦。”"},
-            new() {"...怎么又来"},
-            new() {"“就算你这么看着我也——”"},
-            new() {"最终还是......留下了。", "算了，多双筷子。", "甚至也不需要筷子。加个碗就好了。", "今后就多多指教了。", "“喂。你怎么又上窗台。”"},
-            new() {"黑毛，黑眼睛。", "喜欢扒着窗户看外面。也不知道有什么好看的。", "和我一点都不像。", "我养了你，你总该有哪里像我吧。"},
-            new() {"“小白。吃饭了。”"},
-            new() {"？"},
-            new() {"......错觉吗?", "“…小白？”"},
-            new() {"......"},
-            new() {"......", "又是这种眼神...", "“怎么了？”"},
-            new() {},
-            new() {},
-            new() {"“小白？！”"},
-            new() {"“小白！！！！！”"}
-        };
-        private static readonly List<string> InitialMiddlePlot = new()
-        {
-            "养了一段时间，感觉并不是一件困难的事情。",
-            "虽然小白和普通的猫有点不一样......但并不讨厌这样新的日常。",
-            "希望能一直这样继续下去吧。",
-            "如果晚上能不要突然窜到窗台上就更好了...",
-            "“晚安...”"
-        };
-        public List<VideoClip> InitialClips;
+        private List<VideoClip> InitialClips = new();
 
         private void Awake()
         {
+            ResKit.Init();
+
             mFirstSplashCanvasGroup = transform.Find("FirstSplash").GetComponent<CanvasGroup>();
             mFirstSplashCanvasGroup.alpha = 0;
             mSecondSplashCanvasGroup = transform.Find("SecondSplash").GetComponent<CanvasGroup>();
@@ -94,7 +65,9 @@ namespace StartScene
 
             mInitialVideoCanvasGroup = transform.Find("FirstTimeVideo").GetComponent<CanvasGroup>();
             mInitialVideoCanvasGroup.alpha = 0;
+
             mInitialVideoPlayer = transform.Find("FirstTimeVideo/RawImage").GetComponent<VideoPlayer>();
+            mSecondTimeVideoPlayer = transform.Find("SecondSplash/RawImage").GetComponent<VideoPlayer>();
 
             mPostProcessVolume = transform.Find("Post Processing").GetComponent<PostProcessVolume>();
 
@@ -116,13 +89,42 @@ namespace StartScene
 
         private void FirstTimeEnterGame()
         {
-            UserDictionary.WriteInAndSave("la", "来");
-            UserDictionary.WriteInAndSave("schl", "按键");
-            UserDictionary.WriteInAndSave("rec", "右");
-            UserDictionary.WriteInAndSave("offen", "启动");
-            UserDictionary.WriteInAndSave("masc", "机器");
-            UserDictionary.WriteInAndSave("ubrs", "翻译");
-            UserDictionary.WriteInAndSave("geb", "游戏");
+            var resLoader = ResLoader.Allocate();
+            switch (LocalizationManager.Instance.CurrentLanguage)
+            {
+                case Localization.Language.en_US:
+                    UserDictionary.WriteInAndSave("la", "To");
+                    UserDictionary.WriteInAndSave("schl", "Click");
+                    UserDictionary.WriteInAndSave("rec", "Right");
+                    UserDictionary.WriteInAndSave("offen", "Start");
+                    UserDictionary.WriteInAndSave("masc", "Machine");
+                    UserDictionary.WriteInAndSave("ubrs", "Translation");
+                    UserDictionary.WriteInAndSave("geb", "Game");
+
+                    InitialClips = new() {
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part1_en"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part2"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part3"),
+                        resLoader.LoadSync<VideoClip>("videos", "coding effect_long_en")
+                    };
+                    break;
+                case Localization.Language.zh_CN:
+                    UserDictionary.WriteInAndSave("la", "来");
+                    UserDictionary.WriteInAndSave("schl", "按键");
+                    UserDictionary.WriteInAndSave("rec", "右");
+                    UserDictionary.WriteInAndSave("offen", "启动");
+                    UserDictionary.WriteInAndSave("masc", "机器");
+                    UserDictionary.WriteInAndSave("ubrs", "翻译");
+                    UserDictionary.WriteInAndSave("geb", "游戏");
+
+                    InitialClips = new() {
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part1_cn"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part2"),
+                        resLoader.LoadSync<VideoClip>("videos", "opening_part3"),
+                        resLoader.LoadSync<VideoClip>("videos", "coding effect_long_cn")
+                    };
+                    break;
+            }
 
             TypeEventSystem.Global.Send<OnCharacterRefreshEvent>();
 
@@ -141,6 +143,7 @@ namespace StartScene
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
+                .Callback(() => TranslatorSM.Instance.mHintWord.SetText(LocalizationManager.GetCommonString("Str_FirstTimeActivateTranslator")))
                 .Callback(() => TranslatorSM.Instance.mHintWord.gameObject.SetActive(true))
                 .Delay(1f)
                 .Start(this);
@@ -150,11 +153,17 @@ namespace StartScene
 
         private IEnumerator InitialCG()
         {
+
+# if UNITY_EDITOR
             if (Input.GetKey(KeyCode.Escape)) yield break;
+#endif
 
             yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
             AudioMng.Instance.PlayAmbient();
             AudioMng.Instance.D_PlayBGM("BGM0");
+
+            var plot = LocalizationManager.GetPlot();
+
             var index = 0;
             foreach (var cg in InitialCGs)
             {
@@ -164,7 +173,7 @@ namespace StartScene
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
                     yield return new WaitForSeconds(0.5f);
 
-                    foreach (var str in InitialPlot[index])
+                    foreach (var str in plot.InitialCGPlot[index])
                     {
                         mInitialCGTextA.text = str;
                         yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGTextACG, 1f);
@@ -175,7 +184,7 @@ namespace StartScene
 
                     yield return new WaitForSeconds(0.5f);
                 }
-                else if (index < InitialPlot.Count)
+                else if (index < plot.InitialCGPlot.Count)
                 {
                     if (index == 9)
                     {
@@ -190,7 +199,7 @@ namespace StartScene
                         yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 0f);
                         yield return new WaitForSeconds(1f);
 
-                        foreach (var str in InitialMiddlePlot)
+                        foreach (var str in plot.InitialMiddlePlot)
                         {
                             mInitialCGTextA.text = str;
                             yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGTextACG, 1f);
@@ -205,7 +214,7 @@ namespace StartScene
                     yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGCanvasGroup, 1f);
                     yield return new WaitForSeconds(0.5f);
 
-                    foreach (var str in InitialPlot[index])
+                    foreach (var str in plot.InitialCGPlot[index])
                     {
                         mInitialCGTextB.text = str;
                         yield return CanvasGroupHelper.FadeCanvasGroup(mInitialCGTextBCG, 1f);
@@ -229,7 +238,12 @@ namespace StartScene
             mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();
 
+# if UNITY_EDITOR
             yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
+# else
+            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false);
+# endif
+
             mInitialVideoPlayer.clip = InitialClips[1];
             mInitialVideoPlayer.isLooping = true;
 
@@ -249,18 +263,35 @@ namespace StartScene
             }
             mPostProcessVolume.weight = 1f;
 
+# if UNITY_EDITOR
             yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
+# else
+            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false);
+# endif
+
             mInitialVideoPlayer.clip = InitialClips[3];
             mInitialVideoPlayer.isLooping = false;
             mPostProcessVolume.weight = 0;
 
             mInitialVideoPlayer.Play();
 
+# if UNITY_EDITOR
             yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
+# else
+            yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false);
+# endif
+
         }
 
         private void NormalEnterGame()
         {
+            var resLoader = ResLoader.Allocate();
+            mSecondTimeVideoPlayer.clip = LocalizationManager.Instance.CurrentLanguage switch
+            {
+                Localization.Language.zh_CN => resLoader.LoadSync<VideoClip>("videos", "coding effect_short_cn"),
+                _ => resLoader.LoadSync<VideoClip>("videos", "coding effect_short_en"),
+            };
+            
             ActionKit.Sequence()
                 .Delay(1f)
                 .Callback(() => mSecondSplashCanvasGroup.gameObject.SetActive(true))

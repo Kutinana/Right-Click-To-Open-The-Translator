@@ -1,0 +1,70 @@
+{
+    "zh_CN": {
+        "InitialCGPlot": [
+            ["又是下雨天...好烦...", "湿漉漉的", "总算快到家了"],
+            ["？", "怎么回事"],
+            ["错觉吗...？", "果然是这几天太累了"],
+            ["…呃嗯…？"],
+            ["有点在意......"],
+            ["原来是猫啊...", "好可怜", "刚刚那个，应该是哪里的灯吧。"],
+            ["哎，居然还活着吗", "不过这种天气...也活不过今晚吧", "我...唉......"],
+            ["这个眼神...", "只是跟我来这套也没用啊......", "“很抱歉。”"],
+            ["（盯）", "“就算你这么看着我也——”"],
+            ["带回家了。", "算了，一个晚上而已。", "“只有今晚哦。”"],
+            ["...怎么又来"],
+            ["“就算你这么看着我也——”"],
+            ["最终还是......留下了。", "算了，多双筷子。", "甚至也不需要筷子。加个碗就好了。", "今后就多多指教了。", "“喂。你怎么又上窗台。”"],
+            ["黑毛，黑眼睛。", "喜欢扒着窗户看外面。也不知道有什么好看的。", "和我一点都不像。", "我养了你，你总该有哪里像我吧。"],
+            ["“小白。吃饭了。”"],
+            ["？"],
+            ["......错觉吗?", "“…小白？”"],
+            ["......"],
+            ["......", "又是这种眼神...", "“怎么了？”"],
+            [],
+            [],
+            ["“小白？！”"],
+            ["“小白！！！！！”"]
+        ],
+        "InitialMiddlePlot": [
+            "养了一段时间，感觉并不是一件困难的事情。",
+            "虽然小白和普通的猫有点不一样......但并不讨厌这样新的日常。",
+            "希望能一直这样继续下去吧。",
+            "如果晚上能不要突然窜到窗台上就更好了...",
+            "“晚安...”"
+        ]
+    },
+    "en_US": {
+        "InitialCGPlot": [
+            ["Rainy days...Doggy days...", "So damp......", "Thankfully, home's not far away."],
+            ["?", "What's wrong."],
+            ["Illusion, perhaps......", "Seems like the demanding work these days is driving me mad."],
+            ["...uhh...?"],
+            ["What's that......"],
+            ["A kitty", "So pity", "That should be from a lamp somewhere..."],
+            ["...Still alive?", "The weather...guess it can't even survive the night", "Well... Should I..."],
+            ["The face expression...", "It won't work on me......", "“So sorry.”"],
+            ["* Gazing *", "“Well, even if you stare at me like that...”"],
+            ["Brought it home", "Anyway, just a one-night-stay won't hurt", "“Only tonight, kid...”"],
+            ["...ahh, here we go again"],
+            ["“Well, even if you stare at me like that...”"],
+            ["Eventually, it...stayed.", "Bruh, just adding some forks and knifes...", "Forget about the forks and knifes, a bowl will be fine", "Let's call it a home, cutie", "“Hush, don't climb onto the window!”"],
+            ["Black fur, black eyes...", "Sometimes I really wonder what's it gazing outside the window", "...can't find any similarity with me", "I adopted you, you should have something like me..."],
+            ["“Shiro, time for treats.”"],
+            ["?"],
+            ["......Illusion again?", "“...Shiro?”"],
+            ["......"],
+            ["......", "That expression again...", "“What's wrong?”"],
+            [],
+            [],
+            ["“Shiro?!”"],
+            ["“Shiro!!!!!”"]
+        ],
+        "InitialMiddlePlot": [
+            "Adopted for a while, seems like a piece of cake.",
+            "Though shiro is a bit irregular with those normal kitties......but I don't really get annoyed by this new routine.",
+            "Hoping the good life goes on......",
+            "Well, it would be better if shiro doesn't pop up onto the window at night...",
+            "“Night night...”"
+        ]
+    }
+}

@@ -65,7 +65,7 @@ namespace Dictionary
             }
 
             if (UserDictionary.IsEmpty()) return;
-            foreach (var c in UserDictionary.Instance)
+            foreach (var c in UserDictionary.GetDictionary())
             {
                 var go = Instantiate(CharacterPrefab, parent);
                 go.GetComponent<Character>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);

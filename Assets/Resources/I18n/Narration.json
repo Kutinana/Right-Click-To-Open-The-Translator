@@ -1,0 +1,22 @@
+{
+    "zh_CN": {
+        "InitialNarration": [
+            "这到底…是怎么回事……",
+            "突然出现的发光的涂鸦，刚刚好像在加载的什么程序，屏幕上的信息，奇怪的符号…",
+            "面前看起来一模一样的墙和完全不一样的地板…",
+            "还有身上这一身…不会是变成章鱼了吧",
+            "……",
+            "先四处看看吧…"
+        ]
+    },
+    "en_US": {
+        "InitialNarration": [
+            "What in Chirst sake is going on here......",
+            "The illuminating graffiti, the program seems to be loading some stuff, the strange characters...",
+            "This wall that looks like completely identical but a floor that's 100% different...",
+            "...and what is this suit?... Have I become an octopus?",
+            "......",
+            "Well, seems like I should try to hang around and see if there's something useful"
+        ]
+    }
+}

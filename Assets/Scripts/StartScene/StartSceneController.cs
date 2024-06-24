@@ -6,7 +6,6 @@ using QFramework;
 using Translator;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Video;
 using DataSystem;
 using Settings;
@@ -38,8 +37,6 @@ namespace StartScene
         private VideoPlayer mInitialVideoPlayer;
         private VideoPlayer mSecondTimeVideoPlayer;
 
-        private PostProcessVolume mPostProcessVolume;
-
         public List<Sprite> InitialCGs;
         private List<VideoClip> InitialClips = new();
 
@@ -68,8 +65,6 @@ namespace StartScene
 
             mInitialVideoPlayer = transform.Find("FirstTimeVideo/RawImage").GetComponent<VideoPlayer>();
             mSecondTimeVideoPlayer = transform.Find("SecondSplash/RawImage").GetComponent<VideoPlayer>();
-
-            mPostProcessVolume = transform.Find("Post Processing").GetComponent<PostProcessVolume>();
 
             InitialSettings();
 
@@ -256,13 +251,6 @@ namespace StartScene
             mInitialVideoPlayer.isLooping = false;
             mInitialVideoPlayer.Play();
 
-            while (!Mathf.Approximately(mPostProcessVolume.weight, 1f))
-            {
-                mPostProcessVolume.weight = Mathf.MoveTowards(mPostProcessVolume.weight, 1f, Time.deltaTime);
-                yield return new WaitForFixedUpdate();
-            }
-            mPostProcessVolume.weight = 1f;
-
 # if UNITY_EDITOR
             yield return new WaitUntil(() => mInitialVideoPlayer.isPlaying == false || Input.GetKeyUp(KeyCode.Escape));
 # else
@@ -271,7 +259,6 @@ namespace StartScene
 
             mInitialVideoPlayer.clip = InitialClips[3];
             mInitialVideoPlayer.isLooping = false;
-            mPostProcessVolume.weight = 0;
 
             mInitialVideoPlayer.Play();
 

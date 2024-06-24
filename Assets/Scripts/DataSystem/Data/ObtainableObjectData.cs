@@ -9,8 +9,8 @@ namespace DataSystem
     {
         public string Id;
         public Sprite Sprite;
-        public string Description;
-        public string SubDescription;
+        [Multiline] public string Description;
+        [Multiline] public string SubDescription;
 
         public int MaxAmount = 0;
     }

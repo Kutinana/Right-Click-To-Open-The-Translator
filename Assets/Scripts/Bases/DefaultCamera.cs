@@ -15,7 +15,10 @@ namespace Cameras
 
         private void OnDestroy()
         {
-            BaseCameraManager.RemoveFromCameraStack(GetComponent<Camera>());
+            if (TryGetComponent<Camera>(out var camera))
+            {
+                BaseCameraManager.RemoveFromCameraStack(camera);
+            }
         }
     }
 }

@@ -308,7 +308,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.3
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.4
   m_LightVolumeIntensity: 0.007
   m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 00000000
@@ -363,21 +363,19 @@ MonoBehaviour:
   m_ShapePath:
   - {x: -0.6654072, y: -0.45913923, z: 0}
   - {x: -0.62368774, y: -0.007442713, z: 0}
-  - {x: -0.7873049, y: 0.37244904, z: 0}
-  - {x: -0.5167122, y: 1.100353, z: 0}
-  - {x: -0.38774925, y: 1.5367243, z: 0}
+  - {x: -0.7712095, y: 0.3563527, z: 0}
+  - {x: -0.40403795, y: 0.8910992, z: 0}
   - {x: -0.07747531, y: 1.1346685, z: 0}
   - {x: 0.34803534, y: 1.120942, z: 0}
-  - {x: 0.53595257, y: 1.4515287, z: 0}
   - {x: 0.69998455, y: 0.9078907, z: 0}
   - {x: 0.78426933, y: 0.4171363, z: 0}
   - {x: 0.5957098, y: -0.05544913, z: 0}
   - {x: 0.7707348, y: -0.7972034, z: 0}
   - {x: 0.37901878, y: -1.5410031, z: 0}
   - {x: -0.18715763, y: -1.5757898, z: 0}
-  m_ShapePathHash: -1875290197
+  m_ShapePathHash: -1372844759
   m_Mesh: {fileID: 0}
-  m_InstanceId: -31362
+  m_InstanceId: -27004
   m_LocalBounds:
-    m_Center: {x: -0.0015177727, y: -0.0195328, z: 0}
-    m_Extent: {x: 0.7857871, y: 1.556257, z: 0}
+    m_Center: {x: 0.0065299273, y: -0.22056067, z: 0}
+    m_Extent: {x: 0.7777394, y: 1.3552291, z: 0}

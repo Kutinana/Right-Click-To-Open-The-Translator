@@ -18,7 +18,7 @@ namespace DataSystem
         public GameObject Prefab;
         public Sprite Thumbnail;
         public string Name;
-        public string Description;
+        [Multiline] public string Description;
     }
 
     [CreateAssetMenu(fileName = "PuzzleData", menuName = "Scriptable Objects/Puzzle Data", order = 0)]

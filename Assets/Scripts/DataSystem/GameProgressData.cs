@@ -24,7 +24,7 @@ namespace DataSystem
 
         public static string GetLastScene()
         {
-            return Instance.Save.LastScene ??= "Zero";
+            return Instance.Save.LastScene ?? "Zero";
         }
 
         public static void SaveLastScene(string name)

@@ -200,8 +200,10 @@ Shader "Universal Render Pipeline/2D/Sprite-Lit-Default"
                 #else
                     half4 finalModulate = shapeLight0Modulate + shapeLight1Modulate + shapeLight2Modulate + shapeLight3Modulate;
                     half4 finalAdditve = shapeLight0Additive + shapeLight1Additive + shapeLight2Additive + shapeLight3Additive;
-                    half minTS = 1;                    
-                    finalOutput = _HDREmulationScale * (m_color * finalModulate * 0.5 + finalAdditve);
+                    
+                    //half _ExposureLimit = 1;                    
+                    finalOutput = tanh(_HDREmulationScale * (m_color * finalModulate + finalAdditve));
+                    finalOutput = pow(finalOutput, 1.4);
                 #endif
                 finalOutput.a = m_alpha;
                 finalOutput = lerp(m_color, finalOutput, _UseSceneLighting);

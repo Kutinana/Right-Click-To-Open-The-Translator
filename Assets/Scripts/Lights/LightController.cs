@@ -44,7 +44,6 @@ namespace LightController
 
         public void UpdateLights()
         {
-            Debug.Log("into updatelights");
             GameObject activeOne = null;
             for (int i = 0; i < 5; i++)
             {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Hint;
 using Puzzle;
 using QFramework;
+using SceneControl;
 using Settings;
 using UnityEngine;
 
@@ -37,8 +38,9 @@ public class AudioMng : MonoSingleton<AudioMng>
         UpdateVolume();
 
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow",volumeScale:effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnSceneLoadedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
         {
@@ -59,16 +61,33 @@ public class AudioMng : MonoSingleton<AudioMng>
         effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
         ambientVolume = PlayerPrefs.HasKey("Ambient Volume") ? PlayerPrefs.GetFloat("Ambient Volume") : 1.0f;
     }
+    private void LoadSceneAudioAssets()
+    {
+        StopAll();
+        try
+        {
+            GameObject audioAssets = GameObject.Find("AudioContainer");
+            AudioContainer audioContainer = audioAssets.GetComponent<AudioContainer>();
+            Instance.ambientChannel.clip = audioContainer.ambient;
+            Instance.backGroundMusics = audioContainer.keyValuePairs;
+            PlayAmbient();
+        }
+        catch (Exception e)
+        {
+            throw new Exception("AudioContaoner noy found.", e);
+        }
 
+    }
     public void PlayAmbient()
     {
+        if (ambientChannel.clip.IsNull()) PlayAmbient("AmbientResearcher");
         ambientChannel.loop = true;
         ambientChannel.volume = ambientVolume;
         ambientChannel.Play();
     }
     public void PlayAmbient(string name)
     {
-        if (name != ambientChannel.clip.name)
+        if (ambientChannel.clip.name.IsNull() || name != ambientChannel.clip.name)
         {
             AudioClip audioClip = res.LoadSync<AudioClip>(name);
             ambientChannel.clip = audioClip;
@@ -76,6 +95,17 @@ public class AudioMng : MonoSingleton<AudioMng>
         PlayAmbient();
     }
 
+    public void PlayBGM(string name)
+    {
+        if (current.isPlaying && current.volume > 0)
+        {
+            ChangeBGM(name);
+        }
+        else
+        {
+            D_PlayBGM(name);
+        }
+    }
     public void PlayFootsteps()
     {
         AudioKit.PlaySound("ftstp-1-" + randTab[pRandTab++], volumeScale: 0.6f);
@@ -123,6 +153,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     public static void StopAmbient()
     {
         Instance.FadeMusic(Instance.ambientChannel, 0f);
+        Instance.ambientChannel.Stop();
     }
 
     public static void StopAll()
@@ -147,7 +178,7 @@ public class AudioMng : MonoSingleton<AudioMng>
             yield return new WaitForFixedUpdate();
         }
         audioSource.volume = target;
-        if(target==0f) audioSource.Stop();
+        if (target == 0f) audioSource.Stop();
     }
 
     public void LoadBGM(string name)
@@ -164,9 +195,21 @@ public class AudioMng : MonoSingleton<AudioMng>
             backGroundMusics.Add(name, audioClip);
         }
     }
+    public void RemoveBGM(string name)
+    {
+        try
+        {
+            backGroundMusics.Remove(name);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("BGM key error", e);
+        }
+    }
+
     public void ChangeAmbient(string name)
     {
-        StartCoroutine(IEChangeAmbient(name));
+        StartCoroutine(IEChangeAudio(name, ambientChannel));
     }
     public void ChangeBGM(string name)
     {
@@ -178,23 +221,25 @@ public class AudioMng : MonoSingleton<AudioMng>
         FadeMusic(GetAuxChannel(), 0);
     }
 
-    IEnumerator IEChangeAmbient(string name)
+
+    IEnumerator IEChangeAudio(string name, AudioSource changeAS)
     {
         AudioSource temp = GetAuxChannel();
+        yield return new WaitUntil(() => temp.volume == 0);
         temp.volume = 0;
-        temp.clip = ambientChannel.clip;
+        temp.clip = changeAS.clip;
         temp.Play();
-        FadeMusic(temp, ambientVolume);
-        FadeMusic(ambientChannel, 0);
+        FadeMusic(temp, changeAS == this.ambientChannel ? ambientVolume : backgroundVolume);
+        FadeMusic(changeAS, 0);
 
-        AudioClip newAmbient = res.LoadSync<AudioClip>(name);
+        AudioClip newAudio = res.LoadSync<AudioClip>(name);
 
-        yield return new WaitUntil(() => ambientChannel.volume == 0);
+        yield return new WaitUntil(() => changeAS.volume == 0);
 
-        ambientChannel.clip = newAmbient;
-        ambientChannel.Play();
+        changeAS.clip = newAudio;
+        changeAS.Play();
         FadeMusic(temp, 0);
-        FadeMusic(ambientChannel, ambientVolume);
+        FadeMusic(changeAS, changeAS == this.ambientChannel ? ambientVolume : backgroundVolume);
     }
 
     private AudioSource GetAuxChannel()

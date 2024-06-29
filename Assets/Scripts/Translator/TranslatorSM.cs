@@ -87,6 +87,7 @@ namespace Translator
 
             tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
             tutorialCanvasGroup.alpha = 0;
+            tutorialCanvasGroup.blocksRaycasts = false;
 
             stateMachine.AddState(States.Off, new OffState(stateMachine, this));
             stateMachine.AddState(States.Translation, new TranslationState(stateMachine, this));

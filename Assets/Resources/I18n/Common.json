@@ -1,9 +1,9 @@
 {
     "zh_CN": {
-        "Str_FirstTimeActivateTranslator": "- 单击字符以修改其含义 -"
+        "Str_FirstTimeActivateTranslator": "- 单击字符以记录你对其词义的猜测 -"
     },
     "en_US": {
-        "Str_FirstTimeActivateTranslator": "- Click on the character to modify its meaning -"
+        "Str_FirstTimeActivateTranslator": "- Click on the character to record your guess on its meaning -"
     },
     "ja_JP": {
         "Str_FirstTimeActivateTranslator": "- 文字をクリックして意味を変更します -"

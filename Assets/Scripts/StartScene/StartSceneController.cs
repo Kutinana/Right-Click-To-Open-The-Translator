@@ -138,8 +138,7 @@ namespace StartScene
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
-                .Callback(() => TranslatorSM.Instance.mHintWord.SetText(LocalizationManager.GetCommonString("Str_FirstTimeActivateTranslator")))
-                .Callback(() => TranslatorSM.Instance.mHintWord.gameObject.SetActive(true))
+                .Callback(() => TranslatorSM.Instance.StartTutorial())
                 .Delay(1f)
                 .Start(this);
 

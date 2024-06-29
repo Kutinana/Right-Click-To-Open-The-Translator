@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dictionary;
+using Kuchinashi;
+using Localization;
 using QFramework;
 using TMPro;
 using UI;
@@ -41,7 +43,7 @@ namespace Translator
         [HideInInspector] public Toggle settingsToggle;
         [HideInInspector] public Toggle memoToggle;
 
-        [HideInInspector] public TMP_Text mHintWord;
+        private CanvasGroup tutorialCanvasGroup;
 
         private void Awake()
         {
@@ -83,8 +85,8 @@ namespace Translator
                 if (value) stateMachine.ChangeState(States.Memo);
             });
 
-            mHintWord = transform.Find("HintWord").GetComponent<TMP_Text>();
-            mHintWord.gameObject.SetActive(false);
+            tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
+            tutorialCanvasGroup.alpha = 0;
 
             stateMachine.AddState(States.Off, new OffState(stateMachine, this));
             stateMachine.AddState(States.Translation, new TranslationState(stateMachine, this));
@@ -104,6 +106,16 @@ namespace Translator
         public static void ReturnToPreviousState()
         {
             StateMachine.ChangeState(StateMachine.PreviousStateId);
+        }
+
+        public void StartTutorial()
+        {
+            tutorialCanvasGroup.transform.Find("Hint Word").GetComponent<TMP_Text>().SetText(LocalizationManager.GetCommonString("Str_FirstTimeActivateTranslator"));
+            StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
+            tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
+            });
         }
     }
 
@@ -144,8 +156,6 @@ namespace Translator
             mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.dictionaryCanvasGroup.blocksRaycasts = false;
             mTarget.settingsCanvasGroup.blocksRaycasts = false;
-
-            mTarget.mHintWord.gameObject.SetActive(false);
 
             mTarget.CurrentCoroutine = null;
         }

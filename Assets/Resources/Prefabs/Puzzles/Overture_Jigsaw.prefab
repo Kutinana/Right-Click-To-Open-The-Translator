@@ -6084,7 +6084,7 @@ GameObject:
   - component: {fileID: 7459297030115459711}
   - component: {fileID: 4606064167666606918}
   m_Layer: 9
-  m_Name: puzzle2
+  m_Name: Overture_Jigsaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

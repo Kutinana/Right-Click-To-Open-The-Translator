@@ -46,6 +46,9 @@ namespace LightController
                     activeOne = mlights[i];
                 }
             }
+
+            if (activeOne == null) return;
+
             try
             {
                 activeOne.transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Global;

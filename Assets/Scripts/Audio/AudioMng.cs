@@ -68,6 +68,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         try
         {
             GameObject audioAssets = GameObject.Find("AudioContainer");
+            if (audioAssets == null) return;
+            
             AudioContainer audioContainer = audioAssets.GetComponent<AudioContainer>();
             Instance.ambientChannel.clip = audioContainer.ambient;
             Instance.backGroundMusics = audioContainer.keyValuePairs;

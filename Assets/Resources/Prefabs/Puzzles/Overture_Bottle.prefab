@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 5020092385985152133}
   - component: {fileID: 7909385954753619978}
   m_Layer: 9
-  m_Name: puzzle1
+  m_Name: Overture_Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

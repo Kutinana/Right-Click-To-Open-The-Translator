@@ -2834,7 +2834,7 @@ GameObject:
   - component: {fileID: 7459297030115459711}
   - component: {fileID: 8879318884128347304}
   m_Layer: 9
-  m_Name: puzzle3
+  m_Name: Overture_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

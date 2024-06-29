@@ -96,12 +96,12 @@ namespace Hint
 
             protected override void OnEnter()
             {
-                mTarget.StartCoroutine(OnEnterCoroutine());
+                mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnEnterCoroutine());
             }
 
             IEnumerator OnEnterCoroutine()
             {
-                yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
+                yield return mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
                 if (CurrentHint != null)
                 {
                     Destroy(CurrentHint.gameObject);
@@ -120,7 +120,7 @@ namespace Hint
 
             protected override void OnEnter()
             {
-                mTarget.StartCoroutine(OnEnterCoroutine());
+                mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnEnterCoroutine());
 
                 mTarget.canvasGroup.interactable = true;
                 foreach (var col in mTarget.GetComponentsInChildren<Collider2D>())
@@ -131,7 +131,7 @@ namespace Hint
 
             protected override void OnUpdate()
             {
-                if (Input.GetKeyUp(KeyCode.Escape))
+                if ((Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.E)) && mTarget.CurrentCoroutine == null)
                 {
                     HintManager.Exit();
                 }
@@ -139,7 +139,7 @@ namespace Hint
 
             IEnumerator OnEnterCoroutine()
             {
-                yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
+                yield return mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
                 mTarget.CurrentCoroutine = null;
             }

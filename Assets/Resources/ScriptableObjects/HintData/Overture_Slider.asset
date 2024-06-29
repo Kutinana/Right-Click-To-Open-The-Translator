@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8d689603df23ad4093871f17507dd82, type: 3}
-  m_Name: hint2
+  m_Name: Overture_Slider
   m_EditorClassIdentifier: 
-  Id: hint2
-  Prefab: {fileID: 5775849724857332843, guid: 7308a9633a630d943a6a8ab4e2a62e99, type: 3}
-  Thumbnail: {fileID: 21300000, guid: a1b1500493dc0b94db7ef83b14d841c7, type: 3}
-  Name: 
-  Description: 
+  Id: Overture_Slider
+  Prefab: {fileID: 5775849724857332843, guid: a937b19cbd57f6f4f96826ffed6d4b56, type: 3}
+  Thumbnail: {fileID: 21300000, guid: 5595f37253e77b044a7c14458a425f49, type: 3}
+  Name: "\u6ED1\u68AF"
+  Description: "Overture_Bottle\u7684\u5956\u52B1\u4FE1\u606F\u7EB8\u6761"

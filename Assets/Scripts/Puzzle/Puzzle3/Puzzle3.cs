@@ -62,6 +62,8 @@ namespace Puzzle.Puzzle3
                 ids.Add(c.data.Id);
             }
             UserDictionary.Unlock(ids);
+
+            GameProgressData.Unlock(this);
         }
 
         public override void OnExit()

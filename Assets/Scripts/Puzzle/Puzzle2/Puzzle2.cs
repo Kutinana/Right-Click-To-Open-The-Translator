@@ -58,6 +58,7 @@ namespace Puzzle.Puzzle2
             });
 
             UserDictionary.Unlock("feu");
+            GameProgressData.Unlock(this);
         }
 
         public override void OnExit()

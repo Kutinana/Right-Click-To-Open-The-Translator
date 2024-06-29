@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataSystem;
+using Kuchinashi;
 using QFramework;
 using UI;
 using UnityEngine;
@@ -37,12 +38,16 @@ namespace Puzzle.Puzzle1
 
         public static Bottle HoldingBottle = null;
 
+        private CanvasGroup tutorialCanvasGroup;
+
         private Button backButton;
         private Coroutine CurrentCoroutine = null;
 
         private void Awake()
         {
             Instance = this;
+
+            tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
         }
 
         public static void Swap(Bottle bottleA, Bottle bottleB)
@@ -121,6 +126,16 @@ namespace Puzzle.Puzzle1
             }
             else
             {
+                if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
+                {
+                    StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
+                    GameProgressData.Unlock(this);
+
+                    tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
+                    });
+                }
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }
 

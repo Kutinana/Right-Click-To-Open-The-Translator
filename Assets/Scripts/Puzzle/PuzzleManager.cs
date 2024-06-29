@@ -61,10 +61,6 @@ namespace Puzzle
             CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>();
             CurrentPuzzle.Id = _id;
 
-            // LoadedPuzzles.Add(CurrentPuzzle);
-
-            GameProgressData.Unlock(CurrentPuzzle);
-
             CurrentPuzzle.OnEnter();
             StateMachine.ChangeState(States.Active);
         }

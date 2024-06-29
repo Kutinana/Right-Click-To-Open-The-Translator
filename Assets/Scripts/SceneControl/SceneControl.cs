@@ -159,8 +159,6 @@ namespace SceneControl
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
-            TypeEventSystem.Global.Send<OnSceneLoadedEvent>();
-
             yield return new WaitUntil(() => {return CanTransition;});
             yield return Fade(0);
             
@@ -189,8 +187,6 @@ namespace SceneControl
 
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-            TypeEventSystem.Global.Send<OnSceneLoadedEvent>();
 
             action();
             yield return new WaitForSeconds(0.5f);
@@ -232,8 +228,6 @@ namespace SceneControl
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
-            TypeEventSystem.Global.Send<OnSceneLoadedEvent>();
-
             yield return Fade(0);
             mCurrentCoroutine = null;
             mAsyncOperation = null;
@@ -248,15 +242,18 @@ namespace SceneControl
                 mBlackLayerCG.alpha = 1;
                 mLoadingPanelCG.alpha = 0;
 
+                TypeEventSystem.Global.Send<OnSceneControlActivatedEvent>();
+
                 yield return CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 1, 0.02f);
                 mLoadingPanelCG.alpha = 1;
                 yield return CanvasGroupHelper.FadeCanvasGroup(mBlackLayerCG, 0);
-
 
                 yield return new WaitForSeconds(0.5f);
             }
             else if (targetAlpha == 0)
             {
+                TypeEventSystem.Global.Send<OnSceneControlDeactivatedEvent>();
+
                 yield return CanvasGroupHelper.FadeCanvasGroup(mBlackLayerCG, 1);
                 mLoadingPanelCG.alpha = 0;
                 yield return CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0);

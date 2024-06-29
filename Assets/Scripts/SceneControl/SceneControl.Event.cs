@@ -1,5 +1,5 @@
 namespace SceneControl
 {
-    public struct OnSceneUnloadedEvent {}
-    public struct OnSceneLoadedEvent {}
+    public struct OnSceneControlActivatedEvent {}
+    public struct OnSceneControlDeactivatedEvent {}
 }

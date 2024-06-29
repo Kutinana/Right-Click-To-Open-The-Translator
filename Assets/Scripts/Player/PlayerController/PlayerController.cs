@@ -108,8 +108,9 @@ public class PlayerController : MonoBehaviour
     {
         playerInput.EnableInputActions();
         playerInput.AddInteractEvent(delegate () { Interact(); });
+        playerInput.AddMapOpeningEvent(delegate () { MapControl(); });
     }
-    Vector3 destUp;
+
     private void Update()
     {
         ActivateObject();
@@ -142,6 +143,12 @@ public class PlayerController : MonoBehaviour
     {
         if (InteractiveObjectPool.Instance.activeObject == null) return;
         InteractiveObjectPool.Instance.activeObject.OnTrigger();
+    }
+
+    private void MapControl()
+    {
+        if (MapController.Instance.currentMapState == MapController.MapState.Closing) MapController.OpenMap();
+        else MapController.CloseMap();
     }
     public void Move(float speed)
     {

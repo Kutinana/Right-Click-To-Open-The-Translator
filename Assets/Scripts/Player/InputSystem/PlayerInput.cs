@@ -10,6 +10,8 @@ public class PlayerInput: MonoBehaviour
     public bool StartRunning => inputActions.GamePlay.Running.WasPressedThisFrame();
     public bool RunningStop => inputActions.GamePlay.Running.WasReleasedThisFrame();
     public bool Interact => inputActions.GamePlay.Interact.IsPressed();
+    public bool MapControl => inputActions.GamePlay.Map.IsPressed();
+    public Vector2 DragMap => inputActions.GamePlay.DragMap.ReadValue<Vector2>();                                             
     public bool isRunning { set; get; }
     private void Awake()
     {
@@ -25,6 +27,13 @@ public class PlayerInput: MonoBehaviour
     public void AddInteractEvent(System.Action action)
     {
         inputActions.GamePlay.Interact.performed += delegate
+        {
+            action.Invoke();
+        };
+    }
+    public void AddMapOpeningEvent(System.Action action)
+    {
+        inputActions.GamePlay.Map.performed += delegate
         {
             action.Invoke();
         };

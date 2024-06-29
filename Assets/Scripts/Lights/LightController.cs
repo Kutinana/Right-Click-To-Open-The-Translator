@@ -7,7 +7,6 @@ using System;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.Rendering.Universal;
-using System.Linq.Expressions;
 namespace LightController
 {
     public class LightController : MonoSingleton<LightController>
@@ -18,11 +17,7 @@ namespace LightController
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            TypeEventSystem.Global.Register<OnSceneLoadedEvent>(e =>
-            {
-                Debug.Log("Scene Loaded");
-                OnSceneUpdate();
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => OnSceneUpdate()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
         private void OnSceneUpdate()
         {
@@ -35,10 +30,6 @@ namespace LightController
                     mlights[ptrLights++] = gameObject;
                 }
             }
-            foreach (GameObject g in mlights)
-            {
-                Debug.Log(g);
-            }
             UpdateLights();
         }
 
@@ -47,17 +38,21 @@ namespace LightController
             GameObject activeOne = null;
             for (int i = 0; i < 5; i++)
             {
-                if(mlights[i].IsUnityNull())
+                if (mlights[i].IsUnityNull())
                     break;
                 mlights[i].transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Sprite;
-                if(mlights[i].activeInHierarchy){
+                if (mlights[i].activeInHierarchy)
+                {
                     activeOne = mlights[i];
                 }
             }
-            try{
-            activeOne.transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Global;
-            }catch(Exception e){
-                throw new Exception("Illegal Light Setting in "+SceneManager.GetActiveScene().name+":\n",e);
+            try
+            {
+                activeOne.transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Global;
+            }
+            catch (Exception)
+            {
+                Debug.Log("Illegal Light Setting in " + SceneManager.GetActiveScene().name + ":\n");
             }
         }
     }

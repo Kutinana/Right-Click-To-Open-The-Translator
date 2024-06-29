@@ -15,7 +15,7 @@ public class InteractiveDoor: InteractiveObject
     private void Update()
     {
         if (startFall){
-            AudioKit.PlaySound("Fall-Zero",volumeScale:0.8f);
+            AudioKit.PlaySound("Fall-Zero",volumeScale:0.5f);
             StartCoroutine(playerFall());}
     }
     public override void LoadConfig()

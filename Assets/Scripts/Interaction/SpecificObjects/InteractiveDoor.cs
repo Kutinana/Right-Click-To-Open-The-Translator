@@ -35,6 +35,7 @@ public class InteractiveDoor: InteractiveObject
     public void SwitchRoom(GameObject room)
     {
         room.SetActive(true);
+        LightController.LightController.Instance.UpdateLights();
     }
     public void LeaveRoom(GameObject room)
     {

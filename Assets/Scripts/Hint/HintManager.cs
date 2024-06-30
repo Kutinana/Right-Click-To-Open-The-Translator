@@ -63,8 +63,6 @@ namespace Hint
 
             CurrentHint.OnEnter();
             StateMachine.ChangeState(States.Active);
-
-            GameProgressData.Unlock(CurrentHint);
         }
 
         private void Update()

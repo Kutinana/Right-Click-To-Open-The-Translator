@@ -1498,10 +1498,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5775849724857332843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2aea3416ba1654e87fc026f18812a7, type: 3}
+  m_Script: {fileID: 11500000, guid: a8403effe90c95e48bac831f4be5aafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 
+  Id: Overture_Candle
 --- !u!1 &5912762508010518072
 GameObject:
   m_ObjectHideFlags: 0

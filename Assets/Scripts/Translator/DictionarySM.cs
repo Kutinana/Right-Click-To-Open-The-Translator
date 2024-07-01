@@ -69,7 +69,6 @@ namespace Dictionary
             {
                 var go = Instantiate(CharacterPrefab, parent);
                 go.GetComponent<Character>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);
-                go.transform.localScale = new Vector2(1.5f, 1.5f);
             }
         }
 
@@ -87,7 +86,6 @@ namespace Dictionary
 
                 var go = Instantiate(PuzzlePrefab, parent);
                 go.GetComponent<PuzzleThumbnailController>().Initialize(p);
-                // go.transform.localScale = new Vector2(1.5f, 1.5f);
             }
         }
     }

@@ -35,7 +35,7 @@ namespace DataSystem
 
         public static PuzzleProgress GetPuzzleProgress(string _id)
         {
-            return Instance.Save.PuzzleProgress.ContainsKey(_id) ? Instance.Save.PuzzleProgress[_id] : PuzzleProgress.UnSolved;
+            return Instance.Save.PuzzleProgress.ContainsKey(_id) ? Instance.Save.PuzzleProgress[_id] : PuzzleProgress.NotFound;
         }
 
         public static void Unlock(PuzzleBase puzzle)

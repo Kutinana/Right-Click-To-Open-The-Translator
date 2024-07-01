@@ -40,7 +40,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnSceneLoadedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
         {
@@ -67,6 +68,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         try
         {
             GameObject audioAssets = GameObject.Find("AudioContainer");
+            if (audioAssets == null) return;
+            
             AudioContainer audioContainer = audioAssets.GetComponent<AudioContainer>();
             Instance.ambientChannel.clip = audioContainer.ambient;
             Instance.backGroundMusics = audioContainer.keyValuePairs;
@@ -74,7 +77,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
         catch (Exception e)
         {
-            throw new Exception("AudioContaoner noy found.", e);
+            Debug.LogWarning(e+"Audio Container Missing");
         }
 
     }
@@ -159,7 +162,9 @@ public class AudioMng : MonoSingleton<AudioMng>
     public static void StopAll()
     {
         Instance.FadeMusic(Instance.current, 0f);
+        Instance.current.Stop();
         Instance.FadeMusic(Instance.ambientChannel, 0f);
+        Instance.ambientChannel.Stop();
     }
 
     public void FadeMusic(AudioSource audioSource, float target)

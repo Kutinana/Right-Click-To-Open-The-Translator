@@ -4,21 +4,21 @@
 		"OutlinedSpritePath":"Sprites/hints/hint1/Hint1_object_Outlined",
 		"UnoutlinedSpritePath":"Sprites/hints/hint1/Hint1_object_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint1"
+		"target_string":"Overture_Balance"
 	},
 	{
 		"ID":1,
 		"OutlinedSpritePath":"Sprites/hints/hint2/Hint2_object_Outlined",
 		"UnoutlinedSpritePath":"Sprites/hints/hint2/Hint2_object_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint2"
+		"target_string":"Overture_Elements"
 	},
 	{
 		"ID":2,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Unoutlined",
 		"itemType": 1,
-		"target_string":"puzzle3"
+		"target_string":"Overture_Door"
 	},
 	{
 		"ID":3,
@@ -32,28 +32,28 @@
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Outlined_object",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Unoutlined_object",
 		"itemType": 1,
-		"target_string":"puzzle2"
+		"target_string":"Overture_Jigsaw"
 	},
 	{
 		"ID":5,
 		"OutlinedSpritePath":"Sprites/hints/hint3/Hint3_object_Outlined",
 		"UnoutlinedSpritePath":"Sprites/hints/hint3/Hint3_object_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint3"
+		"target_string":"Overture_RRT"
 	},
 	{
 		"ID":6,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/Map1_puzzle1_Outlined_object",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/Map1_puzzle1_Unoutlined_object",
 		"itemType": 1,
-		"target_string":"puzzle1"
+		"target_string":"Overture_Bottle"
 	},
 	{
 		"ID":7,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle2/Map1_puzzle2_Correct_Unoutlined",
 		"itemType": 1,
-		"target_string":"puzzle2"
+		"target_string":"Overture_Jigsaw"
 	},
 	{
 		"ID":8,
@@ -67,7 +67,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle1/puzzle1_Correct_Unoutline",
 		"itemType": 1,
-		"target_string":"puzzle1"
+		"target_string":"Overture_Bottle"
 	},
 	{
 		"ID":10,
@@ -81,7 +81,7 @@
 		"OutlinedSpritePath":"Sprites/InitialHint/graffitiwall_2_highlight",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
-		"target_string":"hint0"
+		"target_string":"Tutorial_LeftRight"
 	},
 	{
 		"ID":12,
@@ -102,21 +102,21 @@
 		"OutlinedSpritePath":"Sprites/hints/hint6/hint6_set_Outlined",
 		"UnoutlinedSpritePath":"Sprites/hints/hint6/hint6_set_Unoutlined",
 		"itemType": 3,
-		"target_string":"hint6"
+		"target_string":"Overture_Sign"
 	},
 	{
 		"ID":15,
 		"OutlinedSpritePath":"Sprites/hints/hint4/puzzle1_Correct_Outline1_enhanced",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
-		"target_string":"hint4"
+		"target_string":"Overture_Slider"
 	},
 	{
 		"ID":16,
 		"OutlinedSpritePath":"Sprites/hints/hint5/Map1_puzzle2_Correct_Outlined16_enhanced",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 3,
-		"target_string":"hint5"
+		"target_string":"Overture_Candle"
 	},
 	{
 		"ID":17,

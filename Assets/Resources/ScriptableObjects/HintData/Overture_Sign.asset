@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d689603df23ad4093871f17507dd82, type: 3}
+  m_Name: Overture_Sign
+  m_EditorClassIdentifier: 
+  Id: Overture_Sign
+  Prefab: {fileID: 5775849724857332843, guid: 231a00fa1f122fa45905e6cdc86e2e42, type: 3}
+  Thumbnail: {fileID: 21300000, guid: fffe384fd428a6c40876569df8856f0e, type: 3}
+  Name: 
+  Description: 

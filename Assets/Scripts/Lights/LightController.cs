@@ -36,10 +36,8 @@ namespace LightController
         public void UpdateLights()
         {
             GameObject activeOne = null;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < ptrLights; i++)
             {
-                if (mlights[i].IsUnityNull())
-                    break;
                 mlights[i].transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Sprite;
                 if (mlights[i].activeInHierarchy)
                 {
@@ -47,7 +45,9 @@ namespace LightController
                 }
             }
 
-            if (activeOne == null) return;
+            if (activeOne == null){
+                Debug.Log("No active lights");
+                return;}
 
             try
             {

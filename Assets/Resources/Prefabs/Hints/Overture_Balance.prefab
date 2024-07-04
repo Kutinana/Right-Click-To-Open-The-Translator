@@ -429,7 +429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8522926573757133801}
-  - component: {fileID: 7826922838757577837}
+  - component: {fileID: 5183285277021746653}
   - component: {fileID: 3071462710873727241}
   m_Layer: 9
   m_Name: glei
@@ -459,7 +459,7 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: -300}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7826922838757577837
+--- !u!114 &5183285277021746653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6798529920512877174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: f859ecc12e789e145a8750c3c6dbcea6, type: 2}

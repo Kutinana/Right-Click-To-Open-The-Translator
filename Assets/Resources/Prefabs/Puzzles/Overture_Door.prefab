@@ -665,7 +665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5423204852708351010}
-  - component: {fileID: 4513871959532711694}
+  - component: {fileID: 3173707395183990406}
   - component: {fileID: 7411519893398108390}
   m_Layer: 9
   m_Name: geh
@@ -695,7 +695,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4513871959532711694
+--- !u!114 &3173707395183990406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834167977117002265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 39bd73860f74bfa4ca68ba5b5e898510, type: 2}
@@ -1614,7 +1614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7616157981605384077}
-  - component: {fileID: 8081253511089279812}
+  - component: {fileID: 9213607010518441923}
   - component: {fileID: 9055582393012549674}
   m_Layer: 9
   m_Name: offen
@@ -1644,7 +1644,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8081253511089279812
+--- !u!114 &9213607010518441923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4267624847404532900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 313327734f7a05e4aa7efb09b1550faf, type: 2}
@@ -1713,7 +1713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5058298676080496289}
-  - component: {fileID: 6250820516050365949}
+  - component: {fileID: 9069780810205326900}
   - component: {fileID: 5654495791289957598}
   m_Layer: 9
   m_Name: lin
@@ -1743,7 +1743,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6250820516050365949
+--- !u!114 &9069780810205326900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4273008607046620170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 3fe60be125fcbbb4190630bce6904ddd, type: 2}
@@ -2599,7 +2599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1140119227555832673}
-  - component: {fileID: 7622130689196628346}
+  - component: {fileID: 2713925180656316584}
   - component: {fileID: 8845430954718378308}
   m_Layer: 9
   m_Name: druk
@@ -2629,7 +2629,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7622130689196628346
+--- !u!114 &2713925180656316584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2638,7 +2638,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5604624105087924215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5ba60500f5d9f5446a0d22e7de3ad3b5, type: 2}
@@ -2875,9 +2875,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: Overture_Door
   Characters:
-  - {fileID: 7826922838757577837}
-  - {fileID: 4107298917702540718}
-  - {fileID: 376389493583259878}
+  - {fileID: 7021411921720704604}
+  - {fileID: 172272837442728115}
+  - {fileID: 5271334572964951483}
   Numbers:
     list:
     - Key: {fileID: 11400000, guid: 165a122a734a07643b3d5b970107f33e, type: 2}
@@ -3145,7 +3145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 749149741401348714}
-  - component: {fileID: 376389493583259878}
+  - component: {fileID: 5271334572964951483}
   - component: {fileID: 2947063736892904294}
   m_Layer: 9
   m_Name: Right
@@ -3175,7 +3175,7 @@ RectTransform:
   m_AnchoredPosition: {x: 161, y: -203}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &376389493583259878
+--- !u!114 &5271334572964951483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3184,7 +3184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6148939581262577287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 292438983249e6b479273711846f8042, type: 2}
@@ -3481,7 +3481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8522926573757133801}
-  - component: {fileID: 7826922838757577837}
+  - component: {fileID: 7021411921720704604}
   - component: {fileID: 3071462710873727241}
   m_Layer: 9
   m_Name: Left
@@ -3511,7 +3511,7 @@ RectTransform:
   m_AnchoredPosition: {x: -223, y: -203}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7826922838757577837
+--- !u!114 &7021411921720704604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3520,7 +3520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6798529920512877174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 292438983249e6b479273711846f8042, type: 2}
@@ -3580,7 +3580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3125661412553846751}
-  - component: {fileID: 5615187341647525285}
+  - component: {fileID: 2322856695109312444}
   - component: {fileID: 5892693455091733642}
   m_Layer: 9
   m_Name: la
@@ -3610,7 +3610,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5615187341647525285
+--- !u!114 &2322856695109312444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3619,7 +3619,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7144183475728768580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b845f2af18322fa439caf6cfb2c989e7, type: 2}
@@ -3757,7 +3757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6640889632304525455}
-  - component: {fileID: 4107298917702540718}
+  - component: {fileID: 172272837442728115}
   - component: {fileID: 2725407936387646889}
   m_Layer: 9
   m_Name: Middle
@@ -3787,7 +3787,7 @@ RectTransform:
   m_AnchoredPosition: {x: -29, y: -203}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4107298917702540718
+--- !u!114 &172272837442728115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3796,7 +3796,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7911236933906091160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 292438983249e6b479273711846f8042, type: 2}

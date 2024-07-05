@@ -12,7 +12,7 @@ using Kuchinashi;
 namespace UI
 {
     /// <summary>
-    /// Character Controller
+    /// General Character Controller
     /// </summary>
     public class Character : MonoBehaviour
     {
@@ -25,11 +25,11 @@ namespace UI
         
         public CharacterData data;
 
-        private Image _image;
-        private TMP_Text _text;
-        private ButtonExtension _buttonExtension;
+        protected Image _image;
+        protected TMP_Text _text;
+        protected ButtonExtension _buttonExtension;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _image = transform.Find("Image").GetComponent<Image>();
             _text = transform.Find("Text").GetComponent<TMP_Text>();
@@ -39,35 +39,14 @@ namespace UI
             stateMachine.AddState(States.Interactable, new InteractableState(stateMachine, this));
 
             stateMachine.StartState(TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off ? States.Interactable : States.NonInteractable);
-
-            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
-                stateMachine.ChangeState(States.Interactable);
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
-                stateMachine.ChangeState(States.NonInteractable);
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            TypeEventSystem.Global.Register<OnCharacterRecordedEvent>(e => {
-                if (e.id == data.Id) Refresh();
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => Refresh()).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            Initialize();
         }
 
-        public void Initialize(bool isInteractable = false, bool isBlack = false)
+        public virtual void Initialize(CharacterData _data = null, bool isInteractable = false, bool isBlack = false)
         {
+            if (_data != null) data = _data;
+
             _image.sprite = data.Sprite;
             _text.SetText(UserDictionary.Read(data.Id));
-
-            _buttonExtension.OnLeftClick += () => {
-                CharacterRecordPanelManager.Instance.Init(this);
-            };
-            _buttonExtension.OnPressEnd += () => {
-                TypeEventSystem.Global.Send(new Dictionary.CallForPuzzleListEvent(data.Id));
-            };
 
             stateMachine.ChangeState(isInteractable ? States.Interactable : States.NonInteractable);
 
@@ -78,13 +57,7 @@ namespace UI
             }
         }
 
-        public void Initialize(CharacterData data, bool isInteractable = false, bool isBlack = false)
-        {
-            this.data = data;
-            Initialize(isInteractable, isBlack);
-        }
-
-        public void Refresh()
+        public virtual void Refresh()
         {
             _image.sprite = data.Sprite;
             _text.SetText(UserDictionary.Read(data.Id));

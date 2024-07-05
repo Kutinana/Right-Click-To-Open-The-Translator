@@ -9,7 +9,7 @@ namespace DataSystem
     {
         public string Id;
         public Sprite Sprite;
-        public string Description;
+        [Multiline] public string Description;
 
         public List<PuzzleDataBase> RelatedPuzzles;
     }

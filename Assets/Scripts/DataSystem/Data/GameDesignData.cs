@@ -6,9 +6,24 @@ namespace DataSystem
 {
     public class GameDesignData
     {
-        public static CharacterData GetCharacterDataById(string id)
+        public static Dictionary<string, CharacterData> CharacterDataDic
         {
-            return Resources.Load<CharacterData>("ScriptableObjects/CharacterData/" + id);
+            get => _characterDataDic ??= GenerateCharacterDataDictionary();
+            set => _characterDataDic = value;
+        }
+        private static Dictionary<string, CharacterData> _characterDataDic;
+        public static CharacterData GetCharacterDataById(string id) => CharacterDataDic[id];
+
+        private static Dictionary<string, CharacterData> GenerateCharacterDataDictionary()
+        {
+            var characters = Resources.LoadAll<CharacterData>("ScriptableObjects/CharacterData");
+            var dic = new Dictionary<string, CharacterData>();
+
+            foreach (var character in characters)
+            {
+                dic[character.Id] = character;
+            }
+            return dic;
         }
 
         public static PuzzleData GetPuzzleDataById(string id)

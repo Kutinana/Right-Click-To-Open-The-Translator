@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7933863251341760445}
-  - component: {fileID: 1236218772599085513}
+  - component: {fileID: 5365498129108574310}
   - component: {fileID: 4514262651485959200}
   m_Layer: 9
   m_Name: ir
@@ -159,7 +159,7 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: -160}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1236218772599085513
+--- !u!114 &5365498129108574310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 39741235764829735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a673e12887cb2e947a93137efcceecc7, type: 2}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5422491308274041490}
-  - component: {fileID: 9028853160589661348}
+  - component: {fileID: 9085592233756989259}
   - component: {fileID: 1831646860870669680}
   m_Layer: 9
   m_Name: feu
@@ -333,7 +333,7 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9028853160589661348
+--- !u!114 &9085592233756989259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3339990025047631503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b6425a46b3941d64a81700237755be2f, type: 2}
@@ -862,7 +862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6698266331102583984}
-  - component: {fileID: 5235770776182493727}
+  - component: {fileID: 7807306037949281170}
   - component: {fileID: 2564445639022449894}
   m_Layer: 9
   m_Name: was
@@ -892,7 +892,7 @@ RectTransform:
   m_AnchoredPosition: {x: -140, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5235770776182493727
+--- !u!114 &7807306037949281170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5374997634559733371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 4df369f5f5a9f9a4785e28edf165e064, type: 2}
@@ -1147,7 +1147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8522926573757133801}
-  - component: {fileID: 7826922838757577837}
+  - component: {fileID: 7267844412931662409}
   - component: {fileID: 3071462710873727241}
   m_Layer: 9
   m_Name: eth
@@ -1177,7 +1177,7 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7826922838757577837
+--- !u!114 &7267844412931662409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6798529920512877174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d560ab15afe49bc4aa15d0a0e38f784f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 41f19af72b92600449eff093c63f2adb, type: 2}

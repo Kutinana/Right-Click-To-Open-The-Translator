@@ -131,5 +131,26 @@
 		"UnoutlinedSpritePath":"None",
 		"itemType": 0,
 		"target_string":""
+	},
+	{
+		"ID":19,
+		"OutlinedSpritePath":"Sprites/puzzles/Tutorial/P1Puzzle1/Tutorial_P1_Puzzle1_Object2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Tutorial/P1Puzzle1/Tutorial_P1_Puzzle1_Object1",
+		"itemType": 1,
+		"target_string":"P1Puzzle1"
+	},
+	{
+		"ID":20,
+		"OutlinedSpritePath":"Sprites/puzzles/Tutorial/P2Puzzle1/P2Puzzle1_object2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Tutorial/P2Puzzle1/P2Puzzle1_object1",
+		"itemType": 1,
+		"target_string":"P2Puzzle1"
+	},
+	{
+		"ID":21,
+		"OutlinedSpritePath":"Sprites/puzzles/Tutorial/P2Puzzle1/P2Puzzle1_object2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Tutorial/P2Puzzle1/P2Puzzle1_object3",
+		"itemType": 1,
+		"target_string":"P2Puzzle1"
 	}
 ]

@@ -12,9 +12,9 @@ namespace Puzzle.Tutorial.P1
 {
     public enum patternType
     {
-        Square,
+        Circle,
         Triangle,
-        Circle
+        Square
     }
 
     public class Puzzle : PuzzleBase
@@ -23,14 +23,15 @@ namespace Puzzle.Tutorial.P1
 
         private Button backButton;
 
-        public static List<patternType> Patterns = new List<patternType>() { patternType.Square, patternType.Square, patternType.Square};
-        public static List<float> CorrectPosY = new List<float>() { -82f, -300f, -220f};
+        public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle};
+        public static List<float> CorrectPosY = new List<float>() { -175f, -400f, -320f};
         public const float ERROR = 20f;
         public static List<float> Scopes = new List<float>() { 0, 0, 0};
+        public List<Sprite> CTS;
         public static List<Transform> m_scope;
         private Coroutine CurrentCoroutine = null;
         public static bool enable = true;
-
+        private CanvasGroup tutorialCanvasGroup;
         private static bool CORRECT => Patterns[0] == patternType.Circle && Patterns[1] == patternType.Triangle && Patterns[2] == patternType.Square;
         private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - CorrectPosY[0]) <= ERROR && Mathf.Abs(Scopes[1] - CorrectPosY[1]) <= ERROR && Mathf.Abs(Scopes[2] - CorrectPosY[2]) <= ERROR;
 
@@ -44,6 +45,8 @@ namespace Puzzle.Tutorial.P1
         private void Awake()
         {
             Instance = this;
+
+            tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
         }
 
         public static void PatternUpdate(int pos, Transform button)
@@ -53,13 +56,13 @@ namespace Puzzle.Tutorial.P1
             switch (Patterns[pos])
             {
                 case patternType.Square:
-                    button.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Square";
+                    button.GetChild(0).GetComponent<Image>().sprite = Instance.CTS[2];
                     break;
                 case patternType.Triangle:
-                    button.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Triangle";
+                    button.GetChild(0).GetComponent<Image>().sprite = Instance.CTS[1];
                     break;
                 case patternType.Circle:
-                    button.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Circle";
+                    button.GetChild(0).GetComponent<Image>().sprite = Instance.CTS[0];
                     break;
                 default:
                     break;
@@ -113,6 +116,16 @@ namespace Puzzle.Tutorial.P1
             }
             else
             {
+                if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
+                {
+                    StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
+                    GameProgressData.Unlock(this);
+
+                    tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
+                    });
+                }
                 CurrentCoroutine = StartCoroutine(CheckPuzzleFinish());
             }
 

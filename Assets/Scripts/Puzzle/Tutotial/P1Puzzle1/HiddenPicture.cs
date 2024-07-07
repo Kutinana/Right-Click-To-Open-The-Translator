@@ -101,7 +101,7 @@ namespace Puzzle.Tutorial.P1
         private void Stage1Correct()
         {
             _initialPosition = Scopes.transform.localPosition;
-            _targetPosition = new Vector3(_initialPosition.x, _initialPosition.y + 200, _initialPosition.z);
+            _targetPosition = new Vector3(_initialPosition.x, _initialPosition.y + 300, _initialPosition.z);
             CurrentCoroutine = StartCoroutine(PopScopes());
             NextStage();
         }
@@ -158,11 +158,10 @@ namespace Puzzle.Tutorial.P1
 
         private IEnumerator ChangeCharacter(int id)
         {
-            Debug.Log(id);
-            while (parameter < 0.9f)
+            while (c_parameter < 0.99f)
             {
                 characters[id].Find("Image").GetComponent<Image>().color = Color.Lerp(_initialColor, _targetColor, c_parameter);
-                c_parameter += Time.deltaTime * 1f;
+                c_parameter += Time.deltaTime * 1.5f;
 
                 yield return new WaitForFixedUpdate();
             }

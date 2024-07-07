@@ -11,12 +11,14 @@ using UnityEngine.Events;
 public class InteractiveDoor: InteractiveObject
 {
     public UnityEvent OnT;
-    bool startFall = false;
-    private void Update()
+    public bool setActivable = true;
+
+    float parameter = 0f;
+
+    public override void Init()
     {
-        if (startFall){
-            AudioKit.PlaySound("Fall-Zero",volumeScale:0.5f);
-            StartCoroutine(playerFall());}
+        base.Init();
+        SetActivable(setActivable);
     }
     public override void LoadConfig()
     {
@@ -66,7 +68,8 @@ public class InteractiveDoor: InteractiveObject
     }
     public void PlayerFall()
     {
-        startFall = true;
+        AudioKit.PlaySound("Fall-Zero", volumeScale: 0.5f);
+        StartCoroutine(playerFall());
     }
     public void PlayAnimation(string animationName)
     {
@@ -85,7 +88,7 @@ public class InteractiveDoor: InteractiveObject
             GameProgressData.SaveLastScene(DoorConfig.nextSceneName[this.ID]);
         }
     }
-    IEnumerator playerFall()
+    private IEnumerator playerFall()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerController>().EnableGroundCheck = false;

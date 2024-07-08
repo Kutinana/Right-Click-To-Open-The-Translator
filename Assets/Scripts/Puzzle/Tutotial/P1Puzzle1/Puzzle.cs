@@ -25,8 +25,8 @@ namespace Puzzle.Tutorial.P1
         private Button backButton;
 
         public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle};
-        public static List<float> CorrectPosY = new List<float>() { 1315f, 870f, 1045f};
-        public const float ERROR = 20f;
+        public List<Transform> CorrectPosY;
+        public const float ERROR = 0.3f;
         public static List<float> Scopes = new List<float>() { 0, 0, 0};
         public List<Sprite> CTS;
         public static List<Transform> m_scope;
@@ -34,7 +34,9 @@ namespace Puzzle.Tutorial.P1
         public static bool enable = true;
         private CanvasGroup tutorialCanvasGroup;
         private static bool CORRECT => Patterns[0] == patternType.Circle && Patterns[1] == patternType.Triangle && Patterns[2] == patternType.Square;
-        private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - CorrectPosY[0]) <= ERROR && Mathf.Abs(Scopes[1] - CorrectPosY[1]) <= ERROR && Mathf.Abs(Scopes[2] - CorrectPosY[2]) <= ERROR;
+        private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - Instance.CorrectPosY[0].position.y) <= ERROR 
+            && Mathf.Abs(Scopes[1] - Instance.CorrectPosY[1].position.y) <= ERROR 
+            && Mathf.Abs(Scopes[2] - Instance.CorrectPosY[2].position.y) <= ERROR;
 
         public static bool holding_scope = false;
 
@@ -112,8 +114,8 @@ namespace Puzzle.Tutorial.P1
 
         public static void UpdateScopeState(int id, Vector3 pos)
         {
-            Scopes[id] = TranslatorCameraManager.Camera.WorldToScreenPoint(pos).y;
-            if (Mathf.Abs(Scopes[id] - CorrectPosY[id]) <= ERROR)
+            Scopes[id] = pos.y;
+            if (Mathf.Abs(Scopes[id] - Instance.CorrectPosY[id].position.y) <= ERROR)
             {
                 Show(Instance, id);
             }

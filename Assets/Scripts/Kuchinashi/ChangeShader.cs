@@ -1,6 +1,9 @@
+# if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 using System;
+
 namespace UrpAdpt
 {
     public class ChangeShader : EditorWindow
@@ -55,3 +58,5 @@ namespace UrpAdpt
         }
     }
 }
+
+# endif

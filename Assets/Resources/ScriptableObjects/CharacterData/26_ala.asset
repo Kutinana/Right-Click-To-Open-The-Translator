@@ -15,3 +15,6 @@ MonoBehaviour:
   Id: ala
   Sprite: {fileID: 21300000, guid: 88d8bffc437538d4191f958e2575eda5, type: 3}
   Description: "\u5426\u5B9A\uFF0C0"
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: dbe19474cffcbc942a3c951f6768e9c9, type: 2}
+  - {fileID: 11400000, guid: a6f515406b8f2a34d81c770ccaa768a3, type: 2}

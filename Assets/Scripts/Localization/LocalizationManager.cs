@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DataSystem;
+using Kuchinashi;
 using QFramework;
 using UnityEngine;
 
@@ -46,5 +48,46 @@ namespace Localization
         internal Dictionary<Language, Dictionary<string, List<string>>> Narrations => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, List<string>>>>("I18n/Narration");
         public static Dictionary<string, List<string>> GetNarrations() => Instance.Narrations.TryGetValue(Instance.CurrentLanguage, out var common) ? common : throw new System.Exception("Incomplete Localization");
         public static List<string> GetNarration(string key) => GetNarrations().TryGetValue(key, out var common) ? common : throw new System.Exception("Incomplete Localization");
+    }
+
+    public class LocalizationHelper
+    {
+        public static string Get(Dictionary<Language, string> _key)
+        {
+            var lang = LocalizationManager.Instance.CurrentLanguage;
+            if (_key != null && _key.ContainsKey(lang))
+            {
+                return _key[lang];
+            }
+            return _key.First().Value;
+        }
+
+        public static string Get(Dictionary<Language, string> _key, Language lang)
+        {
+            if (_key != null && _key.ContainsKey(lang))
+            {
+                return _key[lang];
+            }
+            return _key.First().Value;
+        }
+
+        public static string Get(SerializableDictionary<Language, string> _key)
+        {
+            var lang = LocalizationManager.Instance.CurrentLanguage;
+            if (_key != null && _key.ContainsKey(lang))
+            {
+                return _key[lang];
+            }
+            return _key.First().Value;
+        }
+
+        public static string Get(SerializableDictionary<Language, string> _key, Language lang)
+        {
+            if (_key != null && _key.ContainsKey(lang))
+            {
+                return _key[lang];
+            }
+            return _key.First().Value;
+        }
     }
 }

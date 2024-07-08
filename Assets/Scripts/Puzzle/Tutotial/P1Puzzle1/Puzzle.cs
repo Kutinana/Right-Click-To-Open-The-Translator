@@ -136,15 +136,7 @@ namespace Puzzle.Tutorial.P1
 
         public IEnumerator CheckPuzzleFinish()
         {
-            yield return new WaitUntil(() =>
-            {
-                return !enable;
-            });
-            Debug.Log("finish");
-            yield return new WaitUntil(() =>
-            {
-                return Input.GetMouseButton(0);
-            });
+            yield return new WaitUntil(() => !enable);
 
             PuzzleManager.Solved();
             CurrentCoroutine = null;

@@ -18,3 +18,5 @@ MonoBehaviour:
   RelatedPuzzles:
   - {fileID: 11400000, guid: 98de4b5cb65dde54fa6281ac898f8252, type: 2}
   - {fileID: 11400000, guid: c6a6e230b13263c44a1c5f8a8d121abf, type: 2}
+  - {fileID: 11400000, guid: dbe19474cffcbc942a3c951f6768e9c9, type: 2}
+  - {fileID: 11400000, guid: a6f515406b8f2a34d81c770ccaa768a3, type: 2}

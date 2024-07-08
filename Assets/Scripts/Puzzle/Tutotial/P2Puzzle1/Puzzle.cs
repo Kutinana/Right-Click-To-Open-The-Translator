@@ -4,6 +4,7 @@ using Kuchinashi;
 using Puzzle.Overture.Bottle;
 using System.Collections;
 using System.Collections.Generic;
+using Translator;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
@@ -45,6 +46,8 @@ namespace Puzzle.Tutorial.P2
         {
             Instance = this;
             ReArrangePosition();
+            
+            tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
         }
 
         public static void ReArrangePosition()
@@ -73,8 +76,20 @@ namespace Puzzle.Tutorial.P2
             {
                 if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
                 {
+                    StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
                     GameProgressData.Unlock(this);
+
+                    tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
+                        TranslatorSM.StateMachine.ChangeState(Translator.States.Dictionary);
+                    });
                 }
+                else
+                {
+                    transform.Find("Tutorial").gameObject.SetActive(false);
+                }
+
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }
 

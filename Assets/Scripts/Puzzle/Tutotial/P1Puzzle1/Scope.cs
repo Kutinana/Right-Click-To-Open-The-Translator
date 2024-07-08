@@ -25,7 +25,7 @@ namespace Puzzle.Tutorial.P1
             if (holding && Puzzle.enable)
             {
                 offset = TranslatorCameraManager.Camera.ScreenToWorldPoint(Input.mousePosition).y - currentMousePosY;
-                transform.position = new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
+                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y + offset, -1.2f, 2.3f) , transform.position.z);
             }
             currentMousePosY = TranslatorCameraManager.Camera.ScreenToWorldPoint(Input.mousePosition).y;
             
@@ -34,31 +34,9 @@ namespace Puzzle.Tutorial.P1
         {
             if (holding)
             {
-                Puzzle.UpdateScopeState(id, transform.localPosition.y);
+                Puzzle.UpdateScopeState(id, transform.position);
             }
             holding = false;
-        }
-
-        public void ScopeFinish()
-        {
-            transform.GetComponent<Collider2D>().enabled = false;
-            init_pos = transform.localPosition;
-            target_pos = new Vector3(init_pos.x, Puzzle.CorrectPosY[id], init_pos.z);
-            StartCoroutine(MoveToCorrectPos());
-        }
-
-        private float parameter = 0f;
-
-        private IEnumerator MoveToCorrectPos()
-        {
-            while (parameter < 0.99f)
-            {
-                transform.localPosition = Vector3.Lerp(init_pos, target_pos, parameter);
-                parameter += Time.deltaTime * 0.3f;
-            }
-            Puzzle.UpdateScopeStateWithoutCheck(id, Puzzle.CorrectPosY[id]);
-
-            yield return null;
         }
     }
 }

@@ -7,6 +7,7 @@ using TMPro;
 using System.Runtime.InteropServices;
 using Kuchinashi;
 using System;
+using Cameras;
 
 namespace Puzzle.Tutorial.P1
 {
@@ -24,7 +25,7 @@ namespace Puzzle.Tutorial.P1
         private Button backButton;
 
         public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle};
-        public static List<float> CorrectPosY = new List<float>() { -175f, -400f, -320f};
+        public static List<float> CorrectPosY = new List<float>() { 1315f, 870f, 1045f};
         public const float ERROR = 20f;
         public static List<float> Scopes = new List<float>() { 0, 0, 0};
         public List<Sprite> CTS;
@@ -70,9 +71,48 @@ namespace Puzzle.Tutorial.P1
             if (CORRECT) S1Correct.Invoke();
         }
 
-        public static void UpdateScopeState(int id, float posY)
+        public static void PatternUpdateAll()
         {
-            Scopes[id] = posY;
+            Image image;
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        image = Instance.transform.Find("Interactable/Hidden/Buttons/Left/Image").GetComponent<Image>();
+                        break;
+                    case 1:
+                        image = Instance.transform.Find("Interactable/Hidden/Buttons/Middle/Image").GetComponent<Image>();
+                        break;
+                    case 2:
+                        image = Instance.transform.Find("Interactable/Hidden/Buttons/Right/Image").GetComponent<Image>();
+                        break;
+                    default:
+                        image = null;
+                        break;
+                }
+                switch (Patterns[i])
+                {
+                    case patternType.Square:
+                        image.sprite = Instance.CTS[2];
+                        break;
+                    case patternType.Triangle:
+                        image.GetComponent<Image>().sprite = Instance.CTS[1];
+                        break;
+                    case patternType.Circle:
+                        image.GetComponent<Image>().sprite = Instance.CTS[0];
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            if (CORRECT) S1Correct.Invoke();
+        }
+
+        public static void UpdateScopeState(int id, Vector3 pos)
+        {
+            Scopes[id] = TranslatorCameraManager.Camera.WorldToScreenPoint(pos).y;
             if (Mathf.Abs(Scopes[id] - CorrectPosY[id]) <= ERROR)
             {
                 Show(Instance, id);
@@ -86,9 +126,10 @@ namespace Puzzle.Tutorial.P1
                 enable = false;
             }
         }
-        public static void UpdateScopeStateWithoutCheck(int id, float posY)
+        public static void UpdateScopeStateWithoutCheck(int id, Vector3 pos)
         {
-            Scopes[id] = posY;
+            Scopes[id] = TranslatorCameraManager.Camera.WorldToScreenPoint(pos).y;
+            Show(Instance, id);
         }
 
         public IEnumerator CheckPuzzleFinish()
@@ -112,7 +153,10 @@ namespace Puzzle.Tutorial.P1
             
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-                
+                transform.Find("Answer").gameObject.SetActive(true);
+                transform.Find("Interactable").gameObject.SetActive(false);
+                transform.Find("Tutorial").gameObject.SetActive(false);
+                //SolvedEvent.Invoke();
             }
             else
             {
@@ -126,6 +170,12 @@ namespace Puzzle.Tutorial.P1
                         StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
                     });
                 }
+                else
+                {
+                    transform.Find("Tutorial").gameObject.SetActive(false);
+                }
+                HiddenPicture picture = transform.Find("Interactable").GetComponent<HiddenPicture>();
+                picture.setStage(picture.Stage);
                 CurrentCoroutine = StartCoroutine(CheckPuzzleFinish());
             }
 

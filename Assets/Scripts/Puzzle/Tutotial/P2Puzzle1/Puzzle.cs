@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 namespace Puzzle.Tutorial.P2
@@ -13,6 +14,7 @@ namespace Puzzle.Tutorial.P2
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
+        public static bool solved = false;
 
         public static List<float> ValidPositions = new List<float>()
         {
@@ -52,12 +54,8 @@ namespace Puzzle.Tutorial.P2
                 Instance.Sildes[i].closestPos = CurrentPosition[i];
                 Instance.Sildes[i].ArrangePosition();
             }
-            if (CurrentPosition[0] == CORRECT[0]) Instance.Lights[0].sprite = Instance.LightOn;
+            if (CurrentPosition[0] == CORRECT[0] && CurrentPosition[1] == CORRECT[1] && CurrentPosition[2] == CORRECT[2]) Instance.Lights[0].sprite = Instance.LightOn;
             else Instance.Lights[0].sprite = Instance.LightOff;
-            if (CurrentPosition[1] == CORRECT[1]) Instance.Lights[1].sprite = Instance.LightOn;
-            else Instance.Lights[1].sprite = Instance.LightOff;
-            if (CurrentPosition[2] == CORRECT[2]) Instance.Lights[2].sprite = Instance.LightOn;
-            else Instance.Lights[2].sprite = Instance.LightOff;
         }
 
         public override void OnEnter()
@@ -69,10 +67,7 @@ namespace Puzzle.Tutorial.P2
                 CurrentPosition = CORRECT;
                 ReArrangePosition();
 
-                foreach (var col in transform.Find("interactable").GetComponentsInChildren<Silde>())
-                {
-                    col.enabled = false;
-                }
+                solved = true;
             }
             else
             {

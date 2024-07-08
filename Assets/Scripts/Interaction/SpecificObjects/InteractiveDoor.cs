@@ -66,8 +66,13 @@ public class InteractiveDoor: InteractiveObject
     {
         Invoke(nameof(AnimatorDisabled), t);
     }
+    Vector3 position;
+    GameObject player;
     public void PlayerFall()
     {
+        parameter = 0f;
+        player = GameObject.FindGameObjectWithTag("Player");
+        position = player.transform.position;
         AudioKit.PlaySound("Fall-Zero", volumeScale: 0.5f);
         StartCoroutine(playerFall());
     }
@@ -90,7 +95,7 @@ public class InteractiveDoor: InteractiveObject
     }
     private IEnumerator playerFall()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        
         player.GetComponent<PlayerController>().EnableGroundCheck = false;
         player.GetComponent<Rigidbody2D>().simulated = false;
         player.GetComponent<PlayerInput>().DisableInputActions();
@@ -105,10 +110,10 @@ public class InteractiveDoor: InteractiveObject
         yield return new WaitForSeconds(0.7f);
         
         float startTime = Time.time;
-        Vector3 position = player.transform.position;
         while (Time.time - startTime < 0.8f)
         {
-            player.transform.position = Vector3.Lerp(position, new Vector3(position.x, position.y - 2.0f, position.z), Time.deltaTime * 10);
+            player.transform.position = Vector3.Lerp(position, new Vector3(position.x, position.y - 6.0f, position.z), parameter);
+            parameter += Time.deltaTime * 10f;
 
             yield return null;
         }

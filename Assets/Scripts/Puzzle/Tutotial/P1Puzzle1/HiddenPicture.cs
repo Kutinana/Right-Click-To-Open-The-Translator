@@ -28,8 +28,11 @@ namespace Puzzle.Tutorial.P1
 
         [Range(0, 2)] private int stage = 0;
 
+        public int Stage { get { return stage; } }
+
         private Coroutine CurrentCoroutine = null;
         private List<Transform> characters;
+        private List<Image> buttonImages;
 
         private void Awake()
         {
@@ -52,13 +55,17 @@ namespace Puzzle.Tutorial.P1
                 transform.Find("Hidden/Characters/Middle"),
                 transform.Find("Hidden/Characters/Right")
             };
-
-            Puzzle.S1Correct += delegate
+            buttonImages = new List<Image>() 
             {
-                Stage1Correct();
+                transform.Find("Hidden/Buttons/Left/Image").GetComponent<Image>(),
+                transform.Find("Hidden/Buttons/Middle/Image").GetComponent<Image>(),
+                transform.Find("Hidden/Buttons/Right/Image").GetComponent<Image>()
             };
-            Puzzle.Show += ShowCharacter;
-            Puzzle.Hide += HideCharacter;
+
+            Puzzle.S1Correct += this.Stage1Correct;
+
+            Puzzle.Show += this.ShowCharacter;
+            Puzzle.Hide += this.HideCharacter;
 
             if (stage == 0)
             {
@@ -87,7 +94,7 @@ namespace Puzzle.Tutorial.P1
                     Middle.interactable = false;
                     Right.interactable = false;
                     Buttons = transform.Find("Hidden/Buttons").GetComponent<CanvasGroup>();
-                    Buttons.alpha = 0;
+                    //Buttons.alpha = 0;
                     Buttons.blocksRaycasts = false;
                     stage++;
                     break;
@@ -100,7 +107,8 @@ namespace Puzzle.Tutorial.P1
 
         private void Stage1Correct()
         {
-            _initialPosition = Scopes.transform.localPosition;
+            Debug.Log(transform.name);
+            _initialPosition = transform.Find("Hidden/Scopes").localPosition;
             _targetPosition = new Vector3(_initialPosition.x, _initialPosition.y + 300, _initialPosition.z);
             CurrentCoroutine = StartCoroutine(PopScopes());
             NextStage();
@@ -140,12 +148,16 @@ namespace Puzzle.Tutorial.P1
         float c_parameter = 0f;
         Color _initialColor;
         Color _targetColor;
+        Color b_initialColor;
+        Color b_targetColor;
 
         private void ShowCharacter(object sender, int id)
         {
             c_parameter = 0f;
             _initialColor = characters[id].Find("Image").GetComponent<Image>().color;
             _targetColor = new Color(_initialColor.r, _initialColor.g, _initialColor.b, 1f);
+            b_initialColor = buttonImages[id].color;
+            b_targetColor = new Color(b_initialColor.r, b_initialColor.g, b_initialColor.b, 0f);
             CurrentCoroutine = StartCoroutine(ChangeCharacter(id));
         }
         private void HideCharacter(object sender, int id)
@@ -153,6 +165,8 @@ namespace Puzzle.Tutorial.P1
             c_parameter = 0f;
             _initialColor = characters[id].Find("Image").GetComponent<Image>().color;
             _targetColor = new Color(_initialColor.r, _initialColor.g, _initialColor.b, 0f);
+            b_initialColor = buttonImages[id].color;
+            b_targetColor = new Color(b_initialColor.r, b_initialColor.g, b_initialColor.b, 1f);
             CurrentCoroutine = StartCoroutine(ChangeCharacter(id));
         }
 
@@ -161,11 +175,13 @@ namespace Puzzle.Tutorial.P1
             while (c_parameter < 0.99f)
             {
                 characters[id].Find("Image").GetComponent<Image>().color = Color.Lerp(_initialColor, _targetColor, c_parameter);
+                buttonImages[id].color = Color.Lerp(b_initialColor, b_targetColor, c_parameter);
                 c_parameter += Time.deltaTime * 1.5f;
 
                 yield return new WaitForFixedUpdate();
             }
             characters[id].Find("Image").GetComponent<Image>().color = _targetColor;
+            buttonImages[id].color = b_targetColor;
             characters[id].GetComponent<ButtonExtension>().interactable = true;
 
             CurrentCoroutine = null;
@@ -208,6 +224,39 @@ namespace Puzzle.Tutorial.P1
             Scopes.alpha = 1;
 
             CurrentCoroutine = null;
+        }
+        public void setStage(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    stage = 0;
+                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
+                    Puzzle.PatternUpdateAll();
+                    break;
+                case 1:
+                    stage = 0;
+                    transform.Find("CoverPicture").gameObject.SetActive(false);
+                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
+                    Puzzle.PatternUpdateAll();
+                    NextStage();
+                    break;
+                case 2:
+                    stage = 1;
+                    transform.Find("CoverPicture").gameObject.SetActive(false);
+                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Triangle, patternType.Square };
+                    Puzzle.PatternUpdateAll();
+                    Stage1Correct();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void OnDestroy()
+        {
+            Puzzle.S1Correct -= this.Stage1Correct;
+            Puzzle.Show -= this.ShowCharacter;
+            Puzzle.Hide -= this.HideCharacter;
         }
     }
 }

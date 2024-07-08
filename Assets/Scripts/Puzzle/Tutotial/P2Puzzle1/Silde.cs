@@ -41,7 +41,7 @@ namespace Puzzle.Tutorial.P2
                     Input.mousePosition.y, 1f)) + m_Offset;
                 res = new Vector3(Mathf.Clamp(res.x, LeftMost, RightMost), _init_pos.y, _init_pos.z);
 
-                transform.position = res;
+                if (!Puzzle.solved) transform.position = res;
                 yield return new WaitForFixedUpdate();
             }
         }

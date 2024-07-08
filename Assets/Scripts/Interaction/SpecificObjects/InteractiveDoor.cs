@@ -41,6 +41,7 @@ public class InteractiveDoor: InteractiveObject
     {
         GameObject.Find("TempPlayer").GetComponent<PlayerController>().EnableGroundCheck = false;
         room.SetActive(false);
+        LightController.LightController.Instance.UpdateLights();
     }
     public void SetCameraMinX(int range)
     {

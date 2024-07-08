@@ -55,7 +55,7 @@ namespace LightController
             }
             catch (Exception)
             {
-                Debug.Log("Illegal Light Setting in " + SceneManager.GetActiveScene().name + ":\n");
+                Debug.Log("Illegal Light Setting in " + SceneManager.GetActiveScene().name + "\n");
             }
         }
     }

@@ -203,7 +203,8 @@ Shader "Universal Render Pipeline/2D/Sprite-Lit-Default"
                     
                     //half _ExposureLimit = 1;                    
                     finalOutput = tanh(_HDREmulationScale * (m_color * finalModulate + finalAdditve));
-                    finalOutput = pow(finalOutput, 1.4);
+                    half tempGamma = lerp(0.85,1.4,max(max(finalOutput.r,finalOutput.g),finalOutput.b));
+                    finalOutput = pow(finalOutput, tempGamma);
                 #endif
                 finalOutput.a = m_alpha;
                 finalOutput = lerp(m_color, finalOutput, _UseSceneLighting);

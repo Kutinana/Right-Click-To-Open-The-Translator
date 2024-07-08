@@ -53,6 +53,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""97e4c30c-dfa7-4815-a145-2ffa20182c33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DragMap"",
+                    ""type"": ""Value"",
+                    ""id"": ""6447bdce-ae8e-41ac-a36f-773a8cfaa4a1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b58328d2-e369-4e15-88aa-2cc0b2f28ce8"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""157d7b36-f7cd-45ce-a3ab-6183d147431b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +183,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
         m_GamePlay_Running = m_GamePlay.FindAction("Running", throwIfNotFound: true);
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
+        m_GamePlay_Map = m_GamePlay.FindAction("Map", throwIfNotFound: true);
+        m_GamePlay_DragMap = m_GamePlay.FindAction("DragMap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +249,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Move;
     private readonly InputAction m_GamePlay_Running;
     private readonly InputAction m_GamePlay_Interact;
+    private readonly InputAction m_GamePlay_Map;
+    private readonly InputAction m_GamePlay_DragMap;
     public struct GamePlayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -214,6 +258,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
         public InputAction @Running => m_Wrapper.m_GamePlay_Running;
         public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
+        public InputAction @Map => m_Wrapper.m_GamePlay_Map;
+        public InputAction @DragMap => m_Wrapper.m_GamePlay_DragMap;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +278,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
+            @DragMap.started += instance.OnDragMap;
+            @DragMap.performed += instance.OnDragMap;
+            @DragMap.canceled += instance.OnDragMap;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -245,6 +297,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
+            @DragMap.started -= instance.OnDragMap;
+            @DragMap.performed -= instance.OnDragMap;
+            @DragMap.canceled -= instance.OnDragMap;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -267,5 +325,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
+        void OnDragMap(InputAction.CallbackContext context);
     }
 }

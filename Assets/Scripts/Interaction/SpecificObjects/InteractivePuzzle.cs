@@ -3,9 +3,12 @@ using Hint;
 using Puzzle;
 using QFramework;
 using System;
+using System.Collections;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class InteractivePuzzle: InteractiveObject
 {
@@ -14,6 +17,8 @@ public class InteractivePuzzle: InteractiveObject
     private int animatorHash;
     public string animationName;
     public bool setActivable = true;
+
+    float parameter = 0f;
 
     public override void Init()
     {
@@ -25,7 +30,7 @@ public class InteractivePuzzle: InteractiveObject
     {
         base.LoadConfig();
         itemType = itemConfig.itemType;
-        this.animatorHash = Animator.StringToHash(animationName);
+        if(animationName != "") this.animatorHash = Animator.StringToHash(animationName);
 
         if (animator != null) animator.enabled = false;
     }
@@ -103,5 +108,39 @@ public class InteractivePuzzle: InteractiveObject
         Color color = GameObject.Find(hint).GetComponent<SpriteRenderer>().color;
         GameObject.Find(hint).GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 1);
         GameObject.Find(hint).GetComponent<InteractivePuzzle>().SetActivable(true);
+    }
+    public void turnOnLight(Transform Light)
+    {
+        parameter = 0f;
+        Light2D light2D = Light.GetComponent<Light2D>();
+        StartCoroutine(TurnOnLight(light2D));
+    }
+    private IEnumerator TurnOnLight(Light2D Light)
+    {
+        Light.intensity = 1;
+        yield return new WaitForSeconds(0.3f);
+        Light.intensity = 0;
+        yield return new WaitForSeconds(0.5f);
+
+        Light.intensity = 1;
+        yield return new WaitForSeconds(0.2f);
+        Light.intensity = 0;
+        yield return new WaitForSeconds(0.2f);
+        Light.intensity = 1;
+        yield return new WaitForSeconds(0.2f);
+        Light.intensity = 0;
+        yield return new WaitForSeconds(0.5f);
+
+        while (parameter < 0.99f)
+        {
+            Light.intensity = Mathf.Lerp(0, 1, parameter);
+            parameter += Time.deltaTime * 1.5f;
+        }
+        Light.intensity = 1f;
+    }
+
+    public void OpenDoor(Transform door)
+    {
+        door.GetComponent<InteractiveDoor>().SetActivable(true);
     }
 }

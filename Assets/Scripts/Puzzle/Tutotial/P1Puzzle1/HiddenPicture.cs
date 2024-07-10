@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 namespace Puzzle.Tutorial.P1
 {
-    public class HiddenPicture: MonoBehaviour
+    public class HiddenPicture : MonoBehaviour
     {
         Button Left;
         Button Middle;
@@ -39,15 +39,27 @@ namespace Puzzle.Tutorial.P1
             CoverPicture = transform.Find("CoverPicture");
             CoverCollider = transform.GetComponent<Collider2D>();
             Scopes = transform.Find("Hidden/Scopes").GetComponent<CanvasGroup>();
-            
+
             Left = transform.Find("Hidden/Buttons/Left").GetComponent<Button>();
-            Left.onClick.AddListener(() => Puzzle.PatternUpdate(0, Left.transform));
-    
+            Left.onClick.AddListener(() =>
+            {
+                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                Puzzle.PatternUpdate(0, Left.transform);
+            });
+
             Middle = transform.Find("Hidden/Buttons/Middle").GetComponent<Button>();
-            Middle.onClick.AddListener(() => Puzzle.PatternUpdate(1, Middle.transform));
-    
+            Middle.onClick.AddListener(() =>
+            {
+                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                Puzzle.PatternUpdate(1, Middle.transform);
+            });
+
             Right = transform.Find("Hidden/Buttons/Right").GetComponent<Button>();
-            Right.onClick.AddListener(() => Puzzle.PatternUpdate(2, Right.transform));
+            Right.onClick.AddListener(() =>
+            {
+                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                Puzzle.PatternUpdate(2, Right.transform);
+            });
 
             characters = new List<Transform>()
             {
@@ -55,7 +67,7 @@ namespace Puzzle.Tutorial.P1
                 transform.Find("Hidden/Characters/Middle"),
                 transform.Find("Hidden/Characters/Right")
             };
-            buttonImages = new List<Image>() 
+            buttonImages = new List<Image>()
             {
                 transform.Find("Hidden/Buttons/Left/Image").GetComponent<Image>(),
                 transform.Find("Hidden/Buttons/Middle/Image").GetComponent<Image>(),
@@ -133,6 +145,7 @@ namespace Puzzle.Tutorial.P1
 
                 if (res.y > 1)
                 {
+                    AudioKit.PlaySound("PaintingMoving", volumeScale: 1.2f);
                     CurrentCoroutine = StartCoroutine(MoveToCoroutine());
                     yield break;
                 }

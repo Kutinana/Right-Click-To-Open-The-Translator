@@ -23,19 +23,18 @@ namespace Puzzle.Tutorial.P1
         public static Puzzle Instance;
 
         private Button backButton;
-
-        public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle};
+        public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
         public List<Transform> CorrectPosY;
         public const float ERROR = 0.3f;
-        public static List<float> Scopes = new List<float>() { 0, 0, 0};
+        public static List<float> Scopes = new List<float>() { 0, 0, 0 };
         public List<Sprite> CTS;
         public static List<Transform> m_scope;
         private Coroutine CurrentCoroutine = null;
         public static bool enable = true;
         private CanvasGroup tutorialCanvasGroup;
         private static bool CORRECT => Patterns[0] == patternType.Circle && Patterns[1] == patternType.Triangle && Patterns[2] == patternType.Square;
-        private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - Instance.CorrectPosY[0].position.y) <= ERROR 
-            && Mathf.Abs(Scopes[1] - Instance.CorrectPosY[1].position.y) <= ERROR 
+        private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - Instance.CorrectPosY[0].position.y) <= ERROR
+            && Mathf.Abs(Scopes[1] - Instance.CorrectPosY[1].position.y) <= ERROR
             && Mathf.Abs(Scopes[2] - Instance.CorrectPosY[2].position.y) <= ERROR;
 
         public static bool holding_scope = false;
@@ -48,7 +47,6 @@ namespace Puzzle.Tutorial.P1
         private void Awake()
         {
             Instance = this;
-
             tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
         }
 
@@ -70,7 +68,10 @@ namespace Puzzle.Tutorial.P1
                 default:
                     break;
             }
-            if (CORRECT) S1Correct.Invoke();
+            if (CORRECT)
+            {
+                S1Correct.Invoke();
+            }
         }
 
         public static void PatternUpdateAll()
@@ -108,8 +109,11 @@ namespace Puzzle.Tutorial.P1
                         break;
                 }
             }
-            
-            if (CORRECT) S1Correct.Invoke();
+
+            if (CORRECT)
+            {
+                S1Correct.Invoke();
+            }
         }
 
         public static void UpdateScopeState(int id, Vector3 pos)
@@ -123,7 +127,7 @@ namespace Puzzle.Tutorial.P1
             {
                 Hide(Instance, id);
             }
-            if (SCOPE_CORRECT && enable) 
+            if (SCOPE_CORRECT && enable)
             {
                 enable = false;
             }
@@ -144,7 +148,6 @@ namespace Puzzle.Tutorial.P1
 
         public override void OnEnter()
         {
-            
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
                 transform.Find("Answer").gameObject.SetActive(true);
@@ -174,7 +177,8 @@ namespace Puzzle.Tutorial.P1
             }
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
-            backButton.onClick.AddListener(() => {
+            backButton.onClick.AddListener(() =>
+            {
                 PuzzleManager.Exit();
             });
         }

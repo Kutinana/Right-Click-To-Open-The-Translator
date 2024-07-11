@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+
 namespace UnityEngine.Rendering.Universal
 {
     public class AdditionPostProcessPass : ScriptableRenderPass
@@ -24,12 +26,13 @@ namespace UnityEngine.Rendering.Universal
         {
             // 初始化主纹理
             this.m_scriptableRenderer = renderer;
-        }
-        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
-        {
             var stack = VolumeManager.instance.stack;
             // 从堆栈中查找对应的属性参数组件
             m_BlitInfoStruct = stack.GetComponent<Blit>();
+            if(!m_BlitInfoStruct.materialParameter.value.IsUnityNull()) this.m_Material = m_BlitInfoStruct.materialParameter.value;
+        }
+        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
+        {
             this.m_ColorAttachment = m_scriptableRenderer.cameraColorTarget;
             // 从命令缓冲区池中获取一个带标签的命令缓冲区，该标签名可以在后续帧调试器中见到
             var cmd = CommandBufferPool.Get(CommandBufferTag);

@@ -19,7 +19,7 @@ namespace Puzzle.InEnergy.WeighBeaker
         public BottleType Type;
 
         public Collider2D col;
-
+        public bool IsOnBalance = false;
         
         Vector3 m_Offset;
         Vector3 m_TargetScreenVec;
@@ -32,6 +32,7 @@ namespace Puzzle.InEnergy.WeighBeaker
         private IEnumerator OnMouseDown()
         {
             col.enabled = false;
+            Puzzle.Instance.HoldingBottle = this;
 
             AudioKit.PlaySound("ItemUp");
 
@@ -49,10 +50,17 @@ namespace Puzzle.InEnergy.WeighBeaker
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log($"{other.name}");
+        }
+
         private void OnMouseUp()
         {
             transform.localPosition = Vector3.zero;
             col.enabled = true;
+
+            Puzzle.Instance.HoldingBottle = null;
         }
     }
 }

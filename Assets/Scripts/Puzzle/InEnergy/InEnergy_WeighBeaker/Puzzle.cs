@@ -14,6 +14,8 @@ namespace Puzzle.InEnergy.WeighBeaker
     {
         public static Puzzle Instance;
 
+        public Bottle HoldingBottle = null;
+
         private Button backButton;
         private Coroutine CurrentCoroutine = null;
 

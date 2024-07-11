@@ -10,11 +10,20 @@ using UnityEngine.UI;
 
 namespace Puzzle.InEnergy.WeighBeaker
 {
+    public enum InteractTarget
+    {
+        None,
+        Tank,
+        Balance,
+        Tap
+    }
+
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
 
         public Bottle HoldingBottle = null;
+        public InteractTarget Target = InteractTarget.None;
 
         private Button backButton;
         private Coroutine CurrentCoroutine = null;

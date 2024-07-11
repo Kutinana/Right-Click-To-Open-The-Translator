@@ -50,11 +50,6 @@ namespace Puzzle.InEnergy.WeighBeaker
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            Debug.Log($"{other.name}");
-        }
-
         private void OnMouseUp()
         {
             transform.localPosition = Vector3.zero;

@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Overture_Bottle
   Prefab: {fileID: 9065703008839568946, guid: 6c11046804108e5429e2c7ccc9700d6c, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 752999654c31ebb4a975ae23ce03678c, type: 3}
+  Thumbnail:
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: b9798c10aadb5474bbc1d494a7a27486, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: d70e95b9703e94542aecec0148d1d6d2, type: 3}
   Name: "\u74F6\u5B50\u8C1C\u9898"
   Description: "\u4E09\u4E2A\u4E0D\u540C\u5F62\u72B6\u7684\u70E7\u74F6\u6392\u5217"

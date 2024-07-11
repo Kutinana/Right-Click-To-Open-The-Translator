@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Kuchinashi;
 using UnityEngine;
 
 namespace DataSystem
@@ -18,7 +19,7 @@ namespace DataSystem
 
         public abstract PuzzleType Type { get; }
         public GameObject Prefab;
-        public Sprite Thumbnail;
+        public SerializableDictionary<PuzzleProgress, Sprite> Thumbnail;
         public string Name;
         [Multiline] public string Description;
     }

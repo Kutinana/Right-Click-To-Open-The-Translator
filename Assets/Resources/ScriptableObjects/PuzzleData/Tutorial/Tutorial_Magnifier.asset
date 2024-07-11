@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Tutorial_Magnifier
   Prefab: {fileID: 4069717917402197258, guid: 1cf694cfed3b8814d826a8e027ff5045, type: 3}
-  Thumbnail: {fileID: 21300000, guid: cd9cff2fa4f5a2542866ab6bd913da96, type: 3}
+  Thumbnail:
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: 64cfe0e8d52d087499ba43d57dca46d8, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: 2c768bac70215e4408714316778a89c8, type: 3}
   Name: "\u672A\u547D\u540D"
   Description: 

@@ -8,22 +8,13 @@ using Translator;
 using UnityEngine.UI;
 using Kuchinashi;
 using TMPro;
+using System.Linq;
 
 namespace Dictionary
 {
-    public enum States
-    {
-        Home,
-        PuzzleList,
-        Puzzle
-    }
-
     public class DictionarySM : MonoBehaviour , ISingleton
     {
         public static DictionarySM Instance => SingletonProperty<DictionarySM>.Instance;
-        public static FSM<States> StateMachine => Instance.stateMachine;
-
-        private FSM<States> stateMachine = new FSM<States>();
 
         public GameObject CharacterPrefab;
         public GameObject PuzzlePrefab;
@@ -54,23 +45,24 @@ namespace Dictionary
             backToCharacterListBtn = puzzleCanvasGroup.transform.Find("Back").GetComponent<Button>();
             backToCharacterListBtn.onClick.AddListener(() =>
             {
-                stateMachine.ChangeState(States.Home);
+                if (CurrentCoroutine != null) StopCoroutine(CurrentCoroutine);
+
+                CurrentCoroutine = StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(puzzleCanvasGroup, 0f, 0.1f));
             });
 
             TypeEventSystem.Global.Register<OnCharacterDataUpdateEvent>(e => {
+                if (CurrentCoroutine != null) StopCoroutine(CurrentCoroutine);
+
                 CurrentCharacterData = e.Data;
-                StartCoroutine(ShowCharacterDetailCoroutine());
+                CurrentCoroutine = StartCoroutine(ShowCharacterDetailCoroutine());
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<CallForPuzzleEvent>(e => {
-                puzzleCanvasGroup.transform.Find("Image").GetComponent<Image>().sprite = e.Data.Thumbnail;
-                stateMachine.ChangeState(States.Puzzle);
+                if (CurrentCoroutine != null) StopCoroutine(CurrentCoroutine);
+
+                puzzleCanvasGroup.transform.Find("Image").GetComponent<Image>().sprite = e.Sprite;
+                CurrentCoroutine = StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(puzzleCanvasGroup, 1f, 0.1f));
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            stateMachine.AddState(States.Home, new HomeState(stateMachine, this));
-            stateMachine.AddState(States.Puzzle, new PuzzleState(stateMachine, this));
-
-            stateMachine.StartState(States.Home);
         }
 
         public void GenerateCharacterList()
@@ -115,42 +107,6 @@ namespace Dictionary
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 1f, 0.2f);
         }
     }
-    
-    public class HomeState : AbstractState<States, DictionarySM>
-    {
-        public HomeState(FSM<States> fsm, DictionarySM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Home;
-
-        protected override void OnEnter()
-        {
-            mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnEnterCoroutine());
-        }
-
-        protected override void OnUpdate()
-        {
-        }
-
-        protected override void OnExit()
-        {
-            mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnExitCoroutine());
-        }
-
-        IEnumerator OnEnterCoroutine()
-        {
-            yield return new WaitUntil(() => mTarget.CurrentCoroutine == null);
-            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.characterListCanvasGroup, 1f, 0.1f));
-
-            mTarget.CurrentCoroutine = null;
-        }
-
-        IEnumerator OnExitCoroutine()
-        {
-            yield return new WaitUntil(() => mTarget.CurrentCoroutine == null);
-            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.characterListCanvasGroup, 0f, 0.1f));
-
-            mTarget.CurrentCoroutine = null;
-        }
-    }
 
     public struct OnCharacterDataUpdateEvent {
         public CharacterData Data;
@@ -158,43 +114,7 @@ namespace Dictionary
     }
 
     public struct CallForPuzzleEvent {
-        public PuzzleDataBase Data;
-        public CallForPuzzleEvent(PuzzleDataBase _data) { Data = _data; }
-    }
-
-    public class PuzzleState : AbstractState<States, DictionarySM>
-    {
-        public PuzzleState(FSM<States> fsm, DictionarySM target) : base(fsm, target) {}
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null && mFSM.CurrentStateId != States.Puzzle;
-
-        protected override void OnEnter()
-        {
-            mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnEnterCoroutine());
-        }
-
-        protected override void OnUpdate()
-        {
-        }
-
-        protected override void OnExit()
-        {
-            mTarget.CurrentCoroutine = mTarget.StartCoroutine(OnExitCoroutine());
-        }
-
-        IEnumerator OnEnterCoroutine()
-        {
-            yield return new WaitUntil(() => mTarget.CurrentCoroutine == null);
-            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.puzzleCanvasGroup, 1f, 0.1f));
-
-            mTarget.CurrentCoroutine = null;
-        }
-
-        IEnumerator OnExitCoroutine()
-        {
-            yield return new WaitUntil(() => mTarget.CurrentCoroutine == null);
-            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.puzzleCanvasGroup, 0f, 0.1f));
-
-            mTarget.CurrentCoroutine = null;
-        }
+        public Sprite Sprite;
+        public CallForPuzzleEvent(Sprite _sprite) { Sprite = _sprite; }
     }
 }

@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Overture_Jigsaw
   Prefab: {fileID: 5775849724857332843, guid: 5f64c31579c77084590b1ff6c3e6b2f3, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 478f52ed0f9663148af29e4dba448e8c, type: 3}
+  Thumbnail:
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: edd62f01826670b48a26902de3850289, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: a5987c707c4ed9e42a08b0302b4c2bcf, type: 3}
   Name: "\u534E\u5BB9\u9053"
   Description: "\u5E8F\u7AE0\u5DE6\u623F\u95F4\u534E\u5BB9\u9053\u8C1C\u9898"

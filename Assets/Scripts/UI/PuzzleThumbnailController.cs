@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DataSystem;
 using QFramework;
 using TMPro;
@@ -21,10 +22,14 @@ namespace UI
 
         public void Initialize(PuzzleDataBase data)
         {
-            image.sprite = data.Thumbnail;
+            if (!data.Thumbnail.TryGetValue(GameProgressData.GetPuzzleProgress(data.Id), out var sprite))
+            {
+                sprite = data.Thumbnail.First().Value;
+            }
+            image.sprite = sprite;
 
             button.onClick.AddListener(() => {
-                TypeEventSystem.Global.Send(new Dictionary.CallForPuzzleEvent(data));
+                TypeEventSystem.Global.Send(new Dictionary.CallForPuzzleEvent(sprite));
             });
         }
     }

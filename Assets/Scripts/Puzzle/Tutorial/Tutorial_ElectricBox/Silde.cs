@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Puzzle.Tutorial.P2
 {
-    public class Silde : MonoBehaviour
+    public class Slide : MonoBehaviour
     {
         [Range(0, 2)] public int id;
         public Collider2D col;
@@ -35,7 +35,7 @@ namespace Puzzle.Tutorial.P2
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
                 (Input.mousePosition.x, Input.mousePosition.y, 1f));
 
-            while (Input.GetMouseButton(0))
+            while (Input.GetMouseButton(0) && this.enabled)
             {
                 Vector3 res = TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, 1f)) + m_Offset;

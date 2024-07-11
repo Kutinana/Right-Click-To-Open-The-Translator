@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Overture_Door
   Prefab: {fileID: 5775849724857332843, guid: 87a7c1585c0ef6e40b51625e6321f052, type: 3}
-  Thumbnail: {fileID: 21300000, guid: a24bef54f22fbd6488742bb5aa34a3e4, type: 3}
+  Thumbnail:
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: 8072f46bb7a936a4087435f1aea607ea, type: 3}
   Name: "\u5DE6\u5212\u5F00\u95E8"
   Description: "\u5E8F\u7AE0\u7684\u5927\u95E8"

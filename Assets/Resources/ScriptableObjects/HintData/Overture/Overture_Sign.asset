@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Overture_Sign
   Prefab: {fileID: 5775849724857332843, guid: 231a00fa1f122fa45905e6cdc86e2e42, type: 3}
-  Thumbnail: {fileID: 21300000, guid: fffe384fd428a6c40876569df8856f0e, type: 3}
+  Thumbnail:
+    list:
+    - Key: 2
+      Value: {fileID: 21300000, guid: fffe384fd428a6c40876569df8856f0e, type: 3}
   Name: 
   Description: 

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Overture_Balance
   Prefab: {fileID: 5775849724857332843, guid: fce35a78587a8a7489e462213d059e50, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 03f9cf29bcee64c4bbaa937284e2aa27, type: 3}
+  Thumbnail:
+    list:
+    - Key: 2
+      Value: {fileID: 21300000, guid: 03f9cf29bcee64c4bbaa937284e2aa27, type: 3}
   Name: "\u5929\u5E73"
   Description: "\u5E8F\u7AE0\u5B9E\u9A8C\u5BA4\u5899\u58C1\u4E0A\u7684\u5929\u5E73\u6302\u753B"

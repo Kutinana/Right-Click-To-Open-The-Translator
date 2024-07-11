@@ -33,6 +33,7 @@ namespace Puzzle.Tutorial.P1
         private Coroutine CurrentCoroutine = null;
         private List<Transform> characters;
         private List<Image> buttonImages;
+        private List<Transform> m_scope;
 
         private void Awake()
         {
@@ -73,6 +74,12 @@ namespace Puzzle.Tutorial.P1
                 transform.Find("Hidden/Buttons/Middle/Image").GetComponent<Image>(),
                 transform.Find("Hidden/Buttons/Right/Image").GetComponent<Image>()
             };
+            m_scope = new List<Transform>()
+            {
+                transform.Find("Hidden/Scopes/Scope1"),
+                transform.Find("Hidden/Scopes/Scope2"),
+                transform.Find("Hidden/Scopes/Scope3")
+            };
 
             Puzzle.S1Correct += this.Stage1Correct;
 
@@ -108,6 +115,10 @@ namespace Puzzle.Tutorial.P1
                     Buttons = transform.Find("Hidden/Buttons").GetComponent<CanvasGroup>();
                     //Buttons.alpha = 0;
                     Buttons.blocksRaycasts = false;
+                    foreach (var scope in m_scope)
+                    {
+                        scope.gameObject.SetActive(true);
+                    }
                     stage++;
                     break;
                 case 2:
@@ -121,7 +132,7 @@ namespace Puzzle.Tutorial.P1
         {
             Debug.Log(transform.name);
             _initialPosition = transform.Find("Hidden/Scopes").localPosition;
-            _targetPosition = new Vector3(_initialPosition.x, _initialPosition.y + 300, _initialPosition.z);
+            _targetPosition = new Vector3(_initialPosition.x, _initialPosition.y + 200, _initialPosition.z);
             CurrentCoroutine = StartCoroutine(PopScopes());
             NextStage();
         }
@@ -138,7 +149,7 @@ namespace Puzzle.Tutorial.P1
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
                 (Input.mousePosition.x, Input.mousePosition.y, 1f));
 
-            while (Input.GetMouseButton(0) && stage == 0)
+            while (Input.GetMouseButton(0) && stage == 0 && this.enabled)
             {
                 Vector3 res = TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, 1f)) + m_Offset;
@@ -171,6 +182,7 @@ namespace Puzzle.Tutorial.P1
             _targetColor = new Color(_initialColor.r, _initialColor.g, _initialColor.b, 1f);
             b_initialColor = buttonImages[id].color;
             b_targetColor = new Color(b_initialColor.r, b_initialColor.g, b_initialColor.b, 0f);
+            characters[id].GetComponent<ButtonExtension>().enabled = true;
             CurrentCoroutine = StartCoroutine(ChangeCharacter(id));
         }
         private void HideCharacter(object sender, int id)
@@ -180,6 +192,7 @@ namespace Puzzle.Tutorial.P1
             _targetColor = new Color(_initialColor.r, _initialColor.g, _initialColor.b, 0f);
             b_initialColor = buttonImages[id].color;
             b_targetColor = new Color(b_initialColor.r, b_initialColor.g, b_initialColor.b, 1f);
+            characters[id].GetComponent<ButtonExtension>().enabled = false;
             CurrentCoroutine = StartCoroutine(ChangeCharacter(id));
         }
 
@@ -230,7 +243,7 @@ namespace Puzzle.Tutorial.P1
             {
                 Scopes.alpha = Mathf.Lerp(0, 1, parameter);
                 Scopes.transform.localPosition = Vector3.Lerp(_initialPosition, _targetPosition, parameter);
-                parameter += Time.deltaTime * 0.6f;
+                parameter += Time.deltaTime * 1.5f;
 
                 yield return new WaitForFixedUpdate();
             }
@@ -244,6 +257,14 @@ namespace Puzzle.Tutorial.P1
             {
                 case 0:
                     stage = 0;
+                    foreach (var character in characters)
+                    {
+                        character.GetComponent<ButtonExtension>().enabled = false;
+                    }
+                    foreach (var scope in m_scope)
+                    {
+                        scope.gameObject.SetActive(false);
+                    }
                     Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
                     Puzzle.PatternUpdateAll();
                     break;

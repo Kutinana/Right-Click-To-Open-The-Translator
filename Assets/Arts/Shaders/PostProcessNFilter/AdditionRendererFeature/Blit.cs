@@ -10,7 +10,11 @@ namespace UnityEngine.Rendering.Universal
     {
         // 在框架下的属性与Unity常规属性不一样，例如 Int 由 ClampedIntParameter 取代。
         public ClampedFloatParameter Intensity = new ClampedFloatParameter(0f, 0, 1);
+        [HideInInspector] public MaterialParameter materialParameter = new MaterialParameter(null);
 
+        private void Awake() {
+            
+        }
         // 实现接口
         public bool IsActive()
         {

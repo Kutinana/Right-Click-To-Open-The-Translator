@@ -6801,7 +6801,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1884178668}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.67460966
+  m_Size: 0.6749413
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8959,7 +8959,7 @@ Camera:
   m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -9006,7 +9006,7 @@ MonoBehaviour:
   m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
@@ -17582,7 +17582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -480.00003, y: 270}
+  m_AnchoredPosition: {x: -480, y: 270}
   m_SizeDelta: {x: -960, y: -540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2056855483

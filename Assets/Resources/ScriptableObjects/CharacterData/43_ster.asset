@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 43_ster
   m_EditorClassIdentifier: 
-  Id: ster
+  id: ster
   Sprite: {fileID: 21300000, guid: ed5bc170d7ed39d4c83f21166f854dcf, type: 3}
   Description: "\u6B7B\u4EA1\uFF0C\u672B\u65E5\uFF0C\u6BC1\u706D"
+  RelatedPuzzles: []

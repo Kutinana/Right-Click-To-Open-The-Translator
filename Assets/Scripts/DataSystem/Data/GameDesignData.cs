@@ -6,34 +6,40 @@ namespace DataSystem
 {
     public class GameDesignData
     {
-        public static Dictionary<string, CharacterData> CharacterDataDic
+        internal static Dictionary<string, CharacterData> CharacterDataDic
         {
-            get => _characterDataDic ??= GenerateCharacterDataDictionary();
+            get => _characterDataDic ??= GenerateDataDictionary<CharacterData>("ScriptableObjects/CharacterData");
             set => _characterDataDic = value;
         }
         private static Dictionary<string, CharacterData> _characterDataDic;
-        public static CharacterData GetCharacterDataById(string id) => CharacterDataDic[id];
+        public static CharacterData GetCharacterDataById(string id) => CharacterDataDic.TryGetValue(id, out var value) ? value : null;
 
-        private static Dictionary<string, CharacterData> GenerateCharacterDataDictionary()
+        internal static Dictionary<string, PuzzleData> PuzzleDataDic
         {
-            var characters = Resources.LoadAll<CharacterData>("ScriptableObjects/CharacterData");
-            var dic = new Dictionary<string, CharacterData>();
+            get => _puzzleDataDic ??= GenerateDataDictionary<PuzzleData>("ScriptableObjects/PuzzleData");
+            set => _puzzleDataDic = value;
+        }
+        private static Dictionary<string, PuzzleData> _puzzleDataDic;
+        public static PuzzleData GetPuzzleDataById(string id) => PuzzleDataDic.TryGetValue(id, out var value) ? value : null;
 
-            foreach (var character in characters)
+        internal static Dictionary<string, HintData> HintDataDic
+        {
+            get => _hintDataDic ??= GenerateDataDictionary<HintData>("ScriptableObjects/HintData");
+            set => _hintDataDic = value;
+        }
+        private static Dictionary<string, HintData> _hintDataDic;
+        public static HintData GetHintDataById(string id) => HintDataDic.TryGetValue(id, out var value) ? value : null;
+
+        private static Dictionary<string, T> GenerateDataDictionary<T>(string _path) where T : ScriptableObject, IHaveId
+        {
+            var data = Resources.LoadAll<T>(_path);
+            var dic = new Dictionary<string, T>();
+
+            foreach (var item in data)
             {
-                dic[character.Id] = character;
+                dic[item.Id] = item;
             }
             return dic;
-        }
-
-        public static PuzzleData GetPuzzleDataById(string id)
-        {
-            return Resources.Load<PuzzleData>("ScriptableObjects/PuzzleData/" + id);
-        }
-
-        public static HintData GetHintDataById(string id)
-        {
-            return Resources.Load<HintData>("ScriptableObjects/HintData/" + id);
         }
     }
 

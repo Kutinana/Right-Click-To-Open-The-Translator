@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: P2Puzzle1
+  m_Name: InEnergy_WeighBeaker
   m_EditorClassIdentifier: 
-  Id: P2Puzzle1
-  Prefab: {fileID: 136290846467207525, guid: bd77b703baf0e5c46b5624c16d4d5303, type: 3}
-  Thumbnail: {fileID: 21300000, guid: d12c627f1f4807945bb6b0d338010da6, type: 3}
-  Name: "\u672A\u547D\u540D"
-  Description: 
+  id: InEnergy_WeighBeaker
+  Prefab: {fileID: 9065703008839568946, guid: e3e76fc6b4c90ab45bc12641974ea15d, type: 3}
+  Thumbnail: {fileID: 21300000, guid: b64f074b3822cfe4d83426d57b513ef0, type: 3}
+  Name: "\u70E7\u676F\u79F0\u91CD"
+  Description: "\u5229\u7528\u79F0\u91CF\u5012\u6C34\u7ECF\u5178\u5C0F\u6E38\u620F\u4E86\u89E3\u8FDB\u5236"

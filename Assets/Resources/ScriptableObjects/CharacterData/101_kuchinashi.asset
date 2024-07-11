@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 101_kuchinashi
   m_EditorClassIdentifier: 
-  Id: kuchinashi
+  id: kuchinashi
   Sprite: {fileID: 21300000, guid: c6620798a6c96e048b21f8759150a668, type: 3}
   Description: "\u661F\u5DDD\u6800\u5B50"
   RelatedPuzzles: []

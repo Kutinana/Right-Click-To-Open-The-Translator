@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 40_eot
   m_EditorClassIdentifier: 
-  Id: eot
+  id: eot
   Sprite: {fileID: 21300000, guid: da2546c596d5bd14bb24a12225613a6f, type: 3}
   Description: "\u60C5\u611F\uFF0C\u7F8E"
+  RelatedPuzzles: []

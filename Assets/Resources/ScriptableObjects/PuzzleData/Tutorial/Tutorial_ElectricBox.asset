@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: Overture_Bottle
+  m_Name: Tutorial_ElectricBox
   m_EditorClassIdentifier: 
-  Id: Overture_Bottle
-  Prefab: {fileID: 9065703008839568946, guid: 6c11046804108e5429e2c7ccc9700d6c, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 752999654c31ebb4a975ae23ce03678c, type: 3}
-  Name: "\u74F6\u5B50\u8C1C\u9898"
-  Description: "\u4E09\u4E2A\u4E0D\u540C\u5F62\u72B6\u7684\u70E7\u74F6\u6392\u5217"
+  id: Tutorial_ElectricBox
+  Prefab: {fileID: 136290846467207525, guid: bd77b703baf0e5c46b5624c16d4d5303, type: 3}
+  Thumbnail: {fileID: 21300000, guid: d12c627f1f4807945bb6b0d338010da6, type: 3}
+  Name: "\u672A\u547D\u540D"
+  Description: 

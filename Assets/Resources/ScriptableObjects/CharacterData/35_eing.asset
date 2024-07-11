@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 35_eing
   m_EditorClassIdentifier: 
-  Id: eing
+  id: eing
   Sprite: {fileID: 21300000, guid: e24ff81db3c6ad54186a9309fff12d6c, type: 3}
   Description: "\u8FDB\u5165"
+  RelatedPuzzles: []

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 36_sona
   m_EditorClassIdentifier: 
-  Id: sona
+  id: sona
   Sprite: {fileID: 21300000, guid: 5a43e258c701cfb4ea56ef36498e5f47, type: 3}
   Description: "\u77E5\u9053\uFF0C\u77E5\u8BC6"
+  RelatedPuzzles: []

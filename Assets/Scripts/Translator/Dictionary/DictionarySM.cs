@@ -84,6 +84,8 @@ namespace Dictionary
             if (UserDictionary.IsEmpty()) return;
             foreach (var c in UserDictionary.GetDictionary())
             {
+                if (string.IsNullOrEmpty(c.Key)) continue;
+
                 var go = Instantiate(CharacterPrefab, parent);
                 go.GetComponent<DictionaryCharacterController>().Initialize(GameDesignData.GetCharacterDataById(c.Key), isInteractable: TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off, isBlack: true);
             }

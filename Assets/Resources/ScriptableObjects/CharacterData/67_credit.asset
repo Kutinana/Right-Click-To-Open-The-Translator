@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 67_credit
   m_EditorClassIdentifier: 
-  Id: credit
+  id: credit
   Sprite: {fileID: 21300000, guid: 904a33074c1235a469ba7a03fc95e75d, type: 3}
   Description: "\u5236\u4F5C\u7EC4"
   RelatedPuzzles: []
-  RelatedHints: []

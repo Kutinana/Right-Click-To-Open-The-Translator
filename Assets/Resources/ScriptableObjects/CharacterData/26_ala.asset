@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 26_ala
   m_EditorClassIdentifier: 
-  Id: ala
+  id: ala
   Sprite: {fileID: 21300000, guid: 88d8bffc437538d4191f958e2575eda5, type: 3}
   Description: "\u5426\u5B9A\uFF0C0"
   RelatedPuzzles:

@@ -11,9 +11,11 @@ namespace DataSystem
         Dialog
     }
 
-    public abstract class PuzzleDataBase : ScriptableObject
+    public abstract class PuzzleDataBase : ScriptableObject, IHaveId
     {
-        public string Id;
+        [SerializeField] private string id;
+        public string Id => id;
+
         public abstract PuzzleType Type { get; }
         public GameObject Prefab;
         public Sprite Thumbnail;
@@ -25,5 +27,10 @@ namespace DataSystem
     public class PuzzleData : PuzzleDataBase
     {
         public override PuzzleType Type => PuzzleType.Puzzle;
+    }
+
+    public interface IHaveId
+    {
+        string Id { get; }
     }
 }

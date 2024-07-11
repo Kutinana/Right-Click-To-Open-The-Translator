@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 106_hidden_blade
   m_EditorClassIdentifier: 
-  Id: hidden_blade
+  id: hidden_blade
   Sprite: {fileID: 21300000, guid: 68c4ce39102fc304a9dfd76392da5933, type: 3}
   Description: hidden_blade
   RelatedPuzzles: []

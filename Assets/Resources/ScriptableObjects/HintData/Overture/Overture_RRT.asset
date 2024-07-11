@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8d689603df23ad4093871f17507dd82, type: 3}
-  m_Name: Overture_Sign
+  m_Name: Overture_RRT
   m_EditorClassIdentifier: 
-  Id: Overture_Sign
-  Prefab: {fileID: 5775849724857332843, guid: 231a00fa1f122fa45905e6cdc86e2e42, type: 3}
-  Thumbnail: {fileID: 21300000, guid: fffe384fd428a6c40876569df8856f0e, type: 3}
-  Name: 
-  Description: 
+  id: Overture_RRT
+  Prefab: {fileID: 5775849724857332843, guid: c59da6ba57c6e3648aa54a8836c66093, type: 3}
+  Thumbnail: {fileID: 21300000, guid: a3c323fb6a2cfab48a25e670ad70dbe8, type: 3}
+  Name: "\u5706\u65B9\u4E09\u89D2"
+  Description: "\u5E8F\u7AE0\u5DE6\u623F\u95F4\u5706\u65B9\u4E09\u89D2\u6302\u753B"

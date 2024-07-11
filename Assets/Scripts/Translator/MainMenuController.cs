@@ -66,6 +66,13 @@ namespace Translator
             mCreditBtn.onClick.AddListener(() => {
                 AudioMng.PlayBtnPressed(0);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCreditPanel, 1f, 0.2f));
+
+                List<string> ids = new List<string>();
+                foreach (var c in mCreditPanel.GetComponentsInChildren<Character>(includeInactive: true))
+                {
+                    ids.Add(c.data.Id);
+                }
+                UserDictionary.Unlock(ids);
             });
             mCreditPanelBtn.onClick.AddListener(() => {
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCreditPanel, 0f, 0.2f));
@@ -79,11 +86,8 @@ namespace Translator
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             ToggleInteractability(TranslatorSM.StateMachine.CurrentStateId == States.Off);
-            List<string> ids = new List<string>();
-            foreach (var c in GetComponentsInChildren<Character>(includeInactive: true))
-            {
-                ids.Add(c.data.Id);
-            }
+
+            List<string> ids = new List<string>() {"quit", "settings", "credit"};
             UserDictionary.Unlock(ids);
         }
 

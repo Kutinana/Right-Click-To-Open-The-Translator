@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 100_tsunami
   m_EditorClassIdentifier: 
-  Id: tsunami
+  id: tsunami
   Sprite: {fileID: 21300000, guid: 91090b3cf7f961f4485595c899822e61, type: 3}
   Description: "\u67D0\u4E00\u822C\u901A\u8FC7\u8DEF\u4EBA"
   RelatedPuzzles: []

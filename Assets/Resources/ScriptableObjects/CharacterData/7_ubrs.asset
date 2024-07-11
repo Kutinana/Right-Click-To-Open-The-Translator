@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 7_ubrs
   m_EditorClassIdentifier: 
-  Id: ubrs
+  id: ubrs
   Sprite: {fileID: 21300000, guid: d2c90c22bf466ae4b9c5fa9ab5ab13f1, type: 3}
   Description: "\u7FFB\u8BD1"
+  RelatedPuzzles: []

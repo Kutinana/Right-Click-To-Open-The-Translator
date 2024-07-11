@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 27_wan
   m_EditorClassIdentifier: 
-  Id: wan
+  id: wan
   Sprite: {fileID: 21300000, guid: 6bd5c36e87a047746963543e00b453e1, type: 3}
   Description: "\u80AF\u5B9A\uFF0C1"
+  RelatedPuzzles: []

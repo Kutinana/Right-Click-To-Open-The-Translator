@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: Overture_Jigsaw
+  m_Name: Overture_Bottle
   m_EditorClassIdentifier: 
-  Id: Overture_Jigsaw
-  Prefab: {fileID: 5775849724857332843, guid: 5f64c31579c77084590b1ff6c3e6b2f3, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 478f52ed0f9663148af29e4dba448e8c, type: 3}
-  Name: "\u534E\u5BB9\u9053"
-  Description: "\u5E8F\u7AE0\u5DE6\u623F\u95F4\u534E\u5BB9\u9053\u8C1C\u9898"
+  id: Overture_Bottle
+  Prefab: {fileID: 9065703008839568946, guid: 6c11046804108e5429e2c7ccc9700d6c, type: 3}
+  Thumbnail: {fileID: 21300000, guid: 752999654c31ebb4a975ae23ce03678c, type: 3}
+  Name: "\u74F6\u5B50\u8C1C\u9898"
+  Description: "\u4E09\u4E2A\u4E0D\u540C\u5F62\u72B6\u7684\u70E7\u74F6\u6392\u5217"

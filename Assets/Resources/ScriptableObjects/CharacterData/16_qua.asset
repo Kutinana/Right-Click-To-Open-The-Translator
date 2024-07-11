@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 16_qua
   m_EditorClassIdentifier: 
-  Id: qua
+  id: qua
   Sprite: {fileID: 21300000, guid: e26594e16f8782f42857855fa1fbdc02, type: 3}
   Description: "\u65B9\u5F62\uFF0C4"
   RelatedPuzzles:

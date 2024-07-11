@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 15_run
   m_EditorClassIdentifier: 
-  Id: run
+  id: run
   Sprite: {fileID: 21300000, guid: 515dfc71be31f4a419543dcad6e88e99, type: 3}
   Description: "\u5706\u5F62"
   RelatedPuzzles:

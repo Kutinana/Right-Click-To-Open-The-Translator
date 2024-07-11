@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3741864035613450658}
   - component: {fileID: 4209823545032714831}
   m_Layer: 5
-  m_Name: P2Puzzle1
+  m_Name: Tutorial_ElectricBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94704829eed414b4ca74de119312fcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: P2Puzzle1
+  Id: Tutorial_ElectricBox
   Sildes:
   - {fileID: 5523169530857796038}
   - {fileID: 6349742450895476693}

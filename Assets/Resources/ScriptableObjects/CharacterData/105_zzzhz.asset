@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 105_zzzhz
   m_EditorClassIdentifier: 
-  Id: zzzhz
+  id: zzzhz
   Sprite: {fileID: 21300000, guid: 42f98bdc66f178046b5d44553a2a926b, type: 3}
   Description: zzzhz
   RelatedPuzzles: []

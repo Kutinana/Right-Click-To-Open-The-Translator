@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 60_gluc
   m_EditorClassIdentifier: 
-  Id: gluc
+  id: gluc
   Sprite: {fileID: 21300000, guid: d50add1ede894fc458f2823097772ce5, type: 3}
   Description: "\u5FEB\u4E50"
+  RelatedPuzzles: []

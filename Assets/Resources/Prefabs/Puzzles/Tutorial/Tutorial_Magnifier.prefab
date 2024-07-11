@@ -2454,7 +2454,7 @@ GameObject:
   - component: {fileID: 6114953782922221373}
   - component: {fileID: 6756286083504415850}
   m_Layer: 9
-  m_Name: P1Puzzle1
+  m_Name: Tutorial_Magnifier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2495,7 +2495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fed63ba7cbe4cc4bb2bd165089f4c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: P1Puzzle1
+  Id: Tutorial_Magnifier
   CorrectPosY:
   - {fileID: 2650859427088551144}
   - {fileID: 4701885572210153197}

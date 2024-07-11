@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
   m_Name: 23_rut
   m_EditorClassIdentifier: 
-  Id: rut
+  id: rut
   Sprite: {fileID: 21300000, guid: ff424b60a2af8ce47a2d585ca238a76e, type: 3}
   Description: "\u4E0B"
   RelatedPuzzles:

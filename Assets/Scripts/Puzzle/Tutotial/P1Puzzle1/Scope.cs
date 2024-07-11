@@ -1,4 +1,5 @@
 using Cameras;
+using QFramework;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Puzzle.Tutorial.P1
         float offset;
         Vector3 init_pos;
         Vector3 target_pos;
+        AudioPlayer audioplayer;
         [Range(0, 2)]public int id;
 
         bool holding = false;
@@ -18,6 +20,7 @@ namespace Puzzle.Tutorial.P1
         private IEnumerator OnMouseDown()
         {
             holding = true;
+            if (audioplayer == null) audioplayer = AudioKit.PlaySound("ClockHands", true);
             yield return new WaitForFixedUpdate();
         }
         private void OnMouseOver()
@@ -35,6 +38,8 @@ namespace Puzzle.Tutorial.P1
             if (holding)
             {
                 Puzzle.UpdateScopeState(id, transform.position);
+                if (audioplayer != null) audioplayer.Stop();
+                audioplayer = null;
             }
             holding = false;
         }

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using Kuchinashi;
 using System;
 using Cameras;
+using QFramework;
 
 namespace Puzzle.Tutorial.P1
 {
@@ -28,7 +29,6 @@ namespace Puzzle.Tutorial.P1
         public const float ERROR = 0.3f;
         public static List<float> Scopes = new List<float>() { 0, 0, 0 };
         public List<Sprite> CTS;
-        public static List<Transform> m_scope;
         private Coroutine CurrentCoroutine = null;
         public static bool enable = true;
         private CanvasGroup tutorialCanvasGroup;
@@ -153,7 +153,6 @@ namespace Puzzle.Tutorial.P1
                 transform.Find("Answer").gameObject.SetActive(true);
                 transform.Find("Interactable").gameObject.SetActive(false);
                 transform.Find("Tutorial").gameObject.SetActive(false);
-                //SolvedEvent.Invoke();
             }
             else
             {
@@ -161,16 +160,19 @@ namespace Puzzle.Tutorial.P1
                 {
                     StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
                     GameProgressData.Unlock(this);
+                    transform.Find("Interactable").GetComponent<HiddenPicture>().enabled = false;
 
                     tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
                     {
                         StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
+                        StartCoroutine(WaitTilTutEnd());
                     });
                 }
                 else
                 {
                     transform.Find("Tutorial").gameObject.SetActive(false);
                 }
+                
                 HiddenPicture picture = transform.Find("Interactable").GetComponent<HiddenPicture>();
                 picture.setStage(picture.Stage);
                 CurrentCoroutine = StartCoroutine(CheckPuzzleFinish());
@@ -192,6 +194,17 @@ namespace Puzzle.Tutorial.P1
                 StopCoroutine(CurrentCoroutine);
                 CurrentCoroutine = null;
             }
+        }
+        
+        private IEnumerator WaitTilTutEnd()
+        {
+            yield return new WaitUntil(() =>
+            {
+                return tutorialCanvasGroup.alpha <= 0.01f;
+            });
+
+            transform.Find("Interactable").GetComponent<HiddenPicture>().enabled = true;
+            yield return null;
         }
     }
 }

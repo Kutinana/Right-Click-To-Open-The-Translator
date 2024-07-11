@@ -2,6 +2,7 @@
 using DataSystem;
 using Kuchinashi;
 using Puzzle.Overture.Bottle;
+using Puzzle.Tutorial.P1;
 using System.Collections;
 using System.Collections.Generic;
 using Translator;
@@ -31,8 +32,8 @@ namespace Puzzle.Tutorial.P2
             0, 4, 3
         };
 
-        public static Silde HoldingSilde = null;
-        public List<Silde> Sildes;
+        public static Slide HoldingSilde = null;
+        public List<Slide> m_slides;
         public List<Image> Lights;
         public Sprite LightOn;
         public Sprite LightOff;
@@ -54,8 +55,8 @@ namespace Puzzle.Tutorial.P2
         {
             for (int i = 0; i < 3; i++)
             {
-                Instance.Sildes[i].closestPos = CurrentPosition[i];
-                Instance.Sildes[i].ArrangePosition(var);
+                Instance.m_slides[i].closestPos = CurrentPosition[i];
+                Instance.m_slides[i].ArrangePosition(var);
             }
             if (CurrentPosition[0] == CORRECT[0] && CurrentPosition[1] == CORRECT[1] && CurrentPosition[2] == CORRECT[2]) Instance.Lights[0].sprite = Instance.LightOn;
             else Instance.Lights[0].sprite = Instance.LightOff;
@@ -78,11 +79,16 @@ namespace Puzzle.Tutorial.P2
                 {
                     StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
                     GameProgressData.Unlock(this);
+                    foreach (var slide in m_slides)
+                    {
+                        slide.enabled = false;
+                    }
 
                     tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
                     {
                         StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
                         TranslatorSM.StateMachine.ChangeState(Translator.States.Dictionary);
+                        StartCoroutine(WaitTilTutEnd());
                     });
                 }
                 else
@@ -125,6 +131,20 @@ namespace Puzzle.Tutorial.P2
 
             PuzzleManager.Solved();
             CurrentCoroutine = null;
+        }
+
+        private IEnumerator WaitTilTutEnd()
+        {
+            yield return new WaitUntil(() =>
+            {
+                return tutorialCanvasGroup.alpha <= 0.01f;
+            });
+
+            foreach (var slide in m_slides)
+            {
+                slide.enabled = true;
+            }
+            yield return null;
         }
     }
 }

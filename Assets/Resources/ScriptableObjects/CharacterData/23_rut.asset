@@ -16,5 +16,6 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: ff424b60a2af8ce47a2d585ca238a76e, type: 3}
   Description: "\u4E0B"
   RelatedPuzzles:
+  - {fileID: 11400000, guid: a6f515406b8f2a34d81c770ccaa768a3, type: 2}
   - {fileID: 11400000, guid: eb7a0b95617aed24fa4123f92446fe87, type: 2}
   - {fileID: 11400000, guid: 1efbd846889c6b140b5fcac876918b84, type: 2}

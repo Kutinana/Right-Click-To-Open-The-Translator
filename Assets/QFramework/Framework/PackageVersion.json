@@ -1,6 +1,6 @@
 {
     "Id": "",
-    "Version": "v1.0.124",
+    "Version": "v1.0.138",
     "Type": 0,
     "AccessRight": 0,
     "DownloadUrl": "",
@@ -11,10 +11,10 @@
     ],
     "DocUrl": "https://liangxiegame.com",
     "Readme": {
-        "version": "v1.0.124",
-        "content": "* LocaleKit 获取当前语言时确保初始化\n* 增加 OnDeselectUnityEvent 组件\n* 增加 OnSelectUnityEvent 组件\n* PlatformCheck 增加 OSX 平台的判断\n",
+        "version": "v1.0.138",
+        "content": "FluentAPI:DestroyChildren 改成倒序遍历 （misakiMeiii 提供反馈和建议)",
         "author": "liangxie",
-        "date": "2024 年 03 月 12 日 15:41",
+        "date": "2024 年 06 月 21 日 22:03",
         "PackageId": ""
     }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   id: tu
   Sprite: {fileID: 21300000, guid: 9ddbe45352285354083a67da707586c1, type: 3}
   Description: 2
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: a6f515406b8f2a34d81c770ccaa768a3, type: 2}

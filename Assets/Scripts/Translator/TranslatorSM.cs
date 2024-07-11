@@ -132,6 +132,7 @@ namespace Translator
 
         protected override void OnEnter()
         {
+            TranslatorFilterController.Instance.DisableFilter();
             mTarget.StartCoroutine(OnEnterCoroutine());
         }
 
@@ -146,7 +147,7 @@ namespace Translator
 
         protected override void OnExit()
         {
-
+            TranslatorFilterController.Instance.EnableFilter();
         }
 
         IEnumerator OnEnterCoroutine()

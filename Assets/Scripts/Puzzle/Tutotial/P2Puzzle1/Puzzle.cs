@@ -45,17 +45,17 @@ namespace Puzzle.Tutorial.P2
         private void Awake()
         {
             Instance = this;
-            ReArrangePosition();
+            ReArrangePosition(false);
             
             tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
         }
 
-        public static void ReArrangePosition()
+        public static void ReArrangePosition(bool var)
         {
             for (int i = 0; i < 3; i++)
             {
                 Instance.Sildes[i].closestPos = CurrentPosition[i];
-                Instance.Sildes[i].ArrangePosition();
+                Instance.Sildes[i].ArrangePosition(var);
             }
             if (CurrentPosition[0] == CORRECT[0] && CurrentPosition[1] == CORRECT[1] && CurrentPosition[2] == CORRECT[2]) Instance.Lights[0].sprite = Instance.LightOn;
             else Instance.Lights[0].sprite = Instance.LightOff;
@@ -68,7 +68,7 @@ namespace Puzzle.Tutorial.P2
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
                 CurrentPosition = CORRECT;
-                ReArrangePosition();
+                ReArrangePosition(false);
 
                 solved = true;
             }

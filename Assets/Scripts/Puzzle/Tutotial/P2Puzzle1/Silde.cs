@@ -71,19 +71,20 @@ namespace Puzzle.Tutorial.P2
         private void OnMouseUp()
         {
             FindClosestPos();
-            Puzzle.ReArrangePosition();
+            Puzzle.ReArrangePosition(true);
             //ArrangePosition();
 
             Puzzle.HoldingSilde = null;
             col.enabled = true;
         }
 
-        public void ArrangePosition()
+        public void ArrangePosition(bool var)
         {
             parameter = 0f;
             _init_pos = transform.position;
             targetPos = new Vector3(Puzzle.ValidPositions[closestPos], _init_pos.y, _init_pos.z);
             StartCoroutine(MoveToCoroutine());
+            if(var) AudioKit.PlaySound("Cube-Slide2",volumeScale: 0.5f);
         }
     }
 }

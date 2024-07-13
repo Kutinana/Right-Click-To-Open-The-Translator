@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: InEnergy_WeighBeaker
+  m_Name: InEnergy_Clock
   m_EditorClassIdentifier: 
-  id: InEnergy_WeighBeaker
-  Prefab: {fileID: 9065703008839568946, guid: e3e76fc6b4c90ab45bc12641974ea15d, type: 3}
+  id: InEnergy_Clock
+  Prefab: {fileID: 9065703008839568946, guid: 66bbbb1af0a48d14d8374b597701238a, type: 3}
   Thumbnail:
     list:
-    - Key: 1
-      Value: {fileID: 21300000, guid: b64f074b3822cfe4d83426d57b513ef0, type: 3}
-  Name: "\u70E7\u676F\u79F0\u91CD"
-  Description: "\u5229\u7528\u79F0\u91CF\u5012\u6C34\u7ECF\u5178\u5C0F\u6E38\u620F\u4E86\u89E3\u8FDB\u5236"
+    - Key: 2
+      Value: {fileID: 21300000, guid: 8e81279791feb4a4cad9a539e2d952f6, type: 3}
+  Name: "\u65F6\u949F"
+  Description: "\u7834\u788E\u65F6\u949F\u8865\u9F50\u7EBF\u7D22\u4E86\u89E3\u65F6\u95F4\u8FDB\u5236"

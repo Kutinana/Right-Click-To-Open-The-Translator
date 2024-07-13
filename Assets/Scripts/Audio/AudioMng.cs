@@ -7,11 +7,15 @@ using QFramework;
 using SceneControl;
 using Settings;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioMng : MonoSingleton<AudioMng>
 {
     private readonly char[] randTab = new char[] { '0', '2', '1', '1', '0', '1', '3', '2', '1', '1', '3', '0', '3', '0', '2' };
     private int pRandTab = 0;
+    bool skipFirstEnter = true;
+
     AudioSource ambientChannel;
     AudioSource current;
     AudioSource BGM1;
@@ -19,9 +23,15 @@ public class AudioMng : MonoSingleton<AudioMng>
     [SerializeField] float fadeTime = 60;
     private Dictionary<string, AudioClip> backGroundMusics = new();
 
+    //!!This DONOT work for WebGL.
+    public AudioMixer audioMixer;
+    private AudioMixerSnapshot[] audioMixerSnapshots = new AudioMixerSnapshot[2];
+
+
     public float backgroundVolume { get; private set; }
     public float ambientVolume { get; private set; } = 0.8f;
     public float effectVolume { get; private set; }
+
 
     ResLoader res;
     private void Awake()
@@ -37,9 +47,14 @@ public class AudioMng : MonoSingleton<AudioMng>
 
         UpdateVolume();
 
+        audioMixerSnapshots[0] = audioMixer.FindSnapshot("SnapshotOrigin");
+        audioMixerSnapshots[1] = audioMixer.FindSnapshot("SnapshotPuzzle");
+
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => AudioKit.PlaySound("InteractShow", volumeScale: effectVolume)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => OnPuzzleInitialize()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => OnPuzzleInitialize()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnHintExitEvent>(e => OnPuzzleExit()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e => OnPuzzleExit()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);
         res = ResLoader.Allocate();
@@ -69,7 +84,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         {
             GameObject audioAssets = GameObject.Find("AudioContainer");
             if (audioAssets == null) return;
-            
+
             AudioContainer audioContainer = audioAssets.GetComponent<AudioContainer>();
             Instance.ambientChannel.clip = audioContainer.ambient;
             Instance.backGroundMusics = audioContainer.keyValuePairs;
@@ -77,7 +92,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
         catch (Exception e)
         {
-            Debug.LogWarning(e+"Audio Container Missing");
+            Debug.LogWarning(e + "Audio Container Missing");
         }
 
     }
@@ -135,6 +150,18 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
     }
 
+    public void PlayTranslatorSFX(bool isEnter){
+        if(skipFirstEnter){
+            skipFirstEnter = false;
+            return;
+        }
+        if(isEnter){
+            AudioKit.PlaySound("TranslatorOn", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+        }else{
+            AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+        }
+    }
+
     public void D_PlayBGM(string name)
     {
         if (backGroundMusics.TryGetValue(name, out var audioClip))
@@ -162,9 +189,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     public static void StopAll()
     {
         Instance.FadeMusic(Instance.current, 0f);
-        Instance.current.Stop();
         Instance.FadeMusic(Instance.ambientChannel, 0f);
-        Instance.ambientChannel.Stop();
     }
 
     public void FadeMusic(AudioSource audioSource, float target)
@@ -250,5 +275,15 @@ public class AudioMng : MonoSingleton<AudioMng>
     private AudioSource GetAuxChannel()
     {
         return current == BGM1 ? BGM2 : BGM1;
+    }
+
+    public void OnPuzzleInitialize()
+    {
+        AudioKit.PlaySound("InteractShow", volumeScale: effectVolume);
+        audioMixer.TransitionToSnapshots(audioMixerSnapshots, new float[] { 0, 1 }, 0.2f);
+    }
+    public void OnPuzzleExit()
+    {
+        audioMixer.TransitionToSnapshots(audioMixerSnapshots, new float[] { 1, 0 }, 0.5f);
     }
 }

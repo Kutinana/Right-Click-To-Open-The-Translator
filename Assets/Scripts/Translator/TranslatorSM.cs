@@ -132,6 +132,7 @@ namespace Translator
 
         protected override void OnEnter()
         {
+            AudioMng.Instance.PlayTranslatorSFX(isEnter: false);
             TranslatorFilterController.Instance.DisableFilter();
             mTarget.StartCoroutine(OnEnterCoroutine());
         }
@@ -140,13 +141,13 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                AudioKit.PlaySound("TranslatorOn", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Translation);
             }
         }
 
         protected override void OnExit()
         {
+            AudioMng.Instance.PlayTranslatorSFX(isEnter: true);
             TranslatorFilterController.Instance.EnableFilter();
         }
 
@@ -180,7 +181,6 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }
@@ -270,7 +270,6 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }
@@ -312,7 +311,6 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }
@@ -354,7 +352,6 @@ namespace Translator
         {
             if (Input.GetMouseButtonUp(1))
             {
-                AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
                 mFSM.ChangeState(States.Off);
             }
         }

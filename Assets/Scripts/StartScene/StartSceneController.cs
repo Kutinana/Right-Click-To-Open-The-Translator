@@ -271,6 +271,11 @@ namespace StartScene
 
         private void NormalEnterGame()
         {
+
+# if UNITY_EDITOR
+            TranslatorCanvasManager.StartMainMenu();
+            TranslatorSM.CanActivate = true;
+# else
             var resLoader = ResLoader.Allocate();
             mSecondTimeVideoPlayer.clip = LocalizationManager.Instance.CurrentLanguage switch
             {
@@ -290,6 +295,8 @@ namespace StartScene
                 .Delay(1f)
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Start(this);
+# endif
+
         }
 
         private void InitialSettings()

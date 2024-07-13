@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DataSystem;
+using Kuchinashi;
 using QFramework;
 using Translator;
 using UI;
@@ -15,7 +16,10 @@ namespace Puzzle.InEnergy.WeighBeaker
         None,
         Tank,
         Balance,
-        Tap
+        Tap,
+        Bottle_4,
+        Bottle_6,
+        Bottle_9
     }
 
     public class Puzzle : PuzzleBase
@@ -23,7 +27,15 @@ namespace Puzzle.InEnergy.WeighBeaker
         public static Puzzle Instance;
 
         public Bottle HoldingBottle = null;
+        public Bottle OnBalanceBottle = null;
         public InteractTarget Target = InteractTarget.None;
+        public Tap Tap;
+        public Balance Balance;
+
+        public SerializableDictionary<InteractTarget, Bottle> Bottles;
+        public List<int> States => new List<int>() {
+            Bottles[InteractTarget.Bottle_4].State, Bottles[InteractTarget.Bottle_6].State, Bottles[InteractTarget.Bottle_9].State
+        };
 
         private Button backButton;
         private Coroutine CurrentCoroutine = null;
@@ -35,15 +47,28 @@ namespace Puzzle.InEnergy.WeighBeaker
 
         public override void OnEnter()
         {
-            // if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
-            // {
-            //     transform.Find("Background/Answer").gameObject.SetActive(true);
-            //     transform.Find("Interactable").gameObject.SetActive(false);
-            // }
-            // else
-            // {
-            //     CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
-            // }
+            if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
+            {
+                Balance.ChangeState(1);
+
+                var bottle = Bottles[InteractTarget.Bottle_9];
+                bottle.ChangeState(7);
+                bottle.transform.localPosition = new Vector3(bottle.OnBalance.x, bottle.OnBalance.y - 65);
+
+                foreach (var c in GetComponentsInChildren<Collider2D>(includeInactive: true))
+                {
+                    c.enabled = false;
+                }
+
+                transform.Find("Menu/Back").GetComponent<Button>().onClick.AddListener(() => {
+                    PuzzleManager.Exit();
+                });
+                return;
+            }
+            else
+            {
+                CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
+            }
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
@@ -71,14 +96,12 @@ namespace Puzzle.InEnergy.WeighBeaker
             }
         }
 
-        // private IEnumerator CheckAnswerCoroutine()
-        // {
-        //     yield return new WaitUntil(() => {
-        //         return correct == 6;
-        //     });
+        private IEnumerator CheckAnswerCoroutine()
+        {
+            yield return new WaitUntil(() => OnBalanceBottle?.State == 7);
 
-        //     PuzzleManager.Solved();
-        //     CurrentCoroutine = null;
-        // }
+            PuzzleManager.Solved();
+            CurrentCoroutine = null;
+        }
     }
 }

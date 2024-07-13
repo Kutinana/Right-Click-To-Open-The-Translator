@@ -62,7 +62,7 @@ namespace Puzzle.InEnergy.WeighBeaker
             col.enabled = false;
             Puzzle.Instance.HoldingBottle = this;
 
-            AudioKit.PlaySound("ItemUp");
+            AudioKit.PlaySound("BottleUp");
 
             m_TargetScreenVec = TranslatorCameraManager.Camera.WorldToScreenPoint(transform.position);
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
@@ -107,6 +107,7 @@ namespace Puzzle.InEnergy.WeighBeaker
                 else if (Puzzle.Instance.Target == InteractTarget.Tank)
                 {
                     ChangeState(0);
+                    AudioKit.PlaySound("023PouringWater");
                 }
                 else if (Puzzle.Instance.Target == InteractTarget.Balance)
                 {
@@ -161,6 +162,8 @@ namespace Puzzle.InEnergy.WeighBeaker
             transform.localPosition = Vector3.zero;
             col.enabled = true;
 
+            AudioKit.PlaySound("BottleDown");
+
             Puzzle.Instance.HoldingBottle = null;
         }
 
@@ -187,6 +190,7 @@ namespace Puzzle.InEnergy.WeighBeaker
         {
             transform.localPosition = UnderTap;
             Puzzle.Instance.Tap.ChangeState(true);
+            AudioKit.PlaySound("023TapOpen");
 
             for (var i = State; i < States.Count - 1; i++)
             {

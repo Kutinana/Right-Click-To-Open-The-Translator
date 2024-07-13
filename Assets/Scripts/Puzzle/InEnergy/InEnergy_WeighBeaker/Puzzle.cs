@@ -52,6 +52,7 @@ namespace Puzzle.InEnergy.WeighBeaker
                 Balance.ChangeState(1);
 
                 var bottle = Bottles[InteractTarget.Bottle_9];
+                OnBalanceBottle = bottle;
                 bottle.ChangeState(7);
                 bottle.transform.localPosition = new Vector3(bottle.OnBalance.x, bottle.OnBalance.y - 65);
 

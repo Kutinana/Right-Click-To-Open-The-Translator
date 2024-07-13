@@ -26,7 +26,7 @@ namespace Puzzle.Overture.Bottle
             Puzzle.HoldingBottle = this;
             col.enabled = false;
 
-            AudioKit.PlaySound("ItemUp");
+            AudioKit.PlaySound("BottleUp");
 
             m_TargetScreenVec = TranslatorCameraManager.Camera.WorldToScreenPoint(transform.position);
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3

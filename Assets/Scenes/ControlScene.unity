@@ -15818,6 +15818,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775643588831eee43a2bae552d6f2e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color1: {r: 0.5641509, g: 0.99395776, b: 1, a: 1}
+  color2: {r: 0.64020264, g: 0.4509434, b: 1, a: 1}
+  color3: {r: 1, g: 0.54901963, b: 0.4, a: 1}
+  color4: {r: 1, g: 0.9245523, b: 0.4660377, a: 1}
+  defultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1844931238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17677,7 +17682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -479.99997, y: 270}
+  m_AnchoredPosition: {x: -480, y: 270}
   m_SizeDelta: {x: -960, y: -540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2056855483

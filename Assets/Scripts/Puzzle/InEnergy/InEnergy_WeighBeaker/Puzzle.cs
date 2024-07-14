@@ -56,6 +56,9 @@ namespace Puzzle.InEnergy.WeighBeaker
                 bottle.ChangeState(7);
                 bottle.transform.localPosition = new Vector3(bottle.OnBalance.x, bottle.OnBalance.y - 65);
 
+                var hiddenMessage = transform.GetComponentInChildren<HiddenMessage>();
+                hiddenMessage.transform.localPosition = hiddenMessage.TargetPosition;
+
                 foreach (var c in GetComponentsInChildren<Collider2D>(includeInactive: true))
                 {
                     c.enabled = false;
@@ -101,7 +104,9 @@ namespace Puzzle.InEnergy.WeighBeaker
         {
             yield return new WaitUntil(() => OnBalanceBottle?.State == 7);
 
-            PuzzleManager.Solved();
+            transform.GetComponentInChildren<HiddenMessage>().ShowHiddenMessage();
+            PuzzleManager.Solved(isClosing: false);
+
             CurrentCoroutine = null;
         }
     }

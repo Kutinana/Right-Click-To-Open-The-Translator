@@ -33,6 +33,8 @@ namespace Puzzle.InEnergy.Clock
             {
                 Hour.localEulerAngles = new Vector3(0, 0, 45);
                 Minute.localEulerAngles = new Vector3(0, 0, 315);
+                var hiddenMessage = transform.GetComponentInChildren<HiddenMessage>();
+                hiddenMessage.transform.localPosition = hiddenMessage.TargetPosition;
 
                 foreach (var c in GetComponentsInChildren<Collider2D>(includeInactive: true))
                 {

@@ -4,22 +4,35 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-public class DayLightController : MonoBehaviour
+public class DayLightController : MonoSingleton<DayLightController>
 {
     const float DAYINTENSITY = 1;
     const float NIGHTINTENSITY = 0.15f;
     public static float dayLightTime = 0;
     protected static float timeNormal = 0;
 
-    public Color color1;
-    public Color color2;
-    public Color color3;
-    public Color color4;
-    public Color defultColor = new(1, 1, 1, 1);
+    [SerializeField] private Color color1;
+    [SerializeField] private Color color2;
+    [SerializeField] private Color color3;
+    [SerializeField] private Color color4;
+    [SerializeField] private Color defultColor = new(1, 1, 1, 1);
     private Light2D m_DayLight;
 
-    
-    
+    private bool _enableDayLight;
+    public bool enableDayLight
+    {
+        set
+        {
+            _enableDayLight = value;
+            m_DayLight.lightType = value ? Light2D.LightType.Global : Light2D.LightType.Sprite;
+            m_DayLight.enabled = value;
+        }
+        get
+        {
+            return _enableDayLight;
+        }
+    }
+
     // Summary:
     //      生成非线性明暗曲线
     // 修改这个地方的函数可以改变明暗变化曲线，现在是一个二次函数
@@ -37,7 +50,7 @@ public class DayLightController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         m_DayLight = gameObject.GetComponent<Light2D>();
-        TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => UpdateScene()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        //TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => UpdateScene()).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 
     private void FixedUpdate()
@@ -69,24 +82,24 @@ public class DayLightController : MonoBehaviour
         m_DayLight.color = GetLightColor();
     }
 
-    private void UpdateScene()
-    {
-        if (SceneManager.GetActiveScene().name.Equals("StartScene") || SceneManager.GetActiveScene().name.Equals("Zero") || SceneManager.GetActiveScene().name.Equals("First"))
-        {
-            m_DayLight.enabled = false;
-        }
-        else
-        {
-            m_DayLight.GetComponent<Light2D>().enabled = true;
-        }
-    }
+    // private void UpdateScene()
+    // {
+    //     if (SceneManager.GetActiveScene().name.Equals("StartScene") || SceneManager.GetActiveScene().name.Equals("Zero") || SceneManager.GetActiveScene().name.Equals("First"))
+    //     {
+    //         m_DayLight.enabled = false;
+    //     }
+    //     else
+    //     {
+    //         m_DayLight.GetComponent<Light2D>().enabled = true;
+    //     }
+    // }
 
     [SerializeField] float time1 = 0.25f;
     [SerializeField] float time2 = 0.3f;
     [SerializeField] float time3 = 0.45f;
     [SerializeField] float time4 = 0.5f;
     [SerializeField] float time5 = 0.6f;
-    private Color GetLightColor()
+    public Color GetLightColor()
     {
         if (m_DayLight.intensity < time1)
         {

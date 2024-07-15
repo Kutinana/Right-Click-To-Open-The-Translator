@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
 using SceneControl;
 using System;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using UnityEngine.Rendering.Universal;
 namespace LightController
 {
     public class LightController : MonoSingleton<LightController>
     {
-        private GameObject[] mlights = new GameObject[5];
-        short ptrLights = 0;
+        private GameObject[] mlights;
 
         void Awake()
         {
@@ -21,41 +17,48 @@ namespace LightController
         }
         private void OnSceneUpdate()
         {
-            ptrLights = 0;
-            Array.Clear(mlights, 0, mlights.Length);
-            foreach (GameObject gameObject in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
-            {
-                if (ptrLights < 5 && gameObject.CompareTag("Light"))
-                {
-                    mlights[ptrLights++] = gameObject;
-                }
-            }
+            mlights = GameObject.FindGameObjectsWithTag("Light");
             UpdateLights();
         }
 
         public void UpdateLights()
         {
             GameObject activeOne = null;
-            for (int i = 0; i < ptrLights; i++)
+            for (int i = 0; i < mlights.Length; i++)
             {
-                mlights[i].transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Sprite;
+                var temp = mlights[i].transform.Find("Ambient");
+                if (temp == null) continue;
+                temp.GetComponent<Light2D>().lightType = Light2D.LightType.Sprite;
                 if (mlights[i].activeInHierarchy)
                 {
                     activeOne = mlights[i];
                 }
             }
 
-            if (activeOne == null){
+            if (activeOne == null)
+            {
                 Debug.Log("No active lights");
-                return;}
-
-            try
-            {
-                activeOne.transform.Find("Ambient").GetComponent<Light2D>().lightType = Light2D.LightType.Global;
+                //场景中无启用灯光则认为使用日光照明(?)
+                DayLightController.Instance.enableDayLight = true;
+                return;
             }
-            catch (Exception)
+
+            var tlight = activeOne.transform.Find("Ambient");
+            if (tlight == null)
             {
-                Debug.Log("Illegal Light Setting in " + SceneManager.GetActiveScene().name + "\n");
+                DayLightController.Instance.enableDayLight = true;
+            }
+            else
+            {
+                try
+                {
+                    tlight.GetComponent<Light2D>().lightType = Light2D.LightType.Global;
+                    DayLightController.Instance.enableDayLight = false;
+                }
+                catch (Exception)
+                {
+                    Debug.LogError("Missing Light2D in " + tlight.ToString());
+                }
             }
         }
     }

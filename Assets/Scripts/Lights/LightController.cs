@@ -4,6 +4,7 @@ using SceneControl;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using System.Collections.Generic;
 namespace LightController
 {
     public class LightController : MonoSingleton<LightController>
@@ -17,7 +18,15 @@ namespace LightController
         }
         private void OnSceneUpdate()
         {
-            mlights = GameObject.FindGameObjectsWithTag("Light");
+            var tempmlights = new List<GameObject>();
+            foreach (GameObject gameObject in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
+            {
+                if (gameObject.CompareTag("Light"))
+                {
+                    tempmlights.Add(gameObject);
+                }
+            }
+            mlights = tempmlights.ToArray();
             UpdateLights();
         }
 

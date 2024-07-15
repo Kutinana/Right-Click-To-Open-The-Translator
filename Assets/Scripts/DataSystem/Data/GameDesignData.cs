@@ -29,7 +29,13 @@ namespace DataSystem
         }
         private static Dictionary<string, HintData> _hintDataDic;
         public static HintData GetHintDataById(string id) => HintDataDic.TryGetValue(id, out var value) ? value : null;
+        public static Dictionary<string,MissionData> MissionDataDic{
+            get =>  _missionDataDic ??= GenerateDataDictionary<MissionData>("ScriptableObjects/MissionData");
+            set => _missionDataDic = value;
+        }
+        private static Dictionary<string,MissionData> _missionDataDic;
 
+        public static MissionData GetMissionDataById(string id) => MissionDataDic.TryGetValue(id,out var value) ? value : null;
         private static Dictionary<string, T> GenerateDataDictionary<T>(string _path) where T : ScriptableObject, IHaveId
         {
             var data = Resources.LoadAll<T>(_path);

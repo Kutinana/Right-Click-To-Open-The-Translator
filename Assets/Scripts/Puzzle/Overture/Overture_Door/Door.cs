@@ -86,6 +86,7 @@ namespace Puzzle.Overture.Door
 
             CurrentCoroutine = null;
             PuzzleManager.Solved();
+            GameProgressData.CompleteMission("main0");
         }
 
         private void OnMouseUp()

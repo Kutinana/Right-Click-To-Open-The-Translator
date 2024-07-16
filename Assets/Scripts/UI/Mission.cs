@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,6 @@ namespace UI
         private Button m_button;
         public MissionData data { get; private set; }
 
-
         private void Awake()
         {
             m_button = this.gameObject.GetComponent<Button>();
@@ -22,6 +22,7 @@ namespace UI
         {
             var temp = Instantiate(MissionController.Instance.prefab, parent);
             temp.GetComponent<Mission>().data = vardata;
+            temp.transform.Find("Name").GetComponent<TextMeshProUGUI>().SetText(vardata.Name);
             return temp;
         }
     }

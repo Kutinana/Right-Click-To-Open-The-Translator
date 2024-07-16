@@ -86,8 +86,8 @@ namespace DataSystem
             {
                 Instance.Save.MissionProgress.Add(Id, MissionProgress.Completed);
             }
-
             Instance.Serialization();
+            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name+"：已完成！");
         }
 
         public static void Solve(PuzzleBase puzzle)

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3519c30dba6078e4eb75aa1b23a6440b, type: 3}
-  m_Name: MissionData 1
+  m_Name: main0
   m_EditorClassIdentifier: 
-  id: 0
-  Name: Test Sample Mission
-  Description: This is a sample mission Id ZERO
+  id: main0
+  Name: "\u8C03\u67E5\u5468\u56F4"
+  Description: "\u8981\u5F04\u6E05\u695A\u81EA\u5DF1\u8EAB\u5904\u4F55\u65B9\uFF0C\u5148\u5F97\u60F3\u529E\u6CD5\u79BB\u5F00\u8FD9\u5EA7\u65E0\u4EBA\u7684\u5EFA\u7B51\u3002"
   Prerequisite: []

@@ -28,6 +28,7 @@ public class MissionController : MonoBehaviour, ISingleton
         var tempDetail = transform.Find("Content/Detail");
         m_title = tempDetail.Find("Title").gameObject.GetComponent<TextMeshProUGUI>();
         m_description = tempDetail.Find("Description").gameObject.GetComponent<TextMeshProUGUI>();
+        TypeEventSystem.Global.Register<OnNarrationEndEvent>(e=>OnNarrationEndMissionHandler(e)).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 
     private void Start()
@@ -65,5 +66,10 @@ public class MissionController : MonoBehaviour, ISingleton
 
         m_title.SetText(" ");
         m_description.SetText("\nNo Content Selected.");
+    }
+    private void OnNarrationEndMissionHandler(OnNarrationEndEvent e){
+        if(e.Id.Equals("InitialNarration")){
+            GameProgressData.AddMission("main0");
+        }
     }
 }

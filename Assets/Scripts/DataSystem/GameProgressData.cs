@@ -6,6 +6,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Puzzle;
 using Hint;
+using System.Linq;
 
 namespace DataSystem
 {
@@ -38,6 +39,18 @@ namespace DataSystem
             return Instance.Save.PuzzleProgress.ContainsKey(_id) ? Instance.Save.PuzzleProgress[_id] : PuzzleProgress.NotFound;
         }
 
+        public static string[] GetProgressingMission(){
+            List<string> strings = new();
+            string[] keys = Instance.Save.MissionProgress.Keys.ToArray<string>();
+            foreach(string key in keys){
+                Instance.Save.MissionProgress.TryGetValue(key,out var temp);
+                if(temp==MissionProgress.Progressing){
+                    strings.Add(key);
+                }
+            }
+            return strings.ToArray();
+        }
+
         public static void Unlock(PuzzleBase puzzle)
         {
             if (Instance.Save.PuzzleProgress.ContainsKey(puzzle.Id)) return;
@@ -52,6 +65,29 @@ namespace DataSystem
 
             Instance.Save.PuzzleProgress.Add(hint.Id, PuzzleProgress.Solved);
             Instance.Serialization();
+        }
+
+        public static void AddMission(string Id){
+            if (Instance.Save.MissionProgress.ContainsKey(Id)) return;
+            
+            Instance.Save.MissionProgress.Add(Id,MissionProgress.Progressing);
+            Instance.Serialization();
+
+            //!!这个地方原则上应该用Event, 但暂且先这样实现. 之后需要重构这句来解耦合
+            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name);
+        }
+
+        public static void CompleteMission(string Id){
+            if (Instance.Save.MissionProgress.ContainsKey(Id))
+            {
+                Instance.Save.MissionProgress[Id] = MissionProgress.Completed;
+            }
+            else
+            {
+                Instance.Save.MissionProgress.Add(Id, MissionProgress.Completed);
+            }
+            Instance.Serialization();
+            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name+"：已完成！");
         }
 
         public static void Solve(PuzzleBase puzzle)

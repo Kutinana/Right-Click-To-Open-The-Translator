@@ -4,12 +4,14 @@ using UnityEngine;
 namespace DataSystem
 {
     [CreateAssetMenu(fileName = "MissionData", menuName = "Scriptable Objects/Mission Data", order = 0)]
-    public class MissionData : ScriptableObject
+    public class MissionData : ScriptableObject, IHaveId
     {
-        public string Id;
+        [SerializeField] string id;
         public string Name;
         [Multiline] public string Description;
 
         public List<string> Prerequisite;
+
+        public string Id => id;
     }
 }

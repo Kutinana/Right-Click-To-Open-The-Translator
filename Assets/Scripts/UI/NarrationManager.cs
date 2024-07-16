@@ -9,15 +9,33 @@ using UnityEngine;
 
 namespace UI
 {
-    public struct OnNarrationStartEvent {}
-    public struct OnNarrationEndEvent {}
-    public struct OnInitialNarrationStartEvent {}
+    public struct OnNarrationStartEvent
+    {
+
+        public OnNarrationStartEvent(string id) : this()
+        {
+            Id = id;
+        }
+
+        public string Id { get; }
+    }
+    public struct OnNarrationEndEvent
+    {
+        public OnNarrationEndEvent(string id) : this()
+        {
+            Id = id;
+        }
+
+        public string Id { get; }
+
+    }
+    public struct OnInitialNarrationStartEvent { }
 
     public class NarrationManager : MonoSingleton<NarrationManager>
     {
         private CanvasGroup mCanvasGroup;
         private TMP_Text mText;
-
+        private string narrationPlaying = null;
         private static Coroutine CurrentCoroutine;
 
         public string ToShowNarrationId { get; set; }
@@ -28,7 +46,8 @@ namespace UI
             mCanvasGroup = GetComponent<CanvasGroup>();
             mText = transform.Find("Text").GetComponent<TMP_Text>();
 
-            TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e => {
+            TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e =>
+            {
                 if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
                 {
                     StartNarration("InitialNarration", 2f);
@@ -52,8 +71,8 @@ namespace UI
 
             if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
             CurrentCoroutine = Instance.StartCoroutine(Instance.NarrationCoroutine(content, delay));
-
-            TypeEventSystem.Global.Send(new OnNarrationStartEvent());
+            Instance.narrationPlaying = id;
+            TypeEventSystem.Global.Send(new OnNarrationStartEvent(id));
         }
 
         public static void StopNarration()
@@ -62,8 +81,8 @@ namespace UI
 
             if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
             CurrentCoroutine = null;
-
-            TypeEventSystem.Global.Send(new OnNarrationEndEvent());
+            TypeEventSystem.Global.Send(new OnNarrationEndEvent(Instance.narrationPlaying));
+            Instance.narrationPlaying = null;
         }
 
         private IEnumerator NarrationCoroutine(List<string> content, float delay = 0f)
@@ -72,14 +91,14 @@ namespace UI
             yield return new WaitForSeconds(delay);
 
             yield return CanvasGroupHelper.FadeCanvasGroup(Instance.mCanvasGroup, 1f);
-            
+
             foreach (var text in content)
             {
                 mText.SetText("");
 
                 var len = text.Length;
                 var speed = 1 / 24f;
-                
+
                 for (var i = 0; i < len; i++)
                 {
                     mText.text += text[i];
@@ -88,7 +107,7 @@ namespace UI
                 }
                 mText.SetText(text);
                 yield return new WaitForSeconds(0.5f);
-                
+
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
             }
 
@@ -97,7 +116,7 @@ namespace UI
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     [CustomEditor(typeof(NarrationManager))]
     [CanEditMultipleObjects]
@@ -120,5 +139,5 @@ namespace UI
         }
     }
 
-    #endif
+#endif
 }

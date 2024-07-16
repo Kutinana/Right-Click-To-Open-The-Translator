@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: InEnergy_WeighBeaker
   Prefab: {fileID: 9065703008839568946, guid: e3e76fc6b4c90ab45bc12641974ea15d, type: 3}
-  Thumbnail: {fileID: 21300000, guid: b64f074b3822cfe4d83426d57b513ef0, type: 3}
+  Thumbnail:
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: e09da48fb95ba7349a746e4d1960b8d1, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: c0f4f47995ec90e48b3f21958cf919fb, type: 3}
   Name: "\u70E7\u676F\u79F0\u91CD"
   Description: "\u5229\u7528\u79F0\u91CF\u5012\u6C34\u7ECF\u5178\u5C0F\u6E38\u620F\u4E86\u89E3\u8FDB\u5236"

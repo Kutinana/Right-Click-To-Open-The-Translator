@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3519c30dba6078e4eb75aa1b23a6440b, type: 3}
   m_Name: MissionData
   m_EditorClassIdentifier: 
-  Id: sample
+  id: -1
   Name: Sample Mission
   Description: This is a sample mission.
   Prerequisite: []

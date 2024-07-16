@@ -345,6 +345,7 @@ namespace Translator
 
         protected override void OnEnter()
         {
+            MissionController.Instance.CheckMissionAndRefresh();
             mTarget.StartCoroutine(OnEnterCoroutine());
         }
 

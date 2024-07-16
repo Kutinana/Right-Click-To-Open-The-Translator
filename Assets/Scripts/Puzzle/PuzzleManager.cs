@@ -84,15 +84,15 @@ namespace Puzzle
             }
         }
 
-        public static void Solved(float _delay = 1f)
+        public static void Solved(float _delay = 1f, bool isClosing = true)
         {
             if (CurrentPuzzle != null)
             {
-                Instance.StartCoroutine(Instance.SolvedCoroutine(_delay));
+                Instance.StartCoroutine(Instance.SolvedCoroutine(_delay, isClosing));
             }
         }
 
-        private IEnumerator SolvedCoroutine(float _delay)
+        private IEnumerator SolvedCoroutine(float _delay, bool isClosing = true)
         {
             yield return new WaitForSeconds(_delay);
 
@@ -101,7 +101,7 @@ namespace Puzzle
             CurrentPuzzle.OnSolved();
             TypeEventSystem.Global.Send(new OnPuzzleSolvedEvent(CurrentPuzzle));
         
-            StateMachine.ChangeState(States.None);
+            if (isClosing) StateMachine.ChangeState(States.None);
             GameProgressData.Solve(CurrentPuzzle);
         }
     }

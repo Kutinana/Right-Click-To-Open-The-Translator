@@ -15,8 +15,8 @@
 	},
 	{
 		"ID":2,
-		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Outlined",
-		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Unoutlined",
+		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Outlined2.0",
+		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door closed_Unoutlined2.0",
 		"itemType": 1,
 		"target_string":"Overture_Door"
 	},

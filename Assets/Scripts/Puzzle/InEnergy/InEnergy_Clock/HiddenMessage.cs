@@ -14,6 +14,7 @@ namespace Puzzle.InEnergy.Clock
 
         public void ShowHiddenMessage()
         {
+            AudioKit.PlaySound("LensUp",volumeScale:0.8f);
             StartCoroutine(ShowHiddenMessageCoroutine());
         }
 

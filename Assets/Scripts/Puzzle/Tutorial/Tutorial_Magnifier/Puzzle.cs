@@ -134,8 +134,8 @@ namespace Puzzle.Tutorial.P1
         }
         public static void UpdateScopeStateWithoutCheck(int id, Vector3 pos)
         {
-            Scopes[id] = TranslatorCameraManager.Camera.WorldToScreenPoint(pos).y;
-            Show(Instance, id);
+            Scopes[id] = pos.y;
+            //Show(Instance, id);
         }
 
         public IEnumerator CheckPuzzleFinish()

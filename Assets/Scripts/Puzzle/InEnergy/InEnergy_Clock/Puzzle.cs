@@ -31,8 +31,10 @@ namespace Puzzle.InEnergy.Clock
         {
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-                Hour.localEulerAngles = new Vector3(0, 0, 45);
-                Minute.localEulerAngles = new Vector3(0, 0, 315);
+                Hour.localEulerAngles = new Vector3(0, 0, -45);
+                Minute.localEulerAngles = new Vector3(0, 0, 45);
+                Hour.GetComponent<Pointer>().isInteractable = false;
+                Minute.GetComponent<Pointer>().isInteractable = false;
                 var hiddenMessage = transform.GetComponentInChildren<HiddenMessage>();
                 hiddenMessage.transform.localPosition = hiddenMessage.TargetPosition;
 
@@ -87,7 +89,8 @@ namespace Puzzle.InEnergy.Clock
             });
 
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-
+            Hour.GetComponent<Pointer>().isInteractable = false;
+            Minute.GetComponent<Pointer>().isInteractable = false;
             transform.GetComponentInChildren<HiddenMessage>().ShowHiddenMessage();
             PuzzleManager.Solved(isClosing: false);
             

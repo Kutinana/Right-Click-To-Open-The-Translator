@@ -16,7 +16,9 @@ namespace UI
         private void Awake()
         {
             m_button = this.gameObject.GetComponent<Button>();
-            m_button.onClick.AddListener(() => MissionController.Instance.ChangeDetailMissionInfo(this.data));
+            m_button.onClick.AddListener(() => { MissionController.Instance.ChangeDetailMissionInfo(this.data); 
+                MissionController.Instance.SetHighlightImage(transform.Find("Icon").GetComponent<Image>());
+            });
         }
         public static GameObject Initialize(MissionData vardata, Transform parent)
         {

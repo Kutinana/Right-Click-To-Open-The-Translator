@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 0}
+  isInteractable: 1
 --- !u!1 &1257558262927870488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,6 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 0}
+  isInteractable: 1
 --- !u!1 &6724975395342188562
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,7 +4893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -720, y: 0}
+  m_AnchoredPosition: {x: -1125, y: 0}
   m_SizeDelta: {x: 2048, y: 1152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1101628815784533891

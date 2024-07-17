@@ -111,6 +111,7 @@ namespace Puzzle.InEnergy.WeighBeaker
                 }
                 else if (Puzzle.Instance.Target == InteractTarget.Balance)
                 {
+                    AudioKit.PlaySound("023CupDown",volumeScale:0.9f);
                     if (Puzzle.Instance.OnBalanceBottle != null)
                     {
                         Puzzle.Instance.OnBalanceBottle.transform.localPosition = Vector3.zero;

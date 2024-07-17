@@ -14,6 +14,7 @@ namespace Puzzle.InEnergy.WeighBeaker
 
         public void ShowHiddenMessage()
         {
+            AudioKit.PlaySound("023PaperOut");
             StartCoroutine(ShowHiddenMessageCoroutine());
         }
 

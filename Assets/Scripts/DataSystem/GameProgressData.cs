@@ -74,7 +74,7 @@ namespace DataSystem
             Instance.Serialization();
 
             //!!这个地方原则上应该用Event, 但暂且先这样实现. 之后需要重构这句来解耦合
-            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name);
+            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">新目标："+GameDesignData.GetMissionDataById(Id).Name);
         }
 
         public static void CompleteMission(string Id){

@@ -15,9 +15,9 @@ public class ObjectsDetector : MonoBehaviour
 
         float minDist = 2 * radius + 1;
         InteractiveObject closestObject = null;
-        foreach(Collider2D o in colliders)
+        foreach (Collider2D o in colliders)
         {
-            if (!o.transform.GetComponent<InteractiveObject>().activable) continue;
+            if (!(o.transform.GetComponent<InteractiveObject>()?.activable ?? false)) continue;
             float dist = (o.Position2D() - transform.Position2D()).magnitude;
             if (dist < minDist)
             {
@@ -25,7 +25,7 @@ public class ObjectsDetector : MonoBehaviour
                 closestObject = o.transform.GetComponent<InteractiveObject>();
             }
         }
-        
+
         return closestObject;
     }
     public void OnDrawGizmosSelected()

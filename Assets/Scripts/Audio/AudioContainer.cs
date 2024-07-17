@@ -9,7 +9,7 @@ public class AudioContainer : MonoBehaviour
 {
     public AudioClip ambient;
     public AudioClip[] audioClips;
-    public Dictionary<string,AudioClip> keyValuePairs;
+    public Dictionary<string,AudioClip> keyValuePairs = new();
     private void Awake() {
         foreach(AudioClip audioClip in audioClips){
             if(!audioClip.IsUnityNull()){

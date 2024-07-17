@@ -8,7 +8,6 @@ using SceneControl;
 using Settings;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 
 public class AudioMng : MonoSingleton<AudioMng>
 {
@@ -27,11 +26,23 @@ public class AudioMng : MonoSingleton<AudioMng>
     public AudioMixer audioMixer;
     private AudioMixerSnapshot[] audioMixerSnapshots = new AudioMixerSnapshot[2];
 
-
-    public float backgroundVolume { get; private set; }
+    public float BackgroundVolume
+    {
+        get
+        {
+            return _bgmVol;
+        }
+        set
+        {
+            m_backgroundVolume = value;
+            _bgmVol = value;
+        }
+    }
+    private float _bgmVol;
+    private float m_backgroundVolume;
     public float ambientVolume { get; private set; } = 0.8f;
     public float effectVolume { get; private set; }
-
+    private float currentVolScale = 1f;
 
     ResLoader res;
     private void Awake()
@@ -72,8 +83,9 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     private void UpdateVolume()
     {
-        backgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
-        if (current != null) current.volume = backgroundVolume;
+        BackgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
+        m_backgroundVolume *= currentVolScale;
+        if (current != null) current.volume = m_backgroundVolume;
         effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
         ambientVolume = PlayerPrefs.HasKey("Ambient Volume") ? PlayerPrefs.GetFloat("Ambient Volume") : 1.0f;
     }
@@ -113,16 +125,19 @@ public class AudioMng : MonoSingleton<AudioMng>
         PlayAmbient();
     }
 
-    public void PlayBGM(string name)
+    public void PlayBGM(string name, float volumeScale = 1f)
     {
-        if (current.isPlaying && current.volume > 0)
+        if (volumeScale != 1f)
         {
-            ChangeBGM(name);
+            m_backgroundVolume *= volumeScale;
+            currentVolScale = volumeScale;
         }
         else
         {
-            D_PlayBGM(name);
+            currentVolScale = volumeScale;
+            m_backgroundVolume = BackgroundVolume;
         }
+        ChangeBGM(name);
     }
     public void PlayFootsteps()
     {
@@ -150,14 +165,19 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
     }
 
-    public void PlayTranslatorSFX(bool isEnter){
-        if(skipFirstEnter){
+    public void PlayTranslatorSFX(bool isEnter)
+    {
+        if (skipFirstEnter)
+        {
             skipFirstEnter = false;
             return;
         }
-        if(isEnter){
+        if (isEnter)
+        {
             AudioKit.PlaySound("TranslatorOn", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
-        }else{
+        }
+        else
+        {
             AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
         }
     }
@@ -247,7 +267,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         temp.volume = 0;
         current = temp;
         D_PlayBGM(name);
-        FadeMusic(temp, backgroundVolume);
+        FadeMusic(temp, m_backgroundVolume);
         FadeMusic(GetAuxChannel(), 0);
     }
 
@@ -259,7 +279,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         temp.volume = 0;
         temp.clip = changeAS.clip;
         temp.Play();
-        FadeMusic(temp, changeAS == this.ambientChannel ? ambientVolume : backgroundVolume);
+        FadeMusic(temp, changeAS == this.ambientChannel ? ambientVolume : m_backgroundVolume);
         FadeMusic(changeAS, 0);
 
         AudioClip newAudio = res.LoadSync<AudioClip>(name);
@@ -269,7 +289,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         changeAS.clip = newAudio;
         changeAS.Play();
         FadeMusic(temp, 0);
-        FadeMusic(changeAS, changeAS == this.ambientChannel ? ambientVolume : backgroundVolume);
+        FadeMusic(changeAS, changeAS == this.ambientChannel ? ambientVolume : m_backgroundVolume);
     }
 
     private AudioSource GetAuxChannel()

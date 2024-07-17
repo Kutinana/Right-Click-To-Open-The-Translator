@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
   m_Name: Book_Sample
   m_EditorClassIdentifier: 
-  id: 
-  Prefab: {fileID: 0}
+  id: Book_Sample
+  Prefab: {fileID: 9065703008839568946, guid: 971c3b52fc7eabf468af038ecd2e4f74, type: 3}
   Thumbnail:
     list: []
   Name: 

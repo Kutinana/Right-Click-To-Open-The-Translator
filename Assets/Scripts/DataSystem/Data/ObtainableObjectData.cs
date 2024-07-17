@@ -8,6 +8,7 @@ namespace DataSystem
     public class ObtainableObjectData : ScriptableObject, IHaveId
     {
         public string id;
+        public string Name;
         public Sprite Sprite;
         [Multiline] public string Description;
         [Multiline] public string SubDescription;

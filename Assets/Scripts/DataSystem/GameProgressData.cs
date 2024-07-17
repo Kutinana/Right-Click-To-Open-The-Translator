@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Puzzle;
 using Hint;
 using System.Linq;
+using System;
 
 namespace DataSystem
 {
@@ -110,11 +111,14 @@ namespace DataSystem
         public static void IncreaseInventory(string _id, int _delta)
         {
             var inventory = Instance.Save.Inventory;
-            if (inventory.ContainsKey(_id))
+            var data = GameDesignData.GetObtainableObjectDataById(_id);
+
+            if (!inventory.TryGetValue(_id, out var value))
             {
-                inventory[_id] += _delta;
+                value = 0;
             }
-            else inventory.Add(_id, _delta);
+            if (data.MaxAmount == 0) inventory[_id] = _delta + value;
+            else inventory[_id] = Math.Clamp(value + _delta, 0, data.MaxAmount);
 
             Instance.Serialization();
             TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(new Dictionary<string, int>() {{_id, _delta}}));
@@ -125,8 +129,14 @@ namespace DataSystem
             var inventory = Instance.Save.Inventory;
             foreach (var item in _items)
             {
-                if (inventory.ContainsKey(item.Key)) inventory[item.Key] += item.Value;
-                else inventory.Add(item.Key, item.Value);
+                var data = GameDesignData.GetObtainableObjectDataById(item.Key);
+
+                if (!inventory.TryGetValue(item.Key, out var value))
+                {
+                    value = 0;
+                }
+                if (data.MaxAmount == 0) inventory[item.Key] = item.Value + value;
+                else inventory[item.Key] = Math.Clamp(value + item.Value, 0, data.MaxAmount);
             }
 
             Instance.Serialization();
@@ -167,6 +177,11 @@ namespace DataSystem
             }
             Instance.Serialization();
             return true;
+        }
+
+        public static Dictionary<string, int> GetInventory()
+        {
+            return Instance.Save.Inventory;
         }
 
         public static void Clean()

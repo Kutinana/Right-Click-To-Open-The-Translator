@@ -50,6 +50,9 @@ namespace DataSystem
             }
             return strings.ToArray();
         }
+        public static MissionProgress? GetMissionProgress(string _id){
+            return Instance.Save.MissionProgress.ContainsKey(_id) ? Instance.Save.MissionProgress[_id] : null;
+        }
 
         public static void Unlock(PuzzleBase puzzle)
         {
@@ -67,17 +70,17 @@ namespace DataSystem
             Instance.Serialization();
         }
 
-        public static void AddMission(string Id){
+        public static void AddMission(string Id,bool showText = true){
             if (Instance.Save.MissionProgress.ContainsKey(Id)) return;
             
             Instance.Save.MissionProgress.Add(Id,MissionProgress.Progressing);
             Instance.Serialization();
 
             //!!这个地方原则上应该用Event, 但暂且先这样实现. 之后需要重构这句来解耦合
-            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">新目标："+GameDesignData.GetMissionDataById(Id).Name);
+            if(showText) PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">新目标："+GameDesignData.GetMissionDataById(Id).Name);
         }
 
-        public static void CompleteMission(string Id){
+        public static void CompleteMission(string Id, bool showText = true){
             if (Instance.Save.MissionProgress.ContainsKey(Id))
             {
                 Instance.Save.MissionProgress[Id] = MissionProgress.Completed;
@@ -87,7 +90,7 @@ namespace DataSystem
                 Instance.Save.MissionProgress.Add(Id, MissionProgress.Completed);
             }
             Instance.Serialization();
-            PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name+"：已完成！");
+            if(showText) PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name+"：已完成！");
         }
 
         public static void Solve(PuzzleBase puzzle)

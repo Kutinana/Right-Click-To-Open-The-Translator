@@ -42,7 +42,7 @@ public class DayLightController : MonoSingleton<DayLightController>
     private float transTime2Normal(float var0, out float var1)
     {
         //var1 = Mathf.Clamp(0.5f - Mathf.Cos(var0 * 3.14f) * 0.5f, 0, 1);
-        var1 = Mathf.Clamp(Mathf.Pow(var0, 2f), 0, 1);
+        var1 = Mathf.Clamp(Mathf.Pow(var0, 4f), 0, 1);
         return var1;
     }
 

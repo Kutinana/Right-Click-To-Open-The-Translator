@@ -18,7 +18,8 @@ namespace Translator
         Recorder,
         Dictionary,
         Settings,
-        Memo
+        Memo,
+        Backpack
     }
 
     public class TranslatorSM : MonoBehaviour, ISingleton
@@ -37,11 +38,13 @@ namespace Translator
         [HideInInspector] public CanvasGroup dictionaryCanvasGroup;
         [HideInInspector] public CanvasGroup settingsCanvasGroup;
         [HideInInspector] public CanvasGroup memoCanvasGroup;
+        [HideInInspector] public CanvasGroup backpackCanvasGroup;
 
         [HideInInspector] public Toggle translatorToggle;
         [HideInInspector] public Toggle dictionaryToggle;
         [HideInInspector] public Toggle settingsToggle;
         [HideInInspector] public Toggle memoToggle;
+        [HideInInspector] public Toggle backpackToggle;
 
         private CanvasGroup tutorialCanvasGroup;
 
@@ -58,6 +61,8 @@ namespace Translator
             settingsCanvasGroup.alpha = 0;
             memoCanvasGroup = transform.Find("Memo").GetComponent<CanvasGroup>();
             memoCanvasGroup.alpha = 0;
+            backpackCanvasGroup = transform.Find("Backpack").GetComponent<CanvasGroup>();
+            backpackCanvasGroup.alpha = 0;
 
             translatorToggle = transform.Find("Menu/Image/Translator").GetComponent<Toggle>();
             translatorToggle.onValueChanged.AddListener(value =>
@@ -84,6 +89,12 @@ namespace Translator
                 AudioMng.PlayBtnPressed(0);
                 if (value) stateMachine.ChangeState(States.Memo);
             });
+            backpackToggle = transform.Find("Menu/Image/Backpack").GetComponent<Toggle>();
+            backpackToggle.onValueChanged.AddListener(value =>
+            {
+                AudioMng.PlayBtnPressed(0);
+                if (value) stateMachine.ChangeState(States.Backpack);
+            });
 
             tutorialCanvasGroup = transform.Find("Tutorial").GetComponent<CanvasGroup>();
             tutorialCanvasGroup.alpha = 0;
@@ -95,6 +106,7 @@ namespace Translator
             stateMachine.AddState(States.Dictionary, new DictionaryState(stateMachine, this));
             stateMachine.AddState(States.Settings, new SettingsState(stateMachine, this));
             stateMachine.AddState(States.Memo, new MemoState(stateMachine, this));
+            stateMachine.AddState(States.Backpack, new BackpackState(stateMachine, this));
 
             stateMachine.StartState(States.Off);
         }
@@ -372,6 +384,48 @@ namespace Translator
 
             mTarget.memoCanvasGroup.blocksRaycasts = true;
             mTarget.memoToggle.SetIsOnWithoutNotify(true);
+
+            mTarget.CurrentCoroutine = null;
+            mTarget.canvasGroup.interactable = true;
+        }
+    }
+
+    public class BackpackState : AbstractState<States, TranslatorSM>
+    {
+        public BackpackState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
+        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
+            && mFSM.CurrentStateId != States.Backpack
+            && TranslatorSM.CanActivate;
+
+        protected override void OnEnter()
+        {
+            BackpackController.Instance.GenerateItemList();
+            mTarget.StartCoroutine(OnEnterCoroutine());
+        }
+
+        protected override void OnUpdate()
+        {
+            if (Input.GetMouseButtonUp(1))
+            {
+                mFSM.ChangeState(States.Off);
+            }
+        }
+
+        protected override void OnExit()
+        {
+            mTarget.CurrentCoroutine = mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.backpackCanvasGroup, 0f, 0.1f));
+        }
+
+        IEnumerator OnEnterCoroutine()
+        {
+            mTarget.canvasGroup.interactable = false;
+            yield return mTarget.CurrentCoroutine;
+
+            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
+            yield return mTarget.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mTarget.backpackCanvasGroup, 1f, 0.1f));
+
+            mTarget.backpackCanvasGroup.blocksRaycasts = true;
+            mTarget.backpackToggle.SetIsOnWithoutNotify(true);
 
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;

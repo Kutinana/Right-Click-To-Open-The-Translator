@@ -15,6 +15,7 @@ namespace Puzzle.Book.HighWall
         private GameObject m_Cover;
         private Button backButton;
         private Button flipButton;
+        private Button preButton;
         private List<Transform> Pages = new();
         int pl = 0, p = 0;
 
@@ -29,7 +30,9 @@ namespace Puzzle.Book.HighWall
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             flipButton = transform.Find("Interactable/Button").GetComponent<Button>();
+            preButton = transform.Find("Interactable/ButtonPre").GetComponent<Button>();
             flipButton.onClick.AddListener(() => NextPage());
+            preButton.onClick.AddListener(() => LastPage());
 
             foreach (Transform child in transform.Find("Characters"))
             {
@@ -59,6 +62,16 @@ namespace Puzzle.Book.HighWall
             else
             {
                 Goto(p + 1);
+            }
+        }
+        public void LastPage(){
+            if (p == 0)
+            {
+                return;
+            }
+            else
+            {
+                Goto(p - 1);
             }
         }
         private void Goto(int i)

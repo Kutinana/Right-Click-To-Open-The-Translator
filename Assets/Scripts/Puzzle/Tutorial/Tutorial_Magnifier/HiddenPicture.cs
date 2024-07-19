@@ -118,6 +118,7 @@ namespace Puzzle.Tutorial.P1
                     foreach (var scope in m_scope)
                     {
                         scope.gameObject.SetActive(true);
+                        scope.GetComponent<Scope>().Initialize();
                     }
                     stage++;
                     break;

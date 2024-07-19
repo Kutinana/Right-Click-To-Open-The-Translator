@@ -101,6 +101,11 @@ public class InteractivePuzzle: InteractiveObject
         SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);
     }
 
+    public void SwitchSceneWithEvent()
+    {
+        //SceneControl.SceneControl.SwitchSceneWithEvent(DoorConfig.nextSceneName[this.ID], () => StartCoroutine(SceneInitialization.()));
+    }
+
     public void AnimatorDisabled() => animator.enabled = false;
 
     public void ActivateHint(String hint)

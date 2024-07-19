@@ -43,5 +43,7 @@ namespace Puzzle.Tutorial.P1
             }
             holding = false;
         }
+
+        public void Initialize() => Puzzle.UpdateScopeStateWithoutCheck(id, transform.position);
     }
 }

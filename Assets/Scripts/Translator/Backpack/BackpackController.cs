@@ -71,8 +71,11 @@ namespace Translator
             {
                 if (string.IsNullOrEmpty(c.Key) || c.Value == 0) continue;
 
+                var data = GameDesignData.GetObtainableObjectDataById(c.Key);
+                if (data == null) continue;
+
                 var go = Instantiate(ObtainableItemPrefab, parent);
-                go.GetComponent<ObtainableObjectController>().Initialize(GameDesignData.GetObtainableObjectDataById(c.Key));
+                go.GetComponent<ObtainableObjectController>().Initialize(data);
             }
         }
 

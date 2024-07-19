@@ -16,12 +16,16 @@ namespace Cameras
 
         public static void AddToCameraStack(Camera camera)
         {
+            if (Camera == null) return;
+            
             var cameraData = Camera.GetUniversalAdditionalCameraData();
             cameraData.cameraStack.Insert(0, camera);
         }
 
         public static void RemoveFromCameraStack(Camera camera)
         {
+            if (Camera == null) return;
+
             var cameraData = Camera.GetUniversalAdditionalCameraData();
             cameraData.cameraStack.Remove(camera);
         }

@@ -59,7 +59,7 @@ namespace Localization
             {
                 return _key[lang];
             }
-            return _key.First().Value;
+            return _key.First().Value.Replace("\\n", "\n");
         }
 
         public static string Get(Dictionary<Language, string> _key, Language lang)
@@ -68,7 +68,7 @@ namespace Localization
             {
                 return _key[lang];
             }
-            return _key.First().Value;
+            return _key.First().Value.Replace("\\n", "\n");
         }
 
         public static string Get(SerializableDictionary<Language, string> _key)
@@ -78,7 +78,7 @@ namespace Localization
             {
                 return _key[lang];
             }
-            return _key.First().Value;
+            return _key.First().Value.Replace("\\n", "\n");
         }
 
         public static string Get(SerializableDictionary<Language, string> _key, Language lang)
@@ -87,7 +87,7 @@ namespace Localization
             {
                 return _key[lang];
             }
-            return _key.First().Value;
+            return _key.First().Value.Replace("\\n", "\n");
         }
 
         public static string Get(string commonKey, params string [] param)
@@ -99,11 +99,11 @@ namespace Localization
                 {
                     origin = origin.Replace($"{{{i}}}", param[i]);
                 }
-                return origin;
+                return origin.Replace("\\n", "\n");
             }
             catch
             {
-                return origin;
+                return origin.Replace("\\n", "\n");
             }
         }
     }

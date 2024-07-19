@@ -21,8 +21,8 @@ namespace Puzzle.InEnergy.Submarine
             m_characterGroup = transform.Find("Interactable/Characters").GetComponent<CanvasGroup>();
             DisableCharacters();
 
-            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters());
-            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters());
+            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         private Coroutine CurrentCoroutine = null;

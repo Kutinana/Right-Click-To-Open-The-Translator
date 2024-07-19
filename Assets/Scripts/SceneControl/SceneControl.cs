@@ -118,6 +118,7 @@ namespace SceneControl
             yield return Fade(1);
 
             yield return SceneManager.UnloadSceneAsync(CurrentScene);
+            yield return new WaitForSeconds(0.5f);
 
             yield return Fade(0);
             mCurrentCoroutine = null;
@@ -131,8 +132,8 @@ namespace SceneControl
             yield return mAsyncOperation;
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
 
+            yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
             yield return new WaitUntil(() => {return CanTransition;});
-            yield return new WaitForSeconds(0.5f);
 
             yield return Fade(0);
             mCurrentCoroutine = null;
@@ -159,7 +160,9 @@ namespace SceneControl
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
+            yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
             yield return new WaitUntil(() => {return CanTransition;});
+
             yield return Fade(0);
             
             mCurrentCoroutine = null;
@@ -188,8 +191,10 @@ namespace SceneControl
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
+            yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
+
             action();
-            yield return new WaitForSeconds(0.5f);
+
             yield return new WaitUntil(() => {return CanTransition;});
 
             yield return Fade(0);
@@ -227,6 +232,8 @@ namespace SceneControl
 
             yield return mAsyncOperation;
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
 
             yield return Fade(0);
             mCurrentCoroutine = null;

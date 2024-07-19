@@ -17,15 +17,15 @@ MonoBehaviour:
     list:
     - Key: 0
       Value: "\u6CE5\u571F"
-    - Key: 1
-      Value: Dirt
   Sprite: {fileID: 21300000, guid: 0f5dc90630a812b49a41cd3c89e7dffb, type: 3}
   Description:
     list:
     - Key: 0
-      Value: "\u4E00\u76D2\u7C89\u672B\u72B6\u7684\u7269\u8D28\uFF0C\u5F88\u6C89\u91CD"
+      Value: "\u4E00\u76D2\u7C89\u672B\u72B6\u7684\u7269\u8D28\uFF0C\u8D28\u5730\u8F6F\u800C\u8F7B\uFF0C\u4F3C\u4E4E\u53EF\u4EE5\u5F88\u597D\u5730\u5438\u9644\u6DB2\u4F53"
   SubDescription:
     list:
     - Key: 0
-      Value: "\u4E00\u76D2\u7C89\u672B\u72B6\u7684\u7269\u8D28\uFF0C\u5F88\u6C89\u91CD"
+      Value: "\u5316\u5B66\u7EC4\u6210\u4E3A 80\u301C90\uFF05 \u7684\u4E8C\u6C27\u5316\u7845\u30012\u301C4\uFF05
+        \u7684\u6C27\u5316\u94DD\uFF08\u5F52\u56E0\u5927\u591A\u4EE5\u7C98\u571F\u77FF\u7269\uFF09\u548C
+        0.5\uFF5E2\uFF05 \u7684\u94C1\u6C27\u5316\u7269\u3002"
   MaxAmount: 0

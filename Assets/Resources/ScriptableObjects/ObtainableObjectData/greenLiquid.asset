@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: greenLiquid
   Name:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u7EFF\u8272\u6C41\u6DB2"
   Sprite: {fileID: 21300000, guid: fc5f9133df016f54b8413bb49043c24c, type: 3}
   Description:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u88C5\u5728\u73BB\u7483\u5668\u76BF\u91CC\u7684\u7EFF\u8272\u6EB6\u6DB2\uFF0C\u662F\u753B\u5BB6\u7684\u539F\u6599\u3002"
   SubDescription:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u4ED4\u7EC6\u95FB\u95FB\u7684\u8BDD\u6709\u4E00\u80A1\u6D77\u85FB\u5473\u3002"
   MaxAmount: 0

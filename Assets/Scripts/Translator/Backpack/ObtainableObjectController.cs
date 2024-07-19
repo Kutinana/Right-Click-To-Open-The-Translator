@@ -27,8 +27,9 @@ namespace UI
 
         public virtual void Initialize(ObtainableObjectData _data = null)
         {
-            if (_data != null) data = _data;
-
+            if (_data == null) return;
+            
+            data = _data;
             _image.sprite = data.Sprite;
         }
     }

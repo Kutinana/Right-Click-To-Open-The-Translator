@@ -59,8 +59,8 @@ namespace Puzzle.InCenter.Astrolable
 
             DisableCharacters();
 
-            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters());
-            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters());
+            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
         private void EnableCharacters()
         {

@@ -43,8 +43,8 @@ namespace Puzzle.InCenter.Painting
 
             DisableCharacters();
 
-            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters());
-            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters());
+            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
         private void EnableCharacters()
         {
@@ -116,6 +116,7 @@ namespace Puzzle.InCenter.Painting
 
             yield return new WaitForSeconds(0.5f);
 
+            GameProgressData.IncreaseInventory("greenLiquid");
             PuzzleManager.Solved();
             CurrentCoroutine = null;
         }

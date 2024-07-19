@@ -14,7 +14,9 @@ namespace LightController
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => OnSceneUpdate()).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => OnSceneUpdate())
+                .UnRegisterWhenGameObjectDestroyed(gameObject);
         }
         private void OnSceneUpdate()
         {
@@ -61,8 +63,8 @@ namespace LightController
             {
                 try
                 {
-                    tlight.GetComponent<Light2D>().lightType = Light2D.LightType.Global;
                     DayLightController.Instance.enableDayLight = false;
+                    tlight.GetComponent<Light2D>().lightType = Light2D.LightType.Global;
                 }
                 catch (Exception)
                 {

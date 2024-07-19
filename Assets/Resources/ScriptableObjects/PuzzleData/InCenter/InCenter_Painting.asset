@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: PuzzleData
+  m_Name: InCenter_Painting
   m_EditorClassIdentifier: 
   id: InCenter_Painting
   Prefab: {fileID: 6857423241720037648, guid: ea9fb6941ca3cb44e932d0dd9a622323, type: 3}

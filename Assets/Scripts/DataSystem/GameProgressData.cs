@@ -108,6 +108,22 @@ namespace DataSystem
             Instance.Serialization();
         }
 
+        public static void IncreaseInventory(string _id)
+        {
+            var inventory = Instance.Save.Inventory;
+            var data = GameDesignData.GetObtainableObjectDataById(_id);
+
+            if (!inventory.TryGetValue(_id, out var value))
+            {
+                value = 0;
+            }
+            if (data.MaxAmount == 0) inventory[_id]++;
+            else inventory[_id] = Math.Clamp(value + 1, 0, data.MaxAmount);
+
+            Instance.Serialization();
+            TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(new Dictionary<string, int>() {{_id, 1}}));
+        }
+
         public static void IncreaseInventory(string _id, int _delta)
         {
             var inventory = Instance.Save.Inventory;

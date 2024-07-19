@@ -4,7 +4,7 @@ using Puzzle;
 using QFramework;
 using System.Runtime.Serialization.Configuration;
 using Translator;
-using UI;
+using UI.Narration;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

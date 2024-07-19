@@ -3,6 +3,7 @@ using DataSystem;
 using QFramework;
 using TMPro;
 using UI;
+using UI.Narration;
 using UnityEngine;
 using UnityEngine.UI;
 

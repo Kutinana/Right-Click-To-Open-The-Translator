@@ -6,12 +6,12 @@ using QFramework;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace UI
+namespace UI.Narration
 {
     public struct OnNarrationStartEvent
     {
-
         public OnNarrationStartEvent(string id) : this()
         {
             Id = id;
@@ -31,12 +31,32 @@ namespace UI
     }
     public struct OnInitialNarrationStartEvent { }
 
+    public enum Narrator
+    {
+        Protagonist,
+        Shiro
+    }
+
+    public enum Side
+    {
+        Left,
+        Right
+    }
+
     public class NarrationManager : MonoSingleton<NarrationManager>
     {
+        public SerializableDictionary<Narrator, Sprite> Tachies;
+
         private CanvasGroup mCanvasGroup;
-        private TMP_Text mText;
         private string narrationPlaying = null;
         private static Coroutine CurrentCoroutine;
+
+        private CanvasGroup leftCanvasGroup;
+        private Image leftImage;
+        private TMP_Text leftText;
+        private CanvasGroup rightCanvasGroup;
+        private Image rightImage;
+        private TMP_Text rightText;
 
         public string ToShowNarrationId { get; set; }
         public static bool IsNarrating => CurrentCoroutine != null;
@@ -44,7 +64,14 @@ namespace UI
         private void Awake()
         {
             mCanvasGroup = GetComponent<CanvasGroup>();
-            mText = transform.Find("Text").GetComponent<TMP_Text>();
+
+            leftCanvasGroup = transform.Find("Left").GetComponent<CanvasGroup>();
+            leftImage = transform.Find("Left/Tachie").GetComponent<Image>();
+            leftText = transform.Find("Left/Text").GetComponent<TMP_Text>();
+
+            rightCanvasGroup = transform.Find("Right").GetComponent<CanvasGroup>();
+            rightImage = transform.Find("Right/Tachie").GetComponent<Image>();
+            rightText = transform.Find("Right/Text").GetComponent<TMP_Text>();
 
             TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e =>
             {
@@ -85,27 +112,57 @@ namespace UI
             Instance.narrationPlaying = null;
         }
 
-        private IEnumerator NarrationCoroutine(List<string> content, float delay = 0f)
+        private IEnumerator NarrationCoroutine(List<NarrationSentence> content, float delay = 0f)
         {
-            mText.SetText("");
             yield return new WaitForSeconds(delay);
 
+            leftCanvasGroup.alpha = 0;
+            rightCanvasGroup.alpha = 0;
             yield return CanvasGroupHelper.FadeCanvasGroup(Instance.mCanvasGroup, 1f);
 
-            foreach (var text in content)
+            foreach (var sentence in content)
             {
-                mText.SetText("");
-
-                var len = text.Length;
-                var speed = 1 / 24f;
-
-                for (var i = 0; i < len; i++)
+                if (sentence.side == Side.Left)
                 {
-                    mText.text += text[i];
-                    if (text[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
-                    yield return new WaitForSeconds(speed);
+                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 0f, 0.2f);
+
+                    leftText.SetText("");
+                    leftImage.sprite = Tachies[sentence.narrator];
+
+                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 1f, 0.2f);
+                    
+                    var len = sentence.content.Length;
+                    var speed = 1 / 24f;
+
+                    for (var i = 0; i < len; i++)
+                    {
+                        leftText.text += sentence.content[i];
+                        if (sentence.content[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
+                        yield return new WaitForSeconds(speed);
+                    }
+                    leftText.SetText(sentence.content);
                 }
-                mText.SetText(text);
+                else if (sentence.side == Side.Right)
+                {
+                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 0f, 0.2f);
+
+                    rightText.SetText("");
+                    rightImage.sprite = Tachies[sentence.narrator];
+
+                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 1f, 0.2f);
+                    
+                    var len = sentence.content.Length;
+                    var speed = 1 / 24f;
+
+                    for (var i = 0; i < len; i++)
+                    {
+                        rightText.text += sentence.content[i];
+                        if (sentence.content[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
+                        yield return new WaitForSeconds(speed);
+                    }
+                    rightText.SetText(sentence.content);
+                }
+                
                 yield return new WaitForSeconds(0.5f);
 
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
@@ -129,11 +186,15 @@ namespace UI
 
             EditorGUILayout.Separator();
 
-            EditorGUILayout.BeginHorizontal();
             manager.ToShowNarrationId = EditorGUILayout.TextField(manager.ToShowNarrationId);
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Start"))
             {
                 NarrationManager.StartNarration(manager.ToShowNarrationId);
+            }
+            if (GUILayout.Button("Stop"))
+            {
+                NarrationManager.StopNarration();
             }
             EditorGUILayout.EndHorizontal();
         }

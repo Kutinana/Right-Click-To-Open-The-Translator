@@ -1,5 +1,5 @@
 using QFramework;
-using UI;
+using UI.Narration;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;

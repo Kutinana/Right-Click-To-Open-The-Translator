@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e8d4e5e933346ac4d94fbb5b5eb46a02, type: 2}
+  data: {fileID: 11400000, guid: 99303780aaaecf6499c2f762f9f73f8a, type: 2}
 --- !u!225 &4577602939997867436
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1673,7 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c5aadc4d58bea41b33c87633c476b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e8d4e5e933346ac4d94fbb5b5eb46a02, type: 2}
+  data: {fileID: 11400000, guid: a0f77410a4771e445969cb85089decaf, type: 2}
 --- !u!225 &5462067326581947250
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3087,6 +3087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: InCenter_Painting
+  solved: 0
   ValidPoints:
   - {fileID: 7636990767353780420}
   - {fileID: 5917275424867277146}
@@ -3101,6 +3102,7 @@ MonoBehaviour:
   - {fileID: 654715351071347870}
   - {fileID: 5604934462979110213}
   - {fileID: 4645920609761538716}
+  HoldingTag: {fileID: 0}
   Characters:
   - {fileID: 6399729573957572172}
   - {fileID: 8814385340946025131}

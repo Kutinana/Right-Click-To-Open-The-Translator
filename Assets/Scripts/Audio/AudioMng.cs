@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DataSystem;
 using Hint;
 using Puzzle;
 using QFramework;
@@ -68,6 +69,8 @@ public class AudioMng : MonoSingleton<AudioMng>
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e => OnPuzzleExit()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<OnInventoryIncreasedEvent>(e => AudioKit.PlaySound("023PickupItem")).UnRegisterWhenGameObjectDestroyed(gameObject);
+        
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
         {
@@ -304,6 +307,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     }
     public void OnPuzzleExit()
     {
+        AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
         audioMixer.TransitionToSnapshots(audioMixerSnapshots, new float[] { 1, 0 }, 0.5f);
     }
 }

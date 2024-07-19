@@ -71,9 +71,10 @@ namespace Puzzle.InEnergy.Submarine
 
         private void ConfirmCoordinates()
         {
+            transform.Find("Button/Confirm").GetComponent<Button>().interactable = false;
             parameter = 0f;
             parameter_mark = 0f;
-            float x_offset = Puzzle.m_coordinates[0] * 25 + Puzzle.m_coordinates[1] * 5;
+            float x_offset = Puzzle.m_coordinates[0] * 50 + Puzzle.m_coordinates[1] * 10;
             float y_offset = 0 - Puzzle.m_coordinates[2] * 25 - Puzzle.m_coordinates[3] * 5;
             submarine_initialPosition = m_submarine.localPosition;
             submarine_targetPosition = new Vector3(m_submarine.localPosition.x, m_submarine.localPosition.y - 300, m_submarine.localPosition.z);
@@ -87,6 +88,7 @@ namespace Puzzle.InEnergy.Submarine
             currentCoroutine += 1;
             StartCoroutine(WaterAnimation());
             if (Puzzle.PuzzleFinish()) StartCoroutine(CoordinateCorrect());
+            StartCoroutine(EnableButton());
         }
 
         private IEnumerator WaterAnimation()
@@ -161,6 +163,13 @@ namespace Puzzle.InEnergy.Submarine
             yield return new WaitUntil(() => currentCoroutine <= 0);
             Puzzle.Instance.enabled = false;
             yield return null; 
+        }
+
+        private IEnumerator EnableButton()
+        {
+            yield return new WaitUntil(() => currentCoroutine <= 0);
+            transform.Find("Button/Confirm").GetComponent<Button>().interactable = true;
+            yield return null;
         }
 
         private IEnumerator ScreenAnimation()

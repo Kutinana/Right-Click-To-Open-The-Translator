@@ -1,14 +1,9 @@
 using DataSystem;
-using QFramework;
 using System.Collections;
 using System.Collections.Generic;
-using Translator;
 using UI;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace Puzzle.InCenter.HanoiTower
 {
@@ -43,6 +38,9 @@ namespace Puzzle.InCenter.HanoiTower
         public static Tower CurrentTower = null;
         public static Tower OriginTower = null;
 
+        public List<Sprite> Lights;
+        private Image Light;
+
         private void Awake()
         {
             Instance = this;
@@ -50,11 +48,9 @@ namespace Puzzle.InCenter.HanoiTower
             blocks = new List<Item>(5);
             Towers = new List<Tower>(3);
 
-            Initialize();
-            Debug.Log(Towers.Count);
-            Debug.Log(blocks.Count);
+            Light = transform.Find("Interactable/Lights").GetComponent<Image>();
 
-            
+            Initialize();
         }
 
         private void Update()
@@ -62,6 +58,35 @@ namespace Puzzle.InCenter.HanoiTower
             if (Input.GetMouseButtonUp(0))
             {
                 BlockDown();
+                int num = 0;
+                foreach (var state in BlockStates)
+                {
+                    if (state == blockState.Middle) num++;
+                }
+
+                switch (num)
+                {
+                    case 0:
+                        Light.sprite = Lights[0];
+                        break;
+                    case 1:
+                        Light.sprite = Lights[1];
+                        break;
+                    case 2:
+                        Light.sprite = Lights[2];
+                        break;
+                    case 3:
+                        Light.sprite = Lights[3];
+                        break;
+                    case 4:
+                        Light.sprite = Lights[4];
+                        break;
+                    case 5:
+                        Light.sprite = Lights[5];
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

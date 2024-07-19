@@ -29,7 +29,7 @@ namespace Puzzle.InEnergy.Submarine
         private Button backButton;
 
         public static List<int> m_coordinates = new List<int> { 0, 0, 0, 0 };
-        private List<int> m_answer = new List<int> { 2, 0, 5, 3 };
+        private List<int> m_answer = new List<int> { 2, 0, 5, 4 };
 
         public Transform item;
         public List<CharacterData> numbers;

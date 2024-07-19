@@ -70,7 +70,7 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
     }
     private void OnNarrationEndMissionHandler(OnNarrationEndEvent e)
     {
-        if (e.Id.Equals("InitialNarration"))
+        if (!string.IsNullOrEmpty(e.Id) && e.Id.Equals("InitialNarration"))
         {
             GameProgressData.AddMission("main0");
         }

@@ -31,6 +31,336 @@
                 "narrator": "Protagonist",
                 "content": "先四处看看吧…"
             }
+        ],
+        "Disk1": [
+            {
+                "content": "把形似录像带的物件插入翻译器后，出现了这样一段录像，不知为何，居然是人类的语言："
+            },
+            {
+                "content": "（电流声）"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "小灰......是这个名字吗"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "对不起......现在要用这样的方式和你见面。很抱歉把你卷进这件事。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "为了这片大地的存续，我必须留在这里。这就是我的使命。然而这片大地......可能终究还是挺不过那次大灾厄的恶果。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "所以，哪怕这自私十分，我还是想要把拯救这片我所深爱的大地的任务，交给初来乍到的你。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "来自那个“更高世界”的你。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "到“塔”那里去吧，在那里你可以获得地区的信息。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "每个地区都有一位堪称德高望重的长老，他们会些许你们世界的语言，也有着往古来今渊博的知识，可以为你的一些疑问带来解答。"
+            },
+            {
+                "content": "鞘猫看向了别处，顿了顿。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "也许，途中你会经过我们生活的地方，而由于能源系统正逐渐分崩离析，许多设施由于能源的缺失，都无法运行。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "请到能量井去看看有什么办法，帮帮我的同胞。"
+            },
+            {
+                "content": "随着背景一阵轰隆隆的响声，似乎是热浪正在将画面变得扭曲，鞘猫拿起摄像机，没注意到录制没有停止,开始移动。"
+            },
+            {
+                "content": "最后一帧画面里看到了集市模样的地方，但……"
+            },
+            {
+                "content": "影片在一片电流声中莫名其妙终止了。"
+            }
+        ],
+        "Disk2": [
+            {
+                "content": "似乎是和先前见到的录像带一样构造的物品，外观上比之前那件新上不少"
+            },
+            {
+                "content": "（画面一开始还是被热浪扭曲的一片，然后传来了摄像机被用力拍打的声音，鞘猫边“跑”边说道：）"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "时间……已经不多了"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "如果你知道了那么多事情后还是执意想来看我，那我就告诉你如何找到我吧"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "你肯定已经知道了我目前在这个世界的火山里，无法离开。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "然而想要到达这个地方，为了闯过一路上人类并不方便途径的道路，你需要长老的帮助来见我。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "你需要成为，模仿我们的行为方式。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "……不要觉得我在说傻话啦，这是可以办到的，你需要 “能力”。"
+            },
+            {
+                "content": "画面中的鞘猫好像在告诉你更多有关于能力的事情，但是突然只有模糊的画面和电流声。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "还有还有，假设你已经见过了一位长老，另外两位长老分别掌管着的另外两个区域，你可以通过渡轮前往……不过现在码头可能已经坏掉了，那你就得先去找能修码头的鞘猫了。"
+            },
+            {
+                "content": "背景里传来了更大更密集的响声，众鞘猫的议论声。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我得走了……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "请一定一定要帮助我和我的人民……"
+            },
+            {
+                "content": "录像中弹出了似乎是录像机的警告——环境过热，暂停录制。"
+            }
+        ],
+        "Disk3": [
+            {
+                "content": "又是一段录像，开头的画面摇摇晃晃。"
+            },
+            {
+                "content": "画面是自己之前来过的，在前面录像带里见过的集市。"
+            },
+            {
+                "content": "身材高大的，是没见过品种的大只鞘猫带着小鞘猫在摊子前驻留，挑选食材。"
+            },
+            {
+                "content": "下意识觉得他们是母子关系，但是它们的身体特征完全不一样……"
+            },
+            {
+                "content": "之前的声音在用鞘猫语自言自语些什么，一阵沉默过后："
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "欸，原来我一路走过来都开着录像吗……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "算了，我其实是想在最后的时光里，回想一下我的三亲的。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "给你介绍一下，也不是不行吧……只不过想要见到他们，可能要跑到另外两个区域了。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我觉得还是很遗憾的，在完成必须完成的使命之前，居然连和它们最后见上一面的机会都没有吗……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "如果你到了那片没什么光线的深海森林的话，可能可以找到我的其中一位亲人。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "到了那片温度宜人的半山腰的话，别被体型大了点的我们一族吓到……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "你一定会感到惊讶吧，我们种族居然会有三个亲人。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我也没想到如今我居然会有两个使命，三重身份……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "该到塔那边去了，趁着火山那边情况没有恶化，我得给族人长老们交代最后的话……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "一如既往地，祝你一路顺风。"
+            },
+            {
+                "content": "镜头最后指向了高耸的塔，黯红的天空，背景里依旧是咕嘟咕嘟的响声，大鞘猫抓紧了小鞘猫的触须，好像是下定了某种决心。"
+            }
+        ],
+        "Disk4": [
+            {
+                "content": "在一片陌生的空间中。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "诶诶，你真的到这里了吗？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我果然没有错看你嘛！不愧是我的主人[ •̀ ω •́ ]✧！！！"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "什么难道你还没认出我吗？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "是小白啊！！！我是小白￣へ￣！！！"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "虽然离拯救鞘猫们还有段距离，但是你已经完成了三分之一啦！做得好！"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "之后的旅途，会是什么样子呢？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "到深海的迷雾森林里会不会因为太暗而迷路？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "到了高山上会不会因为岩石崎岖无法着脚？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我相信你一定可以的。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "因为你已经学会了……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我们鞘猫和你们人类之所以会有这样的复杂关系，有这样的语言差异，正是因为我们看待事物的“视角”不同。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "同样一件东西，我们的感官所能感受到的，我们的文化所重视的，是完全不一样的……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "不是能把我们之间的矛盾巧妙地转嫁到所谓“语言的不同”的。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "而是因为观念的分裂，视角的差异，解读的出入……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "文化、地域、民族……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "因为这些，我们从同一件东西中所得到的信息是必然不一样的。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "所以会有语言的衍生和对撞，文化思维的冲击和震荡。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "片面的信息，解读的误差引起了各种各样的暴欲，冲突和矛盾，使得祸乱的袍子散布在大地之上。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "如何能够消弭这种分歧，这种误差？"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "在我到人类世界的短暂旅途中，我明白了。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我们必须到那比天空更高的地方，才能拥有统一的视角……"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "然而，正如你们某位哲学家告诉我们的那样："
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "那是仅存于观念中的，永远都达不到的视角。"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "我的话讲完了，不过好像有一帮家伙叫我还得说这句话，哎，那就说吧："
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "感谢你玩我们的游戏！！"
+            },
+            {
+                "content": "影片在一片笑声中结束了。"
+            }
         ]
     },
     "en_US": {
@@ -38,7 +368,7 @@
             {
                 "side": "Right",
                 "narrator": "Protagonist",
-                "content": "What in Chirst sake is going on here......"
+                "content": "What in Christ's sake is going on here......"
             },
             {
                 "side": "Left",
@@ -64,6 +394,336 @@
                 "side": "Left",
                 "narrator": "Protagonist",
                 "content": "Well, seems like I should try to hang around and see if there's something useful"
+            }
+        ],
+        "Disk1": [
+            {
+                "content": "After inserting the object resembling a videotape into the translator, this video appeared. For some reason, it is in human language:"
+            },
+            {
+                "content": "(Static)"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Little Grey... is that your name?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I'm sorry... to meet you this way. I'm sorry for dragging you into this."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "To preserve this land, I must stay here. This is my mission. However, this land... may ultimately not survive the aftermath of the Great Cataclysm."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "So, even if it's selfish, I still want to entrust you, a newcomer, with the task of saving this land I love."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "You, who come from the 'higher world'."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Go to the 'Tower'. There, you can get information about the regions."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Each region has a highly respected elder. They know some of your world's language and have vast knowledge from ancient times to the present. They can answer some of your questions."
+            },
+            {
+                "content": "The octocat looked away and paused."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Perhaps, on your way, you will pass by where we live. Due to the energy system gradually collapsing, many facilities are not functioning because of the lack of energy."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Please visit the energy well and see if there's anything you can do to help my kin."
+            },
+            {
+                "content": "As the background rumbled, it seemed like heat waves were distorting the image. The octocat picked up the camera, not noticing that the recording hadn’t stopped, and started to move."
+            },
+            {
+                "content": "The last frame showed what looked like a marketplace, but..."
+            },
+            {
+                "content": "The film abruptly ended with a burst of static."
+            }
+        ],
+        "Disk2": [
+            {
+                "content": "It seems to be an object constructed similarly to the previous videotape, but it looks much newer."
+            },
+            {
+                "content": "(The screen starts with a distorted image from heat waves, then there's a sound of the camera being hit forcefully. The octocat speaks while 'running'):"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Time... is running out."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "If, after knowing so much, you still insist on seeing me, then I'll tell you how to find me."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "You must already know that I am currently in this world's volcano, unable to leave."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "However, to reach this place, you'll need the elders' help to navigate the paths that are inconvenient for humans."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "You need to become, to mimic our ways."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "...Don't think I'm talking nonsense, it's doable, you need 'abilities'."
+            },
+            {
+                "content": "The octocat in the video seems to be telling you more about abilities, but suddenly only blurred images and static appear."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Also, if you have met one elder, the other two elders each govern another region. You can reach them by ferry... but the dock might be broken now, so you'll have to find an octocat who can fix it first."
+            },
+            {
+                "content": "Louder and more frequent sounds came from the background, along with the murmuring of many octocats."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I have to go..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Please, please help me and my people..."
+            },
+            {
+                "content": "The recording popped up a warning on the screen—environment overheating, recording paused."
+            }
+        ],
+        "Disk3": [
+            {
+                "content": "Another video, the beginning is shaky."
+            },
+            {
+                "content": "The scene is the marketplace you've seen before in the previous tapes."
+            },
+            {
+                "content": "A tall, unfamiliar breed of large octocat stays at a stall with a smaller octocat, selecting food."
+            },
+            {
+                "content": "You instinctively feel they're a mother and child, but their physical features are completely different..."
+            },
+            {
+                "content": "The previous voice mumbles something in octocat language, followed by a moment of silence:"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Hey, I had the camera running all the way here?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Oh well, I actually wanted to reminisce about my three parents in my final moments."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Introducing them to you wouldn't be a bad idea... but to meet them, you'll have to go to two other regions."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "It's quite regrettable that before completing my mission, I couldn't even have a final meeting with them..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "If you reach the dark deep-sea forest, you might find one of my parents."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "In the temperate mid-mountain area, don't be intimidated by the larger members of our species..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "You might be surprised to learn that our species has three parents."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I never thought I would have two missions and three identities..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I must go to the tower, while the situation at the volcano hasn't worsened. I need to give the elders my final words..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "As always, I wish you a safe journey."
+            },
+            {
+                "content": "The camera finally points to the towering tower, a dark red sky, with bubbling sounds in the background. The large octocat holds the smaller one's tendrils tightly, as if making a firm decision."
+            }
+        ],
+        "Disk4": [
+            {
+                "content": "In somewhere else."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Hey, did you really get here?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I knew I wasn't wrong about you! You truly are my master [ •̀ ω •́ ]✧!"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "What? You still haven't recognized me?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "It's Shiro!!! I'm Shiro￣へ￣!!!"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Although there's still a long way to go to save the octocats, you've completed one-third! Well done!"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "What will the next journey be like?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Will you get lost in the deep-sea fog forest because it's too dark?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Will you be unable to walk on the rocky mountains?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I believe you can do it."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Because you've learned..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "The reason octocats and humans have such a complex relationship and language differences is because we perceive things differently."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "The same thing is perceived differently by our senses and valued differently by our cultures..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "It's not just a matter of language differences."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "It's because of conceptual splits, perceptual differences, and interpretive gaps..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Culture, region, ethnicity..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Because of these, the information we get from the same thing is inevitably different."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "So, there will be the emergence and clash of languages, the impact and shock of cultural thinking."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Fragmentary information and interpretive errors have led to various kinds of violence, conflict, and discord, spreading chaos across the land."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "How can we eliminate these discrepancies and errors?"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "During my brief journey to the human world, I realized."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "We must go to a place higher than the sky to have a unified perspective..."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "However, as one of your philosophers told us:"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "That is a perspective that exists only in concept, never attainable."
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "I'm done talking, but it seems some guys insist I say this, so here it is:"
+            },
+            {
+                "side": "Left",
+                "narrator": "Shiro",
+                "content": "Thank you for playing our game!!"
+            },
+            {
+                "content": "The video ends with laughter."
             }
         ]
     }

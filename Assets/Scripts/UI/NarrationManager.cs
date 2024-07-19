@@ -4,6 +4,7 @@ using Kuchinashi;
 using Localization;
 using QFramework;
 using TMPro;
+using Translator;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,7 @@ namespace UI.Narration
 
     public enum Narrator
     {
+        None,
         Protagonist,
         Shiro
     }
@@ -73,13 +75,7 @@ namespace UI.Narration
             rightImage = transform.Find("Right/Tachie").GetComponent<Image>();
             rightText = transform.Find("Right/Text").GetComponent<TMP_Text>();
 
-            TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e =>
-            {
-                if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
-                {
-                    StartNarration("InitialNarration", 2f);
-                }
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            EventRegister();
         }
 
         private void Update()
@@ -127,7 +123,12 @@ namespace UI.Narration
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 0f, 0.2f);
 
                     leftText.SetText("");
-                    leftImage.sprite = Tachies[sentence.narrator];
+                    if (sentence.narrator != Narrator.None && Tachies.TryGetValue(sentence.narrator, out var value))
+                    {
+                        leftImage.sprite = value;
+                        leftImage.color = Color.white;
+                    }
+                    else leftImage.color = new Color(1f, 1f, 1f, 0f);
 
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 1f, 0.2f);
                     
@@ -147,7 +148,12 @@ namespace UI.Narration
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 0f, 0.2f);
 
                     rightText.SetText("");
-                    rightImage.sprite = Tachies[sentence.narrator];
+                    if (sentence.narrator != Narrator.None && Tachies.TryGetValue(sentence.narrator, out var value))
+                    {
+                        rightImage.sprite = value;
+                        rightImage.color = Color.white;
+                    }
+                    else rightImage.color = new Color(1f, 1f, 1f, 0f);
 
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 1f, 0.2f);
                     
@@ -170,6 +176,36 @@ namespace UI.Narration
 
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
             StopNarration();
+        }
+
+        private void EventRegister()
+        {
+            TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e =>
+            {
+                if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
+                {
+                    StartNarration("InitialNarration", 2f);
+                }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnItemUseEvent>(e =>
+            {
+                switch (e.Data.Id)
+                {
+                    case "disk1":
+                        StartNarration("Disk1");
+                        break;
+                    case "disk2":
+                        StartNarration("Disk2");
+                        break;
+                    case "disk3":
+                        StartNarration("Disk3");
+                        break;
+                    case "disk4":
+                        StartNarration("Disk4");
+                        break;
+                }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
     }
 

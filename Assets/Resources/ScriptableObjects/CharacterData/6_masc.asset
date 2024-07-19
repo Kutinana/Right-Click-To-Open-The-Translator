@@ -15,4 +15,5 @@ MonoBehaviour:
   id: masc
   Sprite: {fileID: 21300000, guid: e1f72c5f3ac32684583a0b8b18c86a52, type: 3}
   Description: "\u673A\u5668"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}

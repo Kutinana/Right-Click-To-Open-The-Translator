@@ -15,4 +15,6 @@ MonoBehaviour:
   id: dark
   Sprite: {fileID: 21300000, guid: 22d4216546e1cbb448aed4faca70a999, type: 3}
   Description: "\u9ED1\u6697"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: f518057a26168944cacee53322cda8bc, type: 2}
+  - {fileID: 11400000, guid: aaf62eb3b9578c1419eee84a7ebd82f3, type: 2}

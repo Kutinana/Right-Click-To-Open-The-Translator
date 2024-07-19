@@ -17,3 +17,5 @@ MonoBehaviour:
   Description: "\u5F00\uFF0C\u542F\u52A8"
   RelatedPuzzles:
   - {fileID: 11400000, guid: e6832d33cb97b2e40a57074b16478c08, type: 2}
+  - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}
+  - {fileID: 11400000, guid: 670a0b16d0129234fba7017b88cc5464, type: 2}

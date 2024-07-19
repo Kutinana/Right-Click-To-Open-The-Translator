@@ -15,4 +15,5 @@ MonoBehaviour:
   id: light
   Sprite: {fileID: 21300000, guid: 616c100ed52f34543804552746c45dc1, type: 3}
   Description: "\u5149\u4EAE"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: f518057a26168944cacee53322cda8bc, type: 2}

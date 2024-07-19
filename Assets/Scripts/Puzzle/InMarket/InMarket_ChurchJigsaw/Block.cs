@@ -1,5 +1,6 @@
 
 using Puzzle.InEnergy.Cable;
+using QFramework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,7 @@ namespace Puzzle.InMarket.Church
 
         private void NextState()
         {
+            AudioKit.PlaySound("023ItemRot");
             int val = ((int)currentState + 1) % 4;
             BlockState nextState = (BlockState)val;
             SetState(nextState);

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Puzzle.InEnergy.Submarine
 {
-    public class Coordinate: MonoBehaviour
+    public class Coordinate : MonoBehaviour
     {
         private List<Character> characters;
         private CanvasGroup m_waterEffect;
@@ -48,6 +48,7 @@ namespace Puzzle.InEnergy.Submarine
 
         private void CharacterUpdate(int id)
         {
+            AudioKit.PlaySound("Cube-Slide", volumeScale: 0.8f);
             characters[id].data = Puzzle.Instance.numbers[Puzzle.m_coordinates[id]];
             characters[id].Refresh();
         }
@@ -72,6 +73,7 @@ namespace Puzzle.InEnergy.Submarine
         private void ConfirmCoordinates()
         {
             transform.Find("Button/Confirm").GetComponent<Button>().interactable = false;
+            AudioKit.PlaySound("023BoxMoving");
             parameter = 0f;
             parameter_mark = 0f;
             float x_offset = Puzzle.m_coordinates[0] * 50 + Puzzle.m_coordinates[1] * 10;
@@ -94,6 +96,7 @@ namespace Puzzle.InEnergy.Submarine
         private IEnumerator WaterAnimation()
         {
             //Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(m_waterEffect, 1, 0.5f);
+            AudioKit.PlaySound("023Dive", volumeScale: 0.6f);
             m_waterEffect.alpha = 1;
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[1];
@@ -112,6 +115,7 @@ namespace Puzzle.InEnergy.Submarine
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[1];
             yield return new WaitForSeconds(0.1f);
+            AudioKit.PlaySound("023ComeUp", volumeScale: 0.6f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[2];
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[3];
@@ -162,7 +166,7 @@ namespace Puzzle.InEnergy.Submarine
         {
             yield return new WaitUntil(() => currentCoroutine <= 0);
             Puzzle.Instance.enabled = false;
-            yield return null; 
+            yield return null;
         }
 
         private IEnumerator EnableButton()

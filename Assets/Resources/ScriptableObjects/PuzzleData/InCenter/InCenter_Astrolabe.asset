@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
-  m_Name: PuzzleData
+  m_Name: InCenter_Astrolabe
   m_EditorClassIdentifier: 
-  id: InCenter_HanoiTower
-  Prefab: {fileID: 4352159700925957314, guid: 8bed6e2ff4739a84ca0e42e153a3f9c9, type: 3}
+  id: InCenter_Astrolabe
+  Prefab: {fileID: 7646389499669519778, guid: 1f06af60a4624094a9977717b1d70e2e, type: 3}
   Thumbnail:
     list:
     - Key: 1
-      Value: {fileID: 21300000, guid: 454b8cc06bb30e248965486d98f3c0bf, type: 3}
+      Value: {fileID: 21300000, guid: d614bd1adce8f084ab364ca094b670c7, type: 3}
     - Key: 2
-      Value: {fileID: 21300000, guid: 42c190582ce184b469e188aa3ee50d3d, type: 3}
+      Value: {fileID: 21300000, guid: 56f6d6d6e2bc1e14c9ded379c9acf152, type: 3}
   Name: 
   Description: 

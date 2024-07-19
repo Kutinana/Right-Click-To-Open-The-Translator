@@ -1,9 +1,10 @@
+using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Puzzle.InCenter.Lighting
 {
-    public class CubeLighting: MonoBehaviour
+    public class CubeLighting : MonoBehaviour
     {
         Button m_button;
         LightState currentState;
@@ -17,6 +18,7 @@ namespace Puzzle.InCenter.Lighting
 
         public void SwitchStateWithChain()
         {
+            AudioKit.PlaySound("023ClickLight", volumeScale: 0.5f);
             if (currentState == LightState.Off) SetState(LightState.On);
             else SetState(LightState.Off);
 

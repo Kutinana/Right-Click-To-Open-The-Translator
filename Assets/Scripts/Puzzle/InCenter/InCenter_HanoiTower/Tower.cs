@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Puzzle.InCenter.HanoiTower
 {
-   public class Tower: MonoBehaviour
+    public class Tower : MonoBehaviour
     {
         public Stack ItemStack = new Stack(5);
         private void Awake()
@@ -21,6 +21,7 @@ namespace Puzzle.InCenter.HanoiTower
                 Puzzle.CurrentTower = this;
                 Puzzle.CurrentItem = ItemStack.Peek() as Item;
                 Puzzle.OriginTower = this;
+                AudioKit.PlaySound("BottleUp", volumeScale: 0.6f);
                 this.OverTower();
             }
             //Debug.Log(Puzzle.CurrentItem.transform.name);
@@ -32,6 +33,7 @@ namespace Puzzle.InCenter.HanoiTower
             Puzzle.CurrentTower = this;
             if (Puzzle.CurrentItem != null)
             {
+                AudioKit.PlaySound("InteractClick", volumeScale: 0.2f);
                 this.OverTower();
             }
         }
@@ -45,6 +47,7 @@ namespace Puzzle.InCenter.HanoiTower
                     Item Top = ItemStack.Peek() as Item;
                     if (Top.size < Puzzle.CurrentItem.size) return false;
                 }
+                AudioKit.PlaySound("R0", volumeScale: 0.5f);
                 SetPosition();
                 this.ItemStack.Push(Puzzle.CurrentItem);
                 return true;

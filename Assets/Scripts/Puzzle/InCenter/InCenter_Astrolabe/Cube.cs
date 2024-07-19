@@ -25,6 +25,7 @@ namespace Puzzle.InCenter.Astrolable
 
         private IEnumerator OnMouseDown()
         {
+            AudioKit.PlaySound("InteractClick", volumeScale: .5f);
             Puzzle.HoldingCube = this;
             //col.enabled = false;
 
@@ -66,6 +67,7 @@ namespace Puzzle.InCenter.Astrolable
 
         private void FindClosestPos()
         {
+            AudioKit.PlaySound("Cube-Slide", volumeScale: 0.8f);
             int ClosestPoint = -1;
             float minDist = 1000;
             for (int i = 0; i < 8; i++)

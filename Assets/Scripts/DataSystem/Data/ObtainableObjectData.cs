@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Kuchinashi;
+using Localization;
 using UnityEngine;
 
 namespace DataSystem
@@ -8,10 +10,10 @@ namespace DataSystem
     public class ObtainableObjectData : ScriptableObject, IHaveId
     {
         public string id;
-        public string Name;
+        public SerializableDictionary<Language, string> Name;
         public Sprite Sprite;
-        [Multiline] public string Description;
-        [Multiline] public string SubDescription;
+        public SerializableDictionary<Language, string> Description;
+        public SerializableDictionary<Language, string> SubDescription;
 
         public int MaxAmount = 0;
 

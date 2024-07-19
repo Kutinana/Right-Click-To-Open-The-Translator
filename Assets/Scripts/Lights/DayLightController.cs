@@ -1,3 +1,4 @@
+using System;
 using QFramework;
 using SceneControl;
 using UnityEngine;
@@ -52,9 +53,15 @@ public class DayLightController : MonoSingleton<DayLightController>
         m_DayLight = gameObject.GetComponent<Light2D>();
         //TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => UpdateScene()).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
-
+    float lastc = 20f;
     private void FixedUpdate()
     {
+        var tp = dayLightTime % 20f;
+        if (tp < lastc)
+        {
+            TypeEventSystem.Global.Send<TwenSecCountEvent>();
+        }
+        lastc = tp;
         if (dayLightTime < 60f)
         {
             m_DayLight.intensity = Mathf.Lerp(DAYINTENSITY, NIGHTINTENSITY, transTime2Normal(dayLightTime / 60, out timeNormal));
@@ -77,6 +84,7 @@ public class DayLightController : MonoSingleton<DayLightController>
         }
         else
         {
+            TypeEventSystem.Global.Send<NewCircleEvent>();
             dayLightTime = 0;
         }
         m_DayLight.color = GetLightColor();
@@ -126,4 +134,6 @@ public class DayLightController : MonoSingleton<DayLightController>
             return defultColor;
         }
     }
+    public struct NewCircleEvent { };
+    public struct TwenSecCountEvent { };
 }

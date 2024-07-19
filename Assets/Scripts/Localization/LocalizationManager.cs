@@ -89,5 +89,22 @@ namespace Localization
             }
             return _key.First().Value;
         }
+
+        public static string Get(string commonKey, params string [] param)
+        {
+            var origin = LocalizationManager.GetCommonString(commonKey);
+            try
+            {
+                for (var i = 0; i < param.Length; i++)
+                {
+                    origin = origin.Replace($"{{{i}}}", param[i]);
+                }
+                return origin;
+            }
+            catch
+            {
+                return origin;
+            }
+        }
     }
 }

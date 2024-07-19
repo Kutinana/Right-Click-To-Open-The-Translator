@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
+  m_Name: 133_say
+  m_EditorClassIdentifier: 
+  id: say
+  Sprite: {fileID: 21300000, guid: 52c47a300c1e5c74eb78b8983d2ae774, type: 3}
+  Description: "\u8BF4/\u8868\u8FBE"
+  RelatedPuzzles: []

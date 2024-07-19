@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Kuchinashi;
 using TMPro;
 using System.Linq;
+using Localization;
 
 namespace Translator
 {
@@ -80,9 +81,9 @@ namespace Translator
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 0f, 0.2f);
 
             currentItemImage.sprite = CurrentItemData.Sprite;
-            currentItemName.SetText(CurrentItemData.Name);
-            currentItemDes.SetText(CurrentItemData.Description);
-            currentItemSubDes.SetText(CurrentItemData.SubDescription);
+            currentItemName.SetText(LocalizationHelper.Get(CurrentItemData.Name));
+            currentItemDes.SetText(LocalizationHelper.Get(CurrentItemData.Description));
+            currentItemSubDes.SetText(LocalizationHelper.Get(CurrentItemData.SubDescription));
 
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 1f, 0.2f);
         }

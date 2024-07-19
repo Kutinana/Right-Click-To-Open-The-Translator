@@ -49,6 +49,7 @@ namespace Puzzle.InEnergy.Cable
             int val = ((int)currentState + 1) % 4;
             CableState nextState = (CableState)val;
             SetState(nextState);
+            Puzzle.SetState(nextState, this);
         }
     }
 }

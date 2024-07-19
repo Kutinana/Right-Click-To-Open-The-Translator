@@ -71,7 +71,6 @@ public class AudioMng : MonoSingleton<AudioMng>
         TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnInventoryIncreasedEvent>(e => AudioKit.PlaySound("023PickupItem")).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnItemUseEvent>(e => AudioKit.PlaySound("Fall-Zero", volumeScale: 0.2f)).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)

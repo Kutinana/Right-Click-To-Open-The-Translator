@@ -21,7 +21,7 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
 
         public void ChangeState(int state)
         {
-            //AudioKit.PlaySound("Click", volumeScale: 0.1f);
+            AudioKit.PlaySound("023LightOn", volumeScale: 0.2f);
             if (state >= States.Count) return;
             image.sprite = States[state];
         }

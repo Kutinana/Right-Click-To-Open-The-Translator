@@ -22,7 +22,7 @@ namespace Puzzle.InCenter.Lighting
             if (currentState == LightState.Off) SetState(LightState.On);
             else SetState(LightState.Off);
 
-            foreach (var light in Puzzle.LightChain[this])
+            foreach (var light in Puzzle.Instance.LightChain[this])
             {
                 light.SwitchStateWithoutChain();
             }
@@ -48,7 +48,7 @@ namespace Puzzle.InCenter.Lighting
                     break;
             }
             currentState = lightState;
-            Puzzle.CurrentStates[int.Parse(transform.name) - 1] = (int)currentState;
+            Puzzle.Instance.CurrentStates[int.Parse(transform.name) - 1] = (int)currentState;
         }
     }
 }

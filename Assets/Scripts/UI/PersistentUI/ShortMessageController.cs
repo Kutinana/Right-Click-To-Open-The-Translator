@@ -29,7 +29,7 @@ namespace UI
 
         public static void CallUp(string _text)
         {
-            if (Instance.CurrentCoroutine != null) Instance.Reset();
+            Instance.Reset();
 
             Instance.text.SetText(LocalizationHelper.Get("Str_ObtainedSingleObject", _text));
             Instance.CurrentCoroutine = Instance.StartCoroutine(Instance.ShowCoroutine());
@@ -40,7 +40,7 @@ namespace UI
             if (CurrentCoroutine != null) StopCoroutine(CurrentCoroutine);
             CurrentCoroutine = null;
 
-            transform.localPosition = new Vector3(400, -100, 0);
+            GetComponent<RectTransform>().anchoredPosition = new Vector2(400, -100);
         }
 
         private IEnumerator ShowCoroutine()

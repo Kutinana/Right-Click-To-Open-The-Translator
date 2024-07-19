@@ -26,4 +26,4 @@ MonoBehaviour:
     list:
     - Key: 0
       Value: "\u4ED4\u7EC6\u95FB\u95FB\u7684\u8BDD\u6709\u4E00\u80A1\u6D77\u85FB\u5473\u3002"
-  MaxAmount: 0
+  MaxAmount: 1

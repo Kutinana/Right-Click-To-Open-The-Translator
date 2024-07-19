@@ -17,7 +17,7 @@ namespace Puzzle.InCenter.Painting
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
-        public static bool solved = false;
+        public bool solved = false;
 
         public List<Transform> ValidPoints;
 
@@ -30,7 +30,7 @@ namespace Puzzle.InCenter.Painting
 
         public const float ERROR = 0.5f;
 
-        public static Tag HoldingTag = null;
+        public Tag HoldingTag = null;
 
         public List<CanvasGroup> Characters;
 

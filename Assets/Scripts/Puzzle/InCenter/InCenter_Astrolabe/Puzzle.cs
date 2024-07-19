@@ -24,22 +24,22 @@ namespace Puzzle.InCenter.Astrolable
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
-        public static bool solved = false;
+        public bool solved = false;
 
         public List<Transform> ValidPoints;
-        public static List<CubeType> cubeTypes = new List<CubeType>() 
+        public List<CubeType> cubeTypes = new List<CubeType>() 
         {
             CubeType.None, CubeType.None, CubeType.None, CubeType.None, 
             CubeType.None, CubeType.None, CubeType.None, CubeType.None
         };
 
-        private List<CubeType> CORRECT = new List<CubeType>() 
+        private readonly List<CubeType> CORRECT = new List<CubeType>() 
         {
             CubeType.Light, CubeType.Light, CubeType.Light, CubeType.Dark,
             CubeType.Light, CubeType.Light, CubeType.Dark, CubeType.Dark
         };
 
-        public static List<Cube> CubesInBlock = new List<Cube>()
+        public List<Cube> CubesInBlock = new List<Cube>()
         {
             null, null, null, null, null, null, null, null
         };
@@ -86,6 +86,8 @@ namespace Puzzle.InCenter.Astrolable
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
+                transform.Find("Interactable/Mask").gameObject.SetActive(false);
+                transform.Find("Interactable/fire").gameObject.SetActive(false);
 
                 solved = true;
             }
@@ -93,10 +95,10 @@ namespace Puzzle.InCenter.Astrolable
             {
                 if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
                 {
-
-
+                    GameProgressData.Unlock(this);
                 }
 
+                transform.Find("Interactable/fire").gameObject.SetActive(false);
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }
 
@@ -129,10 +131,11 @@ namespace Puzzle.InCenter.Astrolable
             yield return new WaitUntil(() => CheckAnswer());
 
             transform.Find("Interactable/Mask").gameObject.SetActive(false);
+            transform.Find("Interactable/fire").gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
 
-            PuzzleManager.Solved();
+            PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;
         }
 

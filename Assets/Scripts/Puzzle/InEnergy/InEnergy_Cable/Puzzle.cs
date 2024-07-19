@@ -31,7 +31,7 @@ namespace Puzzle.InEnergy.Cable
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
-        private static string Path = "";
+        // private static string Path = "";
         private const int CAPACITY = 25;
 
         private List<CableState> CableStates;

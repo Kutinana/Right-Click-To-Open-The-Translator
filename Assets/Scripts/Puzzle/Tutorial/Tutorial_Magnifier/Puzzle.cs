@@ -24,16 +24,16 @@ namespace Puzzle.Tutorial.P1
         public static Puzzle Instance;
 
         private Button backButton;
-        public static List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
+        public List<patternType> Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
         public List<Transform> CorrectPosY;
         public const float ERROR = 0.3f;
-        public static List<float> Scopes = new List<float>() { 0, 0, 0 };
+        public List<float> Scopes = new List<float>() { 0, 0, 0 };
         public List<Sprite> CTS;
         private Coroutine CurrentCoroutine = null;
-        public static bool enable = true;
+        public bool enable = true;
         private CanvasGroup tutorialCanvasGroup;
-        private static bool CORRECT => Patterns[0] == patternType.Circle && Patterns[1] == patternType.Triangle && Patterns[2] == patternType.Square;
-        private static bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - Instance.CorrectPosY[0].position.y) <= ERROR
+        private bool CORRECT => Patterns[0] == patternType.Circle && Patterns[1] == patternType.Triangle && Patterns[2] == patternType.Square;
+        private bool SCOPE_CORRECT => Mathf.Abs(Scopes[0] - Instance.CorrectPosY[0].position.y) <= ERROR
             && Mathf.Abs(Scopes[1] - Instance.CorrectPosY[1].position.y) <= ERROR
             && Mathf.Abs(Scopes[2] - Instance.CorrectPosY[2].position.y) <= ERROR;
 
@@ -52,9 +52,9 @@ namespace Puzzle.Tutorial.P1
 
         public static void PatternUpdate(int pos, Transform button)
         {
-            int val = ((int)Patterns[pos] + 1) % 3;
-            Patterns[pos] = (patternType)val;
-            switch (Patterns[pos])
+            int val = ((int) Instance.Patterns[pos] + 1) % 3;
+            Instance.Patterns[pos] = (patternType)val;
+            switch (Instance.Patterns[pos])
             {
                 case patternType.Square:
                     button.GetChild(0).GetComponent<Image>().sprite = Instance.CTS[2];
@@ -68,7 +68,7 @@ namespace Puzzle.Tutorial.P1
                 default:
                     break;
             }
-            if (CORRECT)
+            if (Instance.CORRECT)
             {
                 S1Correct.Invoke();
             }
@@ -94,7 +94,7 @@ namespace Puzzle.Tutorial.P1
                         image = null;
                         break;
                 }
-                switch (Patterns[i])
+                switch (Instance.Patterns[i])
                 {
                     case patternType.Square:
                         image.sprite = Instance.CTS[2];
@@ -110,7 +110,7 @@ namespace Puzzle.Tutorial.P1
                 }
             }
 
-            if (CORRECT)
+            if (Instance.CORRECT)
             {
                 S1Correct.Invoke();
             }
@@ -118,8 +118,8 @@ namespace Puzzle.Tutorial.P1
 
         public static void UpdateScopeState(int id, Vector3 pos)
         {
-            Scopes[id] = pos.y;
-            if (Mathf.Abs(Scopes[id] - Instance.CorrectPosY[id].position.y) <= ERROR)
+            Instance.Scopes[id] = pos.y;
+            if (Mathf.Abs(Instance.Scopes[id] - Instance.CorrectPosY[id].position.y) <= ERROR)
             {
                 Show(Instance, id);
             }
@@ -127,14 +127,14 @@ namespace Puzzle.Tutorial.P1
             {
                 Hide(Instance, id);
             }
-            if (SCOPE_CORRECT && enable)
+            if (Instance.SCOPE_CORRECT && Instance.enable)
             {
-                enable = false;
+                Instance.enable = false;
             }
         }
         public static void UpdateScopeStateWithoutCheck(int id, Vector3 pos)
         {
-            Scopes[id] = pos.y;
+            Instance.Scopes[id] = pos.y;
             //Show(Instance, id);
         }
 

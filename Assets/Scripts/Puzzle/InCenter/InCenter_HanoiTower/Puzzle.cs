@@ -27,16 +27,16 @@ namespace Puzzle.InCenter.HanoiTower
     {
         public static Puzzle Instance;
 
-        public static List<float> Layer = new List<float>() { -185, -87, 14, 113, 214};
-        public static List<blockState> BlockStates = new List<blockState>() { 
+        public List<float> Layer = new List<float>() { -185, -87, 14, 113, 214};
+        public List<blockState> BlockStates = new List<blockState>() { 
             blockState.Left, blockState.Left, blockState.Left, blockState.Left, blockState.Left
         };
-        public static List<Tower> Towers;
-        public static List<Item> blocks;
+        public List<Tower> Towers;
+        public List<Item> blocks;
         public const float HoverPosition = 300f;
-        public static Item CurrentItem = null;
-        public static Tower CurrentTower = null;
-        public static Tower OriginTower = null;
+        public Item CurrentItem = null;
+        public Tower CurrentTower = null;
+        public Tower OriginTower = null;
 
         public List<Sprite> Lights;
         private Image Light;
@@ -106,13 +106,13 @@ namespace Puzzle.InCenter.HanoiTower
 
         private void BlockDown()
         {
-            if (Puzzle.CurrentItem == null) return;
+            if (Instance.CurrentItem == null) return;
 
-            if (Puzzle.OriginTower != Puzzle.CurrentTower)
+            if (Instance.OriginTower != Instance.CurrentTower)
             {
                 if (!CurrentTower.SettleItem())
                 {
-                    Puzzle.CurrentItem.transform.localPosition = Puzzle.CurrentItem.InitialPosition;
+                    Instance.CurrentItem.transform.localPosition = Instance.CurrentItem.InitialPosition;
                 }
                 else
                 {
@@ -121,20 +121,20 @@ namespace Puzzle.InCenter.HanoiTower
                 }
                 clear();
             }
-            if (Puzzle.OriginTower == Puzzle.CurrentTower && CurrentTower != null && CurrentItem != null)
+            if (Instance.OriginTower == Instance.CurrentTower && CurrentTower != null && CurrentItem != null)
             {
-                Puzzle.CurrentItem.transform.localPosition = Puzzle.CurrentItem.InitialPosition;
+                Instance.CurrentItem.transform.localPosition = Instance.CurrentItem.InitialPosition;
                 clear();
             }
-            Debug.Log(BlockStates[0] + " " + BlockStates[1] + " " + BlockStates[2] + " " + BlockStates[3] + " " + BlockStates[4]);
+            // Debug.Log(BlockStates[0] + " " + BlockStates[1] + " " + BlockStates[2] + " " + BlockStates[3] + " " + BlockStates[4]);
         }
 
         private void clear()
         {
-            Puzzle.CurrentItem.InitialPosition = Puzzle.CurrentItem.transform.localPosition;
-            Puzzle.CurrentItem = null;
-            Puzzle.CurrentTower = null;
-            Puzzle.OriginTower = null;
+            Instance.CurrentItem.InitialPosition = Instance.CurrentItem.transform.localPosition;
+            Instance.CurrentItem = null;
+            Instance.CurrentTower = null;
+            Instance.OriginTower = null;
         }
 
         private void UpdateBlockState()
@@ -152,7 +152,7 @@ namespace Puzzle.InCenter.HanoiTower
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-
+                transform.Find("Interactable/HiddenButton").gameObject.SetActive(false);
             }
             else
             {
@@ -161,6 +161,7 @@ namespace Puzzle.InCenter.HanoiTower
 
                 }
 
+                transform.Find("Interactable/HiddenButton").gameObject.SetActive(false);
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }
 
@@ -190,7 +191,7 @@ namespace Puzzle.InCenter.HanoiTower
 
         public static bool PuzzleFinish()
         {
-            foreach (var item in BlockStates)
+            foreach (var item in Instance.BlockStates)
             {
                 if (item != blockState.Middle) return false;
             }
@@ -202,10 +203,11 @@ namespace Puzzle.InCenter.HanoiTower
             yield return new WaitUntil(() => PuzzleFinish());
 
             transform.Find("Interactable/Mask").gameObject.SetActive(false);
+            transform.Find("Interactable/HiddenButton").gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
 
-            PuzzleManager.Solved();
+            PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;
         }
     }

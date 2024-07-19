@@ -25,7 +25,7 @@ namespace Puzzle.Tutorial.P1
         }
         private void OnMouseOver()
         {
-            if (holding && Puzzle.enable)
+            if (holding && Puzzle.Instance.enable)
             {
                 offset = TranslatorCameraManager.Camera.ScreenToWorldPoint(Input.mousePosition).y - currentMousePosY;
                 transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y + offset, -1.2f, 2.3f) , transform.position.z);

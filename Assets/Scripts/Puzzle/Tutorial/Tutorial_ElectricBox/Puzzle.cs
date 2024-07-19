@@ -16,23 +16,14 @@ namespace Puzzle.Tutorial.P2
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
-        public static bool solved = false;
+        public bool solved = false;
 
-        public static List<float> ValidPositions = new List<float>()
-        {
-            0, 1.1f, 2.2f, 3.3f, 4.4f
-        };
+        public static List<float> ValidPositions = new List<float>() { 0, 1.1f, 2.2f, 3.3f, 4.4f };
 
-        public static List<int> CurrentPosition = new List<int>()
-        {
-            0, 0, 0
-        };
+        public List<int> CurrentPosition = new List<int>() { 0, 0, 0 };
+        public static readonly List<int> CORRECT = new List<int>() { 0, 4, 3 };
 
-        public static readonly List<int> CORRECT = new List<int>() {
-            0, 4, 3
-        };
-
-        public static Slide HoldingSilde = null;
+        public Slide HoldingSilde = null;
         public List<Slide> m_slides;
         public List<Image> Lights;
         public Sprite LightOn;
@@ -55,10 +46,12 @@ namespace Puzzle.Tutorial.P2
         {
             for (int i = 0; i < 3; i++)
             {
-                Instance.m_slides[i].closestPos = CurrentPosition[i];
+                Instance.m_slides[i].closestPos = Instance.CurrentPosition[i];
                 Instance.m_slides[i].ArrangePosition(var);
             }
-            if (CurrentPosition[0] == CORRECT[0] && CurrentPosition[1] == CORRECT[1] && CurrentPosition[2] == CORRECT[2]) Instance.Lights[0].sprite = Instance.LightOn;
+            
+            if (Instance.CurrentPosition[0] == CORRECT[0] && Instance.CurrentPosition[1] == CORRECT[1] && Instance.CurrentPosition[2] == CORRECT[2])
+                Instance.Lights[0].sprite = Instance.LightOn;
             else Instance.Lights[0].sprite = Instance.LightOff;
         }
 

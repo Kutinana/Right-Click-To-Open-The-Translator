@@ -20,7 +20,9 @@ namespace Puzzle.InCenter.Painting
 
         private IEnumerator OnMouseDown()
         {
-            Puzzle.HoldingTag = this;
+            if (Puzzle.Instance.solved) yield break;
+
+            Puzzle.Instance.HoldingTag = this;
             //col.enabled = false;
 
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
@@ -32,7 +34,7 @@ namespace Puzzle.InCenter.Painting
                     Input.mousePosition.y, 1f)) + m_Offset;
                 res = new Vector3(res.x, res.y, _init_pos.z);
 
-                if (!Puzzle.solved) transform.position = res;
+                transform.position = res;
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -53,7 +55,7 @@ namespace Puzzle.InCenter.Painting
         {
             FindClosestPos();
 
-            Puzzle.HoldingTag = null;
+            Puzzle.Instance.HoldingTag = null;
         }
 
         private void FindClosestPos()

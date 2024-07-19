@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Puzzle.InCenter.HanoiTower
 {
-    public class Tower : MonoBehaviour
+   public class Tower: MonoBehaviour
     {
         public Stack ItemStack = new Stack(5);
         private void Awake()
@@ -16,12 +16,11 @@ namespace Puzzle.InCenter.HanoiTower
 
         private IEnumerator OnMouseDown()
         {
-            if (Puzzle.CurrentItem == null && ItemStack.Count != 0)
+            if (Puzzle.Instance.CurrentItem == null && ItemStack.Count != 0)
             {
-                Puzzle.CurrentTower = this;
-                Puzzle.CurrentItem = ItemStack.Peek() as Item;
-                Puzzle.OriginTower = this;
-                AudioKit.PlaySound("BottleUp", volumeScale: 0.6f);
+                Puzzle.Instance.CurrentTower = this;
+                Puzzle.Instance.CurrentItem = ItemStack.Peek() as Item;
+                Puzzle.Instance.OriginTower = this;
                 this.OverTower();
             }
             //Debug.Log(Puzzle.CurrentItem.transform.name);
@@ -30,26 +29,24 @@ namespace Puzzle.InCenter.HanoiTower
 
         private void OnMouseEnter()
         {
-            Puzzle.CurrentTower = this;
-            if (Puzzle.CurrentItem != null)
+            Puzzle.Instance.CurrentTower = this;
+            if (Puzzle.Instance.CurrentItem != null)
             {
-                AudioKit.PlaySound("InteractClick", volumeScale: 0.2f);
                 this.OverTower();
             }
         }
 
         public bool SettleItem()
         {
-            if (Puzzle.CurrentItem != null)
+            if (Puzzle.Instance.CurrentItem != null)
             {
                 if (this.ItemStack.Count != 0)
                 {
                     Item Top = ItemStack.Peek() as Item;
-                    if (Top.size < Puzzle.CurrentItem.size) return false;
+                    if (Top.size < Puzzle.Instance.CurrentItem.size) return false;
                 }
-                AudioKit.PlaySound("R0", volumeScale: 0.5f);
                 SetPosition();
-                this.ItemStack.Push(Puzzle.CurrentItem);
+                this.ItemStack.Push(Puzzle.Instance.CurrentItem);
                 return true;
             }
             return false;
@@ -57,13 +54,15 @@ namespace Puzzle.InCenter.HanoiTower
 
         private void OverTower()
         {
-            Puzzle.CurrentItem.transform.localPosition = new Vector3(this.transform.localPosition.x, Puzzle.HoverPosition, this.transform.localPosition.z);
+            Puzzle.Instance.CurrentItem.transform.localPosition =
+                new Vector3(this.transform.localPosition.x, Puzzle.HoverPosition, transform.localPosition.z);
         }
 
         private void SetPosition()
         {
             int layer = this.ItemStack.Count;
-            Puzzle.CurrentItem.transform.localPosition = new Vector3(this.transform.localPosition.x, Puzzle.Layer[layer], this.transform.localPosition.z);
+            Puzzle.Instance.CurrentItem.transform.localPosition =
+                new Vector3(this.transform.localPosition.x, Puzzle.Instance.Layer[layer], transform.localPosition.z);
         }
     }
 }

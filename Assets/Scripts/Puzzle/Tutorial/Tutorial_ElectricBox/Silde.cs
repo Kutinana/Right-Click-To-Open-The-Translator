@@ -29,7 +29,9 @@ namespace Puzzle.Tutorial.P2
 
         private IEnumerator OnMouseDown()
         {
-            Puzzle.HoldingSilde = this;
+            if (Puzzle.Instance.solved) yield break; 
+
+            Puzzle.Instance.HoldingSilde = this;
             col.enabled = false;
 
             m_Offset = transform.position - TranslatorCameraManager.Camera.ScreenToWorldPoint(new Vector3
@@ -41,7 +43,7 @@ namespace Puzzle.Tutorial.P2
                     Input.mousePosition.y, 1f)) + m_Offset;
                 res = new Vector3(Mathf.Clamp(res.x, LeftMost, RightMost), _init_pos.y, _init_pos.z);
 
-                if (!Puzzle.solved) transform.position = res;
+                transform.position = res;
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -65,7 +67,7 @@ namespace Puzzle.Tutorial.P2
             if (transform.position.x >= 1.65f && transform.position.x < 2.75f) closestPos = 2;
             if (transform.position.x >= 2.75f && transform.position.x < 3.85f) closestPos = 3;
             if (transform.position.x >= 3.85f) closestPos = 4;
-            Puzzle.CurrentPosition[id] = closestPos;
+            Puzzle.Instance.CurrentPosition[id] = closestPos;
         }
 
         private void OnMouseUp()
@@ -74,7 +76,7 @@ namespace Puzzle.Tutorial.P2
             Puzzle.ReArrangePosition(true);
             //ArrangePosition();
 
-            Puzzle.HoldingSilde = null;
+            Puzzle.Instance.HoldingSilde = null;
             col.enabled = true;
         }
 

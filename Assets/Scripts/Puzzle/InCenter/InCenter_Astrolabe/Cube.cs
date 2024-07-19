@@ -25,6 +25,8 @@ namespace Puzzle.InCenter.Astrolable
 
         private IEnumerator OnMouseDown()
         {
+            if (Puzzle.Instance.solved) yield break;
+
             Puzzle.HoldingCube = this;
             //col.enabled = false;
 
@@ -37,7 +39,7 @@ namespace Puzzle.InCenter.Astrolable
                     Input.mousePosition.y, 1f)) + m_Offset;
                 res = new Vector3(res.x, res.y, _init_pos.z);
 
-                if (!Puzzle.solved) transform.position = res;
+                transform.position = res;
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -80,21 +82,21 @@ namespace Puzzle.InCenter.Astrolable
 
             if (originalPoint != -1)
             {
-                Puzzle.cubeTypes[originalPoint] = CubeType.None;
-                Puzzle.CubesInBlock[originalPoint] = null;
+                Puzzle.Instance.cubeTypes[originalPoint] = CubeType.None;
+                Puzzle.Instance.CubesInBlock[originalPoint] = null;
             }
 
             if (minDist <= Puzzle.ERROR)
             {
-                if (Puzzle.CubesInBlock[ClosestPoint] != null)
+                if (Puzzle.Instance.CubesInBlock[ClosestPoint] != null)
                 {
-                    Puzzle.CubesInBlock[ClosestPoint].Initialize();
+                    Puzzle.Instance.CubesInBlock[ClosestPoint].Initialize();
 
                 }
 
                 transform.position = Puzzle.Instance.ValidPoints[ClosestPoint].position;
-                Puzzle.cubeTypes[ClosestPoint] = this.cubeType;
-                Puzzle.CubesInBlock[ClosestPoint] = this;
+                Puzzle.Instance.cubeTypes[ClosestPoint] = this.cubeType;
+                Puzzle.Instance.CubesInBlock[ClosestPoint] = this;
             }
             else
             {

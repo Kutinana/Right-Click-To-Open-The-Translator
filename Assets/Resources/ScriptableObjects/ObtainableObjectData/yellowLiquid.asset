@@ -26,4 +26,4 @@ MonoBehaviour:
     list:
     - Key: 0
       Value: 
-  MaxAmount: 0
+  MaxAmount: 1

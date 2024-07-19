@@ -18,12 +18,12 @@ namespace Puzzle.InCenter.Lighting
     public class Puzzle : PuzzleBase
     {
         public static Puzzle Instance;
-        public static List<CubeLighting> Lights;
-        public static Dictionary<CubeLighting, List<CubeLighting>> LightChain;
+        public List<CubeLighting> Lights;
+        public Dictionary<CubeLighting, List<CubeLighting>> LightChain;
         private const int CAPACITY = 13;
 
         public List<Sprite> LightSprite;
-        public static List<int> CurrentStates = new List<int>()
+        public List<int> CurrentStates = new List<int>()
         {
             1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1
         };
@@ -117,7 +117,7 @@ namespace Puzzle.InCenter.Lighting
 
         public static bool PuzzleFinish()
         {
-            foreach (var lightState in CurrentStates)
+            foreach (var lightState in Instance.CurrentStates)
             {
                 if (lightState == 0) return false;
             }

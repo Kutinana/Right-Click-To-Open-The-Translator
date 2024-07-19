@@ -266,20 +266,20 @@ namespace Puzzle.Tutorial.P1
                     {
                         scope.gameObject.SetActive(false);
                     }
-                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
+                    Puzzle.Instance.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
                     Puzzle.PatternUpdateAll();
                     break;
                 case 1:
                     stage = 0;
                     transform.Find("CoverPicture").gameObject.SetActive(false);
-                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
+                    Puzzle.Instance.Patterns = new List<patternType>() { patternType.Circle, patternType.Circle, patternType.Circle };
                     Puzzle.PatternUpdateAll();
                     NextStage();
                     break;
                 case 2:
                     stage = 1;
                     transform.Find("CoverPicture").gameObject.SetActive(false);
-                    Puzzle.Patterns = new List<patternType>() { patternType.Circle, patternType.Triangle, patternType.Square };
+                    Puzzle.Instance.Patterns = new List<patternType>() { patternType.Circle, patternType.Triangle, patternType.Square };
                     Puzzle.PatternUpdateAll();
                     Stage1Correct();
                     break;

@@ -1,11 +1,14 @@
 {
     "zh_CN": {
-        "Str_FirstTimeActivateTranslator": "- 单击字符以记录你对其词义的猜测 -"
+        "Str_FirstTimeActivateTranslator": "- 单击字符以记录你对其词义的猜测 -",
+        "Str_ObtainedSingleObject": "获得了 {0}！"
     },
     "en_US": {
-        "Str_FirstTimeActivateTranslator": "- Click on the character to record your guess on its meaning -"
+        "Str_FirstTimeActivateTranslator": "- Click on the character to record your guess on its meaning -",
+        "Str_ObtainedSingleObject": "Get {0}!"
     },
     "ja_JP": {
-        "Str_FirstTimeActivateTranslator": "- 文字をクリックして意味を変更します -"
+        "Str_FirstTimeActivateTranslator": "- 文字をクリックして意味を変更します -",
+        "Str_ObtainedSingleObject": "{0} 入手しました！"
     }
 }

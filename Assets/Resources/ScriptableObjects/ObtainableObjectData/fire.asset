@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fire
   Name:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u706B"
   Sprite: {fileID: 21300000, guid: 00a79daba6c6d74419d5f235e0cf0a43, type: 3}
   Description:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u706B"
   SubDescription:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u706B"
   MaxAmount: 0

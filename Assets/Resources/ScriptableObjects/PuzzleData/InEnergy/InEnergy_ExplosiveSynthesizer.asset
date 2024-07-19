@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb5ebd05cdce224ebf676a2ba71352b, type: 3}
-  m_Name: 140_kuro
+  m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
+  m_Name: InEnergy_ExplosiveSynthesizer
   m_EditorClassIdentifier: 
-  id: kuro
-  Sprite: {fileID: 21300000, guid: dc9d8cf7385bd474e8f4587e092af4c1, type: 3}
-  Description: "\u82F1\u96C4/\u5C0F\u767D"
-  RelatedPuzzles: []
+  id: InEnergy_ExplosiveSynthesizer
+  Prefab: {fileID: 1782867004526311910, guid: 8372b117ce9fcd64bbe8709fbd2e1c14, type: 3}
+  Thumbnail:
+    list: []
+  Name: 
+  Description: 

@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: bomb
   Name:
-    list: []
+    list:
+    - Key: 0
+      Value: "\u70B8\u836F"
+    - Key: 1
+      Value: Bomb
   Sprite: {fileID: 21300000, guid: 8a9435af01e49ba45ae7b9607e72ba84, type: 3}
   Description:
     list: []

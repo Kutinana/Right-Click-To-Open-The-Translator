@@ -21,9 +21,11 @@ namespace UI
 
             TypeEventSystem.Global.Register<OnInventoryIncreasedEvent>(e =>
             {
-                if (e.items.Count == 1) CallUp(
-                    LocalizationHelper.Get(GameDesignData.GetObtainableObjectDataById(e.items.First().Key).Name)
-                );
+                if (e.items.Count == 1)
+                {
+                    var name = LocalizationHelper.Get(GameDesignData.GetObtainableObjectDataById(e.items.First().Key).Name);
+                    CallUp(LocalizationHelper.Get("Str_ObtainedSingleObject", name));
+                }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
@@ -31,7 +33,7 @@ namespace UI
         {
             Instance.Reset();
 
-            Instance.text.SetText(LocalizationHelper.Get("Str_ObtainedSingleObject", _text));
+            Instance.text.SetText(_text);
             Instance.CurrentCoroutine = Instance.StartCoroutine(Instance.ShowCoroutine());
         }
 

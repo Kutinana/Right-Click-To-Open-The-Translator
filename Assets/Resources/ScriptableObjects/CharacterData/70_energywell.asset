@@ -15,4 +15,5 @@ MonoBehaviour:
   id: energywell
   Sprite: {fileID: 21300000, guid: 9c944c8a094a14e4e99bfc105d695691, type: 3}
   Description: "\u80FD\u91CF\u4E95"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}

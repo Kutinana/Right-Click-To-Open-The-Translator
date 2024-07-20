@@ -15,4 +15,5 @@ MonoBehaviour:
   id: sech
   Sprite: {fileID: 21300000, guid: 94d54d591a463a149af6e9c0a16a9b39, type: 3}
   Description: 6
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 7bacfac95704bec4289310539cfa0542, type: 2}

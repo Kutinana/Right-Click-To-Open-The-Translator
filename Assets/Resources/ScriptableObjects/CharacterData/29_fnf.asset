@@ -15,4 +15,5 @@ MonoBehaviour:
   id: fnf
   Sprite: {fileID: 21300000, guid: c0b19a6dd73d3174bb4557d37f6f103d, type: 3}
   Description: 5
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 7bacfac95704bec4289310539cfa0542, type: 2}

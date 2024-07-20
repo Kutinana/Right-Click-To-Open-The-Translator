@@ -84,11 +84,11 @@ namespace Puzzle
             }
         }
 
-        public static void Solved(float _delay = 1f, bool isClosing = true)
+        public static void Solved(float delay = 1f, bool isClosing = true)
         {
             if (CurrentPuzzle != null)
             {
-                Instance.StartCoroutine(Instance.SolvedCoroutine(_delay, isClosing));
+                Instance.StartCoroutine(Instance.SolvedCoroutine(delay, isClosing));
             }
         }
 

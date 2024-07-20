@@ -4,6 +4,7 @@ using System.Linq;
 using DataSystem;
 using Kuchinashi;
 using QFramework;
+using UI.Narration;
 using UnityEngine;
 
 namespace Localization
@@ -45,9 +46,16 @@ namespace Localization
         public static LocalizedPlot GetPlot() => Instance.Plot.TryGetValue(Instance.CurrentLanguage, out var plot) ? plot : throw new System.Exception("Incomplete Localization");
 
         
-        internal Dictionary<Language, Dictionary<string, List<string>>> Narrations => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, List<string>>>>("I18n/Narration");
-        public static Dictionary<string, List<string>> GetNarrations() => Instance.Narrations.TryGetValue(Instance.CurrentLanguage, out var common) ? common : throw new System.Exception("Incomplete Localization");
-        public static List<string> GetNarration(string key) => GetNarrations().TryGetValue(key, out var common) ? common : throw new System.Exception("Incomplete Localization");
+        internal Dictionary<Language, Dictionary<string, List<NarrationSentence>>> Narrations => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, List<NarrationSentence>>>>("I18n/Narration");
+        public static Dictionary<string, List<NarrationSentence>> GetNarrations() => Instance.Narrations.TryGetValue(Instance.CurrentLanguage, out var common) ? common : throw new System.Exception("Incomplete Localization");
+        public static List<NarrationSentence> GetNarration(string key) => GetNarrations().TryGetValue(key, out var common) ? common : throw new System.Exception("Incomplete Localization");
+    }
+
+    public struct NarrationSentence
+    {
+        public Side side;
+        public Narrator narrator;
+        public string content;
     }
 
     public class LocalizationHelper

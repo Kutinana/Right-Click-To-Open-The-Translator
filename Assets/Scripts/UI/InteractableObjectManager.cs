@@ -19,10 +19,22 @@ public class InteractableObjectManager : MonoSingleton<InteractableObjectManager
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 
+    public static void Exit()
+    {
+        Destroy(Current.gameObject);
+        Current = null;
+    }
+
     public static void DropAndExit()
     {
         AudioKit.PlaySound("Fall-Zero", volumeScale: 0.2f);
         Current.DropAndExit();
+        Current = null;
+    }
+
+    public static void DropAndGet(string id)
+    {
+        Current.DropAndGet(GameDesignData.GetObtainableObjectDataById(id));
         Current = null;
     }
 }

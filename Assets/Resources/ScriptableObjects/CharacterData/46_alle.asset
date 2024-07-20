@@ -15,4 +15,5 @@ MonoBehaviour:
   id: alle
   Sprite: {fileID: 21300000, guid: dacc8b561a9bfe6478ef470313d0fd5b, type: 3}
   Description: "\u5168\u90E8\uFF0C\u4E16\u754C"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: aaf62eb3b9578c1419eee84a7ebd82f3, type: 2}

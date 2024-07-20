@@ -15,4 +15,5 @@ MonoBehaviour:
   id: blau
   Sprite: {fileID: 21300000, guid: d991d0243146afb4186ac546394ce355, type: 3}
   Description: "\u84DD\u8272\uFF0C\u7EFF\u8272"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}

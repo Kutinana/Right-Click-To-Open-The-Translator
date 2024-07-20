@@ -59,13 +59,40 @@ public class InteractableObject : MonoBehaviour
 
     private IEnumerator DropAndExitCoroutine()
     {
-        while (!Mathf.Approximately(image.color.a, 0f))
+        while (image.color.a > 0.01f)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y - Time.deltaTime * 100f);
             image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - Time.deltaTime * 2f);
             yield return new WaitForEndOfFrame();
         }
 
+        Destroy(gameObject);
+    }
+
+    public void DropAndGet(ObtainableObjectData data)
+    {
+        FollowActive = false;
+        StartCoroutine(DropAndGetCoroutine(data));
+    }
+
+    private IEnumerator DropAndGetCoroutine(ObtainableObjectData data)
+    {
+        while (image.color.a > 0.01f)
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y - Time.deltaTime * 100f);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - Time.deltaTime * 2f);
+            yield return new WaitForEndOfFrame();
+        }
+        image.sprite = data.Sprite;
+
+        while (image.color.a < 0.99f)
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + Time.deltaTime * 100f);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + Time.deltaTime * 2f);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

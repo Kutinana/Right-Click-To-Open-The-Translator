@@ -74,14 +74,20 @@ namespace Puzzle
             stateMachine.CurrentState.Update();
         }
 
-        public static void Exit()
+        public static void Exit(float delay = 0f)
         {
             if (CurrentPuzzle != null)
             {
-                CurrentPuzzle.OnExit();
-
-                StateMachine.ChangeState(States.None);
+                Instance.StartCoroutine(Instance.ExitCoroutine(delay));
             }
+        }
+
+        private IEnumerator ExitCoroutine(float delay = 0f)
+        {
+            yield return new WaitForSeconds(delay);
+
+            CurrentPuzzle.OnExit();
+            StateMachine.ChangeState(States.None);
         }
 
         public static void Solved(float delay = 1f, bool isClosing = true)

@@ -18,7 +18,7 @@ namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        public static string Version => "0.2.2";
+        public static string Version => "0.2.3";
 
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;

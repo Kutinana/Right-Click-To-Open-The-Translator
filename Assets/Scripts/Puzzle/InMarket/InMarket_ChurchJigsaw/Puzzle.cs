@@ -1,11 +1,9 @@
 using DataSystem;
-using Puzzle.InEnergy.Cable;
 using QFramework;
 using System.Collections;
 using System.Collections.Generic;
 using Translator;
 using UI;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 

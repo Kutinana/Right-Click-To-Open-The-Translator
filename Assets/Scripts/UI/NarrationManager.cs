@@ -108,6 +108,8 @@ namespace UI.Narration
 
         public static void StopNarration()
         {
+            Instance.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {
+                Instance.leftCanvasGroup, Instance.rightCanvasGroup, Instance.fullScreenCanvasGroup}, 0f));
             Instance.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(Instance.mCanvasGroup, 0f));
 
             if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
@@ -176,6 +178,7 @@ namespace UI.Narration
                     fullScreenText.SetText(sentence.content);
                 }
 
+                yield return new WaitForSeconds(0.2f);
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
             }
 

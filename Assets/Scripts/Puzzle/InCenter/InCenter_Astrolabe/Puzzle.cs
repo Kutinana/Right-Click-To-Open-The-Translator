@@ -6,9 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Translator;
 using UI;
-using UnityEditor.PackageManager;
-using UnityEditor.U2D.Animation;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,15 +1,9 @@
-
 using DataSystem;
-using Kuchinashi;
-using Puzzle.Tutorial.P2;
 using QFramework;
 using System.Collections;
 using System.Collections.Generic;
 using Translator;
 using UI;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 using UnityEngine.UI;

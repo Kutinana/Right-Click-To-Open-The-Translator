@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,7 +42,8 @@ namespace Puzzle.InCenter.Elevator
             }
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
-            backButton.onClick.AddListener(() => {
+            backButton.onClick.AddListener(() =>
+            {
                 PuzzleManager.Exit();
             });
 
@@ -55,6 +57,7 @@ namespace Puzzle.InCenter.Elevator
 
         public override void OnExit()
         {
+            AudioKit.PlaySound("023Ting", volumeScale: .8f);
             base.OnExit();
         }
     }

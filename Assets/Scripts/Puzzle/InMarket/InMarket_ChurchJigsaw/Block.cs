@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Puzzle.InMarket.Church
 {
-    public class Block: MonoBehaviour
+    public class Block : MonoBehaviour
     {
         BlockState currentState;
         Button button;
@@ -46,7 +46,7 @@ namespace Puzzle.InMarket.Church
 
         private void NextState()
         {
-            AudioKit.PlaySound("023ItemRot");
+            AudioKit.PlaySound("023ItemRot", volumeScale: .8f);
             int val = ((int)currentState + 1) % 4;
             BlockState nextState = (BlockState)val;
             SetState(nextState);

@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
@@ -46,6 +47,7 @@ namespace Puzzle.InEnergy.Cable
 
         private void NextState()
         {
+            AudioKit.PlaySound("Cube-Slide");
             int val = ((int)currentState + 1) % 4;
             CableState nextState = (CableState)val;
             SetState(nextState);

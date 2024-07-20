@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,8 +25,10 @@ namespace Puzzle.InCenter.Elevator
             if (Interactable)
             {
                 OnClick?.Invoke();
+                AudioKit.PlaySound("023LightOn");
+                AudioKit.PlaySound("023ElevatorRunning",volumeScale:.6f);
                 foreach (var btn in transform.parent.GetComponentsInChildren<ElevatorButton>()) btn.Interactable = false;
-
+                
                 PuzzleManager.Exit(1f);
             }
             else if (InteractableObjectManager.Current != null && InteractableObjectManager.Current.Data.Id == "elevatorButton")
@@ -38,5 +41,6 @@ namespace Puzzle.InCenter.Elevator
                 PuzzleManager.Solved(isClosing: false);
             }
         }
+        
     }
 }

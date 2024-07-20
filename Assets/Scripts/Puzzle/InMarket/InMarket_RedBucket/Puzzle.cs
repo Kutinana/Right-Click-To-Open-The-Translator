@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ namespace Puzzle.InMarket.RedBucket
             if (InteractableObjectManager.Current != null && InteractableObjectManager.Current.Data.Id == "greenLiquid")
             {
                 GetComponent<Collider2D>().enabled = false;
-
+                AudioKit.PlaySound("023RedBucket");
                 InteractableObjectManager.DropAndGet("yellowLiquid");
                 GameProgressData.IncreaseInventory("yellowLiquid");
 

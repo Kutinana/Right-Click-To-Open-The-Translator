@@ -1,4 +1,5 @@
 using Cameras;
+using QFramework;
 using System.Collections;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace Puzzle.InCenter.Painting
         private IEnumerator OnMouseDown()
         {
             if (Puzzle.Instance.solved) yield break;
-
+            AudioKit.PlaySound("023PaperOut", volumeScale: .6f);
             Puzzle.Instance.HoldingTag = this;
             //col.enabled = false;
 
@@ -60,6 +61,7 @@ namespace Puzzle.InCenter.Painting
 
         private void FindClosestPos()
         {
+            AudioKit.PlaySound("InteractClick", volumeScale: .5f);
             int ClosestPoint = -1;
             float minDist = 1000;
             for (int i = 0; i < 6; i++)

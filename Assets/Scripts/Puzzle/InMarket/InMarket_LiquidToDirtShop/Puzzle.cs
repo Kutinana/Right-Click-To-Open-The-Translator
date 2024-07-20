@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,6 +55,7 @@ namespace Puzzle.InMarket.LiquidToDirtShop
         {
             if (InteractableObjectManager.IsHolding("yellowLiquid"))
             {
+                AudioKit.PlaySound("PaintingMoving");
                 GetComponent<Collider2D>().enabled = false;
 
                 InteractableObjectManager.DropAndExit();

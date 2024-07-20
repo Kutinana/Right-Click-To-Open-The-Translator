@@ -17,3 +17,4 @@ MonoBehaviour:
   Description: "\u9EC4\u8272"
   RelatedPuzzles:
   - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}
+  - {fileID: 11400000, guid: 2597fa371f6384043b80b5d0d3f32a16, type: 2}

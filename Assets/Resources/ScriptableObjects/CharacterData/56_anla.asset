@@ -15,4 +15,5 @@ MonoBehaviour:
   id: anla
   Sprite: {fileID: 21300000, guid: c266eb3127f121941b7dc4502adf6195, type: 3}
   Description: "\u690D\u7269"
-  RelatedPuzzles: []
+  RelatedPuzzles:
+  - {fileID: 11400000, guid: 2597fa371f6384043b80b5d0d3f32a16, type: 2}

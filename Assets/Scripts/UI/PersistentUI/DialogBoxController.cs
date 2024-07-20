@@ -7,6 +7,7 @@ using Kuchinashi;
 using Localization;
 using QFramework;
 using TMPro;
+using Translator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ namespace UI
 
         private Button confirmBtn;
         private Button cancelBtn;
+        private ButtonExtension confirmBtnExtension;
+        private ButtonExtension cancelBtnExtension;
 
         private Coroutine CurrentCoroutine = null;
 
@@ -31,7 +34,19 @@ namespace UI
             text = transform.Find("Content").GetComponent<TMP_Text>();
             
             confirmBtn = transform.Find("Confirm").GetComponent<Button>();
+            confirmBtnExtension = confirmBtn.GetComponentInChildren<ButtonExtension>();
             cancelBtn = transform.Find("Cancel").GetComponent<Button>();
+            cancelBtnExtension = cancelBtn.GetComponentInChildren<ButtonExtension>();
+
+            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
+                confirmBtnExtension.enabled = false;
+                cancelBtnExtension.enabled = false;
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
+                confirmBtnExtension.enabled = true;
+                cancelBtnExtension.enabled = true;
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         public static void CallUp(string _text, Action confirmCallback = null, Action cancelCallback = null)
@@ -49,6 +64,9 @@ namespace UI
                 cancelCallback?.Invoke();
                 Instance.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(Instance.canvasGroup, 0f));
             });
+
+            Instance.confirmBtnExtension.enabled = TranslatorSM.StateMachine.CurrentStateId == States.Translation;
+            Instance.cancelBtnExtension.enabled = TranslatorSM.StateMachine.CurrentStateId == States.Translation;
 
             Instance.CurrentCoroutine = Instance.StartCoroutine(Instance.ShowCoroutine());
         }

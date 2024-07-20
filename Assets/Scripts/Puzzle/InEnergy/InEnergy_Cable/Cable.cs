@@ -24,13 +24,13 @@ namespace Puzzle.InEnergy.Cable
                 case CableState.Up:
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                     break;
-                case CableState.Left:
+                case CableState.Right:
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
                     break;
                 case CableState.Down:
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
                     break;
-                case CableState.Right:
+                case CableState.Left:
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
                     break;
                 default:

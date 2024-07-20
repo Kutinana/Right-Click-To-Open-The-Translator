@@ -19,6 +19,11 @@ public class InteractableObjectManager : MonoSingleton<InteractableObjectManager
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 
+    public static bool IsHolding(string id)
+    {
+        return Current != null && Current.Data.Id == id;
+    }
+
     public static void Exit()
     {
         Destroy(Current.gameObject);

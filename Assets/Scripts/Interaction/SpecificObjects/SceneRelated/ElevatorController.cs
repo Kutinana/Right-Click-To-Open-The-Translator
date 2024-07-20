@@ -9,6 +9,7 @@ public class ElevatorController: MonoBehaviour
     private void Awake()
     {
         mask = transform.Find("Mask").GetComponent<SpriteRenderer>();
+        currentFloor = transform.Find("F1");
 
         TypeEventSystem.Global.Register<Puzzle.InCenter.Elevator.Puzzle.MoveTo>(e =>
             MoveToFloor(e.floor)
@@ -19,17 +20,31 @@ public class ElevatorController: MonoBehaviour
     {
         init_color = mask.color;
         StartCoroutine(Mask());
-        currentFloor.gameObject.SetActive(false);
         switch (floor)
         {
             case 1:
-                transform.Find("F1").gameObject.SetActive(true);
+                if (transform.Find("F1") != currentFloor)
+                {
+                    currentFloor.gameObject.SetActive(false);
+                    transform.Find("F1").gameObject.SetActive(true);
+                    currentFloor = transform.Find("F1");
+                }
                 break;
             case 2:
-                transform.Find("F2").gameObject.SetActive(true);
+                if (transform.Find("F2") != currentFloor)
+                {
+                    currentFloor.gameObject.SetActive(false);
+                    transform.Find("F2").gameObject.SetActive(true);
+                    currentFloor = transform.Find("F2");
+                }
                 break;
             case 3:
-                transform.Find("F3").gameObject.SetActive(true);
+                if (transform.Find("F3") != currentFloor)
+                {
+                    currentFloor.gameObject.SetActive(false);
+                    transform.Find("F3").gameObject.SetActive(true);
+                    currentFloor = transform.Find("F3");
+                }
                 break;
             default:
                 break;
@@ -45,7 +60,7 @@ public class ElevatorController: MonoBehaviour
         while (parameter < 0.99f)
         {
             mask.color = new Color(init_color.r, init_color.g, init_color.b, Mathf.Lerp(0, 1, parameter));
-            parameter += Time.deltaTime * 2f;
+            parameter += Time.deltaTime * 1.5f;
         }
 
         parameter = 0f;
@@ -54,7 +69,7 @@ public class ElevatorController: MonoBehaviour
         while (parameter < 0.99f)
         {
             mask.color = new Color(init_color.r, init_color.g, init_color.b, Mathf.Lerp(1, 0, parameter));
-            parameter += Time.deltaTime * 2f;
+            parameter += Time.deltaTime * 1.5f;
         }
         mask.color = new Color(init_color.r, init_color.g, init_color.b, 0);
         GameObject.Find("TempPlayer").GetComponent<PlayerInput>().EnableInputActions();

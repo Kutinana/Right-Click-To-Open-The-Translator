@@ -118,6 +118,11 @@ public class InteractiveDoor: InteractiveObject
             yield return null;
         }
     }
+    public void BombOn(Sprite sprite)
+    {
+
+    }
+
     public void SwitchSound ()
     {
         AudioKit.PlaySound("Switch");

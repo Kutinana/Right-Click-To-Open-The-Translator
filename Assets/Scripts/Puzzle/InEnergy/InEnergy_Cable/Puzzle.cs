@@ -74,6 +74,9 @@ namespace Puzzle.InEnergy.Cable
             Cables = new List<Cable>(CAPACITY);
             m_characterGroup = transform.Find("Interactable/Characters").GetComponent<CanvasGroup>();
 
+            if (GameProgressData.GetInventory().TryGetValue("greenLiquid", out var value) && value >= 1)
+                transform.Find("Interactable/Cables/5,3").gameObject.SetActive(true);
+
             Initialize();
 
             DisableCharacters();

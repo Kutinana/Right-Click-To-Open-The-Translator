@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/InEnergy.unity
     guid: 23c0697c169fda04ba95aa46b724fc71
   - enabled: 1
+    path: Assets/Scenes/OutWish.unity
+    guid: c999d702b617c2945a7960dd69628edc
+  - enabled: 1
     path: Assets/Scenes/Classroom.unity
     guid: 8752e1d1ba1e8fd4687b7e6f4e190c7e
   - enabled: 1
@@ -41,4 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Church.unity
     guid: f16fb447b2732f4428e1ad66b993910b
+  - enabled: 1
+    path: Assets/Scenes/InCenter.unity
+    guid: 3b18006e81892674795f88f779688be7
+  - enabled: 1
+    path: Assets/Scenes/InWish.unity
+    guid: f4c320c914d02f248aafc0200436aa8f
   m_configObjects: {}

@@ -39,7 +39,9 @@ public static class DoorConfig
         {41, "InMarket" },
         {42, "InCenter" },
         {43, "OutCenter" },
-        {47, "BeginPlace" }
+        {47, "BeginPlace" },
+        {48, "OutWish" },
+        {55, "InWish" }
     };
 }
 

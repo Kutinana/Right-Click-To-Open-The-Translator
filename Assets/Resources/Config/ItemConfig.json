@@ -330,8 +330,71 @@
 	},
 	{
 		"ID":47,
-		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
-		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":48,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":49,
+		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
+		"itemType": 1,
+		"target_string":"Book_Disaster"
+	},
+	{
+		"ID":50,
+		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
+		"itemType": 1,
+		"target_string":"Book_Fog"
+	},
+	{
+		"ID":51,
+		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
+		"itemType": 1,
+		"target_string":"Book_Future"
+	},
+	{
+		"ID":52,
+		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
+		"itemType": 1,
+		"target_string":"Book_Hero"
+	},
+	{
+		"ID":53,
+		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
+		"itemType": 1,
+		"target_string":"InMarket_ChurchJigsaw"
+	},
+	{
+		"ID":54,
+		"OutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_3-rock2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_3-rock1",
+		"itemType": 1,
+		"target_string":"InMarket_ChurchJigsaw"
+	},
+	{
+		"ID":54,
+		"OutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger1",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":55,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
 		"itemType": 2,
 		"target_string":""
 	}

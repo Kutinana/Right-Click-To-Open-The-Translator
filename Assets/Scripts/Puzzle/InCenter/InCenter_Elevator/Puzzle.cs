@@ -60,5 +60,12 @@ namespace Puzzle.InCenter.Elevator
             AudioKit.PlaySound("023Ting", volumeScale: .8f);
             base.OnExit();
         }
+
+        public struct MoveTo { public int floor; }
+
+        public void MoveToFloor(int F)
+        {
+            TypeEventSystem.Global.Send(new MoveTo { floor = F });
+        }
     }
 }

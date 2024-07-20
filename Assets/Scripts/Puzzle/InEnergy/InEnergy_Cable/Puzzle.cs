@@ -127,19 +127,16 @@ namespace Puzzle.InEnergy.Cable
             if ((GameProgressData.GetPuzzleProgress("SubPuzzleRed") == PuzzleProgress.NotFound || GameProgressData.GetPuzzleProgress("SubPuzzleRed") == PuzzleProgress.UnSolved)
                 && Instance.CheckAnswer(0))
             {
-                Debug.Log("red");
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleRed").GetComponent<SubPuzzleRed>().SubPuzzleSolved();
             }
             if ((GameProgressData.GetPuzzleProgress("SubPuzzleYellow") == PuzzleProgress.NotFound || GameProgressData.GetPuzzleProgress("SubPuzzleYellow") == PuzzleProgress.UnSolved)
                 && Instance.CheckAnswer(1))
             {
-                Debug.Log("yellow");
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleYellow").GetComponent<SubPuzzleYellow>().SubPuzzleSolved();
             }
             if ((GameProgressData.GetPuzzleProgress("SubPuzzleGreen") == PuzzleProgress.NotFound || GameProgressData.GetPuzzleProgress("SubPuzzleGreen") == PuzzleProgress.UnSolved)
                 && Instance.CheckAnswer(2))
             {
-                Debug.Log("green");
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleGreen").GetComponent<SubPuzzleGreen>().SubPuzzleSolved();
             }
 

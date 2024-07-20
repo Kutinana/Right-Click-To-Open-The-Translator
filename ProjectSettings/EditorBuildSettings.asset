@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InEnergy.unity
     guid: 23c0697c169fda04ba95aa46b724fc71
+  - enabled: 1
+    path: Assets/Scenes/Classroom.unity
+    guid: 8752e1d1ba1e8fd4687b7e6f4e190c7e
+  - enabled: 1
+    path: Assets/Scenes/InMarket.unity
+    guid: 326b99414bb050641ae25825e12db29b
+  - enabled: 1
+    path: Assets/Scenes/OutCenter.unity
+    guid: 0c10d2d8af7bc1943a0f1d841069db8c
   m_configObjects: {}

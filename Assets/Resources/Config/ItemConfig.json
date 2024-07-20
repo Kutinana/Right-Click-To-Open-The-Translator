@@ -222,5 +222,89 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/InCenter/Elevator/InCenterF1_2-Elevator1",
 		"itemType": 1,
 		"target_string":"InEnergy_SubmarineCoordinates"
+	},
+	{
+		"ID":32,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":33,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":34,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":35,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":36,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":37,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":38,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":39,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":40,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":41,
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":42,
+		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
+		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":43,
+		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
+		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
+		"itemType": 2,
+		"target_string":""
 	}
 ]

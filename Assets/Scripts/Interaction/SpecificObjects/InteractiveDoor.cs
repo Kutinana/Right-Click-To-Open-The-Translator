@@ -84,7 +84,6 @@ public class InteractiveDoor: InteractiveObject
         animator?.CrossFade(animatorHash, 0.1f);
     }
     public void AnimatorDisabled() => animator.enabled = false;
-    private void DoNothing() { }
     public void SwitchScene()
     {
         SceneControl.SceneControl.SwitchSceneWithoutConfirm(DoorConfig.nextSceneName[this.ID]);

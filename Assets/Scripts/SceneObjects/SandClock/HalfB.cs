@@ -32,7 +32,7 @@ namespace SceneObject
                     transform.localPosition.z);
                 yield return new WaitForFixedUpdate();
             }
-            transform.localPosition = new Vector3(0,0,0);
+            transform.localPosition = new Vector3(0, 0, 0);
         }
         public void Initialize()
         {

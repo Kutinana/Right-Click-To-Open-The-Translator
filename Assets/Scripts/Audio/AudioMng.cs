@@ -308,7 +308,6 @@ public class AudioMng : MonoSingleton<AudioMng>
     }
     public void OnPuzzleExit()
     {
-        AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
         audioMixer.TransitionToSnapshots(audioMixerSnapshots, new float[] { 1, 0 }, 0.5f);
     }
 }

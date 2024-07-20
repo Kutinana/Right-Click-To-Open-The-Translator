@@ -1,5 +1,6 @@
 using System.Linq;
 using DataSystem;
+using JetBrains.Annotations;
 using QFramework;
 using TMPro;
 using UI;
@@ -13,7 +14,7 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
     private TextMeshProUGUI m_title;
     private TextMeshProUGUI m_description;
     private string[] missionProgressList;
-    private string DetailShowing = "NOTHING";
+    public string DetailShowing = "NOTHING";
     private Image currentMissionImage;
 
     public GameObject prefab;
@@ -64,7 +65,7 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
         GenerateMissionList();
         if (missionProgressList.Contains<string>(DetailShowing)) return;
         DetailShowing = "NOTHING";
-
+        TypeEventSystem.Global.Send(new MissionListRefreshedEvent(DetailShowing));
         m_title.SetText(" ");
         m_description.SetText("\nNo Content Selected.");
     }
@@ -84,5 +85,11 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
         }
         image.color = new Color(0.8865123f, 0.8943396f, 0.6867853f, 1);
         currentMissionImage = image;
+    }
+    public struct MissionListRefreshedEvent{
+        public MissionListRefreshedEvent(string id){
+            this.id = id;
+        }
+        public string id;
     }
 }

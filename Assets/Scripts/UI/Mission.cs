@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using QFramework;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,11 +14,20 @@ namespace UI
         private Button m_button;
         public MissionData data { get; private set; }
 
-        private void Awake()
+        private void Start()
         {
             m_button = this.gameObject.GetComponent<Button>();
-            m_button.onClick.AddListener(() => { MissionController.Instance.ChangeDetailMissionInfo(this.data); 
+            m_button.onClick.AddListener(() =>
+            {
+                MissionController.Instance.ChangeDetailMissionInfo(this.data);
                 MissionController.Instance.SetHighlightImage(transform.Find("Icon").GetComponent<Image>());
+            });
+            TypeEventSystem.Global.Register<MissionController.MissionListRefreshedEvent>(e =>
+            {
+                if (this.data.Id.Equals(e.id))
+                {
+                    MissionController.Instance.SetHighlightImage(transform.Find("Icon").GetComponent<Image>());
+                }
             });
         }
         public static GameObject Initialize(MissionData vardata, Transform parent)

@@ -17,7 +17,6 @@ namespace SceneObject
             rot = transform.rotation;
             centerPoint = transform.position;
             TypeEventSystem.Global.Register<DayLightController.TwenSecCountEvent>(e => Flip());
-            TypeEventSystem.Global.Register<DayLightController.NewCircleEvent>(e => AudioKit.PlaySound("ChurchBell"));
         }
         public void Flip()
         {

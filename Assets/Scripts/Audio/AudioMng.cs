@@ -17,6 +17,8 @@ public class AudioMng : MonoSingleton<AudioMng>
     private int pRandTab = 0;
     bool skipFirstEnter = true;
 
+    public static string isPlayingName = null;
+
     AudioSource ambientChannel;
     AudioSource current;
     AudioSource BGM1;
@@ -28,19 +30,6 @@ public class AudioMng : MonoSingleton<AudioMng>
     public AudioMixer audioMixer;
     private AudioMixerSnapshot[] audioMixerSnapshots = new AudioMixerSnapshot[2];
 
-    public float BackgroundVolume
-    {
-        get
-        {
-            return _bgmVol;
-        }
-        set
-        {
-            m_backgroundVolume = value;
-            _bgmVol = value;
-        }
-    }
-    private float _bgmVol;
     private float m_backgroundVolume;
     public float ambientVolume { get; private set; } = 0.8f;
     public float effectVolume { get; private set; }
@@ -83,13 +72,12 @@ public class AudioMng : MonoSingleton<AudioMng>
             AudioClip audioClip = res.LoadSync<AudioClip>("AmbientRain");
             ambientChannel.clip = audioClip;
         }
+        BGM2.volume = 0;
     }
 
     private void UpdateVolume()
     {
-        BackgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
-        m_backgroundVolume *= currentVolScale;
-        if (current != null) current.volume = m_backgroundVolume;
+        m_backgroundVolume = PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") : 0.8f;
         effectVolume = PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") : 0.8f;
         ambientVolume = PlayerPrefs.HasKey("Ambient Volume") ? PlayerPrefs.GetFloat("Ambient Volume") : 1.0f;
     }
@@ -129,19 +117,14 @@ public class AudioMng : MonoSingleton<AudioMng>
         PlayAmbient();
     }
 
-    public void PlayBGM(string name, float volumeScale = 1f)
+    public void PlayBGM(string name)
     {
-        if (volumeScale != 1f)
-        {
-            m_backgroundVolume *= volumeScale;
-            currentVolScale = volumeScale;
-        }
-        else
-        {
-            currentVolScale = volumeScale;
-            m_backgroundVolume = BackgroundVolume;
-        }
+        Debug.Log("Try Play");
+        TimeSpan start = new TimeSpan(DateTime.Now.Ticks);
         ChangeBGM(name);
+        TimeSpan end = new TimeSpan(DateTime.Now.Ticks);    //获取当前时间的刻度数
+        TimeSpan abs = end.Subtract(start).Duration();      //时间差的绝对值
+        Debug.Log(string.Format("程序执行时间：{0}", abs.TotalMilliseconds));
     }
     public void PlayFootsteps()
     {
@@ -214,6 +197,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     {
         Instance.FadeMusic(Instance.current, 0f);
         Instance.FadeMusic(Instance.ambientChannel, 0f);
+        isPlayingName = null;
     }
 
     public void FadeMusic(AudioSource audioSource, float target)
@@ -237,6 +221,7 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void LoadBGM(string name)
     {
+        Debug.Log("Try Loading"+name);
         if (backGroundMusics.ContainsKey(name))
         {
             Debug.Log("Duplicated loading music source.");
@@ -267,26 +252,22 @@ public class AudioMng : MonoSingleton<AudioMng>
     }
     public void ChangeBGM(string name)
     {
-        AudioSource temp = GetAuxChannel();
-        temp.volume = 0;
-        current = temp;
-        D_PlayBGM(name);
-        FadeMusic(temp, m_backgroundVolume);
-        FadeMusic(GetAuxChannel(), 0);
+        StartCoroutine(IEChangeAudio(name, current));
     }
 
 
     IEnumerator IEChangeAudio(string name, AudioSource changeAS)
     {
         AudioSource temp = GetAuxChannel();
-        yield return new WaitUntil(() => temp.volume == 0);
         temp.volume = 0;
         temp.clip = changeAS.clip;
         temp.Play();
         FadeMusic(temp, changeAS == this.ambientChannel ? ambientVolume : m_backgroundVolume);
         FadeMusic(changeAS, 0);
-
-        AudioClip newAudio = res.LoadSync<AudioClip>(name);
+        AudioClip newAudio;
+        yield return null;
+        bool i = backGroundMusics.TryGetValue(name,out newAudio);
+        if(!i) newAudio = res.LoadSync<AudioClip>(name);
 
         yield return new WaitUntil(() => changeAS.volume == 0);
 

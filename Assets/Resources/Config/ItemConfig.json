@@ -221,7 +221,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/InCenter/Elevator/InCenterF1_2-Elevator2",
 		"UnoutlinedSpritePath":"Sprites/puzzles/InCenter/Elevator/InCenterF1_2-Elevator1",
 		"itemType": 1,
-		"target_string":"InEnergy_SubmarineCoordinates"
+		"target_string":"InCenter_Elevator"
 	},
 	{
 		"ID":32,
@@ -302,6 +302,34 @@
 	},
 	{
 		"ID":43,
+		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
+		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":44,
+		"OutlinedSpritePath":"Sprites/puzzles/OutCenter/Drawing/Outcenter_4-drawing Cat2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/OutCenter/Drawing/Outcenter_4-drawing Cat1",
+		"itemType": 1,
+		"target_string":"InCenter_Painting"
+	},
+	{
+		"ID":45,
+		"OutlinedSpritePath":"Sprites/puzzles/OutCenter/Lighting/Outcenter_3-Lighting Puzzle2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/OutCenter/Lighting/Outcenter_3-Lighting Puzzle1",
+		"itemType": 1,
+		"target_string":"InCenter_Lighting"
+	},
+	{
+		"ID":46,
+		"OutlinedSpritePath":"Sprites/puzzles/Church/Church_2-Jigsaw puzzle2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Church/Church_2-Jigsaw puzzle1",
+		"itemType": 1,
+		"target_string":"InMarket_ChurchJigsaw"
+	},
+	{
+		"ID":47,
 		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
 		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
 		"itemType": 2,

@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 612451759}
   - component: {fileID: 612451760}
   - component: {fileID: 612451761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outwish_3-rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1453,7 @@ GameObject:
   - component: {fileID: 1514357619}
   - component: {fileID: 1514357620}
   - component: {fileID: 1514357621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outwish_4-trigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1963,7 +1963,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1286118690079615139, guid: 12435ca932e8eef4fbb49530563b5d6f, type: 3}
   m_PrefabInstance: {fileID: 1630288276}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &1836717502
+--- !u!43 &1897070547
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2139,7 +2139,7 @@ GameObject:
   - component: {fileID: 1996495548}
   - component: {fileID: 1996495550}
   - component: {fileID: 1996495549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

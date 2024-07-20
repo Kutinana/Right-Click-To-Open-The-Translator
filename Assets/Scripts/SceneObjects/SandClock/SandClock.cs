@@ -25,12 +25,14 @@ namespace SceneObject
         }
         IEnumerator IEFlip()
         {
+            HalfA.SetActive(false);
             while(!(currentrot==180))
             {
                 transform.Rotate(new Vector3(0, 0, 5));
                 currentrot += 5;
                 yield return new WaitForFixedUpdate();
             }
+            HalfA.SetActive(true);
             Initialize();
             HalfA.GetComponent<HalfA>().Flow();
             HalfB.GetComponent<HalfB>().Flow();
@@ -39,8 +41,8 @@ namespace SceneObject
         public void Initialize()
         {
             transform.SetPositionAndRotation(transform.position, rot);
-            HalfA.GetComponent<HalfA>().Initialize();
             HalfB.GetComponent<HalfB>().Initialize();
+            HalfA.GetComponent<HalfA>().Initialize();
         }
     }
 }

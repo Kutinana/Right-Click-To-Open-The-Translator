@@ -6,29 +6,35 @@ namespace SceneObject
     public class HalfA : MonoBehaviour
     {
         Quaternion startrot;
-        private void Awake() {
+        private void Awake()
+        {
             startrot = transform.rotation;
         }
-        private void Start() {
+        private void Start()
+        {
             Flow();
         }
-        public void Flow(){
+        public void Flow()
+        {
             StopAllCoroutines();
             StartCoroutine(IEFlow());
         }
         IEnumerator IEFlow()
         {
-            float det = 90f / (20f / Time.fixedDeltaTime);
-            while (!Mathf.Approximately(transform.eulerAngles.x, 90f))
+            float det = 1f / (20f / Time.fixedDeltaTime);
+            float n = det;
+            while (transform.rotation.eulerAngles.x < 87f)
             {
-                transform.Rotate(new Vector3(det,0,0));
+                float angle = n++ * det;
+                var res = angle * angle - 2 * angle;
+                transform.rotation = Quaternion.Euler(-1 * 90 * res, 0, 0);
                 yield return new WaitForFixedUpdate();
             }
-            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            gameObject.SetActive(false);
         }
-        public void Initialize(){
+        public void Initialize()
+        {
             transform.rotation = startrot;
-            GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using QFramework;
 using UnityEngine;
+using UnityEngine.Video;
 namespace SceneObject
 {
     public class HalfB : MonoBehaviour
@@ -11,6 +12,10 @@ namespace SceneObject
         {
             startpos = transform.localPosition;
         }
+        private void Start()
+        {
+            Flow();
+        }
         public void Flow()
         {
             StopAllCoroutines();
@@ -18,8 +23,8 @@ namespace SceneObject
         }
         IEnumerator IEFlow()
         {
-            float det = Mathf.Abs(startpos.y) / (20f / Time.fixedDeltaTime);
-            while (!Mathf.Approximately(transform.localPosition.y, 0))
+            float det = Mathf.Abs(startpos.y) / (16f / Time.fixedDeltaTime);
+            while (transform.localPosition.y < 0)
             {
                 transform.localPosition = new Vector3(
                     transform.localPosition.x,
@@ -27,12 +32,11 @@ namespace SceneObject
                     transform.localPosition.z);
                 yield return new WaitForFixedUpdate();
             }
-            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            transform.localPosition = new Vector3(0,0,0);
         }
         public void Initialize()
         {
             transform.localPosition = startpos;
-            GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
     }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   Description: "\u7EA2\u8272"
   RelatedPuzzles:
   - {fileID: 11400000, guid: 76c469fbfb974f84894b31205afa1975, type: 2}
+  - {fileID: 11400000, guid: a8f6e2cdb4dee9147a5760733c21cb5f, type: 2}

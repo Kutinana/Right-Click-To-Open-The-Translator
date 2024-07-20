@@ -152,5 +152,75 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/Tutorial/P2Puzzle1/P2Puzzle1_object3",
 		"itemType": 1,
 		"target_string":"Tutorial_ElectricBox"
+	},
+	{
+		"ID":22,
+		"OutlinedSpritePath":"Sprites/puzzles/BeginPlace/Door/Beginplace_door2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/BeginPlace/Door/Beginplace_door1",
+		"itemType": 0,
+		"target_string":""
+	},
+	{
+		"ID":23,
+		"OutlinedSpritePath":"Sprites/puzzles/BeginPlace/Cables/Beginplace_cables2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/BeginPlace/Cables/Beginplace_cables1",
+		"itemType": 1,
+		"target_string":"InEnergy_Cable"
+	},
+	{
+		"ID":24,
+		"OutlinedSpritePath":"Sprites/puzzles/BeginPlace/WeightBecker/Beginplace_weightbecker2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/BeginPlace/WeightBecker/Beginplace_weightbecker1",
+		"itemType": 1,
+		"target_string":"InEnergy_WeighBeaker"
+	},
+	{
+		"ID":25,
+		"OutlinedSpritePath":"Sprites/puzzles/BeginPlace/Sign/Beginplace_signs2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/BeginPlace/Sign/Beginplace_signs1",
+		"itemType": 3,
+		"target_string":"BeginPlace_Sign"
+	},
+	{
+		"ID":26,
+		"OutlinedSpritePath":"Sprites/puzzles/InEnergy/Clock/InEnergy_clock2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InEnergy/Clock/InEnergy_clock1",
+		"itemType": 1,
+		"target_string":"InEnergy_Clock"
+	},
+	{
+		"ID":27,
+		"OutlinedSpritePath":"Sprites/puzzles/InEnergy/Explosive/InEnergy_explosive2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InEnergy/Explosive/InEnergy_explosive1",
+		"itemType": 1,
+		"target_string":"InEnergy_InEnergy_ExplosiveSynthesizer"
+	},
+	{
+		"ID":28,
+		"OutlinedSpritePath":"Sprites/puzzles/InEnergy/Submarine/InEnergy_submarine2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InEnergy/Submarine/InEnergy_submarine1",
+		"itemType": 1,
+		"target_string":"InEnergy_SubmarineCoordinates"
+	},
+	{
+		"ID":29,
+		"OutlinedSpritePath":"Sprites/puzzles/InCenter/HanoiTower/InCenter_F2_HanoiTower2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InCenter/HanoiTower/InCenter_F2_HanoiTower1",
+		"itemType": 1,
+		"target_string":"InCenter_HanoiTower"
+	},
+	{
+		"ID":30,
+		"OutlinedSpritePath":"Sprites/puzzles/InCenter/Astrolable/InCenter_F3_Astrolabe2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InCenter/Astrolable/InCenter_F3_Astrolabe1",
+		"itemType": 1,
+		"target_string":"InCenter_Astrolabe"
+	},
+	{
+		"ID":31,
+		"OutlinedSpritePath":"Sprites/puzzles/InCenter/Elevator/InCenterF1_2-Elevator2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InCenter/Elevator/InCenterF1_2-Elevator1",
+		"itemType": 1,
+		"target_string":"InEnergy_SubmarineCoordinates"
 	}
 ]

@@ -5,8 +5,10 @@ using Puzzle.Tutorial.P2;
 using QFramework;
 using System.Collections;
 using System.Collections.Generic;
+using Translator;
 using UI;
 using UnityEditor;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 using UnityEngine.UI;
@@ -34,8 +36,9 @@ namespace Puzzle.InEnergy.Cable
         // private static string Path = "";
         private const int CAPACITY = 25;
 
-        private List<CableState> CableStates;
-        private List<Cable> Cables;
+        public static List<CableState> CableStates;
+        public static List<Cable> Cables;
+        private CanvasGroup m_characterGroup;
 
         private void Awake()
         {
@@ -43,8 +46,14 @@ namespace Puzzle.InEnergy.Cable
 
             CableStates = new List<CableState>(CAPACITY);
             Cables = new List<Cable>(CAPACITY);
+            m_characterGroup = transform.Find("Interactable/Characters").GetComponent<CanvasGroup>();
 
             Initialize();
+
+            DisableCharacters();
+
+            TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
+            TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         private Coroutine CurrentCoroutine = null;
@@ -60,11 +69,23 @@ namespace Puzzle.InEnergy.Cable
                 Transform cable = transform.Find("Interactable/Cables/" + CableName);
                 // if (cable != null) Debug.Log(cable.name);
                 // else Debug.Log(CableName + " not found");
-                Cables.Add(cable.GetComponent<Cable>());
-                CableStates.Add(CableState.Up);
+                if (Cables.Count < i + 1) Cables.Add(cable.GetComponent<Cable>());
+                if (CableStates.Count < i + 1) CableStates.Add(CableState.Up);
             }
 
             Refresh();
+        }
+
+        private void EnableCharacters()
+        {
+            m_characterGroup.interactable = true;
+            m_characterGroup.blocksRaycasts = true;
+        }
+
+        private void DisableCharacters()
+        {
+            m_characterGroup.interactable = false;
+            m_characterGroup.blocksRaycasts = false;
         }
 
         private void CheckState()
@@ -80,15 +101,10 @@ namespace Puzzle.InEnergy.Cable
             }
         }
 
-        private void SaveData()
-        {
-            
-        }
-
         public static void SetState(CableState cableState, Cable cable)
         {
-            int id = Instance.Cables.IndexOf(cable);
-            Instance.CableStates[id] = cableState;
+            int id = Cables.IndexOf(cable);
+            CableStates[id] = cableState;
         }
 
         public override void OnEnter()

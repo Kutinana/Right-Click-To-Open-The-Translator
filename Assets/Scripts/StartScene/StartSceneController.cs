@@ -138,7 +138,7 @@ namespace StartScene
                 // .Callback(() => SceneControl.SceneControl.SwitchSceneWithoutConfirm("TestScene"))
                 .Callback(() => TranslatorSM.CanActivate = true)
                 .Callback(() => TranslatorSM.StateMachine.ChangeState(States.Translation))
-                .Callback(() => TranslatorSM.Instance.StartTutorial())
+                .Coroutine(TranslatorSM.Instance.StartTutorialCoroutine)
                 .Delay(1f)
                 .Start(this);
 

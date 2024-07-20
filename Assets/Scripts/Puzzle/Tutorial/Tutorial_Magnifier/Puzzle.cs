@@ -158,15 +158,8 @@ namespace Puzzle.Tutorial.P1
             {
                 if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
                 {
-                    StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
+                    StartCoroutine(ShowTutorialCoroutine());
                     GameProgressData.Unlock(this);
-                    transform.Find("Interactable").GetComponent<HiddenPicture>().enabled = false;
-
-                    tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
-                        StartCoroutine(WaitTilTutEnd());
-                    });
                 }
                 else
                 {
@@ -195,16 +188,23 @@ namespace Puzzle.Tutorial.P1
                 CurrentCoroutine = null;
             }
         }
-        
-        private IEnumerator WaitTilTutEnd()
-        {
-            yield return new WaitUntil(() =>
-            {
-                return tutorialCanvasGroup.alpha <= 0.01f;
-            });
 
+        private IEnumerator ShowTutorialCoroutine()
+        {
+            transform.Find("Interactable").GetComponent<HiddenPicture>().enabled = false;
+            yield return CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f);
+
+            yield return new WaitForSeconds(1f);
+            tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                StartCoroutine(HideTutorialCoroutine());
+            });
+        }
+        
+        private IEnumerator HideTutorialCoroutine()
+        {
+            yield return CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f);
             transform.Find("Interactable").GetComponent<HiddenPicture>().enabled = true;
-            yield return null;
         }
     }
 }

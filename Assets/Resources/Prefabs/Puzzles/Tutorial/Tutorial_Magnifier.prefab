@@ -2496,14 +2496,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: Tutorial_Magnifier
+  Patterns: 000000000000000000000000
   CorrectPosY:
   - {fileID: 2650859427088551144}
   - {fileID: 4701885572210153197}
   - {fileID: 8745830661334110402}
+  Scopes:
+  - 0
+  - 0
+  - 0
   CTS:
   - {fileID: -661537631, guid: 2247ebc41d7d95b4bb2f09f35309a6e9, type: 3}
   - {fileID: 1169072113, guid: 2247ebc41d7d95b4bb2f09f35309a6e9, type: 3}
   - {fileID: 1237541866, guid: 2247ebc41d7d95b4bb2f09f35309a6e9, type: 3}
+  enable: 1
 --- !u!1 &4156751381269670956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,8 +3903,8 @@ MonoBehaviour:
     Notice that you can only interact
     with them when translator is off.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 923279f47fac61a4c859a88676c77ab2, type: 2}
+  m_sharedMaterial: {fileID: 962448907689391273, guid: 923279f47fac61a4c859a88676c77ab2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

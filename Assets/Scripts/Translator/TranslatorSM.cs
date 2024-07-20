@@ -122,10 +122,12 @@ namespace Translator
             StateMachine.ChangeState(StateMachine.PreviousStateId);
         }
 
-        public void StartTutorial()
+        public IEnumerator StartTutorialCoroutine()
         {
             tutorialCanvasGroup.transform.Find("Hint Word").GetComponent<TMP_Text>().SetText(LocalizationManager.GetCommonString("Str_FirstTimeActivateTranslator"));
-            StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
+            yield return CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f);
+
+            yield return new WaitForSeconds(1f);
             tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
             {
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));

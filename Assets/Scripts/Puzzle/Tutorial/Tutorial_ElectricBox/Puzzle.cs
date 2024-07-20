@@ -70,19 +70,8 @@ namespace Puzzle.Tutorial.P2
             {
                 if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
                 {
-                    StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f));
                     GameProgressData.Unlock(this);
-                    foreach (var slide in m_slides)
-                    {
-                        slide.enabled = false;
-                    }
-
-                    tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f));
-                        TranslatorSM.StateMachine.ChangeState(Translator.States.Dictionary);
-                        StartCoroutine(WaitTilTutEnd());
-                    });
+                    StartCoroutine(ShowTutorialCoroutine());
                 }
                 else
                 {
@@ -116,6 +105,22 @@ namespace Puzzle.Tutorial.P2
             }
         }
 
+        private IEnumerator ShowTutorialCoroutine()
+        {
+            foreach (var slide in m_slides)
+            {
+                slide.enabled = false;
+            }
+            yield return CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 1f);
+
+            yield return new WaitForSeconds(1f);
+            tutorialCanvasGroup.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                TranslatorSM.StateMachine.ChangeState(Translator.States.Dictionary);
+                StartCoroutine(HideTutorialCoroutine());
+            });
+        }
+
         private IEnumerator CheckAnswerCoroutine()
         {
             yield return new WaitUntil(() => {
@@ -126,18 +131,14 @@ namespace Puzzle.Tutorial.P2
             CurrentCoroutine = null;
         }
 
-        private IEnumerator WaitTilTutEnd()
+        private IEnumerator HideTutorialCoroutine()
         {
-            yield return new WaitUntil(() =>
-            {
-                return tutorialCanvasGroup.alpha <= 0.01f;
-            });
+            yield return CanvasGroupHelper.FadeCanvasGroup(tutorialCanvasGroup, 0f);
 
             foreach (var slide in m_slides)
             {
                 slide.enabled = true;
             }
-            yield return null;
         }
     }
 }

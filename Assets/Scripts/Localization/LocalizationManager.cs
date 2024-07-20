@@ -53,8 +53,8 @@ namespace Localization
 
     public struct NarrationSentence
     {
-        public Side side;
-        public Narrator narrator;
+        public Side type;
+        public string narrator;
         public string content;
     }
 

@@ -32,26 +32,22 @@ namespace UI.Narration
     }
     public struct OnInitialNarrationStartEvent { }
 
-    public enum Narrator
-    {
-        None,
-        Protagonist,
-        Shiro
-    }
-
     public enum Side
     {
         Left,
-        Right
+        Right,
+        FullScreen
     }
 
     public class NarrationManager : MonoSingleton<NarrationManager>
     {
-        public SerializableDictionary<Narrator, Sprite> Tachies;
+        public SerializableDictionary<string, Sprite> Tachies;
 
         private CanvasGroup mCanvasGroup;
         private string narrationPlaying = null;
         private static Coroutine CurrentCoroutine;
+
+        private static Coroutine CurrentTypeTextCoroutine;
 
         private CanvasGroup leftCanvasGroup;
         private Image leftImage;
@@ -59,6 +55,9 @@ namespace UI.Narration
         private CanvasGroup rightCanvasGroup;
         private Image rightImage;
         private TMP_Text rightText;
+        private CanvasGroup fullScreenCanvasGroup;
+        private Image fullScreenImage;
+        private TMP_Text fullScreenText;
 
         public string ToShowNarrationId { get; set; }
         public static bool IsNarrating => CurrentCoroutine != null;
@@ -75,6 +74,10 @@ namespace UI.Narration
             rightImage = transform.Find("Right/Tachie").GetComponent<Image>();
             rightText = transform.Find("Right/Text").GetComponent<TMP_Text>();
 
+            fullScreenCanvasGroup = transform.Find("FullScreen").GetComponent<CanvasGroup>();
+            fullScreenImage = transform.Find("FullScreen/Tachie").GetComponent<Image>();
+            fullScreenText = transform.Find("FullScreen/Text").GetComponent<TMP_Text>();
+
             EventRegister();
         }
 
@@ -83,6 +86,11 @@ namespace UI.Narration
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 if (IsNarrating) StopNarration();
+            }
+            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
+            {
+                if (CurrentTypeTextCoroutine != null) StopCoroutine(CurrentTypeTextCoroutine);
+                CurrentTypeTextCoroutine = null;
             }
         }
 
@@ -118,12 +126,12 @@ namespace UI.Narration
 
             foreach (var sentence in content)
             {
-                if (sentence.side == Side.Left)
+                if (sentence.type == Side.Left)
                 {
-                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 0f, 0.2f);
+                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.rightCanvasGroup, Instance.fullScreenCanvasGroup}, 0f, 0.2f);
 
                     leftText.SetText("");
-                    if (sentence.narrator != Narrator.None && Tachies.TryGetValue(sentence.narrator, out var value))
+                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value))
                     {
                         leftImage.sprite = value;
                         leftImage.color = Color.white;
@@ -132,23 +140,16 @@ namespace UI.Narration
 
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 1f, 0.2f);
                     
-                    var len = sentence.content.Length;
-                    var speed = 1 / 24f;
-
-                    for (var i = 0; i < len; i++)
-                    {
-                        leftText.text += sentence.content[i];
-                        if (sentence.content[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
-                        yield return new WaitForSeconds(speed);
-                    }
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(leftText, sentence.content));
+                    yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
                     leftText.SetText(sentence.content);
                 }
-                else if (sentence.side == Side.Right)
+                else if (sentence.type == Side.Right)
                 {
-                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 0f, 0.2f);
+                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.leftCanvasGroup, Instance.fullScreenCanvasGroup}, 0f, 0.2f);
 
                     rightText.SetText("");
-                    if (sentence.narrator != Narrator.None && Tachies.TryGetValue(sentence.narrator, out var value))
+                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value))
                     {
                         rightImage.sprite = value;
                         rightImage.color = Color.white;
@@ -157,25 +158,45 @@ namespace UI.Narration
 
                     yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 1f, 0.2f);
                     
-                    var len = sentence.content.Length;
-                    var speed = 1 / 24f;
-
-                    for (var i = 0; i < len; i++)
-                    {
-                        rightText.text += sentence.content[i];
-                        if (sentence.content[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
-                        yield return new WaitForSeconds(speed);
-                    }
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(rightText, sentence.content));
+                    yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
                     rightText.SetText(sentence.content);
                 }
-                
-                yield return new WaitForSeconds(0.5f);
+                else if (sentence.type == Side.FullScreen)
+                {
+                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.leftCanvasGroup, Instance.rightCanvasGroup}, 0f, 0.2f);
+
+                    fullScreenText.SetText("");
+                    fullScreenImage.color = new Color(1f, 1f, 1f, 0f);
+
+                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.fullScreenCanvasGroup, 1f, 0.2f);
+                    
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(fullScreenText, sentence.content));
+                    yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
+                    fullScreenText.SetText(sentence.content);
+                }
 
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
             }
 
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
             StopNarration();
+        }
+
+        private IEnumerator TypeTextCoroutine(TMP_Text textfield, string text)
+        {
+            var len = text.Length;
+            var speed = 1 / 24f;
+
+            for (var i = 0; i < len; i++)
+            {
+                textfield.text += text[i];
+                if (text[i] is not ' ' or '\r' or '\n') AudioKit.PlaySound("InteractClick");
+                yield return new WaitForSeconds(speed);
+            }
+            textfield.SetText(text);
+
+            CurrentTypeTextCoroutine = null;
         }
 
         private void EventRegister()

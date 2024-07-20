@@ -2,16 +2,19 @@
     "zh_CN": {
         "Str_FirstTimeActivateTranslator": "- 单击字符以记录你对其词义的猜测 -",
         "Str_ObtainedSingleObject": "获得了 {0}！",
-        "Str_UseItemConfirm": "您是否要使用 {0}？"
+        "Str_UseItemConfirm": "您是否要使用 {0}？",
+        "Str_RoadIsBlocked": "前方的路似乎被堵住了"
     },
     "en_US": {
         "Str_FirstTimeActivateTranslator": "- Click on the character to record your guess on its meaning -",
         "Str_ObtainedSingleObject": "Get {0}!",
-        "Str_UseItemConfirm": "Do you want to use {0}?"
+        "Str_UseItemConfirm": "Do you want to use {0}?",
+        "Str_RoadIsBlocked": "The road is blocked"
     },
     "ja_JP": {
         "Str_FirstTimeActivateTranslator": "- 文字をクリックして意味を変更します -",
         "Str_ObtainedSingleObject": "{0} 入手しました！",
-        "Str_UseItemConfirm": "{0} を使用しますか？"
+        "Str_UseItemConfirm": "{0} を使用しますか？",
+        "Str_RoadIsBlocked": "前の道が封鎖されている"
     }
 }

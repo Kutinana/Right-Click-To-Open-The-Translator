@@ -7,6 +7,7 @@ using Puzzle;
 using QFramework;
 using SceneControl;
 using Settings;
+using Translator;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -70,7 +71,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnInventoryIncreasedEvent>(e => AudioKit.PlaySound("023PickupItem")).UnRegisterWhenGameObjectDestroyed(gameObject);
-        
+
         res = ResLoader.Allocate();
         if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
         {

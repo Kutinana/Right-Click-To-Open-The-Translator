@@ -46,6 +46,7 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
                 Destroy(inputCol);
+                Light.ChangeState(5);
             }
             else
             {
@@ -89,7 +90,10 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
                 yield return new WaitUntil(() => Inputs.Count == 3);
                 if (Inputs.Count == CORRECT.Count && Inputs.Except(CORRECT).Count() == 0 && CORRECT.Except(Inputs).Count() == 0)
                 {
+                    AudioKit.PlaySound("023CorrectRecipe");
                     Light.ChangeState(5);
+                    AudioKit.PlaySound("023MachineRunning");
+                    yield return new WaitForSeconds(2f);
                     transform.Find("Interactable/Bomb").gameObject.SetActive(true);
 
                     break;
@@ -97,7 +101,7 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
                 else
                 {
                     Inputs.Clear();
-
+                    AudioKit.PlaySound("023WrongRecipe");
                     Light.ChangeState(4);
                     transform.Find("Interactable/Smoke").gameObject.SetActive(true);
 

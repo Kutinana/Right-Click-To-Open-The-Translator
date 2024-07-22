@@ -156,7 +156,6 @@ RectTransform:
   - {fileID: 1204046973206261885}
   - {fileID: 2876327160778565544}
   - {fileID: 3887460685649048733}
-  - {fileID: 29240049763230276}
   m_Father: {fileID: 5595337293807106498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1720,6 +1719,7 @@ RectTransform:
   m_Children:
   - {fileID: 4159648827403936845}
   - {fileID: 3582377972921952328}
+  - {fileID: 29240049763230276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1740,6 +1740,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: InCenter_HanoiTower
+  Layer:
+  - -185
+  - -87
+  - 14
+  - 113
+  - 214
+  BlockStates: 0000000000000000000000000000000000000000
+  Towers: []
+  blocks: []
+  CurrentItem: {fileID: 0}
+  CurrentTower: {fileID: 0}
+  OriginTower: {fileID: 0}
   Lights:
   - {fileID: 21300000, guid: 3d65f6f2afe373943bd6d27df5364b0c, type: 3}
   - {fileID: 21300000, guid: 26b75b732ed30624383b740b9379b2aa, type: 3}
@@ -1826,12 +1838,12 @@ RectTransform:
   - {fileID: 6241925642138547472}
   - {fileID: 8533682438722667187}
   - {fileID: 2900254433817383623}
-  m_Father: {fileID: 4159648827403936845}
+  m_Father: {fileID: 5595337293807106498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -512, y: -288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5209768754811604134
 Canvas:
@@ -1851,10 +1863,10 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &5128562839978381848
 MonoBehaviour:

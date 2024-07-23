@@ -58,8 +58,7 @@ namespace Puzzle
             TypeEventSystem.Global.Send<OnPuzzleInitializedEvent>();
 
             var data = GameDesignData.GetPuzzleDataById(_id);
-            CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>();
-            CurrentPuzzle.Id = _id;
+            CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>().OnInitialized(_id);
 
             CurrentPuzzle.OnEnter();
             StateMachine.ChangeState(States.Active);

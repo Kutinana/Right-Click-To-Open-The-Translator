@@ -85,10 +85,11 @@ namespace Dictionary
 
         public IEnumerator ShowCharacterDetailCoroutine()
         {
+            var progress = UserDictionary.Read(CurrentCharacterData.Id);
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 0f, 0.2f);
 
             currentCharacterImage.sprite = CurrentCharacterData.Sprite;
-            currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
+            currentCharacterMeaning.SetText(progress.Meaning);
 
             var parent = detailCanvasGroup.transform.Find("PuzzleList/Scroll View/Viewport/Content");
             for (var i = 0; i < parent.childCount; i++)
@@ -96,12 +97,12 @@ namespace Dictionary
                 Destroy(parent.GetChild(i).gameObject);
             }
 
-            foreach (var p in CurrentCharacterData.RelatedPuzzles)
+            foreach (var p in progress.RelatedPuzzles)
             {
-                if (GameProgressData.GetPuzzleProgress(p.Id) == PuzzleProgress.NotFound) continue;
+                if (GameProgressData.GetPuzzleProgress(p) == PuzzleProgress.NotFound) continue;
 
                 var go = Instantiate(PuzzlePrefab, parent);
-                go.GetComponent<PuzzleThumbnailController>().Initialize(p);
+                go.GetComponent<PuzzleThumbnailController>().Initialize(GameDesignData.GetPuzzleDataById(p));
             }
 
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 1f, 0.2f);

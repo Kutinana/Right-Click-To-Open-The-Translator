@@ -7,9 +7,16 @@ using UnityEngine;
 
 namespace Puzzle
 {
-    public abstract class PuzzleBase : MonoBehaviour
+    public abstract class PuzzleBase : MonoBehaviour , IHaveId
     {
-        public string Id;
+        public string Id { get; set; }
+        public virtual PuzzleBase OnInitialized(string _id)
+        {
+            Id = _id;
+
+            return this;
+        }
+
         public virtual void OnEnter()
         {
             

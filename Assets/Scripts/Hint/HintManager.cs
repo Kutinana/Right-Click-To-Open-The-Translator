@@ -57,9 +57,8 @@ namespace Hint
 
             TypeEventSystem.Global.Send<OnHintInitializedEvent>();
 
-            var data = GameDesignData.GetHintDataById(_id);
-            CurrentHint = Instantiate(data.Prefab, Instance.transform).GetComponent<HintBase>();
-            CurrentHint.Id = _id;
+            var data = GameDesignData.GetPuzzleDataById(_id);
+            CurrentHint = Instantiate(data.Prefab, Instance.transform).GetComponent<HintBase>().OnInitialized(_id);
 
             CurrentHint.OnEnter();
             StateMachine.ChangeState(States.Active);

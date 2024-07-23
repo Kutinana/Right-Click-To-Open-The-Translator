@@ -7,9 +7,16 @@ using UnityEngine;
 
 namespace Hint
 {
-    public abstract class HintBase : MonoBehaviour
+    public abstract class HintBase : MonoBehaviour , IHaveId
     {
-        public string Id;
+        public string Id { get; set; }
+        public virtual HintBase OnInitialized(string _id)
+        {
+            Id = _id;
+
+            return this;
+        }
+        
         public virtual void OnEnter()
         {
 

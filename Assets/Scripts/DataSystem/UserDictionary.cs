@@ -4,6 +4,7 @@ using UnityEngine;
 using QFramework;
 using System.IO;
 using Newtonsoft.Json;
+using Puzzle;
 
 namespace DataSystem
 {
@@ -18,9 +19,9 @@ namespace DataSystem
         private static UserDictionary _instance;
         public void OnSingletonInit() {}
 
-        [JsonProperty] internal Dictionary<string, string> Dictionary { get; set; } = new Dictionary<string, string>();
+        [JsonProperty] internal Dictionary<string, CharacterProgressData> Dictionary { get; set; } = new();
 
-        public static Dictionary<string, string> GetDictionary()
+        public static Dictionary<string, CharacterProgressData> GetDictionary()
         {
             return Instance.Dictionary;
         }
@@ -30,16 +31,16 @@ namespace DataSystem
             return Instance.Dictionary.Count == 0;
         }
 
-        public static string Read(string id)
+        public static CharacterProgressData Read(string id)
         {
-            return Instance.Dictionary.ContainsKey(id) ? Instance.Dictionary[id] : "";
+            return Instance.Dictionary.TryGetValue(id, out var value) ? value : null;
         }
 
         public static void Unlock(string id)
         {
             if (Instance.Dictionary.ContainsKey(id)) return;
 
-            Instance.Dictionary.Add(id, "");
+            Instance.Dictionary.Add(id, new CharacterProgressData(id));
             Instance.Serialization();
         }
 
@@ -48,18 +49,45 @@ namespace DataSystem
             foreach (var id in ids)
             {
                 if (Instance.Dictionary.ContainsKey(id)) continue;
-                Instance.Dictionary.Add(id, "");
+                Instance.Dictionary.Add(id, new CharacterProgressData(id));
             }
             Instance.Serialization();
         }
 
-        public static void WriteInAndSave(string id, string content)
+        public static void AddRelatedPuzzleAndSave(string id, string puzzleId)
         {
-            if (Instance.Dictionary.ContainsKey(id))
+            if (!Instance.Dictionary.TryGetValue(id, out var value))
             {
-                Instance.Dictionary.Remove(id);
+                value = new CharacterProgressData(id);
+                Instance.Dictionary.Add(id, value);
             }
-            Instance.Dictionary.Add(id, content);
+            value.RelatedPuzzles.Add(puzzleId);
+
+            Instance.Serialization();
+        }
+
+        public static void AddRelatedPuzzleAndSave(List<string> ids, string puzzleId)
+        {
+            foreach (var id in ids)
+            {
+                if (!Instance.Dictionary.TryGetValue(id, out var value))
+                {
+                    value = new CharacterProgressData(id);
+                    Instance.Dictionary.Add(id, value);
+                }
+                value.RelatedPuzzles.Add(puzzleId);
+            }
+            Instance.Serialization();
+        }
+
+        public static void WriteInAndSave(string id, string meaning)
+        {
+            if (!Instance.Dictionary.TryGetValue(id, out var value))
+            {
+                value = new CharacterProgressData(id);
+                Instance.Dictionary.Add(id, value);
+            }
+            value.Meaning = meaning;
 
             Instance.Serialization();
         }

@@ -115,6 +115,8 @@ namespace Puzzle.InMarket.Church
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
+                BlockStates = CORRECT;
+                Refresh();
 
             }
             else

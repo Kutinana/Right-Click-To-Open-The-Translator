@@ -16,6 +16,7 @@ namespace SceneControl
         public static string CurrentScene;
         public static bool IsLoading;
         public static bool CanTransition;
+        public static string PreviousScene;
 
         private TMP_Text mTips;
         private Slider mLoadingProgress;
@@ -142,6 +143,7 @@ namespace SceneControl
         IEnumerator SwitchSceneEnumerator(string sceneName, float delay = 0)
         {
             yield return new WaitForSeconds(delay);
+            PreviousScene = CurrentScene;
             
             mLoadingProgress.value = 0;
             yield return Fade(1);
@@ -172,6 +174,7 @@ namespace SceneControl
         IEnumerator SwitchSceneWithEventEnumerator(string sceneName, Action action, float delay = 0)
         {
             yield return new WaitForSeconds(delay);
+            PreviousScene = CurrentScene;
 
             mLoadingProgress.value = 0;
             yield return Fade(1);
@@ -206,6 +209,7 @@ namespace SceneControl
         IEnumerator SwitchSceneWithoutConfirmEnumerator(string sceneName, float delay = 0)
         {
             yield return new WaitForSeconds(delay);
+            PreviousScene = CurrentScene;
 
             mLoadingProgress.value = 0;
             yield return Fade(1);

@@ -15,6 +15,8 @@ MonoBehaviour:
   id: BeginPlace_Sign
   Prefab: {fileID: 9027105629941652325, guid: 5831599234b42504f81da61bf9d3661a, type: 3}
   Thumbnail:
-    list: []
+    list:
+    - Key: 2
+      Value: {fileID: 21300000, guid: 11ff8bb23ebc3984190ef4bb6fe7f6af, type: 3}
   Name: 
   Description: 

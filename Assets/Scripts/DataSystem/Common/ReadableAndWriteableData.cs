@@ -31,7 +31,7 @@ namespace DataSystem
             if (string.IsNullOrEmpty(Path) || !File.Exists(Path)) return new T();
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path), settings);
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path), settings) ?? new T();
         }
 
         public virtual bool Validation<T>(out T value) where T : new()
@@ -40,7 +40,7 @@ namespace DataSystem
             try
             {
                 // Ability of reading
-                value = DeSerialization<T>();
+                value = DeSerialization<T>() ?? new T();
                 
                 return true;
             }

@@ -43,8 +43,11 @@ namespace DataSystem
             if (string.IsNullOrEmpty(_path)) return new T();
 
             string json = "";
-            if (!File.Exists(_path)) json = Resources.Load<TextAsset>(_path).text;
-            else json = File.ReadAllText(_path);
+            try
+            {
+                if (!File.Exists(_path)) json = Resources.Load<TextAsset>(_path).text;
+                else json = File.ReadAllText(_path);
+            } catch {}
 
             if (string.IsNullOrEmpty(json)) return new T();
 

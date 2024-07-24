@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DataSystem;
 using Kuchinashi;
 using Localization;
 using QFramework;
@@ -85,7 +86,11 @@ namespace UI.Narration
         {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
-                if (IsNarrating) StopNarration();
+                if (IsNarrating)
+                {
+                    GameProgressData.CompleteNarration(narrationPlaying);
+                    StopNarration();
+                }
             }
             if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
             {
@@ -114,8 +119,9 @@ namespace UI.Narration
 
             if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
             CurrentCoroutine = null;
+            
             TypeEventSystem.Global.Send(new OnNarrationEndEvent(Instance.narrationPlaying));
-            Instance.narrationPlaying = null;
+            Instance.narrationPlaying = "";
         }
 
         private IEnumerator NarrationCoroutine(List<NarrationSentence> content, float delay = 0f)
@@ -183,6 +189,8 @@ namespace UI.Narration
             }
 
             yield return new WaitUntil(() => Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return));
+
+            GameProgressData.CompleteNarration(narrationPlaying);
             StopNarration();
         }
 
@@ -206,7 +214,7 @@ namespace UI.Narration
         {
             TypeEventSystem.Global.Register<OnInitialNarrationStartEvent>(e =>
             {
-                if (PlayerPrefs.HasKey("FirstTime") && PlayerPrefs.GetInt("FirstTime") == 1)
+                if (!GameProgressData.HaveReadNarration("InitialNarration"))
                 {
                     StartNarration("InitialNarration", 2f);
                 }

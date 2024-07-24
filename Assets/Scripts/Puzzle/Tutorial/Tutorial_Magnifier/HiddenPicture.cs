@@ -1,10 +1,12 @@
 using Cameras;
+using DataSystem;
 using Kuchinashi;
 using QFramework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UI;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
@@ -183,7 +185,11 @@ namespace Puzzle.Tutorial.P1
             _targetColor = new Color(_initialColor.r, _initialColor.g, _initialColor.b, 1f);
             b_initialColor = buttonImages[id].color;
             b_targetColor = new Color(b_initialColor.r, b_initialColor.g, b_initialColor.b, 0f);
-            characters[id].GetComponent<ButtonExtension>().enabled = true;
+
+            var character = characters[id];
+            character.GetComponent<ButtonExtension>().enabled = true;
+            UserDictionary.AddRelatedPuzzleAndSave(character.GetComponent<Character>().data.Id, Puzzle.Instance.Id);
+            
             CurrentCoroutine = StartCoroutine(ChangeCharacter(id));
         }
         private void HideCharacter(object sender, int id)

@@ -18,7 +18,7 @@ namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        public static string Version => "0.3.0";
+        public static string Version => "0.3.1";
 
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;
@@ -70,14 +70,13 @@ namespace StartScene
 
             TranslatorSM.CanActivate = false;
 
-            if (PlayerPrefs.HasKey("Played") && PlayerPrefs.GetInt("Played") == 1)
+            if (GameProgressData.Instance.Dictionary.Count != 0)
             {
-                PlayerPrefs.SetInt("FirstTime", 0);
                 NormalEnterGame();
             }
             else
             {
-                PlayerPrefs.SetInt("FirstTime", 1);
+                Debug.Log("Init");
                 FirstTimeEnterGame();
             }
         }
@@ -96,13 +95,9 @@ namespace StartScene
             switch (LocalizationManager.Instance.CurrentLanguage)
             {
                 case Localization.Language.en_US:
-                    UserDictionary.WriteInAndSave("la", "To");
-                    UserDictionary.WriteInAndSave("schl", "Click");
-                    UserDictionary.WriteInAndSave("rec", "Right");
-                    UserDictionary.WriteInAndSave("offen", "Start");
-                    UserDictionary.WriteInAndSave("masc", "Machine");
-                    UserDictionary.WriteInAndSave("ubrs", "Translation");
-                    UserDictionary.WriteInAndSave("geb", "Game");
+                UserDictionary.WriteInAndSave(new Dictionary<string, string>() {
+                        {"la", "To"}, {"schl", "Click"}, {"rec", "Right"}, {"offen", "Start"}, {"masc", "Machine"}, {"ubrs", "Translation"}, {"geb", "Game"}
+                    });
 
                     InitialClips = new() {
                         resLoader.LoadSync<VideoClip>("videos", "opening_part1_en"),
@@ -112,13 +107,9 @@ namespace StartScene
                     };
                     break;
                 case Localization.Language.zh_CN:
-                    UserDictionary.WriteInAndSave("la", "来");
-                    UserDictionary.WriteInAndSave("schl", "按键");
-                    UserDictionary.WriteInAndSave("rec", "右");
-                    UserDictionary.WriteInAndSave("offen", "启动");
-                    UserDictionary.WriteInAndSave("masc", "机器");
-                    UserDictionary.WriteInAndSave("ubrs", "翻译");
-                    UserDictionary.WriteInAndSave("geb", "游戏");
+                    UserDictionary.WriteInAndSave(new Dictionary<string, string>() {
+                        {"la", "来"}, {"schl", "按键"}, {"rec", "右"}, {"offen", "启动"}, {"masc", "机器"}, {"ubrs", "翻译"}, {"geb", "游戏"}
+                    });
 
                     InitialClips = new() {
                         resLoader.LoadSync<VideoClip>("videos", "opening_part1_cn"),
@@ -128,6 +119,8 @@ namespace StartScene
                     };
                     break;
             }
+            List<string> ids = new List<string>() {"quit", "settings", "credit"};
+            UserDictionary.Unlock(ids);
 
             TypeEventSystem.Global.Send<OnCharacterRefreshEvent>();
 
@@ -312,50 +305,38 @@ namespace StartScene
         private void InitialSettings()
         {
             Application.targetFrameRate = 240;
+            PlayerPrefs.DeleteAll();
 
             // Version Validating
-            if (PlayerPrefs.HasKey("Version"))
+            if (UserConfig.TryRead<string>("Version", out var local))
             {
-                var localVersion = PlayerPrefs.GetString("Version").Split(".");
+                var localVersion = local.Split(".");
                 if (Int32.Parse(localVersion[0]) < Int32.Parse(Version.Split(".")[0])
                     || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) < Int32.Parse(Version.Split(".")[1]))
                     || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2])))
                 {
                     GameProgressData.Clean();
-                    UserDictionary.Clean();
                 }
             }
+            UserConfig.Write<string>("Version", Version);
 
-            if (!PlayerPrefs.HasKey("Version") || PlayerPrefs.GetString("Version") != Version)
-            {
-                PlayerPrefs.DeleteAll();
-
-                PlayerPrefs.SetString("Version", Version);
-            }
-
-            AudioKit.Settings.MusicVolume.SetValueWithoutEvent(
-                PlayerPrefs.HasKey("BackgroundVolume") ? PlayerPrefs.GetFloat("BackgroundVolume") : 0.8f);
-            AudioKit.Settings.SoundVolume.SetValueWithoutEvent(
-                PlayerPrefs.HasKey("EffectVolume") ? PlayerPrefs.GetFloat("EffectVolume") : 0.8f);
+            AudioKit.Settings.MusicVolume.SetValueWithoutEvent(UserConfig.ReadWithDefaultValue("Background Volume", 0.8f));
+            AudioKit.Settings.SoundVolume.SetValueWithoutEvent(UserConfig.ReadWithDefaultValue("Effect Volume", 0.8f));
 
             Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            if (PlayerPrefs.HasKey("Window Mode"))
+            if (UserConfig.TryRead<int>("Window Mode", out var mode))
             {
-                if (PlayerPrefs.GetInt("Window Mode") == 1)
+                if (mode == 0) return;
+                else if (mode == 1 && UserConfig.TryRead<int>("Resolution", out var res))
+                {
+                    Screen.SetResolution(SettingsSM.AvailableResolutions[res].Item1,
+                        SettingsSM.AvailableResolutions[res].Item2, false);
+                }
+                else
                 {
                     var width = Screen.resolutions[^1].width;
                     Screen.SetResolution(width, width / 16 * 9, true);
                 }
-                else if (PlayerPrefs.HasKey("Resolution"))
-                {
-                    Screen.SetResolution(SettingsSM.AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item1,
-                        SettingsSM.AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item2, false);
-                }
-            }
-            else
-            {
-                var width = Screen.resolutions[^1].width;
-                Screen.SetResolution(width, width / 16 * 9, true);
             }
         }
     }

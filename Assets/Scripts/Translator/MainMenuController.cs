@@ -86,9 +86,6 @@ namespace Translator
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             ToggleInteractability(TranslatorSM.StateMachine.CurrentStateId == States.Off);
-
-            List<string> ids = new List<string>() {"quit", "settings", "credit"};
-            UserDictionary.Unlock(ids);
         }
 
         private void ToggleInteractability(bool _flag)

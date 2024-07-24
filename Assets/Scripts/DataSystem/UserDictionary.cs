@@ -8,104 +8,84 @@ using Puzzle;
 
 namespace DataSystem
 {
-    public class UserDictionary : ReadableAndWriteableData , ISingleton
+    public class UserDictionary
     {
-        [JsonIgnore] public override string Path { get => System.IO.Path.Combine(Application.persistentDataPath, "UserDictionary.json"); }
-        public static UserDictionary Instance
-        {
-            get => _instance ??= new UserDictionary().DeSerialization<UserDictionary>();
-            private set => _instance = value;
-        }
-        private static UserDictionary _instance;
-        public void OnSingletonInit() {}
+        public static Dictionary<string, CharacterProgressData> Dictionary => GameProgressData.Instance.Dictionary;
 
-        [JsonProperty] internal Dictionary<string, CharacterProgressData> Dictionary { get; set; } = new();
-
-        public static Dictionary<string, CharacterProgressData> GetDictionary()
-        {
-            return Instance.Dictionary;
-        }
-
-        public static bool IsEmpty()
-        {
-            return Instance.Dictionary.Count == 0;
-        }
-
-        public static string Read(string id)
-        {
-            return Instance.Dictionary.TryGetValue(id, out var value) ? value.Meaning : "";
-        }
-
-        public static CharacterProgressData GetCharacterProgressData(string id)
-        {
-            return Instance.Dictionary.TryGetValue(id, out var value) ? value : null;
-        }
-
-        public static bool TryGetCharacterProgressData(string id, out CharacterProgressData value)
-        {
-            return Instance.Dictionary.TryGetValue(id, out value);
-        }
+        public static Dictionary<string, CharacterProgressData> GetDictionary() => Dictionary;
+        public static bool IsEmpty() => Dictionary.Count == 0;
+        public static string Read(string id) => Dictionary.TryGetValue(id, out var value) ? value.Meaning : "";
+        public static CharacterProgressData GetCharacterProgressData(string id) => Dictionary.TryGetValue(id, out var value) ? value : null;
+        public static bool TryGetCharacterProgressData(string id, out CharacterProgressData value) => Dictionary.TryGetValue(id, out value);
 
         public static void Unlock(string id)
         {
-            if (Instance.Dictionary.ContainsKey(id)) return;
+            if (Dictionary.ContainsKey(id)) return;
 
-            Instance.Dictionary.Add(id, new CharacterProgressData(id));
-            Instance.Serialization();
+            Dictionary.Add(id, new CharacterProgressData(id));
+            GameProgressData.Instance.Serialization();
         }
 
         public static void Unlock(List<string> ids)
         {
             foreach (var id in ids)
             {
-                if (Instance.Dictionary.ContainsKey(id)) continue;
-                Instance.Dictionary.Add(id, new CharacterProgressData(id));
+                if (Dictionary.ContainsKey(id)) continue;
+                Dictionary.Add(id, new CharacterProgressData(id));
             }
-            Instance.Serialization();
+            GameProgressData.Instance.Serialization();
         }
 
         public static void AddRelatedPuzzleAndSave(string id, string puzzleId)
         {
-            if (!Instance.Dictionary.TryGetValue(id, out var value))
+            if (!Dictionary.TryGetValue(id, out var value))
             {
                 value = new CharacterProgressData(id);
-                Instance.Dictionary.Add(id, value);
+                Dictionary.Add(id, value);
             }
-            value.RelatedPuzzles.Add(puzzleId);
+            if (!value.RelatedPuzzles.Contains(puzzleId)) value.RelatedPuzzles.Add(puzzleId);
 
-            Instance.Serialization();
+            GameProgressData.Instance.Serialization();
         }
 
         public static void AddRelatedPuzzleAndSave(List<string> ids, string puzzleId)
         {
             foreach (var id in ids)
             {
-                if (!Instance.Dictionary.TryGetValue(id, out var value))
+                if (!Dictionary.TryGetValue(id, out var value))
                 {
                     value = new CharacterProgressData(id);
-                    Instance.Dictionary.Add(id, value);
+                    Dictionary.Add(id, value);
                 }
-                value.RelatedPuzzles.Add(puzzleId);
+                if (!value.RelatedPuzzles.Contains(puzzleId)) value.RelatedPuzzles.Add(puzzleId);
             }
-            Instance.Serialization();
+            GameProgressData.Instance.Serialization();
         }
 
         public static void WriteInAndSave(string id, string meaning)
         {
-            if (!Instance.Dictionary.TryGetValue(id, out var value))
+            if (!Dictionary.TryGetValue(id, out var value))
             {
                 value = new CharacterProgressData(id);
-                Instance.Dictionary.Add(id, value);
+                Dictionary.Add(id, value);
             }
             value.Meaning = meaning;
 
-            Instance.Serialization();
+            GameProgressData.Instance.Serialization();
         }
 
-        public static void Clean()
+        public static void WriteInAndSave(Dictionary<string, string> pairs)
         {
-            _instance = new();
-            Instance.Serialization();
+            foreach (var pair in pairs)
+            {
+                if (!Dictionary.TryGetValue(pair.Key, out var value))
+                {
+                    value = new CharacterProgressData(pair.Key);
+                    Dictionary.Add(pair.Key, value);
+                }
+                value.Meaning = pair.Value;
+            }
+            GameProgressData.Instance.Serialization();
         }
     }
 }

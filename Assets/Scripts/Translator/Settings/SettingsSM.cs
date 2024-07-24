@@ -39,21 +39,20 @@ namespace Settings
 
         #endregion
 
-        private Button mClearPlayerPrefs;
         private Button mBackToMainMenu;
 
         private void Awake()
         {
             mBackgroundVolumeSlider = transform.Find("Content/Scroll View/Viewport/Content/BackgroundVolume/Slider").GetComponent<Slider>();
             mBackgroundVolumeSlider.onValueChanged.AddListener(value => {
-                PlayerPrefs.SetFloat("Background Volume", value / 100f);
+                UserConfig.Write<float>("Background Volume", value / 100f);
                 TypeEventSystem.Global.Send<OnVolumeSettingsChanged>();
             });
             mBackgroundVolumeText = transform.Find("Content/Scroll View/Viewport/Content/BackgroundVolume/Value").GetComponent<TMP_Text>();
 
             mEffectVolumeSlider = transform.Find("Content/Scroll View/Viewport/Content/EffectVolume/Slider").GetComponent<Slider>();
             mEffectVolumeSlider.onValueChanged.AddListener(value => {
-                PlayerPrefs.SetFloat("Effect Volume", value / 100f);
+                UserConfig.Write<float>("Effect Volume", value / 100f);
                 TypeEventSystem.Global.Send<OnVolumeSettingsChanged>();
             });
             mEffectVolumeText = transform.Find("Content/Scroll View/Viewport/Content/EffectVolume/Value").GetComponent<TMP_Text>();
@@ -61,10 +60,6 @@ namespace Settings
             mWindowModeDropdown = transform.Find("Content/Scroll View/Viewport/Content/WindowMode/Dropdown").GetComponent<TMP_Dropdown>();
             mResolutionDropdown = transform.Find("Content/Scroll View/Viewport/Content/Resolution/Dropdown").GetComponent<TMP_Dropdown>();
 
-            mClearPlayerPrefs = transform.Find("Content/Scroll View/Viewport/Content/ClearPlayerPrefs").GetComponent<Button>();
-            mClearPlayerPrefs.onClick.AddListener(() => {
-                PlayerPrefs.DeleteAll();
-            });
             mBackToMainMenu = transform.Find("Content/Scroll View/Viewport/Content/BackToMainMenu").GetComponent<Button>();
             mBackToMainMenu.onClick.AddListener(() => {
                 SceneControl.SceneControl.SwitchSceneWithoutConfirm("EmptyScene");
@@ -79,25 +74,25 @@ namespace Settings
 
         private void Initialize()
         {
-            mBackgroundVolumeSlider.SetValueWithoutNotify(PlayerPrefs.HasKey("Background Volume") ? PlayerPrefs.GetFloat("Background Volume") * 100 : 80);
-            mEffectVolumeSlider.SetValueWithoutNotify(PlayerPrefs.HasKey("Effect Volume") ? PlayerPrefs.GetFloat("Effect Volume") * 100 : 80);
+            mBackgroundVolumeSlider.SetValueWithoutNotify(Mathf.RoundToInt(UserConfig.ReadWithDefaultValue<float>("Background Volume", 0.8f) * 100));
+            mEffectVolumeSlider.SetValueWithoutNotify(Mathf.RoundToInt(UserConfig.ReadWithDefaultValue<float>("Effect Volume", 0.8f) * 100));
 
             mResolutionDropdown.ClearOptions();
             foreach (var resolution in AvailableResolutions)
             {
                 mResolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{resolution.Item1}x{resolution.Item2}"));
             }
-            mResolutionDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Resolution") ? PlayerPrefs.GetInt("Resolution") : 0);
+            mResolutionDropdown.SetValueWithoutNotify(UserConfig.ReadWithDefaultValue<int>("Resolution", 0));
             mResolutionDropdown.RefreshShownValue();
 
             mResolutionDropdown.onValueChanged.AddListener(value => {
                 Screen.SetResolution(AvailableResolutions[value].Item1, AvailableResolutions[value].Item2, false);
-                PlayerPrefs.SetInt("Resolution", value);
+                UserConfig.Write<int>("Resolution", value);
 
                 Refresh();
             });
 
-            mWindowModeDropdown.SetValueWithoutNotify(PlayerPrefs.HasKey("Window Mode") ? PlayerPrefs.GetInt("Window Mode") : 1);
+            mWindowModeDropdown.SetValueWithoutNotify(UserConfig.ReadWithDefaultValue<int>("Window Mode", 1));
             mWindowModeDropdown.onValueChanged.AddListener(value => {
                 if (value == 1)
                 {
@@ -106,11 +101,11 @@ namespace Settings
                 }
                 else
                 {
-                    if (PlayerPrefs.HasKey("Resolution"))
-                        Screen.SetResolution(AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item1, AvailableResolutions[PlayerPrefs.GetInt("Resolution")].Item2, false);
+                    if (UserConfig.TryRead<int>("Resolution", out var res))
+                        Screen.SetResolution(AvailableResolutions[res].Item1, AvailableResolutions[res].Item2, false);
                     else Screen.SetResolution(1920, 1080, false);
                 }
-                PlayerPrefs.SetInt("Window Mode", value);
+                UserConfig.Write<int>("Window Mode", value);
 
                 Refresh();
             });

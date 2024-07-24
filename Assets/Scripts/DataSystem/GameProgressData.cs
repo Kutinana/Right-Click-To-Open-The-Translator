@@ -5,7 +5,6 @@ using QFramework;
 using System.IO;
 using Newtonsoft.Json;
 using Puzzle;
-using Hint;
 using System.Linq;
 using System;
 
@@ -60,14 +59,6 @@ namespace DataSystem
             if (Instance.Save.PuzzleProgress.ContainsKey(puzzle.Id)) return;
 
             Instance.Save.PuzzleProgress.Add(puzzle.Id, PuzzleProgress.UnSolved);
-            Instance.Serialization();
-        }
-
-        public static void Unlock(HintBase hint)
-        {
-            if (Instance.Save.PuzzleProgress.ContainsKey(hint.Id)) return;
-
-            Instance.Save.PuzzleProgress.Add(hint.Id, PuzzleProgress.Solved);
             Instance.Serialization();
         }
 

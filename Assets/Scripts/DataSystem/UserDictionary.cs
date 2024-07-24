@@ -31,9 +31,19 @@ namespace DataSystem
             return Instance.Dictionary.Count == 0;
         }
 
-        public static CharacterProgressData Read(string id)
+        public static string Read(string id)
+        {
+            return Instance.Dictionary.TryGetValue(id, out var value) ? value.Meaning : "";
+        }
+
+        public static CharacterProgressData GetCharacterProgressData(string id)
         {
             return Instance.Dictionary.TryGetValue(id, out var value) ? value : null;
+        }
+
+        public static bool TryGetCharacterProgressData(string id, out CharacterProgressData value)
+        {
+            return Instance.Dictionary.TryGetValue(id, out value);
         }
 
         public static void Unlock(string id)

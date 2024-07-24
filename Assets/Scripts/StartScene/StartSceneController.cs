@@ -84,6 +84,14 @@ namespace StartScene
 
         private void FirstTimeEnterGame()
         {
+
+# if UNITY_EDITOR
+
+            TranslatorCanvasManager.StartMainMenu();
+            TranslatorSM.CanActivate = true;
+
+# else
+
             var resLoader = ResLoader.Allocate();
             switch (LocalizationManager.Instance.CurrentLanguage)
             {
@@ -141,6 +149,8 @@ namespace StartScene
                 .Coroutine(TranslatorSM.Instance.StartTutorialCoroutine)
                 .Delay(1f)
                 .Start(this);
+
+# endif
 
             PlayerPrefs.SetInt("Played", 1);
         }
@@ -308,8 +318,8 @@ namespace StartScene
             {
                 var localVersion = PlayerPrefs.GetString("Version").Split(".");
                 if (Int32.Parse(localVersion[0]) < Int32.Parse(Version.Split(".")[0])
-                    || Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) < Int32.Parse(Version.Split(".")[1])
-                    || Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2]))
+                    || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) < Int32.Parse(Version.Split(".")[1]))
+                    || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2])))
                 {
                     GameProgressData.Clean();
                     UserDictionary.Clean();

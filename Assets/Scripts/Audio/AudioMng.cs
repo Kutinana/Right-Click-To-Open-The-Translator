@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
-using Hint;
 using Puzzle;
 using QFramework;
 using SceneControl;
@@ -53,9 +52,7 @@ public class AudioMng : MonoSingleton<AudioMng>
         audioMixerSnapshots[1] = audioMixer.FindSnapshot("SnapshotPuzzle");
 
         TypeEventSystem.Global.Register<OnVolumeSettingsChanged>(e => UpdateVolume()).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnHintInitializedEvent>(e => OnPuzzleInitialize()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e => OnPuzzleInitialize()).UnRegisterWhenGameObjectDestroyed(gameObject);
-        TypeEventSystem.Global.Register<OnHintExitEvent>(e => OnPuzzleExit()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e => OnPuzzleExit()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlDeactivatedEvent>(e => LoadSceneAudioAssets()).UnRegisterWhenGameObjectDestroyed(gameObject);
         TypeEventSystem.Global.Register<OnSceneControlActivatedEvent>(e => StopAll()).UnRegisterWhenGameObjectDestroyed(gameObject);

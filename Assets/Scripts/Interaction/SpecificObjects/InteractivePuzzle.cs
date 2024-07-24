@@ -1,5 +1,4 @@
 using DataSystem;
-using Hint;
 using Puzzle;
 using QFramework;
 using System;
@@ -48,13 +47,10 @@ public class InteractivePuzzle: InteractiveObject
             case ItemType.DOOR:
                 SwitchScene();
                 break;
-            case ItemType.PUZZLE:
+            case ItemType.PUZZLE or ItemType.Hint:
                 PuzzleManager.Initialize(itemConfig.target_string);
                 break;
             case ItemType.NPC:
-                break;
-            case ItemType.Hint:
-                HintManager.Initialize(itemConfig.target_string);
                 break;
             default:
                 break;

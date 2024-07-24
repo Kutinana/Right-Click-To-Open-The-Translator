@@ -8,7 +8,6 @@ namespace DataSystem
     public enum PuzzleType
     {
         Puzzle,
-        Hint,
         Dialog
     }
 

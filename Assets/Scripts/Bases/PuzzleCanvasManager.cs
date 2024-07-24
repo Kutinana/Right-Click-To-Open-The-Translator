@@ -1,12 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using QFramework;
-using Kuchinashi;
-using UnityEngine.Video;
-using Translator;
-using Puzzle;
-using Hint;
 
 namespace Cameras
 {
@@ -17,5 +9,4 @@ namespace Cameras
             DontDestroyOnLoad(gameObject);
         }
     }
-
 }

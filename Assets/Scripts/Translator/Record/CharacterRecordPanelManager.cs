@@ -64,7 +64,7 @@ namespace UI
         {
             character = c;
             _image.sprite = c.data.Sprite;
-            _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id).Meaning);
+            _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id));
             AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
             TranslatorSM.StateMachine.ChangeState(States.Recorder);
 

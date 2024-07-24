@@ -85,7 +85,7 @@ namespace Dictionary
 
         public IEnumerator ShowCharacterDetailCoroutine()
         {
-            var progress = UserDictionary.Read(CurrentCharacterData.Id);
+            if (!UserDictionary.TryGetCharacterProgressData(CurrentCharacterData.Id, out var progress)) yield break;
             yield return CanvasGroupHelper.FadeCanvasGroup(detailCanvasGroup, 0f, 0.2f);
 
             currentCharacterImage.sprite = CurrentCharacterData.Sprite;

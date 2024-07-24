@@ -6,9 +6,9 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hint
+namespace Puzzle
 {
-    public class DefaultHint : HintBase
+    public class NonInteractPuzzle : PuzzleBase
     {
         private Button backButton;
 
@@ -18,7 +18,7 @@ namespace Hint
 
             backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
-                HintManager.Exit();
+                PuzzleManager.Exit();
             });
             
             List<string> ids = new List<string>();
@@ -27,8 +27,9 @@ namespace Hint
                 ids.Add(c.data.Id);
             }
             UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
 
-            GameProgressData.Unlock(this);
+            GameProgressData.Solve(this);
         }
 
         public override void OnExit()

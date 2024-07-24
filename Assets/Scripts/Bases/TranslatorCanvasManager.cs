@@ -6,7 +6,6 @@ using Kuchinashi;
 using UnityEngine.Video;
 using Translator;
 using Puzzle;
-using Hint;
 using UI;
 using DataSystem;
 using Localization;
@@ -54,7 +53,6 @@ namespace Cameras
 
             TranslatorSM.StateMachine.ChangeState(States.Off);
             PuzzleManager.Exit();
-            HintManager.Exit();
 
             yield return CanvasGroupHelper.FadeCanvasGroup(Instance.mMainMenu, 1f, 0.02f);
             yield return new WaitForSeconds(0.5f);

@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d689603df23ad4093871f17507dd82, type: 3}
-  m_Name: Overture_Candle
+  m_Script: {fileID: 11500000, guid: ad6a14fab8f5ad54aaddfa13c759866a, type: 3}
+  m_Name: Overture_Sign
   m_EditorClassIdentifier: 
-  id: Overture_Candle
-  Prefab: {fileID: 5775849724857332843, guid: e0926f8f6c1e95f4d9562453ce464936, type: 3}
+  id: Overture_Sign
+  Prefab: {fileID: 5775849724857332843, guid: 231a00fa1f122fa45905e6cdc86e2e42, type: 3}
   Thumbnail:
     list:
     - Key: 2
-      Value: {fileID: 21300000, guid: b25590aa81954b84aa2dcf663c53f29f, type: 3}
+      Value: {fileID: 21300000, guid: fffe384fd428a6c40876569df8856f0e, type: 3}
   Name: 
   Description: 

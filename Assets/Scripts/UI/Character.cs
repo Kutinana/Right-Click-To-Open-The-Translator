@@ -46,7 +46,7 @@ namespace UI
             if (_data != null) data = _data;
 
             _image.sprite = data.Sprite;
-            _text.SetText(UserDictionary.Read(data.Id).Meaning);
+            _text.SetText(UserDictionary.Read(data.Id));
 
             stateMachine.ChangeState(isInteractable ? States.Interactable : States.NonInteractable);
 
@@ -60,7 +60,7 @@ namespace UI
         public virtual void Refresh()
         {
             _image.sprite = data.Sprite;
-            _text.SetText(UserDictionary.Read(data.Id).Meaning);
+            _text.SetText(UserDictionary.Read(data.Id));
 
             stateMachine.ChangeState(TranslatorSM.StateMachine.CurrentStateId != Translator.States.Off ? States.Interactable : States.NonInteractable);
         }

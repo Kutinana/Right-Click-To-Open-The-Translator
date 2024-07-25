@@ -10,7 +10,7 @@ namespace Puzzle.InEnergy.Cable
 
         public void SubPuzzleSolved()
         {
-            GameProgressData.Solve(this);
+            GameProgressData.Instance.Save.PuzzleProgress.Add("SubPuzzleRed", PuzzleProgress.Solved);
             Debug.Log("Red");
         }
     }

@@ -193,7 +193,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/InEnergy/Explosive/InEnergy_explosive2",
 		"UnoutlinedSpritePath":"Sprites/puzzles/InEnergy/Explosive/InEnergy_explosive1",
 		"itemType": 1,
-		"target_string":"InEnergy_InEnergy_ExplosiveSynthesizer"
+		"target_string":"InEnergy_ExplosiveSynthesizer"
 	},
 	{
 		"ID":28,
@@ -302,7 +302,6 @@
 	},
 	{
 		"ID":43,
-		"ID":41,
 		"OutlinedSpritePath":"Sprites/doors/exit",
 		"UnoutlinedSpritePath":"None",
 		"itemType": 2,
@@ -386,16 +385,37 @@
 		"target_string":"InMarket_ChurchJigsaw"
 	},
 	{
-		"ID":54,
+		"ID":55,
 		"OutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger2",
 		"UnoutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger1",
 		"itemType": 2,
 		"target_string":""
 	},
 	{
-		"ID":55,
+		"ID":56,
 		"OutlinedSpritePath":"Sprites/doors/exit",
 		"UnoutlinedSpritePath":"None",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":57,
+		"OutlinedSpritePath":"Sprites/Objects/BeginPlace/Beginplace_red bucket2",
+		"UnoutlinedSpritePath":"Sprites/Objects/BeginPlace/Beginplace_red bucket1",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":58,
+		"OutlinedSpritePath":"Sprites/Objects/BeginPlace/disk1animation",
+		"UnoutlinedSpritePath":"Sprites/Objects/BeginPlace/disk1animation",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":59,
+		"OutlinedSpritePath":"Sprites/NPCs/InMarket/InMarket_4-cat shop owner2",
+		"UnoutlinedSpritePath":"Sprites/NPCs/InMarket/InMarket_4-cat shop owner1",
 		"itemType": 2,
 		"target_string":""
 	}

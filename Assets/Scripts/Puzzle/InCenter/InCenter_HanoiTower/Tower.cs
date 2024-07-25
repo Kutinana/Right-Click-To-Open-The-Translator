@@ -9,10 +9,6 @@ namespace Puzzle.InCenter.HanoiTower
    public class Tower: MonoBehaviour
     {
         public Stack ItemStack = new Stack(5);
-        private void Awake()
-        {
-
-        }
 
         private IEnumerator OnMouseDown()
         {

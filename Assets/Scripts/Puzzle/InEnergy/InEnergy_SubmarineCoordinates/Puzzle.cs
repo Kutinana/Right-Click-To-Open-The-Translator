@@ -97,6 +97,7 @@ namespace Puzzle.InEnergy.Submarine
         {
             yield return new WaitUntil(() => !enabled);
 
+            GameProgressData.IncreaseInventory("dirt");
             PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;
         }

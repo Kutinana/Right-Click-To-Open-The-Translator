@@ -126,7 +126,6 @@ namespace Puzzle.InCenter.HanoiTower
                 Instance.CurrentItem.transform.localPosition = Instance.CurrentItem.InitialPosition;
                 clear();
             }
-            // Debug.Log(BlockStates[0] + " " + BlockStates[1] + " " + BlockStates[2] + " " + BlockStates[3] + " " + BlockStates[4]);
         }
 
         private void clear()
@@ -206,6 +205,8 @@ namespace Puzzle.InCenter.HanoiTower
             transform.Find("Interactable/HiddenButton").gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
+
+            //GameProgressData.IncreaseInventory("elavatorButton");
 
             PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;

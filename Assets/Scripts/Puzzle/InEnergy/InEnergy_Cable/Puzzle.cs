@@ -74,8 +74,6 @@ namespace Puzzle.InEnergy.Cable
             Cables = new List<Cable>(CAPACITY);
             m_characterGroup = transform.Find("Interactable/Characters").GetComponent<CanvasGroup>();
 
-            if (GameProgressData.GetInventory().TryGetValue("greenLiquid", out var value) && value >= 1)
-                transform.Find("Interactable/Cables/5,3").gameObject.SetActive(true);
 
             Initialize();
 
@@ -83,7 +81,28 @@ namespace Puzzle.InEnergy.Cable
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => EnableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
             TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => DisableCharacters()).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            if (GameProgressData.GetPuzzleProgress("CableColored") == PuzzleProgress.Solved)
+            {
+                transform.Find("Interactable/Cables/5,3(uncolored)").gameObject.SetActive(false);
+                transform.Find("Interactable/Cables/5,3").gameObject.SetActive(true);
+            }
         }
+
+        private void Update()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (InteractableObjectManager.Current != null && InteractableObjectManager.Current.Data.Id == "greenLiquid")
+                {
+                    transform.Find("Interactable/Cables/5,3(uncolored)").gameObject.SetActive(false);
+                    transform.Find("Interactable/Cables/5,3").gameObject.SetActive(true);
+                    GameProgressData.Instance.Save.PuzzleProgress.Add("CableColored", PuzzleProgress.Solved);
+                    InteractableObjectManager.Exit();
+                }
+            }
+        }
+
         private Coroutine CurrentCoroutine = null;
         private Button backButton;
 

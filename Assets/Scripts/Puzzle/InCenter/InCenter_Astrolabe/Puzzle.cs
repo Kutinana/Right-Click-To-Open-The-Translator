@@ -132,6 +132,8 @@ namespace Puzzle.InCenter.Astrolable
 
             yield return new WaitForSeconds(0.5f);
 
+            GameProgressData.IncreaseInventory("fire");
+
             PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;
         }

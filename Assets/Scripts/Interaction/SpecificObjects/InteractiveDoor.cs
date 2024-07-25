@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using Localization;
 using QFramework;
 using Translator;
 using UI;
@@ -118,9 +119,49 @@ public class InteractiveDoor: InteractiveObject
             yield return null;
         }
     }
-    public void BombOn(Sprite sprite)
+    public void BombOn()
     {
+        if (GameProgressData.GetInventory().TryGetValue("bomb", out var value) && value >= 1)
+        {
+            var bomb = GameDesignData.GetObtainableObjectDataById("bomb");
+            DialogBoxController.CallUp(LocalizationHelper.Get("Str_UseItemConfirm", LocalizationHelper.Get(bomb.name)),
+                confirmCallback: () => {
+                    if (GameProgressData.Instance.Save.PuzzleProgress.ContainsKey("OutWish"))
+                    {
+                        GameProgressData.Instance.Save.PuzzleProgress["OutWish"] = PuzzleProgress.Solved;
+                    }
+                    else
+                    {
+                        GameProgressData.Instance.Save.PuzzleProgress.Add("OutWish", PuzzleProgress.Solved);
+                    }
+                    this.SetActivable(false);
+                }, cancelCallback: () => { });
+        }
+        else
+        {
 
+        }
+    }
+
+    public void SwithColor()
+    {
+        if (GameProgressData.GetInventory().TryGetValue("greenLiquid", out var value) && value >= 1)
+        {
+            GetObtainableObject("yellowLiquid");
+        }
+    }
+
+    public void SwitchItem()
+    {
+        if (GameProgressData.GetInventory().TryGetValue("yellowLiquid", out var value) && value >= 1)
+        {
+            GetObtainableObject("dirt2");
+        }
+    }
+
+    public void GetObtainableObject(string name)
+    {
+        GameProgressData.IncreaseInventory(name);
     }
 
     public void SwitchSound ()

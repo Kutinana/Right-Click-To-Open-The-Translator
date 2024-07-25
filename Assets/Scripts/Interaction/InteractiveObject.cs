@@ -61,7 +61,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
         {
             Sprite sprite = Resources.Load<Sprite>(itemConfig.OutlinedSpritePath) as Sprite;
             spriteRenderer.sprite = sprite;
-            Debug.Log(transform.name + " activate" + " change to " + itemConfig.OutlinedSpritePath);
+            //Debug.Log(transform.name + " activate" + " change to " + itemConfig.OutlinedSpritePath);
         }
     }
     public virtual void Deactivate()
@@ -70,7 +70,7 @@ public class InteractiveObject : MonoBehaviour, Interactive
         if (itemConfig.UnoutlinedSpritePath != "None") sprite = Resources.Load<Sprite>(itemConfig.UnoutlinedSpritePath) as Sprite;
         else sprite = null;
         spriteRenderer.sprite = sprite;
-        Debug.Log(transform.name + " deactivate" + " change to " + itemConfig.UnoutlinedSpritePath);
+        //Debug.Log(transform.name + " deactivate" + " change to " + itemConfig.UnoutlinedSpritePath);
     }
     private void OnEnable()
     {

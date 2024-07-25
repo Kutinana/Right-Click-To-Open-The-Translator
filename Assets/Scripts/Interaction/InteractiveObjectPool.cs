@@ -48,7 +48,7 @@ public class InteractiveObjectPool
         }
         int pos = SearchObject(interactiveObject);
         if (pos < 0) ObjectPool[id].Add(interactiveObject);
-        else Debug.Log("Redundantly load: " + id + " " + interactiveObject.name);
+        //else Debug.Log("Redundantly load: " + id + " " + interactiveObject.name);
     }
     public static void RemoveObject(InteractiveObject interactiveObject)
     {
@@ -60,7 +60,7 @@ public class InteractiveObjectPool
         }
         int pos = SearchObject(interactiveObject);
         if (pos >= 0) ObjectPool[id][pos] = null;
-        else Debug.Log("Could not find object in pool: " + id + " " + interactiveObject.name);
+        //else Debug.Log("Could not find object in pool: " + id + " " + interactiveObject.name);
     }
     public static int SearchObject(InteractiveObject interactiveObject)
     {
@@ -77,7 +77,7 @@ public class InteractiveObjectPool
     public static void ObjectTriggered(InteractiveObject interactiveObject)
     {
         int id = interactiveObject.ID;
-        Debug.Log(id + " " + interactiveObject.name + " is triggered");
+        //Debug.Log(id + " " + interactiveObject.name + " is triggered");
         interactiveObject.TriggerEvent();
         //EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
     }

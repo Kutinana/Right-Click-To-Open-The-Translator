@@ -27,6 +27,7 @@ public static class DoorConfig
         {8, "BeginPlace" },
         {12, "First" },
         {18, "First" },
+        {22, "First" },
         {32, "Classroom" },
         {33, "Church" },
         {34, "InMarket" },

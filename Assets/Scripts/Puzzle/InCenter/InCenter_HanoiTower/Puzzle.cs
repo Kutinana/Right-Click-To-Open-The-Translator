@@ -143,7 +143,7 @@ namespace Puzzle.InCenter.HanoiTower
         }
 
         private Coroutine CurrentCoroutine = null;
-        private UnityEngine.UI.Button backButton;
+        private Button backButton;
 
         public override void OnEnter()
         {
@@ -205,8 +205,6 @@ namespace Puzzle.InCenter.HanoiTower
             transform.Find("Interactable/HiddenButton").gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.5f);
-
-            //GameProgressData.IncreaseInventory("elavatorButton");
 
             PuzzleManager.Solved(isClosing: false);
             CurrentCoroutine = null;

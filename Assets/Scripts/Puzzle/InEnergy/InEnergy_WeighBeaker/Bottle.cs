@@ -200,6 +200,7 @@ namespace Puzzle.InEnergy.WeighBeaker
             }
             filledEffect.enabled = true;
             State = States.Count - 1;
+            image.sprite = States[^1];
             Puzzle.Instance.Tap.ChangeState(false);
 
             yield return new WaitForSeconds(0.5f);

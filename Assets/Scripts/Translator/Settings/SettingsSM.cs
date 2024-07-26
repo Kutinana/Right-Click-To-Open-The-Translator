@@ -39,6 +39,7 @@ namespace Settings
 
         #endregion
 
+        private Button mClearSaves;
         private Button mBackToMainMenu;
 
         private void Awake()
@@ -60,6 +61,15 @@ namespace Settings
             mWindowModeDropdown = transform.Find("Content/Scroll View/Viewport/Content/WindowMode/Dropdown").GetComponent<TMP_Dropdown>();
             mResolutionDropdown = transform.Find("Content/Scroll View/Viewport/Content/Resolution/Dropdown").GetComponent<TMP_Dropdown>();
 
+            mClearSaves = transform.Find("Content/Scroll View/Viewport/Content/ClearSaves").GetComponent<Button>();
+            mClearSaves.onClick.AddListener(() => {
+                TranslatorSM.StateMachine.ChangeState(States.Off);
+                TranslatorSM.CanActivate = false;
+                DialogBoxController.CallUp("Are you sure you want to clear all saves?\nThe game will be automatically quitted.", () => {
+                    GameProgressData.Clean();
+                    Application.Quit();
+                }, () => { TranslatorSM.CanActivate = true; });
+            });
             mBackToMainMenu = transform.Find("Content/Scroll View/Viewport/Content/BackToMainMenu").GetComponent<Button>();
             mBackToMainMenu.onClick.AddListener(() => {
                 SceneControl.SceneControl.SwitchSceneWithoutConfirm("EmptyScene");

@@ -162,4 +162,9 @@ public class InteractiveDoor: InteractiveObject
     {
         InteractiveObjectPool.RefreshActiveObject(this);
     }
+
+    public void CALL()
+    {
+        Debug.Log("hello");
+    }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerStateMachine: StateMachine
 {
     private Animator animator;
-    private PlayerInput playerInput;
     private PlayerController playerController;
     private PlayerState lastState = null;
     
@@ -14,7 +13,6 @@ public class PlayerStateMachine: StateMachine
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        playerInput = GetComponent<PlayerInput>();
         playerController = GetComponent<PlayerController>();
 
         statetable = new Dictionary<System.Type, IState>(states.Length);
@@ -25,7 +23,7 @@ public class PlayerStateMachine: StateMachine
     {
         foreach(PlayerState state in states)
         {
-            state.Init(this, animator, playerInput, playerController);
+            state.Init(this, animator, PlayerInput.Instance, playerController);
             statetable.Add(state.GetType(), state);
         }
     }

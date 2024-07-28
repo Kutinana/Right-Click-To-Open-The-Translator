@@ -2,9 +2,22 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput: MonoBehaviour
+public class PlayerInput
 {
-    PlayerInputActions inputActions;
+    private static PlayerInput _instance;
+    public static PlayerInput Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new PlayerInput();
+            }
+            return _instance;
+        }
+        private set => _instance = value;
+    }
+    PlayerInputActions inputActions = new PlayerInputActions();
     public Vector2 Move => inputActions.GamePlay.Move.ReadValue<Vector2>();
     public bool isMoving => Move.x != 0f;
     public bool StartRunning => inputActions.GamePlay.Running.WasPressedThisFrame();
@@ -13,30 +26,47 @@ public class PlayerInput: MonoBehaviour
     public bool MapControl => inputActions.GamePlay.Map.IsPressed();
     public Vector2 DragMap => inputActions.GamePlay.DragMap.ReadValue<Vector2>();                                             
     public bool isRunning { set; get; }
-    private void Awake()
+
+    private bool mRunning = false;
+    private bool mInteract = false;
+    private bool mMap = false;
+
+    private void Init()
     {
-        this.inputActions = new PlayerInputActions();
+        Instance.AddRunningEvent();
     }
-    private void OnEnable()
+    public void AddRunningEvent()
     {
-        inputActions.GamePlay.Running.canceled += delegate
+        if (!mRunning)
         {
-            isRunning = false;
-        };
+            inputActions.GamePlay.Running.canceled += delegate
+            {
+                isRunning = false;
+            };
+            mRunning = true;
+        }
     }
     public void AddInteractEvent(System.Action action)
     {
-        inputActions.GamePlay.Interact.performed += delegate
+        if (!mInteract)
         {
-            action.Invoke();
-        };
+            inputActions.GamePlay.Interact.performed += delegate
+            {
+                action.Invoke();
+            };
+            mInteract = true;
+        }
     }
     public void AddMapOpeningEvent(System.Action action)
     {
-        inputActions.GamePlay.Map.performed += delegate
+        if (!mMap)
         {
-            action.Invoke();
-        };
+            inputActions.GamePlay.Map.performed += delegate
+            {
+                action.Invoke();
+            };
+            mMap = true;
+        }
     }
     public void EnableInputActions()
     {

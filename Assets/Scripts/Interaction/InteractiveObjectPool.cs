@@ -34,7 +34,6 @@ public class InteractiveObjectPool
 
         TypeEventSystem.Global.Register<OnPuzzleSolvedEvent>(e =>
         {
-            //e.puzzle.Id
             Instance.activeObject.gameObject.GetComponent<InteractivePuzzle>()?.OnT.Invoke();
         });
     }
@@ -77,39 +76,11 @@ public class InteractiveObjectPool
     public static void ObjectTriggered(InteractiveObject interactiveObject)
     {
         int id = interactiveObject.ID;
-        //Debug.Log(id + " " + interactiveObject.name + " is triggered");
         interactiveObject.TriggerEvent();
-        //EventTrigger(delegate () { interactiveObject.TriggerEvent(); });
     }
     public static void ObjectEndTrigger()
     {
         Instance.activeObject.EndTrigger();
-    }
-    public static void EventTrigger(params System.Action[] actions)
-    {
-        foreach (System.Action action in actions) AddEvent(action);
-        EventList.Invoke();
-        foreach (System.Action action in actions) RemoveEvent(action);
-    }
-    public static void EventTrigger(System.Action action)
-    {
-        AddEvent(action);
-        EventList.Invoke();
-        RemoveEvent(action);
-    }
-    private static void AddEvent(System.Action action)
-    {
-        EventList += delegate
-        {
-            action();
-        };
-    }
-    private static void RemoveEvent(System.Action action)
-    {
-        EventList -= delegate
-        {
-            action();
-        };
     }
     public static void SetActiveObject(InteractiveObject interactiveObject)
     {

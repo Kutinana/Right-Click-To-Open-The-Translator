@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerInput playerInput;
     Rigidbody2D mrigidbody;
     Animator animator;
     SpriteRenderer spriteRenderer;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public float GetCurrentMaxSpeed() => CurrentMaxSpeed;
     private void Awake()
     {
-        this.playerInput = GetComponent<PlayerInput>();
         this.mrigidbody = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.objectsDetector = GetComponent<ObjectsDetector>();
@@ -35,7 +33,7 @@ public class PlayerController : MonoBehaviour
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
         {
             mrigidbody.simulated = false;
-            playerInput.DisableInputActions();
+            PlayerInput.Instance.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e =>
@@ -43,14 +41,14 @@ public class PlayerController : MonoBehaviour
             if (CanDeactive)
             {
                 mrigidbody.simulated = true;
-                playerInput.EnableInputActions();
+                PlayerInput.Instance.EnableInputActions();
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
         {
             mrigidbody.simulated = false;
-            playerInput.DisableInputActions();
+            PlayerInput.Instance.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
@@ -58,14 +56,14 @@ public class PlayerController : MonoBehaviour
             if (CanDeactive)
             {
                 mrigidbody.simulated = true;
-                playerInput.EnableInputActions();
+                PlayerInput.Instance.EnableInputActions();
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnNarrationStartEvent>(e =>
         {
             mrigidbody.simulated = false;
-            playerInput.DisableInputActions();
+            PlayerInput.Instance.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnNarrationEndEvent>(e =>
@@ -73,15 +71,14 @@ public class PlayerController : MonoBehaviour
             if (CanDeactive)
             {
                 mrigidbody.simulated = true;
-                playerInput.EnableInputActions();
+                PlayerInput.Instance.EnableInputActions();
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
     private void Start()
     {
-        playerInput.EnableInputActions();
-        playerInput.AddInteractEvent(delegate () { Interact(); });
-        playerInput.AddMapOpeningEvent(delegate () { MapControl(); });
+        PlayerInput.Instance.EnableInputActions();
+        PlayerInput.Instance.AddInteractEvent(Interact);
     }
 
     private void Update()
@@ -125,9 +122,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(float speed)
     {
-        if (playerInput.Move.x != 0) spriteRenderer.flipX = playerInput.Move.x < 0;
-        if (playerInput.Move.x > 0) par = 1;
-        else if (playerInput.Move.x < 0) par = -1;
+        if (PlayerInput.Instance.Move.x != 0) spriteRenderer.flipX = PlayerInput.Instance.Move.x < 0;
+        if (PlayerInput.Instance.Move.x > 0) par = 1;
+        else if (PlayerInput.Instance.Move.x < 0) par = -1;
         SetVelocityX(speed * par);
     }
     public void MoveWithoutPlayerInput(float speed)

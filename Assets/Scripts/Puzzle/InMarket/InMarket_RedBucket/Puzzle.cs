@@ -32,7 +32,7 @@ namespace Puzzle.InMarket.RedBucket
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
 
         private void OnMouseUp()

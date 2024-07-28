@@ -48,7 +48,7 @@ namespace Puzzle.InMarket.LiquidToDirtShop
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
 
         private void OnMouseUp()

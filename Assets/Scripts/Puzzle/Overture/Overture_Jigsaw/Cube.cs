@@ -82,7 +82,7 @@ namespace Puzzle.Overture.Jigsaw
                     }
                     else
                     {
-                        UserDictionary.Unlock(_id);
+                        UserDictionary.AddRelatedPuzzleAndSave(_id, Puzzle.Instance.Id);
                         Puzzle.Record[CurrentPosition] = true;
                     }
                 }

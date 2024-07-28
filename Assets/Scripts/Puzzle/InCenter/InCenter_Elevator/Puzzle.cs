@@ -52,7 +52,7 @@ namespace Puzzle.InCenter.Elevator
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
 
         public override void OnExit()

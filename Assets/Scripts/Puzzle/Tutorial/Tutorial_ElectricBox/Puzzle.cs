@@ -91,7 +91,7 @@ namespace Puzzle.Tutorial.P2
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
 
         public override void OnExit()

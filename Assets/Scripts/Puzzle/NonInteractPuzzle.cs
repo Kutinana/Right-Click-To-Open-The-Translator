@@ -26,7 +26,7 @@ namespace Puzzle
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            // UserDictionary.Unlock(ids);
             UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
 
             GameProgressData.Solve(this);

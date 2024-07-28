@@ -59,11 +59,11 @@ namespace Puzzle.InEnergy.Clock
             });
 
             List<string> ids = new List<string>();
-            foreach (var c in GetComponentsInChildren<Character>())
+            foreach (var c in transform.Find("Characters").GetComponentsInChildren<Character>())
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
             
             GameProgressData.Unlock(this);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
+using UI;
 using UnityEngine;
 
 namespace Puzzle.InCenter.HanoiTower
@@ -10,6 +11,8 @@ namespace Puzzle.InCenter.HanoiTower
         private void OnMouseUp()
         {
             GameProgressData.IncreaseInventory("elevatorButton");
+            UserDictionary.AddRelatedPuzzleAndSave(GetComponentInChildren<Character>().data.Id, Puzzle.Instance.Id);
+
             gameObject.SetActive(false);
         }
     }

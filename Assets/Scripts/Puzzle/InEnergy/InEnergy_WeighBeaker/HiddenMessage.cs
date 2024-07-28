@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cameras;
 using DataSystem;
 using QFramework;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,13 @@ namespace Puzzle.InEnergy.WeighBeaker
         public void ShowHiddenMessage()
         {
             AudioKit.PlaySound("023PaperOut");
+            List<string> ids = new List<string>();
+            foreach (var c in GetComponentsInChildren<Character>())
+            {
+                ids.Add(c.data.Id);
+            }
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Puzzle.Instance.Id);
+
             StartCoroutine(ShowHiddenMessageCoroutine());
         }
 

@@ -46,7 +46,7 @@ namespace Puzzle.Book.Sample
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
         public void NextPage()
         {

@@ -57,7 +57,7 @@ namespace Puzzle.Overture.Jigsaw
                 PuzzleManager.Exit();
             });
 
-            UserDictionary.Unlock("feu");
+            UserDictionary.AddRelatedPuzzleAndSave("feu", Id);
             GameProgressData.Unlock(this);
         }
 

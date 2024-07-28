@@ -164,17 +164,17 @@ namespace Puzzle.InCenter.HanoiTower
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }
 
-            backButton = transform.Find("Menu/Back").GetComponent<UnityEngine.UI.Button>();
+            backButton = transform.Find("Menu/Back").GetComponent<Button>();
             backButton.onClick.AddListener(() => {
                 PuzzleManager.Exit();
             });
 
             List<string> ids = new List<string>();
-            foreach (var c in GetComponentsInChildren<Character>())
+            foreach (var c in transform.Find("Characters").GetComponentsInChildren<Character>())
             {
                 ids.Add(c.data.Id);
             }
-            UserDictionary.Unlock(ids);
+            UserDictionary.AddRelatedPuzzleAndSave(ids, Id);
         }
 
         public override void OnExit()

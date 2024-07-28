@@ -1,6 +1,4 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerInput
 {

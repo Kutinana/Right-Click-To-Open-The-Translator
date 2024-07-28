@@ -49,24 +49,24 @@ namespace Puzzle.InEnergy.Submarine
         private void CharacterUpdate(int id)
         {
             AudioKit.PlaySound("Cube-Slide", volumeScale: 0.8f);
-            characters[id].data = Puzzle.Instance.numbers[Puzzle.m_coordinates[id]];
+            characters[id].data = Puzzle.Instance.numbers[Puzzle.Instance.m_coordinates[id]];
             characters[id].Refresh();
         }
 
         private void CharacterUp(int id)
         {
-            int current = Puzzle.m_coordinates[id];
+            int current = Puzzle.Instance.m_coordinates[id];
             int target = (current + 1) % 8;
-            Puzzle.m_coordinates[id] = target;
+            Puzzle.Instance.m_coordinates[id] = target;
             CharacterUpdate(id);
         }
 
         private void CharacterDown(int id)
         {
-            int current = Puzzle.m_coordinates[id];
+            int current = Puzzle.Instance.m_coordinates[id];
             int target = current - 1;
             target = target >= 0 ? target % 8 : (target + 8) % 8;
-            Puzzle.m_coordinates[id] = target;
+            Puzzle.Instance.m_coordinates[id] = target;
             CharacterUpdate(id);
         }
 
@@ -76,8 +76,8 @@ namespace Puzzle.InEnergy.Submarine
             AudioKit.PlaySound("023BoxMoving");
             parameter = 0f;
             parameter_mark = 0f;
-            float x_offset = Puzzle.m_coordinates[0] * 50 + Puzzle.m_coordinates[1] * 10;
-            float y_offset = 0 - Puzzle.m_coordinates[2] * 25 - Puzzle.m_coordinates[3] * 5;
+            float x_offset = Puzzle.Instance.m_coordinates[0] * 50 + Puzzle.Instance.m_coordinates[1] * 10;
+            float y_offset = 0 - Puzzle.Instance.m_coordinates[2] * 25 - Puzzle.Instance.m_coordinates[3] * 5;
             submarine_initialPosition = m_submarine.localPosition;
             submarine_targetPosition = new Vector3(m_submarine.localPosition.x, m_submarine.localPosition.y - 300, m_submarine.localPosition.z);
             mark_initialPosition = m_mark.localPosition;

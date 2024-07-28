@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8192341009931190770}
   - component: {fileID: 3162066088228691802}
   - component: {fileID: 6931904299239804958}
-  - component: {fileID: 1812292962455623273}
   - component: {fileID: 595003583150534765}
   - component: {fileID: 1204899006560132579}
   - component: {fileID: 4287048369167679005}
@@ -190,18 +189,6 @@ MonoBehaviour:
   m_DefaultActionMap: GamePlay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1812292962455623273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286118690079615139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37dfd55ced47c10429a6adc18235c70f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &595003583150534765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +311,7 @@ MonoBehaviour:
   - {x: -0.18715763, y: -1.5757898, z: 0}
   m_ShapePathHash: -1372844759
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43642
+  m_InstanceId: 138006
   m_LocalBounds:
     m_Center: {x: 0.0065299273, y: -0.22056067, z: 0}
     m_Extent: {x: 0.7777394, y: 1.3552291, z: 0}

@@ -157,6 +157,8 @@ namespace Puzzle.InMarket.Church
         {
             yield return new WaitUntil(() => CheckState());
 
+            GameProgressData.IncreaseInventory("disk2");
+
             PuzzleManager.Solved();
             CurrentCoroutine = null;
         }

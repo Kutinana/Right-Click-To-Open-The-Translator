@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     bool flag = false;
     int par = 0;
     float CurrentMaxSpeed;
-    bool enableCount = false;
 
     public bool EnableGroundCheck = true;
     public bool touchable => objectsDetector.touchable;
@@ -35,52 +34,46 @@ public class PlayerController : MonoBehaviour
 
         TypeEventSystem.Global.Register<OnPuzzleInitializedEvent>(e =>
         {
-            enableCount = true;
             mrigidbody.simulated = false;
             playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnPuzzleExitEvent>(e =>
         {
-            if (enableCount && CanDeactive)
+            if (CanDeactive)
             {
                 mrigidbody.simulated = true;
                 playerInput.EnableInputActions();
-                enableCount = false;
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e =>
         {
-            enableCount = true;
             mrigidbody.simulated = false;
             playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e =>
         {
-            if (enableCount && CanDeactive)
+            if (CanDeactive)
             {
                 mrigidbody.simulated = true;
                 playerInput.EnableInputActions();
-                enableCount = false;
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnNarrationStartEvent>(e =>
         {
-            enableCount = true;
             mrigidbody.simulated = false;
             playerInput.DisableInputActions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
         TypeEventSystem.Global.Register<OnNarrationEndEvent>(e =>
         {
-            if (enableCount && CanDeactive)
+            if (CanDeactive)
             {
                 mrigidbody.simulated = true;
                 playerInput.EnableInputActions();
-                enableCount = false;
             }
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
     }

@@ -36,7 +36,7 @@ namespace Dictionary
         private void Awake()
         {
             characterListCanvasGroup = transform.Find("CharacterList").GetComponent<CanvasGroup>();
-            detailCanvasGroup = transform.Find("CharacterList/Detail").GetComponent<CanvasGroup>();
+            detailCanvasGroup = transform.Find("CharacterList/Image/Detail").GetComponent<CanvasGroup>();
             puzzleCanvasGroup = transform.Find("Puzzle").GetComponent<CanvasGroup>();
 
             currentCharacterImage = detailCanvasGroup.transform.Find("Character").GetComponent<Image>();
@@ -67,7 +67,7 @@ namespace Dictionary
 
         public void GenerateCharacterList()
         {
-            var parent = transform.Find("CharacterList/Scroll View/Viewport/Content");
+            var parent = transform.Find("CharacterList/Image/Scroll View/Viewport/Content");
             for (var i = 0; i < parent.childCount; i++)
             {
                 Destroy(parent.GetChild(i).gameObject);

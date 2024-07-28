@@ -59,11 +59,8 @@ namespace Puzzle.InCenter.Astrolable
         private void OnMouseUp()
         {
             FindClosestPos();
-            //Puzzle.ReArrangePosition(true);
-            //ArrangePosition();
 
             Puzzle.HoldingCube = null;
-            //col.enabled = true;
         }
 
         private void FindClosestPos()
@@ -92,7 +89,6 @@ namespace Puzzle.InCenter.Astrolable
                 if (Puzzle.Instance.CubesInBlock[ClosestPoint] != null)
                 {
                     Puzzle.Instance.CubesInBlock[ClosestPoint].Initialize();
-
                 }
 
                 transform.position = Puzzle.Instance.ValidPoints[ClosestPoint].position;

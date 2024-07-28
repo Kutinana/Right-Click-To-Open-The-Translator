@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Puzzle
 {
-    public partial class PuzzleManager : MonoBehaviour , ISingleton
+    public partial class PuzzleManager : MonoSingleton<PuzzleManager>
     {
         public enum States
         {
@@ -17,9 +17,6 @@ namespace Puzzle
             InActive,
             Active
         }
-
-        public static PuzzleManager Instance => SingletonProperty<PuzzleManager>.Instance;
-        public void OnSingletonInit() {}
         public static FSM<States> StateMachine => Instance.stateMachine;
         public FSM<States> stateMachine = new FSM<States>();
 
@@ -39,9 +36,11 @@ namespace Puzzle
 
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 if (CurrentPuzzle != null) StateMachine.ChangeState(States.InActive);
+                else if (CurrentPuzzle == null) StateMachine.ChangeState(States.None);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
             TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
                 if (CurrentPuzzle != null) StateMachine.ChangeState(States.Active);
+                else if (CurrentPuzzle == null) StateMachine.ChangeState(States.None);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             stateMachine.AddState(States.None, new NoneState(stateMachine, this));

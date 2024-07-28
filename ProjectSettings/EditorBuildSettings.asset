@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/First.unity
     guid: 317884a5b84992544851b53703e9c097
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RS01.unity
     guid: 8f1f90c2337527b47941648d7d0d594c
   - enabled: 1

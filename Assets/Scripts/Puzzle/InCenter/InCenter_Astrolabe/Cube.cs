@@ -92,11 +92,17 @@ namespace Puzzle.InCenter.Astrolable
                 }
 
                 transform.position = Puzzle.Instance.ValidPoints[ClosestPoint].position;
+                originalPoint = ClosestPoint;
                 Puzzle.Instance.cubeTypes[ClosestPoint] = this.cubeType;
                 Puzzle.Instance.CubesInBlock[ClosestPoint] = this;
             }
             else
             {
+                if (originalPoint != -1)
+                {
+                    Puzzle.Instance.cubeTypes[ClosestPoint] = CubeType.None;
+                    Puzzle.Instance.CubesInBlock[ClosestPoint] = null;
+                }
                 Initialize();
             }
         }

@@ -375,7 +375,7 @@
 		"OutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book2",
 		"UnoutlinedSpritePath":"Sprites/puzzles/Book/InWish1_Book1",
 		"itemType": 1,
-		"target_string":"InMarket_ChurchJigsaw"
+		"target_string":"Book_HighWall"
 	},
 	{
 		"ID":54,
@@ -418,5 +418,12 @@
 		"UnoutlinedSpritePath":"Sprites/NPCs/InMarket/InMarket_4-cat shop owner1",
 		"itemType": 1,
 		"target_string":"InMarket_LiquidToDirtShop"
+	},
+	{
+		"ID":60,
+		"OutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger3",
+		"UnoutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger3",
+		"itemType": 2,
+		"target_string":""
 	}
 ]

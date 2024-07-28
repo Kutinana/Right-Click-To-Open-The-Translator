@@ -55,8 +55,6 @@ public class InteractivePuzzle: InteractiveObject
             default:
                 break;
         }
-        //GameObject.Find("TempPlayer").GetComponent<PlayerInput>().DisableInputActions();
-        //GameObject.Find("TempPlayer").GetComponent<Rigidbody2D>().simulated = false;
         base.TriggerEvent();
     }
     public override void EndTrigger()

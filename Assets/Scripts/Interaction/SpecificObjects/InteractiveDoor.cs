@@ -134,12 +134,12 @@ public class InteractiveDoor: InteractiveObject
                     {
                         GameProgressData.Instance.Save.PuzzleProgress.Add("OutWish", PuzzleProgress.Solved);
                     }
-                    this.SetActivable(false);
+                    transform.parent.Find("Outwish_4-trigger1").gameObject.SetActive(true);
                 }, cancelCallback: () => { });
         }
         else
         {
-
+            ShortMessageController.CallUp(LocalizationHelper.Get("Str_RoadIsBlocked"));
         }
     }
 
@@ -171,5 +171,18 @@ public class InteractiveDoor: InteractiveObject
     public void QuitGame()
     {
         QuitPanelController.StartQuitting();
+    }
+    public void ChangeObject(int id)
+    {
+        Deactivate();
+        _activable = false;
+        InteractiveObjectPool.RemoveObject(this);
+        identity_number = id;
+        Init();
+        LoadConfig();
+    }
+    public void Refresh()
+    {
+        InteractiveObjectPool.RefreshActiveObject(this);
     }
 }

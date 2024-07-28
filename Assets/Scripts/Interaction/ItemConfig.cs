@@ -42,7 +42,7 @@ public static class DoorConfig
         {43, "OutCenter" },
         {47, "BeginPlace" },
         {48, "OutWish" },
-        {55, "InWish" }
+        {56, "InWish" }
     };
 }
 

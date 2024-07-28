@@ -28,8 +28,8 @@ namespace Puzzle.InEnergy.Submarine
         private Coroutine CurrentCoroutine = null;
         private Button backButton;
 
-        public static List<int> m_coordinates = new List<int> { 0, 0, 0, 0 };
-        private List<int> m_answer = new List<int> { 2, 0, 5, 4 };
+        public List<int> m_coordinates = new List<int> { 0, 0, 0, 0 };
+        private readonly List<int> m_answer = new List<int> { 2, 0, 5, 4 };
 
         public Transform item;
         public List<CharacterData> numbers;
@@ -88,10 +88,10 @@ namespace Puzzle.InEnergy.Submarine
             }
         }
 
-        public static bool PuzzleFinish() => m_coordinates[0] == Instance.m_answer[0]
-            && m_coordinates[1] == Instance.m_answer[1]
-            && m_coordinates[2] == Instance.m_answer[2]
-            && m_coordinates[3] == Instance.m_answer[3];
+        public static bool PuzzleFinish() => Instance.m_coordinates[0] == Instance.m_answer[0]
+            && Instance.m_coordinates[1] == Instance.m_answer[1]
+            && Instance.m_coordinates[2] == Instance.m_answer[2]
+            && Instance.m_coordinates[3] == Instance.m_answer[3];
 
         private IEnumerator CheckAnswerCoroutine()
         {

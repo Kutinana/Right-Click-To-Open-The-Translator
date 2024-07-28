@@ -30,5 +30,19 @@ namespace DataSystem
 
             Instance.Serialization();
         }
+
+        public static void Solve(string puzzleId)
+        {
+            if (Instance.Save.PuzzleProgress.ContainsKey(puzzleId))
+            {
+                Instance.Save.PuzzleProgress[puzzleId] = PuzzleProgress.Solved;
+            }
+            else
+            {
+                Instance.Save.PuzzleProgress.Add(puzzleId, PuzzleProgress.Solved);
+            }
+
+            Instance.Serialization();
+        }
     }
 }

@@ -25,23 +25,6 @@ namespace Cameras
             videoPlayer = transform.Find("MainMenu/Background").GetComponent<VideoPlayer>();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.Y))
-            {
-                if (GameProgressData.GetInventory().TryGetValue("bomb", out var value) && value >= 1)
-                {
-                    var bomb = GameDesignData.GetObtainableObjectDataById("bomb");
-                    DialogBoxController.CallUp(LocalizationHelper.Get("Str_UseItemConfirm", LocalizationHelper.Get(bomb.Name)),
-                        confirmCallback: () => { Debug.Log("Confirm");}, cancelCallback: () => { Debug.Log("Cancel");});
-                }
-                else
-                {
-                    ShortMessageController.CallUp(LocalizationHelper.Get("Str_RoadIsBlocked"));
-                }
-            }
-        }
-
         public static void StartMainMenu()
         {
             Instance.StartCoroutine(Instance.StartMainMenuCoroutine());

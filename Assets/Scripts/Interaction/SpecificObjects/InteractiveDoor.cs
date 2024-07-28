@@ -119,29 +119,6 @@ public class InteractiveDoor: InteractiveObject
             yield return null;
         }
     }
-    public void BombOn()
-    {
-        if (GameProgressData.GetInventory().TryGetValue("bomb", out var value) && value >= 1)
-        {
-            var bomb = GameDesignData.GetObtainableObjectDataById("bomb");
-            DialogBoxController.CallUp(LocalizationHelper.Get("Str_UseItemConfirm", LocalizationHelper.Get(bomb.name)),
-                confirmCallback: () => {
-                    if (GameProgressData.Instance.Save.PuzzleProgress.ContainsKey("OutWish"))
-                    {
-                        GameProgressData.Instance.Save.PuzzleProgress["OutWish"] = PuzzleProgress.Solved;
-                    }
-                    else
-                    {
-                        GameProgressData.Instance.Save.PuzzleProgress.Add("OutWish", PuzzleProgress.Solved);
-                    }
-                    transform.parent.Find("Outwish_4-trigger1").gameObject.SetActive(true);
-                }, cancelCallback: () => { });
-        }
-        else
-        {
-            ShortMessageController.CallUp(LocalizationHelper.Get("Str_RoadIsBlocked"));
-        }
-    }
 
     public void SwithColor()
     {

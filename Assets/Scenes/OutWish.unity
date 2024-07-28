@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 612451759}
   - component: {fileID: 612451760}
   - component: {fileID: 612451761}
+  - component: {fileID: 612451762}
   m_Layer: 6
   m_Name: Outwish_3-rock
   m_TagString: Untagged
@@ -908,9 +909,9 @@ MonoBehaviour:
   OnT:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 612451761}
-        m_TargetAssemblyTypeName: InteractiveDoor, Assembly-CSharp
-        m_MethodName: BombOn
+      - m_Target: {fileID: 612451762}
+        m_TargetAssemblyTypeName: Outwish.Rock, Assembly-CSharp
+        m_MethodName: ExecuteAtDoor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -921,6 +922,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+--- !u!114 &612451762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612451757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4abefdc094a6614096bb0e0b84f85e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &702426352
 GameObject:
   m_ObjectHideFlags: 0

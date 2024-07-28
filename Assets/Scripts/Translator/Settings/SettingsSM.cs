@@ -72,7 +72,7 @@ namespace Settings
             });
             mBackToMainMenu = transform.Find("Content/Scroll View/Viewport/Content/BackToMainMenu").GetComponent<Button>();
             mBackToMainMenu.onClick.AddListener(() => {
-                SceneControl.SceneControl.SwitchSceneWithoutConfirm("EmptyScene");
+                // SceneControl.SceneControl.SwitchSceneWithoutConfirm("EmptyScene");
                 TranslatorCanvasManager.StartMainMenu();
                 TranslatorSM.StateMachine.ChangeState(States.Off);
             });
@@ -104,7 +104,7 @@ namespace Settings
 
             mWindowModeDropdown.SetValueWithoutNotify(UserConfig.ReadWithDefaultValue<int>("Window Mode", 1));
             mWindowModeDropdown.onValueChanged.AddListener(value => {
-                if (value == 1)
+                if (value == 1)  // Full Screen
                 {
                     var width = Screen.resolutions[^1].width;
                     Screen.SetResolution(width, width / 16 * 9, true);

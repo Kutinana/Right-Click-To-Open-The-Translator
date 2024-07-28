@@ -42,7 +42,11 @@ namespace Translator
                 AudioMng.PlayBtnPressed(1);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(mCanvasGroup, 0f));
 
-                if (SceneManager.GetSceneByName(GameProgressData.GetLastScene()) != null)
+                if (string.IsNullOrEmpty(GameProgressData.GetLastScene()))
+                {
+                    SceneControl.SceneControl.SwitchSceneWithoutConfirm("Zero", delay: 1f);
+                }
+                else if (SceneManager.GetSceneByName(GameProgressData.GetLastScene()) != null)
                 {
                     SceneControl.SceneControl.SwitchSceneWithoutConfirm(GameProgressData.GetLastScene(), delay: 1f);
                 }

@@ -85,10 +85,8 @@ namespace StartScene
         {
 
 # if UNITY_EDITOR
-
             TranslatorCanvasManager.StartMainMenu();
             TranslatorSM.CanActivate = true;
-
 # else
 
             var resLoader = ResLoader.Allocate();
@@ -324,19 +322,18 @@ namespace StartScene
             AudioKit.Settings.SoundVolume.SetValueWithoutEvent(UserConfig.ReadWithDefaultValue("Effect Volume", 0.8f));
 
             Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            var width = Screen.resolutions[^1].width;
+            Screen.SetResolution(width, width / 16 * 9, true);
             if (UserConfig.TryRead<int>("Window Mode", out var mode))
             {
-                if (mode == 0) return;
-                else if (mode == 1 && UserConfig.TryRead<int>("Resolution", out var res))
+                if (mode == 1) return; // Full Screen
+                else if (mode == 0 && UserConfig.TryRead<int>("Resolution", out var res))
                 {
                     Screen.SetResolution(SettingsSM.AvailableResolutions[res].Item1,
                         SettingsSM.AvailableResolutions[res].Item2, false);
                 }
-                else
-                {
-                    var width = Screen.resolutions[^1].width;
-                    Screen.SetResolution(width, width / 16 * 9, true);
-                }
+                else Screen.SetResolution(1920, 1080, false);
+                Screen.fullScreenMode = FullScreenMode.Windowed;
             }
         }
     }

@@ -64,7 +64,7 @@ namespace SceneControl
 
         public static void SwitchScene(string targetSceneName)
         {
-            if (IsLoading || mCurrentCoroutine != null) return;
+            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene) return;
             IsLoading = true;
 
             CanTransition = false;
@@ -73,7 +73,7 @@ namespace SceneControl
 
         public static void SwitchSceneWithEvent(string targetSceneName, Action action, float delay = 0f)
         {
-            if (IsLoading || mCurrentCoroutine != null) return;
+            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene) return;
             IsLoading = true;
 
             CanTransition = false;
@@ -82,7 +82,7 @@ namespace SceneControl
 
         public static void SwitchSceneWithoutConfirm(string targetSceneName, float delay = 0f)
         {
-            if (IsLoading || mCurrentCoroutine != null) return;
+            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene) return;
             IsLoading = true;
 
             mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithoutConfirmEnumerator(targetSceneName, delay));

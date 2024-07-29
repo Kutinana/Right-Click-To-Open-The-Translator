@@ -47,6 +47,11 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
             {
                 Destroy(inputCol);
                 Light.ChangeState(5);
+
+                if (!GameProgressData.GetInventory().TryGetValue("bomb", out var value) || value == 0)
+                {
+                    transform.Find("Interactable/Bomb").gameObject.SetActive(true);
+                }
             }
             else
             {

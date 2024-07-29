@@ -16,7 +16,7 @@ MonoBehaviour:
   Name:
     list:
     - Key: 0
-      Value: "\u6CE5\u571F"
+      Value: "\u6CE5\u571F\u4E00\u53F7"
   Sprite: {fileID: 21300000, guid: 0f5dc90630a812b49a41cd3c89e7dffb, type: 3}
   Description:
     list:

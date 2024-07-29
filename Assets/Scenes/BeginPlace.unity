@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6460079}
   - component: {fileID: 6460080}
-  - component: {fileID: 6460081}
   - component: {fileID: 6460082}
   - component: {fileID: 6460083}
+  - component: {fileID: 6460084}
   m_Layer: 6
   m_Name: disk1animation
   m_TagString: Untagged
@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 6460078}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.9, y: -1.02, z: 0.13588372}
+  m_LocalPosition: {x: -8.9, y: -1.34, z: 0.13588372}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 047f78029cbb5914882e3f5c5a4144ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -210,19 +210,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6460081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6460078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec91aa39ea727845b4b04694c3c4558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: disk1animation
 --- !u!114 &6460082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +258,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 1
 --- !u!61 &6460083
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -316,6 +304,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 1.6}
   m_EdgeRadius: 0
+--- !u!95 &6460084
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460078}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d61b4b67f564ca468a7686a10143173, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &22634932
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +447,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &22634936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1227,6 +1237,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &817470697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2216,7 +2227,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 96, y: 13.453125}
+    oldSize: {x: 96, y: 13.441406}
     newSize: {x: 96, y: 13.453125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2467,6 +2478,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &1600525238
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2669,7 +2681,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.225052, y: 13.52326}
   m_EdgeRadius: 0
---- !u!43 &1843119180
+--- !u!43 &1707293708
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

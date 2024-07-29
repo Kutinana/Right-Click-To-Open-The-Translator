@@ -13,6 +13,7 @@ public class InteractiveDoor: InteractiveObject
 {
     public UnityEvent OnT;
     public bool setActivable = true;
+    public bool setAnimator = false;
 
     float parameter = 0f;
 
@@ -24,11 +25,7 @@ public class InteractiveDoor: InteractiveObject
     public override void LoadConfig()
     {
         base.LoadConfig();
-        if (animator != null) animator.enabled = false;
-
-        //animator = GameObject.Find("PlayerHint").GetComponent<Animator>();
-        //
-        //if (animator != null) animator.enabled = false;
+        if (animator != null) animator.enabled = setAnimator;
     }
     public override void TriggerEvent()
     {

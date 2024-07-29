@@ -425,5 +425,26 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/OutWish/Outwish_4-trigger3",
 		"itemType": 2,
 		"target_string":""
+	},
+	{
+		"ID":61,
+		"OutlinedSpritePath":"Sprites/Objects/BeginPlace/disk2animation",
+		"UnoutlinedSpritePath":"Sprites/Objects/BeginPlace/disk2animation",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":62,
+		"OutlinedSpritePath":"Sprites/doors/InWish2_2_well2",
+		"UnoutlinedSpritePath":"Sprites/doors/InWish2_2_well1",
+		"itemType": 2,
+		"target_string":""
+	},
+	{
+		"ID":63,
+		"OutlinedSpritePath":"Sprites/puzzles/Classroom/classroom_2-blackboard2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/Classroom/classroom_2-blackboard1",
+		"itemType": 1,
+		"target_string":"Classroom_Blackboard"
 	}
 ]

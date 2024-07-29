@@ -294,7 +294,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.56956714, y: 0.37870336}
-    oldSize: {x: 32, y: 14.406251}
+    oldSize: {x: 32, y: 14.4}
     newSize: {x: 32, y: 14.406251}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -461,7 +461,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5662482, y: 0.44}
-    oldSize: {x: 32, y: 14.406251}
+    oldSize: {x: 32, y: 14.4}
     newSize: {x: 32, y: 14.406251}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -646,75 +646,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &642797561
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.826298
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311663639283922137, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470380063843807254, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_Size.x
-      value: 19.7207
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470380063843807254, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_Offset.x
-      value: 2.8996983
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828367609495036172, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: bgmName
-      value: InputTheme
-      objectReference: {fileID: 0}
-    - target: {fileID: 7041692022544944000, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
-      propertyPath: m_Name
-      value: BGMTrigger
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9e349eebe2651d9428e852eb7e96ce64, type: 3}
 --- !u!1 &662676746
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +796,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 32, y: 14.406251}
+    oldSize: {x: 32, y: 14.4}
     newSize: {x: 32, y: 14.406251}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1050,7 +981,7 @@ MonoBehaviour:
   Puzzles:
   - {fileID: 122020818}
   objectID: []
-  OrrespondingObjects: []
+  CorrespondingObjects: []
 --- !u!1 &721330252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,7 +1300,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.19084142, y: 0.34761623}
-    oldSize: {x: 32, y: 14.406251}
+    oldSize: {x: 32, y: 14.4}
     newSize: {x: 32, y: 14.406251}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1993,7 +1924,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.225052, y: 13.52326}
   m_EdgeRadius: 0
---- !u!43 &2134364265
+--- !u!43 &1981772289
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2167,4 +2098,3 @@ SceneRoots:
   - {fileID: 1198289282}
   - {fileID: 889336441}
   - {fileID: 1402557677}
-  - {fileID: 642797561}

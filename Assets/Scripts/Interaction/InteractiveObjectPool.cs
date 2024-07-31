@@ -21,7 +21,7 @@ public class InteractiveObjectPool
         private set => _instance = value;
     }
 
-    private static int MAX_CAPACITY = 64;
+    private static int MAX_CAPACITY = 128;
     private static List<InteractiveObject>[] ObjectPool = new List<InteractiveObject>[MAX_CAPACITY];
     private static System.Action EventList;
 

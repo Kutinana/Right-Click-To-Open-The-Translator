@@ -34,6 +34,7 @@ namespace Puzzle.InEnergy.Cable
         private List<CableState> CableStates;
         private List<Cable> Cables;
         private CanvasGroup m_characterGroup;
+        public List<Sprite> Lights;
 
         private readonly Dictionary<int, List<CableState>> RedAnswer = new Dictionary<int, List<CableState>>()
         {
@@ -66,6 +67,16 @@ namespace Puzzle.InEnergy.Cable
 
         private readonly List<int> GreenBlocks = new List<int>() { 14, 15, 16, 19, 21, 22, 23, 24 };
 
+        private readonly Dictionary<int, CableState> CORRECT = new Dictionary<int, CableState>()
+        {
+            {0, CableState.Down }, {1, CableState.Down}, {2, CableState.Up }, {3, CableState.Left }, {4, CableState.Right }, {5, CableState.Left },
+            {6, CableState.Right }, {7, CableState.Left }, {8, CableState.Up  }, {9, CableState.Right },
+            {11, CableState.Up }, {12, CableState.Up  }, {13, CableState.Up  }, {14, CableState.Up },
+            {15, CableState.Right }, {16, CableState.Up }, {17, CableState.Left }, {18, CableState.Left }, {19, CableState.Right },
+            {20, CableState.Right }, {21, CableState.Up  }, {22, CableState.Right }, {23, CableState.Left },
+            {24, CableState.Right }
+        };
+
         private void Awake()
         {
             Instance = this;
@@ -86,6 +97,19 @@ namespace Puzzle.InEnergy.Cable
             {
                 transform.Find("Interactable/Cables/5,3(uncolored)").gameObject.SetActive(false);
                 transform.Find("Interactable/Cables/5,3").gameObject.SetActive(true);
+            }
+
+            if (GameProgressData.GetPuzzleProgress("SubPuzzleRed") == PuzzleProgress.Solved)
+            {
+                transform.Find("Interactable/RedSign").GetComponent<Image>().sprite = Lights[0];
+            }
+            if (GameProgressData.GetPuzzleProgress("SubPuzzleGreen") == PuzzleProgress.Solved)
+            {
+                transform.Find("Interactable/GreenSign").GetComponent<Image>().sprite = Lights[1];
+            }
+            if (GameProgressData.GetPuzzleProgress("SubPuzzleYellow") == PuzzleProgress.Solved)
+            {
+                transform.Find("Interactable/YellowSign").GetComponent<Image>().sprite = Lights[2];
             }
         }
 
@@ -144,16 +168,20 @@ namespace Puzzle.InEnergy.Cable
                 && Instance.CheckAnswer(0))
             {
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleRed").GetComponent<SubPuzzleRed>().SubPuzzleSolved();
+                Instance.transform.Find("Interactable/RedSign").GetComponent<Image>().sprite = Instance.Lights[0];
             }
             if ((GameProgressData.GetPuzzleProgress("SubPuzzleYellow") == PuzzleProgress.NotFound || GameProgressData.GetPuzzleProgress("SubPuzzleYellow") == PuzzleProgress.UnSolved)
                 && Instance.CheckAnswer(1))
             {
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleYellow").GetComponent<SubPuzzleYellow>().SubPuzzleSolved();
+                Instance.transform.Find("Interactable/YellowSign").GetComponent<Image>().sprite = Instance.Lights[2];
             }
             if ((GameProgressData.GetPuzzleProgress("SubPuzzleGreen") == PuzzleProgress.NotFound || GameProgressData.GetPuzzleProgress("SubPuzzleGreen") == PuzzleProgress.UnSolved)
                 && Instance.CheckAnswer(2))
             {
                 Instance.transform.Find("Interactable/SubPuzzles/SubPuzzleGreen").GetComponent<SubPuzzleGreen>().SubPuzzleSolved();
+                Instance.transform.Find("Interactable/GreenSign").GetComponent<Image>().sprite = Instance.Lights[1];
+
             }
 
             if (GameProgressData.GetPuzzleProgress("SubPuzzleRed") == PuzzleProgress.Solved 
@@ -229,6 +257,19 @@ namespace Puzzle.InEnergy.Cable
             Instance.CableStates[id] = cableState;
             CheckState();
         }
+        
+        private void Solved()
+        {
+            foreach (var item in CORRECT)
+            {
+                CableStates[item.Key] = item.Value;
+            }
+            Refresh();
+            foreach (var item in Cables)
+            {
+                item.enabled = false;
+            }
+        }
 
         public override void OnEnter()
         {
@@ -236,7 +277,8 @@ namespace Puzzle.InEnergy.Cable
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-                
+                Solved();
+                enabled = false;
             }
             else
             {

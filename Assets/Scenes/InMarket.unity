@@ -827,6 +827,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &572227137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1311,6 +1312,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &790413179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1482,6 +1484,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &863458191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1923,6 +1926,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &1118841989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2176,7 +2180,7 @@ MonoBehaviour:
       m_Calls: []
   animationName: 
   setActivable: 1
---- !u!43 &1279741308
+--- !u!43 &1328065792
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2415,6 +2419,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &1399234193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2529,7 +2534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1421698042
 Transform:
   m_ObjectHideFlags: 0
@@ -2897,6 +2902,7 @@ GameObject:
   - component: {fileID: 1722852504}
   - component: {fileID: 1722852505}
   - component: {fileID: 1722852506}
+  - component: {fileID: 1722852507}
   m_Layer: 6
   m_Name: InMarket_5-sign to left1
   m_TagString: Untagged
@@ -2913,7 +2919,7 @@ Transform:
   m_GameObject: {fileID: 1722852503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.66, y: -0.35, z: 0.13588372}
+  m_LocalPosition: {x: -24.46, y: -0.1, z: 0.13588372}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3016,6 +3022,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.12, y: 3.92}
   m_EdgeRadius: 0
+--- !u!114 &1722852507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722852503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151e07fbea9fc6949b129a7b0f7c5dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identity_number: 65
+  itemConfig:
+    ID: 0
+    OutlinedSpritePath: 
+    UnoutlinedSpritePath: 
+    itemType: 0
+    target_string: 
+  count: -1
+  OnT:
+    m_PersistentCalls:
+      m_Calls: []
+  animationName: 
+  setActivable: 1
 --- !u!1 &1739897555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,6 +3058,7 @@ GameObject:
   - component: {fileID: 1739897556}
   - component: {fileID: 1739897557}
   - component: {fileID: 1739897558}
+  - component: {fileID: 1739897559}
   m_Layer: 6
   m_Name: InMarket_5-sign to up1
   m_TagString: Untagged
@@ -3146,6 +3178,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.12, y: 3.92}
   m_EdgeRadius: 0
+--- !u!114 &1739897559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739897555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151e07fbea9fc6949b129a7b0f7c5dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identity_number: 64
+  itemConfig:
+    ID: 0
+    OutlinedSpritePath: 
+    UnoutlinedSpritePath: 
+    itemType: 0
+    target_string: 
+  count: -1
+  OnT:
+    m_PersistentCalls:
+      m_Calls: []
+  animationName: 
+  setActivable: 1
 --- !u!1 &1757638905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,6 +3277,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   setActivable: 1
+  setAnimator: 0
 --- !u!61 &1757638908
 BoxCollider2D:
   m_ObjectHideFlags: 0

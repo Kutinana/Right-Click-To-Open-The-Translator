@@ -446,5 +446,19 @@
 		"UnoutlinedSpritePath":"Sprites/puzzles/Classroom/classroom_2-blackboard1",
 		"itemType": 1,
 		"target_string":"Classroom_Blackboard"
+	},
+	{
+		"ID":64,
+		"OutlinedSpritePath":"Sprites/puzzles/InMarket/InMarket_5-sign to down2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InMarket/InMarket_5-sign to down1",
+		"itemType": 1,
+		"target_string":"InMarket_SigntoTower"
+	},
+	{
+		"ID":65,
+		"OutlinedSpritePath":"Sprites/puzzles/InMarket/InMarket_5-sign to down2",
+		"UnoutlinedSpritePath":"Sprites/puzzles/InMarket/InMarket_5-sign to down1",
+		"itemType": 1,
+		"target_string":"InMarket_SigntoOutWish"
 	}
 ]

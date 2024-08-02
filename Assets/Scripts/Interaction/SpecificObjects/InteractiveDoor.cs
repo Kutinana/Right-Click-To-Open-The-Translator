@@ -96,7 +96,7 @@ public class InteractiveDoor: InteractiveObject
         
         player.GetComponent<PlayerController>().EnableGroundCheck = false;
         player.GetComponent<Rigidbody2D>().simulated = false;
-        player.GetComponent<PlayerInput>().DisableInputActions();
+        // player.GetComponent<PlayerInput>().DisableInputActions();
 
         yield return new WaitForSeconds(0.3f);
 

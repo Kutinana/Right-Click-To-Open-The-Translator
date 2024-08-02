@@ -56,7 +56,7 @@ public class ElevatorController: MonoBehaviour
 
     private IEnumerator Mask()
     {
-        GameObject.Find("TempPlayer").GetComponent<PlayerInput>().DisableInputActions();
+        PlayerInput.Instance.DisableInputActions();
         while (parameter < 0.99f)
         {
             mask.color = new Color(init_color.r, init_color.g, init_color.b, Mathf.Lerp(0, 1, parameter));
@@ -72,7 +72,7 @@ public class ElevatorController: MonoBehaviour
             parameter += Time.deltaTime * 1.5f;
         }
         mask.color = new Color(init_color.r, init_color.g, init_color.b, 0);
-        GameObject.Find("TempPlayer").GetComponent<PlayerInput>().EnableInputActions();
+        PlayerInput.Instance.EnableInputActions();
         yield return null;
     }
 }

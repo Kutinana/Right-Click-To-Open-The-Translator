@@ -7,7 +7,8 @@ using Unity.VisualScripting;
 public class PuzzleRelatedObjectManager: MonoBehaviour
 {
     public List<string> ObjectRelatedPuzzles;
-    public List<Transform> PuzzleRelatedObjects;
+    public List<Transform> PuzzleRelatedDisableObjects;
+    public List<Transform> PuzzleRelatedEnableObjects;
     public List<string> PuzzleRelatedPuzzles;
     public List<Transform> Puzzles;
     public List<string> objectID;
@@ -29,7 +30,14 @@ public class PuzzleRelatedObjectManager: MonoBehaviour
     {
         for (int i = 0; i < ObjectRelatedPuzzles.Count; i++)
         {
-            if (GameProgressData.GetPuzzleProgress(ObjectRelatedPuzzles[i]) == PuzzleProgress.Solved) PuzzleRelatedObjects[i].gameObject.SetActive(false);
+            if (GameProgressData.GetPuzzleProgress(ObjectRelatedPuzzles[i]) == PuzzleProgress.Solved) PuzzleRelatedDisableObjects[i].gameObject.SetActive(false);
+        }
+    }
+    private void EnableObjects()
+    {
+        for (int i = 0; i < ObjectRelatedPuzzles.Count; i++)
+        {
+            if (GameProgressData.GetPuzzleProgress(ObjectRelatedPuzzles[i]) == PuzzleProgress.Solved) PuzzleRelatedEnableObjects[i].gameObject.SetActive(false);
         }
     }
 

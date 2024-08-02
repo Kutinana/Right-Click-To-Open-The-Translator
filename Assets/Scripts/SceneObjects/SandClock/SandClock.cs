@@ -16,7 +16,7 @@ namespace SceneObject
         {
             rot = transform.rotation;
             centerPoint = transform.position;
-            TypeEventSystem.Global.Register<DayLightController.TwenSecCountEvent>(e => Flip());
+            TypeEventSystem.Global.Register<DayLightController.TwenSecCountEvent>(e => Flip()).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
         public void Flip()
         {

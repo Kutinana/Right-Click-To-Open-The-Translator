@@ -62,7 +62,7 @@ namespace Puzzle.InEnergy.Cable
         {
             {14, new List<CableState>(){CableState.Up} }, {15, new List<CableState>(){CableState.Right} }, {16, new List<CableState>(){CableState.Up} },
             {19, new List<CableState>(){CableState.Right, CableState.Left} }, {21, new List<CableState>(){CableState.Up} }, {22, new List<CableState>(){CableState.Right, CableState.Left} },
-            {23, new List<CableState>(){CableState.Left} }, {24, new List<CableState>(){CableState.Right} }
+            {23, new List<CableState>(){CableState.Left} }, {24, new List<CableState>(){CableState.Right, CableState.Left} }
         };
 
         private readonly List<int> GreenBlocks = new List<int>() { 14, 15, 16, 19, 21, 22, 23, 24 };

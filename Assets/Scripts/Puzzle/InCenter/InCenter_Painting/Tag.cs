@@ -86,7 +86,7 @@ namespace Puzzle.InCenter.Painting
                     Puzzle.TagsInBlock[ClosestPoint].Initialize();
 
                 }
-
+                originalPoint = ClosestPoint;
                 transform.position = Puzzle.Instance.ValidPoints[ClosestPoint].position;
                 Puzzle.TagsInBlock[ClosestPoint] = this;
             }

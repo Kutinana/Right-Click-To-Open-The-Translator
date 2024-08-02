@@ -295,8 +295,8 @@
 	},
 	{
 		"ID":42,
-		"OutlinedSpritePath":"Sprites/doors/Outcenter_2-tower1",
-		"UnoutlinedSpritePath":"Sprites/doors/Outcenter_2-tower2",
+		"OutlinedSpritePath":"Sprites/doors/exit",
+		"UnoutlinedSpritePath":"None",
 		"itemType": 2,
 		"target_string":""
 	},

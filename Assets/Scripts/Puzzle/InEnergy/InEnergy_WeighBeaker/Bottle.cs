@@ -199,6 +199,8 @@ namespace Puzzle.InEnergy.WeighBeaker
                 yield return new WaitForSeconds(0.1f);
             }
             filledEffect.enabled = true;
+            filledEffect.Play("FilledFull_Effect", 0, 0);
+
             State = States.Count - 1;
             image.sprite = States[^1];
             Puzzle.Instance.Tap.ChangeState(false);
@@ -206,6 +208,8 @@ namespace Puzzle.InEnergy.WeighBeaker
             yield return new WaitForSeconds(0.5f);
 
             filledEffect.enabled = false;
+            filledEffect.playbackTime = 0f;
+
             transform.localPosition = Vector3.zero;
             col.enabled = true;
             Puzzle.Instance.HoldingBottle = null;

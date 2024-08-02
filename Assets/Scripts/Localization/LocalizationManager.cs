@@ -65,7 +65,7 @@ namespace Localization
             var lang = LocalizationManager.Instance.CurrentLanguage;
             if (_key != null && _key.ContainsKey(lang))
             {
-                return _key[lang];
+                return _key[lang].Replace("\\n", "\n");
             }
             return _key.First().Value.Replace("\\n", "\n");
         }
@@ -74,7 +74,7 @@ namespace Localization
         {
             if (_key != null && _key.ContainsKey(lang))
             {
-                return _key[lang];
+                return _key[lang].Replace("\\n", "\n");
             }
             return _key.First().Value.Replace("\\n", "\n");
         }
@@ -84,7 +84,7 @@ namespace Localization
             var lang = LocalizationManager.Instance.CurrentLanguage;
             if (_key != null && _key.ContainsKey(lang))
             {
-                return _key[lang];
+                return _key[lang].Replace("\\n", "\n");
             }
             return _key.First().Value.Replace("\\n", "\n");
         }
@@ -93,7 +93,7 @@ namespace Localization
         {
             if (_key != null && _key.ContainsKey(lang))
             {
-                return _key[lang];
+                return _key[lang].Replace("\\n", "\n");
             }
             return _key.First().Value.Replace("\\n", "\n");
         }

@@ -16,7 +16,6 @@ namespace Translator
     {
         Off,
         Translation,
-        Recorder,
         Dictionary,
         Settings,
         Memo,
@@ -35,7 +34,6 @@ namespace Translator
         public void OnSingletonInit() { }
 
         [HideInInspector] public CanvasGroup canvasGroup;
-        [HideInInspector] public CanvasGroup recorderCanvasGroup;
         [HideInInspector] public CanvasGroup dictionaryCanvasGroup;
         [HideInInspector] public CanvasGroup settingsCanvasGroup;
         [HideInInspector] public CanvasGroup memoCanvasGroup;
@@ -54,8 +52,6 @@ namespace Translator
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0;
 
-            recorderCanvasGroup = transform.Find("Recorder").GetComponent<CanvasGroup>();
-            recorderCanvasGroup.alpha = 0;
             dictionaryCanvasGroup = transform.Find("Dictionary").GetComponent<CanvasGroup>();
             dictionaryCanvasGroup.alpha = 0;
             settingsCanvasGroup = transform.Find("Settings").GetComponent<CanvasGroup>();
@@ -103,7 +99,6 @@ namespace Translator
 
             stateMachine.AddState(States.Off, new OffState(stateMachine, this));
             stateMachine.AddState(States.Translation, new TranslationState(stateMachine, this));
-            stateMachine.AddState(States.Recorder, new RecorderState(stateMachine, this));
             stateMachine.AddState(States.Dictionary, new DictionaryState(stateMachine, this));
             stateMachine.AddState(States.Settings, new SettingsState(stateMachine, this));
             stateMachine.AddState(States.Memo, new MemoState(stateMachine, this));
@@ -171,7 +166,6 @@ namespace Translator
             TypeEventSystem.Global.Send<OnTranslatorDisabledEvent>();
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 0f, 0.1f));
 
-            mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.dictionaryCanvasGroup.blocksRaycasts = false;
             mTarget.settingsCanvasGroup.blocksRaycasts = false;
 
@@ -214,57 +208,10 @@ namespace Translator
 
             yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.canvasGroup, 1f, 0.1f));
 
-            mTarget.recorderCanvasGroup.blocksRaycasts = false;
             mTarget.translatorToggle.SetIsOnWithoutNotify(true);
 
             mTarget.CurrentCoroutine = null;
             mTarget.canvasGroup.interactable = true;
-        }
-    }
-
-    public class RecorderState : AbstractState<States, TranslatorSM>
-    {
-        public RecorderState(FSM<States> fsm, TranslatorSM target) : base(fsm, target) { }
-        protected override bool OnCondition() => mTarget.CurrentCoroutine == null
-            && mFSM.CurrentStateId != States.Recorder
-            && TranslatorSM.CanActivate;
-
-        protected override void OnEnter()
-        {
-            mTarget.StartCoroutine(OnEnterCoroutine());
-        }
-
-        protected override void OnUpdate()
-        {
-            if (Input.GetMouseButtonUp(1))
-            {
-                mFSM.ChangeState(mFSM.PreviousStateId);
-            }
-        }
-
-        protected override void OnExit()
-        {
-            mTarget.StartCoroutine(OnExitCoroutine());
-        }
-
-        IEnumerator OnEnterCoroutine()
-        {
-            TypeEventSystem.Global.Send<OnRecorderEnabledEvent>();
-            yield return mTarget.CurrentCoroutine = mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 1f, 0.1f));
-
-            mTarget.recorderCanvasGroup.blocksRaycasts = true;
-            CharacterRecordPanelManager.ActivateInputField();
-
-            mTarget.CurrentCoroutine = null;
-        }
-
-        IEnumerator OnExitCoroutine()
-        {
-            TypeEventSystem.Global.Send<OnRecorderDisabledEvent>();
-            yield return mTarget.StartCoroutine(Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(mTarget.recorderCanvasGroup, 0f, 0.1f));
-
-            mTarget.recorderCanvasGroup.blocksRaycasts = false;
-            mTarget.CurrentCoroutine = null;
         }
     }
 

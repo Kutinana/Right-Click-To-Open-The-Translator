@@ -91,6 +91,10 @@ namespace Dictionary
             currentCharacterImage.sprite = CurrentCharacterData.Sprite;
             currentCharacterMeaning.SetText(progress.Meaning);
 
+            var btn = currentCharacterImage.GetComponent<Button>();
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => CharacterRecordPanelManager.Instance.Init(CurrentCharacterData));
+
             var parent = detailCanvasGroup.transform.Find("PuzzleList/Scroll View/Viewport/Content");
             for (var i = 0; i < parent.childCount; i++)
             {

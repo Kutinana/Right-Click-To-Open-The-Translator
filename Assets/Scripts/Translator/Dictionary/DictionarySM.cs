@@ -63,6 +63,14 @@ namespace Dictionary
                 puzzleCanvasGroup.transform.Find("Image").GetComponent<Image>().sprite = e.Sprite;
                 CurrentCoroutine = StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(puzzleCanvasGroup, 1f, 0.1f));
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnCharacterRecordedEvent>(e => {
+                if (e.id == CurrentCharacterData.Id) currentCharacterMeaning.SetText(UserDictionary.Read(e.id));
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => {
+                currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         public void GenerateCharacterList()

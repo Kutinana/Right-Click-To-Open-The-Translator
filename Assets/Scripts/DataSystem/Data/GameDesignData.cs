@@ -22,13 +22,6 @@ namespace DataSystem
         private static Dictionary<string, PuzzleDataBase> _puzzleDataDic;
         public static PuzzleDataBase GetPuzzleDataById(string id) => PuzzleDataDic.TryGetValue(id, out var value) ? value : null;
 
-        // internal static Dictionary<string, HintData> HintDataDic
-        // {
-        //     get => _hintDataDic ??= GenerateDataDictionary<HintData>("ScriptableObjects/HintData");
-        //     set => _hintDataDic = value;
-        // }
-        // private static Dictionary<string, HintData> _hintDataDic;
-        // public static HintData GetHintDataById(string id) => HintDataDic.TryGetValue(id, out var value) ? value : null;
         public static Dictionary<string, MissionData> MissionDataDic
         {
             get => _missionDataDic ??= GenerateDataDictionary<MissionData>("ScriptableObjects/MissionData");

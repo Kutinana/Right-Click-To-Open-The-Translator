@@ -54,10 +54,11 @@ namespace Puzzle
         {
             if (CurrentPuzzle != null) return;
 
-            TypeEventSystem.Global.Send<OnPuzzleInitializedEvent>();
-
             var data = GameDesignData.GetPuzzleDataById(_id);
+            if (data == null) return;
+
             CurrentPuzzle = Instantiate(data.Prefab, Instance.transform).GetComponent<PuzzleBase>().OnInitialized(_id);
+            TypeEventSystem.Global.Send<OnPuzzleInitializedEvent>();
 
             CurrentPuzzle.OnEnter();
             StateMachine.ChangeState(States.Active);

@@ -82,10 +82,21 @@ namespace SceneControl
 
         public static void SwitchSceneWithoutConfirm(string targetSceneName, float delay = 0f)
         {
-            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene) return;
+            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene
+                || SceneManager.GetSceneByName(targetSceneName) == null) return;
             IsLoading = true;
 
             mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithoutConfirmEnumerator(targetSceneName, delay));
+        }
+
+        public static bool TrySwitchSceneWithoutConfirm(string targetSceneName, float delay = 0f)
+        {
+            if (IsLoading || mCurrentCoroutine != null || targetSceneName == CurrentScene
+                || SceneManager.GetSceneByName(targetSceneName) == null) return false;
+
+            IsLoading = true;
+            mCurrentCoroutine = Instance.StartCoroutine(Instance.SwitchSceneWithoutConfirmEnumerator(targetSceneName, delay));
+            return true;
         }
 
         public static void LoadScene(string targetSceneName)

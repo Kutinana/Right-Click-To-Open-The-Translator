@@ -4,6 +4,7 @@ using Bases.Console;
 using DataSystem;
 using Puzzle;
 using QFramework;
+using Steamworks;
 using TMPro;
 using UnityEngine;
 
@@ -53,8 +54,16 @@ namespace Bases
                 canvasGroup.interactable = IsActivated ? false : true;
                 canvasGroup.blocksRaycasts = IsActivated ? false : true;
 
-                if (IsActivated) inputField.text = "";
-                else inputField.ActivateInputField();
+                if (IsActivated)
+                {
+                    inputField.text = "";
+                    PlayerInput.Instance.EnableInputActions();
+                }
+                else
+                {
+                    inputField.ActivateInputField();
+                    PlayerInput.Instance.DisableInputActions();
+                }
 
                 IsActivated = !IsActivated;
             }
@@ -86,6 +95,20 @@ namespace Bases
                 case "puzzle" when commands.Length == 2:
                     PuzzleManager.Initialize(commands[1]);
                     Instantiate(CommandPrefab, commandParent).GetComponent<ConsoleCommandController>().Initialize($"Initialized {commands[1]}.");
+                    return;
+                case "tp" when commands.Length == 2:
+                    if (SceneControl.SceneControl.TrySwitchSceneWithoutConfirm(commands[1]))
+                    {
+                        Instantiate(CommandPrefab, commandParent).GetComponent<ConsoleCommandController>().Initialize($"Teleported to {commands[1]}.");
+                        return;
+                    }
+                    else
+                    {
+                        Instantiate(CommandPrefab, commandParent).GetComponent<ConsoleCommandController>().Initialize($"Unknown SceneName.", type: LogType.Error);
+                        return;
+                    }
+                case "clear_ach":
+                    SteamAchievementManager.Instance.ClearAchievements();
                     return;
             }
 

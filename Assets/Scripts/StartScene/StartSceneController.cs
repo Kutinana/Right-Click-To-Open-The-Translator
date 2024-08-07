@@ -18,7 +18,7 @@ namespace StartScene
 {
     public class StartSceneController : MonoSingleton<StartSceneController>
     {
-        public static string Version => "0.3.1";
+        public static string Version => "0.3.2";
 
         private CanvasGroup mFirstSplashCanvasGroup;
         private CanvasGroup mSecondSplashCanvasGroup;
@@ -309,9 +309,8 @@ namespace StartScene
             if (UserConfig.TryRead<string>("Version", out var local))
             {
                 var localVersion = local.Split(".");
-                if (Int32.Parse(localVersion[0]) < Int32.Parse(Version.Split(".")[0])
-                    || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) < Int32.Parse(Version.Split(".")[1]))
-                    || (Int32.Parse(localVersion[0]) == Int32.Parse(Version.Split(".")[0]) && Int32.Parse(localVersion[1]) == Int32.Parse(Version.Split(".")[1]) && Int32.Parse(localVersion[2]) < Int32.Parse(Version.Split(".")[2])))
+                if (int.Parse(localVersion[0]) < int.Parse(Version.Split(".")[0])
+                    || (int.Parse(localVersion[0]) == int.Parse(Version.Split(".")[0]) && int.Parse(localVersion[1]) < int.Parse(Version.Split(".")[1])))
                 {
                     GameProgressData.Clean();
                 }

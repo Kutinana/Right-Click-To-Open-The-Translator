@@ -4,6 +4,7 @@ using System.Linq;
 using DataSystem;
 using Kuchinashi;
 using QFramework;
+using Steamworks;
 using Translator;
 using UI;
 using UnityEngine;
@@ -98,6 +99,7 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
                     AudioKit.PlaySound("023CorrectRecipe");
                     Light.ChangeState(5);
                     AudioKit.PlaySound("023MachineRunning");
+                    
                     yield return new WaitForSeconds(2f);
                     transform.Find("Interactable/Bomb").gameObject.SetActive(true);
 
@@ -117,6 +119,9 @@ namespace Puzzle.InEnergy.ExplosiveSynthesizer
             }
 
             PuzzleManager.Solved(isClosing: false);
+            TypeEventSystem.Global.Send(new OnAchievementUnlocked(){
+                achievement = Achievement.ACH_ALFRED_NOBEL
+            });
 
             CurrentCoroutine = null;
         }

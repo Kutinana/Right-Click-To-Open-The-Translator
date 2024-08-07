@@ -27,6 +27,7 @@ namespace UI
                 sprite = data.Thumbnail.First().Value;
             }
             image.sprite = sprite;
+            image.preserveAspect = true;
 
             button.onClick.AddListener(() => {
                 TypeEventSystem.Global.Send(new Dictionary.CallForPuzzleEvent(sprite));

@@ -83,8 +83,16 @@ namespace Puzzle.InCenter.Astrolable
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-                transform.Find("Interactable/Mask").gameObject.SetActive(false);
-                transform.Find("Interactable/fire").gameObject.SetActive(false);
+                if (!GameProgressData.GetInventory().TryGetValue("fire", out var value) || value == 0)
+                {
+                    transform.Find("Interactable/Mask").gameObject.SetActive(false);
+                    transform.Find("Interactable/fire").gameObject.SetActive(true);
+                }
+                else
+                {
+                    transform.Find("Interactable/Mask").gameObject.SetActive(false);
+                    transform.Find("Interactable/fire").gameObject.SetActive(false);
+                }
 
                 solved = true;
             }

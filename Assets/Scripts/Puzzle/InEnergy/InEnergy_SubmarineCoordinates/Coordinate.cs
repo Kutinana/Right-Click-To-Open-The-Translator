@@ -1,4 +1,5 @@
 
+using DataSystem;
 using QFramework;
 using System;
 using System.Collections;
@@ -13,10 +14,12 @@ namespace Puzzle.InEnergy.Submarine
     {
         private List<Character> characters;
         private CanvasGroup m_waterEffect;
+        private Image m_light;
         private Transform m_submarine;
         private Transform m_mark;
         private int currentCoroutine;
         public List<Sprite> waterEffectSprites;
+        public List<Sprite> lightSprites;
 
         private void Awake()
         {
@@ -44,6 +47,12 @@ namespace Puzzle.InEnergy.Submarine
             m_waterEffect = transform.Find("WaterEffect").GetComponent<CanvasGroup>();
             m_submarine = transform.Find("Animation/submarine");
             m_mark = transform.Find("Screen Mark");
+            m_light = transform.Find("Screen Light").GetComponent<Image>();
+
+            if (GameProgressData.GetPuzzleProgress(Puzzle.Instance.Id) == PuzzleProgress.Solved)
+            {
+                m_light.sprite = lightSprites[0];
+            }
         }
 
         private void CharacterUpdate(int id)
@@ -89,8 +98,17 @@ namespace Puzzle.InEnergy.Submarine
             StartCoroutine(SubmarineMoving());
             currentCoroutine += 1;
             StartCoroutine(WaterAnimation());
-            if (Puzzle.PuzzleFinish()) StartCoroutine(CoordinateCorrect());
-            StartCoroutine(EnableButton());
+
+            if (Puzzle.PuzzleFinish())
+            {
+                StartCoroutine(CoordinateCorrect());
+                m_light.sprite = lightSprites[0];
+            }
+            else
+            {
+                m_light.sprite = lightSprites[1];
+                StartCoroutine(EnableButton());
+            }
         }
 
         private IEnumerator WaterAnimation()
@@ -172,7 +190,10 @@ namespace Puzzle.InEnergy.Submarine
         private IEnumerator EnableButton()
         {
             yield return new WaitUntil(() => currentCoroutine <= 0);
+
             transform.Find("Button/Confirm").GetComponent<Button>().interactable = true;
+            m_light.sprite = lightSprites[2];
+
             yield return null;
         }
 

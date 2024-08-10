@@ -151,7 +151,16 @@ namespace Puzzle.InCenter.HanoiTower
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-                transform.Find("Interactable/HiddenButton").gameObject.SetActive(false);
+                if (!GameProgressData.GetInventory().TryGetValue("elevatorButton", out var value) || value == 0)
+                {
+                    transform.Find("Interactable/Mask").gameObject.SetActive(false);
+                    transform.Find("Interactable/HiddenButton").gameObject.SetActive(true);
+                }
+                else
+                {
+                    transform.Find("Interactable/Mask").gameObject.SetActive(false);
+                    transform.Find("Interactable/HiddenButton").gameObject.SetActive(false);
+                }
             }
             else
             {

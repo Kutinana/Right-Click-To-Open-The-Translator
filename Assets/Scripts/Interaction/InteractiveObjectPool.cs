@@ -34,7 +34,10 @@ public class InteractiveObjectPool
 
         TypeEventSystem.Global.Register<OnPuzzleSolvedEvent>(e =>
         {
-            Instance.activeObject.gameObject.GetComponent<InteractivePuzzle>()?.OnT.Invoke();
+            if (Instance.activeObject == null) return;
+            if (Instance.activeObject.gameObject.GetComponent<InteractivePuzzle>() == null) return;
+
+            Instance.activeObject.gameObject.GetComponent<InteractivePuzzle>().OnT?.Invoke();
         });
     }
     public static int getMaxSize() => ObjectPool.Length;

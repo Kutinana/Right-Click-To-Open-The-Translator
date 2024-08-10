@@ -52,7 +52,16 @@ namespace Puzzle.InEnergy.Submarine
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
+                if (!GameProgressData.GetInventory().TryGetValue("dirt", out var value) || value == 0)
+                {
+                    transform.Find("Interactable/Animation/submarine/item").gameObject.SetActive(true);
+                }
+                else
+                {
+                    transform.Find("Interactable/Animation/submarine/item").gameObject.SetActive(false);
+                }
 
+                transform.Find("Interactable/Button/Confirm").GetComponent<Button>().interactable = false;
             }
             else
             {

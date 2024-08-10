@@ -65,16 +65,11 @@ namespace Puzzle.InCenter.Painting
 
             if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.Solved)
             {
-
                 solved = true;
             }
             else
             {
-                if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound)
-                {
-
-
-                }
+                if (GameProgressData.GetPuzzleProgress(Id) == PuzzleProgress.NotFound) {}
 
                 CurrentCoroutine = StartCoroutine(CheckAnswerCoroutine());
             }

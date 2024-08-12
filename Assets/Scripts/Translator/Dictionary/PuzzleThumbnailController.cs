@@ -25,6 +25,11 @@ namespace UI
             if (!data.Thumbnail.TryGetValue(GameProgressData.GetPuzzleProgress(data.Id), out var sprite))
             {
                 sprite = data.Thumbnail.First().Value;
+                if (sprite == null)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
             }
             image.sprite = sprite;
             image.preserveAspect = true;

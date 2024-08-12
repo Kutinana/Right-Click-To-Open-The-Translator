@@ -15,6 +15,10 @@ MonoBehaviour:
   id: InEnergy_ExplosiveSynthesizer
   Prefab: {fileID: 1782867004526311910, guid: 8372b117ce9fcd64bbe8709fbd2e1c14, type: 3}
   Thumbnail:
-    list: []
+    list:
+    - Key: 1
+      Value: {fileID: 21300000, guid: 7c4bf06acbddfac43b4d74f3d8c1e0b4, type: 3}
+    - Key: 2
+      Value: {fileID: 21300000, guid: b836c9fa2c82b67428e8bae0b049baa8, type: 3}
   Name: 
   Description: 

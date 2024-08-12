@@ -15,6 +15,10 @@ MonoBehaviour:
   id: InMarket_ChurchJigsaw
   Prefab: {fileID: 3551521374479435426, guid: 22ffb6875fdc9a24986a90b8b209c63e, type: 3}
   Thumbnail:
-    list: []
+    list:
+    - Key: 1
+      Value: {fileID: 0}
+    - Key: 2
+      Value: {fileID: 21300000, guid: b6525ef53a2b21c4a9337b87b2528f4d, type: 3}
   Name: 
   Description: 

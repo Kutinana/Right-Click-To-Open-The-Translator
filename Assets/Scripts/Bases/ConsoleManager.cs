@@ -110,6 +110,10 @@ namespace Bases
                 case "clear_ach":
                     SteamAchievementManager.Instance.ClearAchievements();
                     return;
+                case "open_log":
+                    Instantiate(CommandPrefab, commandParent).GetComponent<ConsoleCommandController>().Initialize("Reveal in explorer.");
+                    Application.OpenURL(Application.persistentDataPath);
+                    return;
             }
 
             Instantiate(CommandPrefab, commandParent).GetComponent<ConsoleCommandController>().Initialize("Unknown Command", type: LogType.Error);

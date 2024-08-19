@@ -69,7 +69,10 @@ namespace Dictionary
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => {
-                currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
+                if (TranslatorSM.StateMachine.CurrentStateId == States.Dictionary)
+                {
+                    currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
+                }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 

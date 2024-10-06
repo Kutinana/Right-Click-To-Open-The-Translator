@@ -65,14 +65,18 @@ namespace Dictionary
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<OnCharacterRecordedEvent>(e => {
-                if (e.id == CurrentCharacterData.Id) currentCharacterMeaning.SetText(UserDictionary.Read(e.id));
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-
-            TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => {
-                if (TranslatorSM.StateMachine.CurrentStateId == States.Dictionary)
+                if (TranslatorSM.StateMachine.CurrentStateId is not States.Dictionary || CurrentCharacterData == null) return;
+                
+                if (e.id == CurrentCharacterData.Id)
                 {
                     currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
                 }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            TypeEventSystem.Global.Register<OnCharacterRefreshEvent>(e => {
+                if (TranslatorSM.StateMachine.CurrentStateId is not States.Dictionary || CurrentCharacterData == null) return;
+                
+                currentCharacterMeaning.SetText(UserDictionary.Read(CurrentCharacterData.Id));
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 

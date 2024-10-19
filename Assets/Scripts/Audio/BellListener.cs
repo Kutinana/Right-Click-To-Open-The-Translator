@@ -10,6 +10,6 @@ public class BellListener : MonoBehaviour
     public float vol = 1;
     private void Awake()
     {
-        TypeEventSystem.Global.Register<NewCircleEvent>(e => AudioKit.PlaySound("ChurchBell", volumeScale: vol)).UnRegisterWhenGameObjectDestroyed(gameObject);
+        TypeEventSystem.Global.Register<NewCircleEvent>(e => AudioKit.PlaySound("ChurchBell", volume: vol)).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 }

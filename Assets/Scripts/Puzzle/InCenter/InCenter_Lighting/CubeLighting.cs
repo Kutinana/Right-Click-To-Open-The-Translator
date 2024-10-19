@@ -18,7 +18,7 @@ namespace Puzzle.InCenter.Lighting
 
         public void SwitchStateWithChain()
         {
-            AudioKit.PlaySound("023ClickLight", volumeScale: 0.5f);
+            AudioKit.PlaySound("023ClickLight", volume: 0.5f);
             if (currentState == LightState.Off) SetState(LightState.On);
             else SetState(LightState.Off);
 

@@ -57,7 +57,7 @@ namespace Puzzle.InEnergy.Submarine
 
         private void CharacterUpdate(int id)
         {
-            AudioKit.PlaySound("Cube-Slide", volumeScale: 0.8f);
+            AudioKit.PlaySound("Cube-Slide", volume: 0.8f);
             characters[id].data = Puzzle.Instance.numbers[Puzzle.Instance.m_coordinates[id]];
             characters[id].Refresh();
         }
@@ -114,7 +114,7 @@ namespace Puzzle.InEnergy.Submarine
         private IEnumerator WaterAnimation()
         {
             //Kuchinashi.CanvasGroupHelper.FadeCanvasGroup(m_waterEffect, 1, 0.5f);
-            AudioKit.PlaySound("023Dive", volumeScale: 0.6f);
+            AudioKit.PlaySound("023Dive", volume: 0.6f);
             m_waterEffect.alpha = 1;
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[1];
@@ -133,7 +133,7 @@ namespace Puzzle.InEnergy.Submarine
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[1];
             yield return new WaitForSeconds(0.1f);
-            AudioKit.PlaySound("023ComeUp", volumeScale: 0.6f);
+            AudioKit.PlaySound("023ComeUp", volume: 0.6f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[2];
             yield return new WaitForSeconds(0.1f);
             m_waterEffect.GetComponent<Image>().sprite = waterEffectSprites[3];

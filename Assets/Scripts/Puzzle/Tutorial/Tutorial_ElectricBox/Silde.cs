@@ -86,7 +86,7 @@ namespace Puzzle.Tutorial.P2
             _init_pos = transform.position;
             targetPos = new Vector3(Puzzle.ValidPositions[closestPos], _init_pos.y, _init_pos.z);
             StartCoroutine(MoveToCoroutine());
-            if(var) AudioKit.PlaySound("Cube-Slide2",volumeScale: 0.5f);
+            if(var) AudioKit.PlaySound("Cube-Slide2",volume: 0.5f);
         }
     }
 }

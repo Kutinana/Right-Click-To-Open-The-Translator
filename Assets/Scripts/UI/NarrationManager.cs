@@ -139,7 +139,7 @@ namespace UI.Narration
                     yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.rightCanvasGroup, Instance.fullScreenCanvasGroup}, 0f, 0.2f);
 
                     leftText.SetText("");
-                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value))
+                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value) && value != null)
                     {
                         leftImage.sprite = value;
                         leftImage.color = Color.white;

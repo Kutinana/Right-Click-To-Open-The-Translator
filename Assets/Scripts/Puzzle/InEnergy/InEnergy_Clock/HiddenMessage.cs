@@ -15,7 +15,7 @@ namespace Puzzle.InEnergy.Clock
 
         public void ShowHiddenMessage()
         {
-            AudioKit.PlaySound("LensUp",volumeScale:0.8f);
+            AudioKit.PlaySound("LensUp",volume:0.8f);
             List<string> ids = new List<string>();
             foreach (var c in GetComponentsInChildren<Character>())
             {

@@ -26,7 +26,7 @@ namespace Puzzle.InCenter.Elevator
             {
                 OnClick?.Invoke();
                 AudioKit.PlaySound("023LightOn");
-                AudioKit.PlaySound("023ElevatorRunning",volumeScale:.6f);
+                AudioKit.PlaySound("023ElevatorRunning",volume:.6f);
                 foreach (var btn in transform.parent.GetComponentsInChildren<ElevatorButton>()) btn.Interactable = false;
                 
                 PuzzleManager.Exit(1f);

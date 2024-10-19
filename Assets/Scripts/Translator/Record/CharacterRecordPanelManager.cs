@@ -49,7 +49,7 @@ namespace UI
             _inputField.text = "";
             _confirmButton.onClick.AddListener(() =>
             {
-                AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+                AudioKit.PlaySound("InteractClick", volume: AudioMng.Instance.effectVolume * 0.8f);
                 UserDictionary.WriteInAndSave(character.Id, _inputField.text);
                 StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(canvasGroup, 0f, 0.2f));
 
@@ -77,7 +77,7 @@ namespace UI
             character = c;
             _image.sprite = c.Sprite;
             _inputField.SetTextWithoutNotify(UserDictionary.Read(c.Id));
-            AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+            AudioKit.PlaySound("InteractClick", volume: AudioMng.Instance.effectVolume * 0.8f);
             
             IsActive = true;
             StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(canvasGroup, 1f, 0.2f));
@@ -90,7 +90,7 @@ namespace UI
             character = c.data;
             _image.sprite = c.data.Sprite;
             _inputField.SetTextWithoutNotify(UserDictionary.Read(c.data.Id));
-            AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+            AudioKit.PlaySound("InteractClick", volume: AudioMng.Instance.effectVolume * 0.8f);
             
             IsActive = true;
             StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(canvasGroup, 1f, 0.2f));

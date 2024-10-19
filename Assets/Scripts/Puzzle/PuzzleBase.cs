@@ -29,7 +29,7 @@ namespace Puzzle
 
         public virtual void OnExit()
         {
-            AudioKit.PlaySound("InteractClick", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+            AudioKit.PlaySound("InteractClick", volume: AudioMng.Instance.effectVolume * 0.8f);
         }
 
         public virtual void OnSolved()

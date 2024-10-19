@@ -46,7 +46,7 @@ namespace Puzzle.InMarket.Church
 
         private void NextState()
         {
-            AudioKit.PlaySound("023ItemRot", volumeScale: .8f);
+            AudioKit.PlaySound("023ItemRot", volume: .8f);
             int val = ((int)currentState + 1) % 4;
             BlockState nextState = (BlockState)val;
             SetState(nextState);

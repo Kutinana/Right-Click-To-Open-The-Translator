@@ -24,12 +24,13 @@ namespace Localization
         public static LocalizationManager Instance => SingletonProperty<LocalizationManager>.Instance;
         public void OnSingletonInit()
         {
-            CurrentLanguage = Application.systemLanguage switch
-            {
-                SystemLanguage.English => Language.en_US,
-                SystemLanguage.Chinese => Language.zh_CN,
-                _ => Language.zh_CN,
-            };
+            // CurrentLanguage = Application.systemLanguage switch
+            // {
+            //     SystemLanguage.English => Language.en_US,
+            //     SystemLanguage.Chinese => Language.zh_CN,
+            //     _ => Language.zh_CN,
+            // };
+            CurrentLanguage = Language.zh_CN;
         }
 
         internal Dictionary<Language, Dictionary<string, string>> CommonStrings => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, string>>>("I18n/Common");

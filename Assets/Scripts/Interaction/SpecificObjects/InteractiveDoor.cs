@@ -72,7 +72,7 @@ public class InteractiveDoor: InteractiveObject
         parameter = 0f;
         player = GameObject.FindGameObjectWithTag("Player");
         position = player.transform.position;
-        AudioKit.PlaySound("Fall-Zero", volumeScale: 0.5f);
+        AudioKit.PlaySound("Fall-Zero", volume: 0.5f);
         StartCoroutine(playerFall());
     }
     public void PlayAnimation(string animationName)

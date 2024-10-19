@@ -1,5 +1,37 @@
 {
   "zh_CN": {
+    "FirstTimeToMainMenu": [
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "这什么外星文字……"
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "不是，这啥啊？"
+      },
+      {
+        "type": "Left",
+        "narrator": "",
+        "content": "（机械音）按右键启动翻译器"
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "啥玩意儿？"
+      },
+      {
+        "type": "Left",
+        "narrator": "",
+        "content": "（机械音）按右键启动翻译器"
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "……得，我试试。"
+      }
+    ],
     "InitialNarration": [
       {
         "type": "Left",

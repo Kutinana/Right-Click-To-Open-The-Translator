@@ -125,7 +125,7 @@ public class AudioMng : MonoSingleton<AudioMng>
     }
     public void PlayFootsteps()
     {
-        AudioKit.PlaySound("ftstp-1-" + randTab[pRandTab++], volumeScale: 0.6f);
+        AudioKit.PlaySound("ftstp-1-" + randTab[pRandTab++], volume: 0.6f);
         if (pRandTab == 15) pRandTab = 0;
     }
     /// <summary>
@@ -137,15 +137,15 @@ public class AudioMng : MonoSingleton<AudioMng>
     {
         if (type == 0)
         {
-            AudioKit.PlaySound("click", volumeScale: Instance.effectVolume * volumeScale);
+            AudioKit.PlaySound("click", volume: Instance.effectVolume * volumeScale);
         }
         else if (type == 1)
         {
-            AudioKit.PlaySound("apply", volumeScale: Instance.effectVolume * volumeScale);
+            AudioKit.PlaySound("apply", volume: Instance.effectVolume * volumeScale);
         }
         else if (type == 2)
         {
-            AudioKit.PlaySound("cancel", volumeScale: Instance.effectVolume * volumeScale);
+            AudioKit.PlaySound("cancel", volume: Instance.effectVolume * volumeScale);
         }
     }
 
@@ -158,11 +158,11 @@ public class AudioMng : MonoSingleton<AudioMng>
         }
         if (isEnter)
         {
-            AudioKit.PlaySound("TranslatorOn", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+            AudioKit.PlaySound("TranslatorOn", volume: AudioMng.Instance.effectVolume * 0.8f);
         }
         else
         {
-            AudioKit.PlaySound("TranslatorOff", volumeScale: AudioMng.Instance.effectVolume * 0.8f);
+            AudioKit.PlaySound("TranslatorOff", volume: AudioMng.Instance.effectVolume * 0.8f);
         }
     }
 
@@ -281,7 +281,7 @@ public class AudioMng : MonoSingleton<AudioMng>
 
     public void OnPuzzleInitialize()
     {
-        AudioKit.PlaySound("InteractShow", volumeScale: effectVolume);
+        AudioKit.PlaySound("InteractShow", volume: effectVolume);
         audioMixer.TransitionToSnapshots(audioMixerSnapshots, new float[] { 0, 1 }, 0.2f);
     }
     public void OnPuzzleExit()

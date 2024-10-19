@@ -57,7 +57,7 @@ namespace Puzzle.InCenter.Elevator
 
         public override void OnExit()
         {
-            AudioKit.PlaySound("023Ting", volumeScale: .8f);
+            AudioKit.PlaySound("023Ting", volume: .8f);
             base.OnExit();
         }
 

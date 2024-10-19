@@ -46,21 +46,21 @@ namespace Puzzle.Tutorial.P1
             Left = transform.Find("Hidden/Buttons/Left").GetComponent<Button>();
             Left.onClick.AddListener(() =>
             {
-                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                AudioKit.PlaySound("Cube-Slide2", volume: 0.8f);
                 Puzzle.PatternUpdate(0, Left.transform);
             });
 
             Middle = transform.Find("Hidden/Buttons/Middle").GetComponent<Button>();
             Middle.onClick.AddListener(() =>
             {
-                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                AudioKit.PlaySound("Cube-Slide2", volume: 0.8f);
                 Puzzle.PatternUpdate(1, Middle.transform);
             });
 
             Right = transform.Find("Hidden/Buttons/Right").GetComponent<Button>();
             Right.onClick.AddListener(() =>
             {
-                AudioKit.PlaySound("Cube-Slide2", volumeScale: 0.8f);
+                AudioKit.PlaySound("Cube-Slide2", volume: 0.8f);
                 Puzzle.PatternUpdate(2, Right.transform);
             });
 
@@ -159,7 +159,7 @@ namespace Puzzle.Tutorial.P1
 
                 if (res.y > 1)
                 {
-                    AudioKit.PlaySound("PaintingMoving", volumeScale: 1.2f);
+                    AudioKit.PlaySound("PaintingMoving", volume: 1.2f);
                     CurrentCoroutine = StartCoroutine(MoveToCoroutine());
                     yield break;
                 }

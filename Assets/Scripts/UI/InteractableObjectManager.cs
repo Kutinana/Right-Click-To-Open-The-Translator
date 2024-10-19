@@ -32,7 +32,7 @@ public class InteractableObjectManager : MonoSingleton<InteractableObjectManager
 
     public static void DropAndExit()
     {
-        AudioKit.PlaySound("Fall-Zero", volumeScale: 0.2f);
+        AudioKit.PlaySound("Fall-Zero", volume: 0.2f);
         Current.DropAndExit();
         Current = null;
     }

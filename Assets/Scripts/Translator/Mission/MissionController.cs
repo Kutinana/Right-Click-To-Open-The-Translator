@@ -27,7 +27,7 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
     }
     private void Awake()
     {
-        var tempDetail = transform.Find("Content/Detail");
+        var tempDetail = transform.Find("Image/Content/Detail");
         m_title = tempDetail.Find("Title").gameObject.GetComponent<TextMeshProUGUI>();
         m_description = tempDetail.Find("Description").gameObject.GetComponent<TextMeshProUGUI>();
         TypeEventSystem.Global.Register<OnNarrationEndEvent>(e => OnNarrationEndMissionHandler(e)).UnRegisterWhenGameObjectDestroyed(gameObject);
@@ -42,7 +42,7 @@ public class MissionController : MonoBehaviour, QFramework.ISingleton
     public void GenerateMissionList()
     {
         missionProgressList = GameProgressData.GetProgressingMission();
-        var parent = transform.Find("Content/Scroll View/Viewport/Content");
+        var parent = transform.Find("Image/Content/Scroll View/Viewport/Content");
         for (int i = 0; i < parent.childCount; i++)
         {
             Destroy(parent.GetChild(i).gameObject);

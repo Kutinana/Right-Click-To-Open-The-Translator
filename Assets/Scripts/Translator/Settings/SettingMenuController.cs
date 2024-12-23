@@ -24,8 +24,8 @@ namespace UI
 
         private IEnumerator OnMouseEnterCoroutine()
         {
-            Vector2 targetPos = new Vector2(0, 0);
-            while (!Mathf.Approximately(transform.localPosition.x, 0))
+            Vector2 targetPos = new Vector2(-160, 0);
+            while (!Mathf.Approximately(transform.localPosition.x, -160))
             {
                 transform.localPosition = Vector2.Lerp(transform.localPosition, targetPos, Time.deltaTime * 10);
                 yield return new WaitForFixedUpdate();

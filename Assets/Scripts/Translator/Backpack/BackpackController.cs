@@ -34,7 +34,7 @@ namespace Translator
         private void Awake()
         {
             itemListCanvasGroup = transform.Find("ItemList").GetComponent<CanvasGroup>();
-            detailCanvasGroup = transform.Find("ItemList/Detail").GetComponent<CanvasGroup>();
+            detailCanvasGroup = transform.Find("ItemList/Image/Detail").GetComponent<CanvasGroup>();
 
             currentItemImage = detailCanvasGroup.transform.Find("Item").GetComponent<Image>();
             currentItemName = detailCanvasGroup.transform.Find("Name").GetComponent<TMP_Text>();
@@ -60,7 +60,7 @@ namespace Translator
 
         public void GenerateItemList()
         {
-            var parent = transform.Find("ItemList/Scroll View/Viewport/Content");
+            var parent = transform.Find("ItemList/Image/Scroll View/Viewport/Content");
             for (var i = 0; i < parent.childCount; i++)
             {
                 Destroy(parent.GetChild(i).gameObject);

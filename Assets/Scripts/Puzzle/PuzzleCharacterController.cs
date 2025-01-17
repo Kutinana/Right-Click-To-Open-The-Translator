@@ -16,17 +16,20 @@ namespace UI
     /// </summary>
     public class PuzzleCharacterController : Character
     {
+        Material material;
         protected override void Awake()
         {
             base.Awake();
-
+            material = transform.Find("Image").GetComponent<Image>().material;
             // Register event listeners
             TypeEventSystem.Global.Register<OnTranslatorEnabledEvent>(e => {
                 stateMachine.ChangeState(States.Interactable);
+                material.SetFloat("_EnableOutline",1);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<OnTranslatorDisabledEvent>(e => {
                 stateMachine.ChangeState(States.NonInteractable);
+                material.SetFloat("_EnableOutline",0);
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<OnCharacterRecordedEvent>(e => {

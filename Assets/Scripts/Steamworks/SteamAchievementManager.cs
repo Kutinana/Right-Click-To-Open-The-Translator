@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using QFramework;
+using UnityEditor;
 using UnityEngine;
 
 namespace Steamworks
@@ -51,6 +52,8 @@ namespace Steamworks
 
         private Coroutine StoreStatsCoroutine = null;
 
+        public string AchievementNameToBeUnlocked { get; set; }
+
         private void Awake()
         {
             TypeEventSystem.Global.Register<OnAchievementUnlocked>(e => {
@@ -74,7 +77,7 @@ namespace Steamworks
             if (!m_bRequestedStats) StartCoroutine(TryRequestUserStats());
         }
 
-        private void ProcessAchievement(Achievement achievement, bool activate = true)
+        internal void ProcessAchievement(Achievement achievement, bool activate = true)
         {
             if (!SteamManager.Initialized || !m_bStatsValid) return;
 
@@ -160,4 +163,35 @@ namespace Steamworks
             StoreStatsCoroutine = null;
         }
     }
+
+#if UNITY_EDITOR
+
+    [CustomEditor(typeof(SteamAchievementManager))]
+    [CanEditMultipleObjects]
+    public class SteamAchievementManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            SteamAchievementManager manager = (SteamAchievementManager)target;
+
+            EditorGUILayout.Separator();
+
+            EditorGUILayout.BeginHorizontal();
+            manager.AchievementNameToBeUnlocked = EditorGUILayout.TextField(manager.AchievementNameToBeUnlocked);
+            if (GUILayout.Button("Unlock"))
+            {
+                SteamAchievementManager.Instance.ProcessAchievement(Enum.Parse<Achievement>(manager.AchievementNameToBeUnlocked));
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Clear All"))
+            {
+                SteamAchievementManager.Instance.ClearAchievements();
+            }
+        }
+    }
+
+#endif
+
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
 using Kuchinashi;
+using Kuchinashi.Utils.Progressable;
 using Localization;
 using QFramework;
 using TMPro;
@@ -33,53 +34,89 @@ namespace UI.Narration
     }
     public struct OnInitialNarrationStartEvent { }
 
-    public enum Side
+    public enum NarrationType
     {
+        None,
         Left,
+        LeftNeko,
         Right,
-        FullScreen
+        RightNeko,
+        FullScreen,
+        FullScreenNeko,
+        Option,
+        OptionNeko
     }
 
-    public class NarrationManager : MonoSingleton<NarrationManager>
+    public partial class NarrationManager : MonoSingleton<NarrationManager>
     {
         public SerializableDictionary<string, Sprite> Tachies;
 
         private CanvasGroup mCanvasGroup;
         private string narrationPlaying = null;
-        private static Coroutine CurrentCoroutine;
 
+        private Coroutine CurrentNarrationCoroutine;
         private static Coroutine CurrentTypeTextCoroutine;
 
-        private CanvasGroup leftCanvasGroup;
+        public FSM<NarrationType> StateMachine = new();
+
+        private CanvasGroupAlphaProgressable leftCanvasGroup;
         private Image leftImage;
         private TMP_Text leftText;
-        private CanvasGroup rightCanvasGroup;
+
+        private CanvasGroupAlphaProgressable leftNekoCanvasGroup;
+        private Image leftNekoImage;
+        private Transform leftNekoText;
+
+        private CanvasGroupAlphaProgressable rightCanvasGroup;
         private Image rightImage;
         private TMP_Text rightText;
-        private CanvasGroup fullScreenCanvasGroup;
+
+        private CanvasGroupAlphaProgressable rightNekoCanvasGroup;
+        private Image rightNekoImage;
+        private Transform rightNekoText;
+
+        private CanvasGroupAlphaProgressable fullScreenCanvasGroup;
         private Image fullScreenImage;
         private TMP_Text fullScreenText;
 
         public string ToShowNarrationId { get; set; }
-        public static bool IsNarrating => CurrentCoroutine != null;
+        public static bool IsNarrating => Instance.CurrentNarrationCoroutine != null;
 
         private void Awake()
         {
             mCanvasGroup = GetComponent<CanvasGroup>();
 
-            leftCanvasGroup = transform.Find("Left").GetComponent<CanvasGroup>();
+            leftCanvasGroup = transform.Find("Left").GetComponent<CanvasGroupAlphaProgressable>();
             leftImage = transform.Find("Left/Tachie").GetComponent<Image>();
             leftText = transform.Find("Left/Text").GetComponent<TMP_Text>();
 
-            rightCanvasGroup = transform.Find("Right").GetComponent<CanvasGroup>();
+            leftNekoCanvasGroup = transform.Find("LeftNeko").GetComponent<CanvasGroupAlphaProgressable>();
+            leftNekoImage = transform.Find("LeftNeko/Tachie").GetComponent<Image>();
+            leftNekoText = transform.Find("LeftNeko/NekoText");
+
+            rightCanvasGroup = transform.Find("Right").GetComponent<CanvasGroupAlphaProgressable>();
             rightImage = transform.Find("Right/Tachie").GetComponent<Image>();
             rightText = transform.Find("Right/Text").GetComponent<TMP_Text>();
 
-            fullScreenCanvasGroup = transform.Find("FullScreen").GetComponent<CanvasGroup>();
+            rightNekoCanvasGroup = transform.Find("RightNeko").GetComponent<CanvasGroupAlphaProgressable>();
+            rightNekoImage = transform.Find("RightNeko/Tachie").GetComponent<Image>();
+            rightNekoText = transform.Find("RightNeko/NekoText");
+
+            fullScreenCanvasGroup = transform.Find("FullScreen").GetComponent<CanvasGroupAlphaProgressable>();
             fullScreenImage = transform.Find("FullScreen/Tachie").GetComponent<Image>();
             fullScreenText = transform.Find("FullScreen/Text").GetComponent<TMP_Text>();
 
             EventRegister();
+
+            StateMachine.AddState(NarrationType.None, new NoneState(StateMachine, this));
+            StateMachine.AddState(NarrationType.Left, new LeftState(StateMachine, this));
+            StateMachine.AddState(NarrationType.LeftNeko, new LeftNekoState(StateMachine, this));
+            StateMachine.AddState(NarrationType.Right, new RightState(StateMachine, this));
+            StateMachine.AddState(NarrationType.RightNeko, new RightNekoState(StateMachine, this));
+            StateMachine.AddState(NarrationType.FullScreen, new FullScreenState(StateMachine, this));
+            StateMachine.AddState(NarrationType.FullScreenNeko, new FullScreenNekoState(StateMachine, this));
+
+            StateMachine.StartState(NarrationType.None);
         }
 
         private void Update()
@@ -105,20 +142,19 @@ namespace UI.Narration
 
             var content = LocalizationManager.GetNarration(id);
 
-            if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
-            CurrentCoroutine = Instance.StartCoroutine(Instance.NarrationCoroutine(content, delay));
+            if (Instance.CurrentNarrationCoroutine != null) Instance.StopCoroutine(Instance.CurrentNarrationCoroutine);
+            Instance.CurrentNarrationCoroutine = Instance.StartCoroutine(Instance.NarrationCoroutine(content, delay));
             Instance.narrationPlaying = id;
             TypeEventSystem.Global.Send(new OnNarrationStartEvent(id));
         }
 
         public static void StopNarration()
         {
-            Instance.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {
-                Instance.leftCanvasGroup, Instance.rightCanvasGroup, Instance.fullScreenCanvasGroup}, 0f));
+            Instance.StateMachine.ChangeState(NarrationType.None);
             Instance.StartCoroutine(CanvasGroupHelper.FadeCanvasGroup(Instance.mCanvasGroup, 0f));
 
-            if (CurrentCoroutine != null) Instance.StopCoroutine(CurrentCoroutine);
-            CurrentCoroutine = null;
+            if (Instance.CurrentNarrationCoroutine != null) Instance.StopCoroutine(Instance.CurrentNarrationCoroutine);
+            Instance.CurrentNarrationCoroutine = null;
             
             TypeEventSystem.Global.Send(new OnNarrationEndEvent(Instance.narrationPlaying));
             Instance.narrationPlaying = "";
@@ -128,16 +164,13 @@ namespace UI.Narration
         {
             yield return new WaitForSeconds(delay);
 
-            leftCanvasGroup.alpha = 0;
-            rightCanvasGroup.alpha = 0;
+            Instance.StateMachine.ChangeState(NarrationType.None);
             yield return CanvasGroupHelper.FadeCanvasGroup(Instance.mCanvasGroup, 1f);
 
             foreach (var sentence in content)
             {
-                if (sentence.type == Side.Left)
+                if (sentence.type is NarrationType.Left)
                 {
-                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.rightCanvasGroup, Instance.fullScreenCanvasGroup}, 0f, 0.2f);
-
                     leftText.SetText("");
                     if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value) && value != null)
                     {
@@ -146,16 +179,30 @@ namespace UI.Narration
                     }
                     else leftImage.color = new Color(1f, 1f, 1f, 0f);
 
-                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.leftCanvasGroup, 1f, 0.2f);
+                    StateMachine.ChangeState(NarrationType.Left);
+
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(leftText, sentence.content));
+                    yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
+                    leftText.SetText(sentence.content);
+                }
+                else if (sentence.type is NarrationType.LeftNeko)
+                {
+                    leftText.SetText("");
+                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value) && value != null)
+                    {
+                        leftImage.sprite = value;
+                        leftImage.color = Color.white;
+                    }
+                    else leftImage.color = new Color(1f, 1f, 1f, 0f);
+
+                    StateMachine.ChangeState(NarrationType.LeftNeko);
                     
                     CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(leftText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
                     leftText.SetText(sentence.content);
                 }
-                else if (sentence.type == Side.Right)
+                else if (sentence.type is NarrationType.Right)
                 {
-                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.leftCanvasGroup, Instance.fullScreenCanvasGroup}, 0f, 0.2f);
-
                     rightText.SetText("");
                     if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value))
                     {
@@ -164,20 +211,18 @@ namespace UI.Narration
                     }
                     else rightImage.color = new Color(1f, 1f, 1f, 0f);
 
-                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.rightCanvasGroup, 1f, 0.2f);
+                    StateMachine.ChangeState(NarrationType.Right);
                     
                     CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(rightText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
                     rightText.SetText(sentence.content);
                 }
-                else if (sentence.type == Side.FullScreen)
+                else if (sentence.type == NarrationType.FullScreen)
                 {
-                    yield return CanvasGroupHelper.FadeCanvasGroup(new CanvasGroup[] {Instance.leftCanvasGroup, Instance.rightCanvasGroup}, 0f, 0.2f);
-
                     fullScreenText.SetText("");
                     fullScreenImage.color = new Color(1f, 1f, 1f, 0f);
 
-                    yield return CanvasGroupHelper.FadeCanvasGroup(Instance.fullScreenCanvasGroup, 1f, 0.2f);
+                    Instance.StateMachine.ChangeState(NarrationType.FullScreen);
                     
                     CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(fullScreenText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
@@ -238,6 +283,101 @@ namespace UI.Narration
                         break;
                 }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+    }
+
+    public partial class NarrationManager
+    {
+        public class NoneState : AbstractState<NarrationType, NarrationManager>
+        {
+            public NoneState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.None;
+        }
+
+        public class LeftState : AbstractState<NarrationType, NarrationManager>
+        {
+            public LeftState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.Left;
+
+            protected override void OnEnter()
+            {
+                mTarget.leftCanvasGroup.LinearTransition(0.2f);
+            }
+
+            protected override void OnExit()
+            {
+                mTarget.leftCanvasGroup.InverseLinearTransition(0.2f);
+            }
+        }
+
+        public class LeftNekoState : AbstractState<NarrationType, NarrationManager>
+        {
+            public LeftNekoState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.LeftNeko;
+
+            protected override void OnEnter()
+            {
+                mTarget.leftNekoCanvasGroup.LinearTransition(0.2f);
+            }
+
+            protected override void OnExit()
+            {
+                mTarget.leftNekoCanvasGroup.InverseLinearTransition(0.2f);
+            }
+        }
+
+        public class RightState : AbstractState<NarrationType, NarrationManager>
+        {
+            public RightState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.Right;
+
+            protected override void OnEnter()
+            {
+                mTarget.rightCanvasGroup.LinearTransition(0.2f);
+            }
+
+            protected override void OnExit()
+            {
+                mTarget.rightCanvasGroup.InverseLinearTransition(0.2f);
+            }
+        }
+
+        public class RightNekoState : AbstractState<NarrationType, NarrationManager>
+        {
+            public RightNekoState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.RightNeko;
+
+            protected override void OnEnter()
+            {
+                mTarget.rightNekoCanvasGroup.LinearTransition(0.2f);
+            }
+
+            protected override void OnExit()
+            {
+                mTarget.rightNekoCanvasGroup.InverseLinearTransition(0.2f);
+            }
+        }
+
+        public class FullScreenState : AbstractState<NarrationType, NarrationManager>
+        {
+            public FullScreenState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.FullScreen;
+
+            protected override void OnEnter()
+            {
+                mTarget.fullScreenCanvasGroup.LinearTransition(0.2f);
+            }
+
+            protected override void OnExit()
+            {
+                mTarget.fullScreenCanvasGroup.InverseLinearTransition(0.2f);
+            }
+        }
+
+        public class FullScreenNekoState : AbstractState<NarrationType, NarrationManager>
+        {
+            public FullScreenNekoState(FSM<NarrationType> fsm, NarrationManager target) : base(fsm, target) { }
+            protected override bool OnCondition() => mFSM.CurrentStateId is not NarrationType.FullScreenNeko;
         }
     }
 

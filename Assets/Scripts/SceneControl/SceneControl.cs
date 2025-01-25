@@ -283,7 +283,7 @@ namespace SceneControl
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     [CustomEditor(typeof(SceneControl))]
     [CanEditMultipleObjects]

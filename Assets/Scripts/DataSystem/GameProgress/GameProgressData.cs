@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
 using Newtonsoft.Json;
+using Kuchinashi.DataSystem;
 
 namespace DataSystem
 {

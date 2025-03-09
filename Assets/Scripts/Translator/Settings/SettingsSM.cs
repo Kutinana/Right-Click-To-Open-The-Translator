@@ -8,6 +8,7 @@ using Translator;
 using UnityEngine.UI;
 using TMPro;
 using Cameras;
+using Kuchinashi.DataSystem;
 
 namespace Settings
 {

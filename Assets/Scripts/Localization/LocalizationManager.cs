@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataSystem;
 using Kuchinashi;
+using Kuchinashi.DataSystem;
 using QFramework;
 using UI.Narration;
 using UnityEngine;

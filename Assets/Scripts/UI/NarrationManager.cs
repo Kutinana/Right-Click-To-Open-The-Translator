@@ -79,6 +79,8 @@ namespace UI.Narration
         private Image fullScreenImage;
         private TMP_Text fullScreenText;
 
+        public GameObject NekoCharacterPrefab;
+
         public string ToShowNarrationId { get; set; }
         public static bool IsNarrating => Instance.CurrentNarrationCoroutine != null;
 
@@ -183,23 +185,21 @@ namespace UI.Narration
 
                     CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(leftText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
-                    leftText.SetText(sentence.content);
                 }
                 else if (sentence.type is NarrationType.LeftNeko)
                 {
-                    leftText.SetText("");
+                    foreach (Transform child in leftNekoText) Destroy(child.gameObject);
                     if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value) && value != null)
                     {
-                        leftImage.sprite = value;
-                        leftImage.color = Color.white;
+                        leftNekoImage.sprite = value;
+                        leftNekoImage.color = Color.white;
                     }
-                    else leftImage.color = new Color(1f, 1f, 1f, 0f);
+                    else leftNekoImage.color = new Color(1f, 1f, 1f, 0f);
 
                     StateMachine.ChangeState(NarrationType.LeftNeko);
                     
-                    CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(leftText, sentence.content));
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeNekoTextCoroutine(leftNekoText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
-                    leftText.SetText(sentence.content);
                 }
                 else if (sentence.type is NarrationType.Right)
                 {
@@ -215,9 +215,23 @@ namespace UI.Narration
                     
                     CurrentTypeTextCoroutine = StartCoroutine(TypeTextCoroutine(rightText, sentence.content));
                     yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
-                    rightText.SetText(sentence.content);
                 }
-                else if (sentence.type == NarrationType.FullScreen)
+                else if (sentence.type is NarrationType.RightNeko)
+                {
+                    foreach (Transform child in rightNekoText) Destroy(child.gameObject);
+                    if (!string.IsNullOrEmpty(sentence.narrator) && Tachies.TryGetValue(sentence.narrator, out var value))
+                    {
+                        rightNekoImage.sprite = value;
+                        rightNekoImage.color = Color.white;
+                    }
+                    else rightNekoImage.color = new Color(1f, 1f, 1f, 0f);
+
+                    StateMachine.ChangeState(NarrationType.RightNeko);
+
+                    CurrentTypeTextCoroutine = StartCoroutine(TypeNekoTextCoroutine(rightNekoText, sentence.content));
+                    yield return new WaitUntil(() => CurrentTypeTextCoroutine == null);
+                }
+                else if (sentence.type is NarrationType.FullScreen)
                 {
                     fullScreenText.SetText("");
                     fullScreenImage.color = new Color(1f, 1f, 1f, 0f);
@@ -251,6 +265,20 @@ namespace UI.Narration
                 yield return new WaitForSeconds(speed);
             }
             textfield.SetText(text);
+
+            CurrentTypeTextCoroutine = null;
+        }
+
+        private IEnumerator TypeNekoTextCoroutine(Transform textfield, string text)
+        {
+            var speed = 1 / 24f;
+            foreach (var character in NekoLanguageRenderer.RenderToCharacterData(text))
+            {
+                var obj = Instantiate(Instance.NekoCharacterPrefab, leftNekoText);
+                obj.GetComponent<Character>().Initialize(character);
+
+                yield return new WaitForSeconds(speed);
+            }
 
             CurrentTypeTextCoroutine = null;
         }

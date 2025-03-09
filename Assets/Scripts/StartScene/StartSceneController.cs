@@ -12,6 +12,7 @@ using Settings;
 using UI;
 using TMPro;
 using System;
+using Kuchinashi.DataSystem;
 using Localization;
 
 namespace StartScene

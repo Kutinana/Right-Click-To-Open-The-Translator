@@ -29,7 +29,7 @@
       {
         "type": "Left",
         "narrator": "Protagonist",
-        "content": "……得，我试试。"
+        "content": "……我试试。"
       }
     ],
     "InitialNarration": [
@@ -671,6 +671,38 @@
     ]
   },
   "en_US": {
+    "FirstTimeToMainMenu": [
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "Whoo, completely mess as Chinese characters..."
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "What the hell is that?"
+      },
+      {
+        "type": "Left",
+        "narrator": "",
+        "content": "(Mechanical Voice) Right Click to Activate Translator"
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "...what?"
+      },
+      {
+        "type": "Left",
+        "narrator": "",
+        "content": "(Mechanical Voice) Right Click to Activate Translator"
+      },
+      {
+        "type": "Left",
+        "narrator": "Protagonist",
+        "content": "...well, let me have a try..."
+      }
+    ],
     "InitialNarration": [
       {
         "type": "Right",

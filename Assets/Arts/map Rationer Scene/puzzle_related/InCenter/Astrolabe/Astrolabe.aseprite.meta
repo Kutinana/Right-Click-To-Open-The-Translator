@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -424,126 +425,146 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -2115256823
+    uuid:
+      value0: 1790552429
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1790552429
     name: Astrolabe
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Astrolabe_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: be0cc4ed5ffb90144bb64b00caf10838
-    - name: Astrolabe_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 604d75112e4bba249b83af5b6d1df4e6
-    - name: Astrolabe_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 336f1cb9a12ea0c4fad4c2ee1a3829cc
-    - name: Astrolabe_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 3bbc2e58fbf436d48a74fccddb57d0ef
-    - name: Astrolabe_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: e9de4553271cfca439bacdfc990dc2a8
-    - name: Astrolabe_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: c04af7701d32bca43a4d01cda69db1d6
-    - name: Astrolabe_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: abbabfd56643e5f49b3d2f6e4222f586
-    - name: Astrolabe_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 4974ae682614b6d4d8a66c961dc69694
-    - name: Astrolabe_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 168a46af312a75840ab6ee9859de7327
-    - name: Astrolabe_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 8f9519c549b3d5e4792e43f99f8c9cb7
-    - name: Astrolabe_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: b548186e04095cb4baf74da2931f87c5
-    - name: Astrolabe_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 462cd3f47df0c534493234e1973acdc1
-    - name: Astrolabe_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: efb93b0a467dbd6439ab2b9049189d6c
-    - name: Astrolabe_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: c2501f8e71a75a847b7c0e7b9b894db5
-    - name: Astrolabe_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
@@ -557,3 +578,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 512, y: 288}
+  previousTextureSize: {x: 1024, y: 2048}

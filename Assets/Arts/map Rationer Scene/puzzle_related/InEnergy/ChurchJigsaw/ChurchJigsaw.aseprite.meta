@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -264,62 +265,74 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2096615686
+    uuid:
+      value0: 935677086
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 935677086
     name: ChurchJigsaw
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ChurchJigsaw_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 9fc28c8299dd86c48841d64c7c2f81bb
-    - name: ChurchJigsaw_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 7b0c7954a35beeb4b82590baf2caf973
-    - name: ChurchJigsaw_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 93c1d57b5fd247e4a80a221558c519d5
-    - name: ChurchJigsaw_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 77f6f785a1395ea44858b40687566a06
-    - name: ChurchJigsaw_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 82634d626f20f5d4d87b1a16632fab6d
-    - name: ChurchJigsaw_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 8430b959a750ee741aa4267e5d1271fc
-    - name: ChurchJigsaw_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
@@ -333,3 +346,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 512, y: 288}
+  previousTextureSize: {x: 1024, y: 1024}

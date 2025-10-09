@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -424,126 +425,146 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1048988516
+    uuid:
+      value0: 3745863156
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -549104140
     name: Clock
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Clock_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 040e7dec1d5a60c4aaddea15f4949f66
-    - name: Clock_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 5770214509c03c7448818420ee3335db
-    - name: Clock_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: d6704efbaa999134e872902a25b9695d
-    - name: Clock_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 2f494a588884ddb4ea27117ddd619631
-    - name: Clock_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 5bb6ee60ed03cb54a86e8dc6caec2669
-    - name: Clock_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 288df7d6b61941e42aae75783cd52b0c
-    - name: Clock_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 35158115a4d63c445b8f6f3558d0ae84
-    - name: Clock_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: f3020efc66976f5478d42a3986889e97
-    - name: Clock_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 8fbcf6ca14da3244ca98974f3e4bab55
-    - name: Clock_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 30f5aafb3c6abd04fa0e34d42a5e9fb0
-    - name: Clock_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 5e876f1dca83df44faea6430d65e1831
-    - name: Clock_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 77838f9f1493dda45950b5a4521c6566
-    - name: Clock_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 9d3f8ee53e7ed8e4c9c32c3af30b191e
-    - name: Clock_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
         width: 448
         height: 224
       spriteId: 0f79952a22ca3804d9830da991c12c10
-    - name: Clock_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 32
         y: 32
@@ -557,3 +578,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 512, y: 288}
+  previousTextureSize: {x: 1024, y: 2048}

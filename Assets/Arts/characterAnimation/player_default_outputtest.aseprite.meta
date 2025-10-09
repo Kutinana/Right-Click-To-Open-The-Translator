@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -364,102 +365,119 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1485240979
+    uuid:
+      value0: 2906450785
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1388516511
     name: player_default_outputtest
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: player_default_outputtest_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 10
         width: 555
         height: 239
       spriteId: 18c2d740c58ce9e4d97d533eb88a3657
-    - name: player_default_outputtest_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 11
         width: 555
         height: 239
       spriteId: 39323dd1ca01c214782adaf64e50c9a4
-    - name: player_default_outputtest_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 13
         width: 555
         height: 239
       spriteId: d5a3d8751e20d5d4da821b13c3c2b6b6
-    - name: player_default_outputtest_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 13
         width: 555
         height: 239
       spriteId: 9090536fc00673d42bec962399861418
-    - name: player_default_outputtest_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 12
         width: 555
         height: 239
       spriteId: 6a99db9df05cb034d977a192e3cb8d43
-    - name: player_default_outputtest_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 11
         width: 555
         height: 239
       spriteId: cb8c6aecf9f41044b854af89cd39e680
-    - name: player_default_outputtest_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 10
         width: 555
         height: 239
       spriteId: 9d0312477f2e15e40858a59f22c9c809
-    - name: player_default_outputtest_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 11
         width: 555
         height: 239
       spriteId: bbf9e4353e16a12499539987b9628ccb
-    - name: player_default_outputtest_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 13
         width: 555
         height: 239
       spriteId: b8f50c0fe16f35a41b82b5d86323ec2e
-    - name: player_default_outputtest_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 13
         width: 555
         height: 239
       spriteId: 6a59856b4b9158c4dae416db2eabef0e
-    - name: player_default_outputtest_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 12
         width: 555
         height: 239
       spriteId: 41402f8139ad8524896c31bae3a128b2
-    - name: player_default_outputtest_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: -423
         y: 11
@@ -473,3 +491,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 96}
+  previousTextureSize: {x: 2048, y: 1024}

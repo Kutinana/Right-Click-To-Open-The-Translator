@@ -19,7 +19,7 @@ namespace DataSystem
             if (data.MaxAmount == 0) inventory[_id]++;
             else inventory[_id] = Math.Clamp(value + 1, 0, data.MaxAmount);
 
-            Instance.Serialization();
+            Instance.Serialize();
             TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(new Dictionary<string, int>() {{_id, 1}}));
         }
 
@@ -35,7 +35,7 @@ namespace DataSystem
             if (data.MaxAmount == 0) inventory[_id] = _delta + value;
             else inventory[_id] = Math.Clamp(value + _delta, 0, data.MaxAmount);
 
-            Instance.Serialization();
+            Instance.Serialize();
             TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(new Dictionary<string, int>() {{_id, _delta}}));
         }
 
@@ -54,7 +54,7 @@ namespace DataSystem
                 else inventory[item.Key] = Math.Clamp(value + item.Value, 0, data.MaxAmount);
             }
 
-            Instance.Serialization();
+            Instance.Serialize();
             TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(_items));
         }
 
@@ -74,7 +74,7 @@ namespace DataSystem
             if (data.MaxAmount == 0) inventory[_id] = _delta + value;
             else inventory[_id] = Math.Clamp(value + _delta, 0, data.MaxAmount);
 
-            Instance.Serialization();
+            Instance.Serialize();
             TypeEventSystem.Global.Send(new OnInventoryIncreasedEvent(new Dictionary<string, int>() {{_id, _delta}}));
 
             return true;
@@ -89,7 +89,7 @@ namespace DataSystem
                 {
                     inventory[_id] -= _delta;
 
-                    Instance.Serialization();
+                    Instance.Serialize();
                     return true;
                 }
             }
@@ -112,7 +112,7 @@ namespace DataSystem
             {
                 inventory[item.Key] -= item.Value;
             }
-            Instance.Serialization();
+            Instance.Serialize();
             return true;
         }
 

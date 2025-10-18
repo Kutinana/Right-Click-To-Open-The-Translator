@@ -23,7 +23,7 @@ namespace DataSystem
             if (Dictionary.ContainsKey(id)) return;
 
             Dictionary.Add(id, new CharacterProgressData(id));
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
 
         public static void Unlock(List<string> ids)
@@ -33,7 +33,7 @@ namespace DataSystem
                 if (Dictionary.ContainsKey(id)) continue;
                 Dictionary.Add(id, new CharacterProgressData(id));
             }
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
 
         public static void AddRelatedPuzzleAndSave(string id, string puzzleId)
@@ -45,7 +45,7 @@ namespace DataSystem
             }
             if (!value.RelatedPuzzles.Contains(puzzleId)) value.RelatedPuzzles.Add(puzzleId);
 
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
 
         public static void AddRelatedPuzzleAndSave(List<string> ids, string puzzleId)
@@ -59,7 +59,7 @@ namespace DataSystem
                 }
                 if (!value.RelatedPuzzles.Contains(puzzleId)) value.RelatedPuzzles.Add(puzzleId);
             }
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
 
         public static void WriteInAndSave(string id, string meaning)
@@ -71,7 +71,7 @@ namespace DataSystem
             }
             value.Meaning = meaning;
 
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
 
         public static void WriteInAndSave(Dictionary<string, string> pairs)
@@ -85,7 +85,7 @@ namespace DataSystem
                 }
                 value.Meaning = pair.Value;
             }
-            GameProgressData.Instance.Serialization();
+            GameProgressData.Instance.Serialize();
         }
     }
 }

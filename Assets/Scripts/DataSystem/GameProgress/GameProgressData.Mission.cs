@@ -27,7 +27,7 @@ namespace DataSystem
             if (Instance.Save.MissionProgress.ContainsKey(Id)) return;
             
             Instance.Save.MissionProgress.Add(Id,MissionProgress.Progressing);
-            Instance.Serialization();
+            Instance.Serialize();
 
             //!!这个地方原则上应该用Event, 但暂且先这样实现. 之后需要重构这句来解耦合
             if(showText) PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">新目标："+GameDesignData.GetMissionDataById(Id).Name);
@@ -42,7 +42,7 @@ namespace DataSystem
             {
                 Instance.Save.MissionProgress.Add(Id, MissionProgress.Completed);
             }
-            Instance.Serialization();
+            Instance.Serialize();
             if(showText) PersistentUIController.Instance.MissionHintShow("<material=\"fusion-pixel-missionMat\">"+GameDesignData.GetMissionDataById(Id).Name+"：已完成！");
         }
     }

@@ -20,7 +20,7 @@ namespace Localization
     public class LocalizationManager : ISingleton
     {
         private LocalizationManager() { }
-        public Language CurrentLanguage { get; set; } = Language.zh_CN;
+        public Language CurrentLanguage { get; set; } = Language.en_US;
 
         public static LocalizationManager Instance => SingletonProperty<LocalizationManager>.Instance;
         public void OnSingletonInit()
@@ -31,18 +31,18 @@ namespace Localization
             //     SystemLanguage.Chinese => Language.zh_CN,
             //     _ => Language.zh_CN,
             // };
-            CurrentLanguage = Language.zh_CN;
+            CurrentLanguage = Language.en_US;
         }
 
-        internal Dictionary<Language, Dictionary<string, string>> CommonStrings => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, string>>>("I18n/Common");
+        internal Dictionary<Language, Dictionary<string, string>> CommonStrings => ReadableData.DeSerialize<Dictionary<Language, Dictionary<string, string>>>("I18n/Common");
         public static Dictionary<string, string> GetCommonStrings() => Instance.CommonStrings.TryGetValue(Instance.CurrentLanguage, out var common) ? common : throw new System.Exception("Incomplete Localization");
         public static string GetCommonString(string key) => GetCommonStrings().TryGetValue(key, out var common) ? common : throw new System.Exception("Incomplete Localization");
 
-        internal Dictionary<Language, LocalizedPlot> Plot => ReadableData.DeSerialization<Dictionary<Language, LocalizedPlot>>("I18n/Plot");
+        internal Dictionary<Language, LocalizedPlot> Plot => ReadableData.DeSerialize<Dictionary<Language, LocalizedPlot>>("I18n/Plot");
         public static LocalizedPlot GetPlot() => Instance.Plot.TryGetValue(Instance.CurrentLanguage, out var plot) ? plot : throw new System.Exception("Incomplete Localization");
 
         
-        internal Dictionary<Language, Dictionary<string, List<NarrationSentence>>> Narrations => ReadableData.DeSerialization<Dictionary<Language, Dictionary<string, List<NarrationSentence>>>>("I18n/Narration");
+        internal Dictionary<Language, Dictionary<string, List<NarrationSentence>>> Narrations => ReadableData.DeSerialize<Dictionary<Language, Dictionary<string, List<NarrationSentence>>>>("I18n/Narration");
         public static Dictionary<string, List<NarrationSentence>> GetNarrations() => Instance.Narrations.TryGetValue(Instance.CurrentLanguage, out var common) ? common : throw new System.Exception("Incomplete Localization");
         public static List<NarrationSentence> GetNarration(string key) => GetNarrations().TryGetValue(key, out var common) ? common : throw new System.Exception("Incomplete Localization");
     }

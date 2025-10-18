@@ -12,12 +12,12 @@ namespace UI
 
         private void OnMouseEnter()
         {
-            PositionProgressable.Lerp(0.05f);
+            PositionProgressable.SmoothDamp(0.05f);
         }
 
         private void OnMouseExit()
         {
-            PositionProgressable.InverseLerp(0.05f);
+            PositionProgressable.InverseSmoothDamp(0.05f);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DataSystem
         public static void SaveLastScene(string name)
         {
             Instance.Save.LastScene = name;
-            Instance.Serialization();
+            Instance.Serialize();
         }
 
         public static void Clean()
@@ -33,7 +33,7 @@ namespace DataSystem
             {
                 Instance.Save.PuzzleProgress = _data.Save.PuzzleProgress ?? new();
 
-                Instance.Serialization();
+                Instance.Serialize();
             }
             catch (System.Exception e)
             {

@@ -12,7 +12,7 @@ namespace DataSystem
         [JsonIgnore] public override string Path { get => System.IO.Path.Combine(Application.persistentDataPath, "save"); }
         public static GameProgressData Instance
         {
-            get => _instance ??= new GameProgressData().DeSerialization<GameProgressData>();
+            get => _instance ??= new GameProgressData().DeSerialize<GameProgressData>();
             private set => _instance = value;
         }
         private static GameProgressData _instance;

@@ -14,7 +14,7 @@ namespace DataSystem
             if (Instance.Save.PuzzleProgress.ContainsKey(puzzle.Id)) return;
 
             Instance.Save.PuzzleProgress.Add(puzzle.Id, PuzzleProgress.UnSolved);
-            Instance.Serialization();
+            Instance.Serialize();
         }
 
         public static void Solve(PuzzleBase puzzle)
@@ -28,7 +28,7 @@ namespace DataSystem
                 Instance.Save.PuzzleProgress.Add(puzzle.Id, PuzzleProgress.Solved);
             }
 
-            Instance.Serialization();
+            Instance.Serialize();
         }
 
         public static void Solve(string puzzleId)
@@ -42,7 +42,7 @@ namespace DataSystem
                 Instance.Save.PuzzleProgress.Add(puzzleId, PuzzleProgress.Solved);
             }
 
-            Instance.Serialization();
+            Instance.Serialize();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DataSystem
             if (Instance.Save.ReadNarrations.Contains(id)) return;
 
             Instance.Save.ReadNarrations.Add(id);
-            Instance.Serialization();
+            Instance.Serialize();
         }
     }
 }

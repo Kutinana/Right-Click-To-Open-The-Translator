@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Kuchinashi;
+using Kuchinashi.Utils.Progressable;
 using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,19 +10,20 @@ namespace UI
 {
     public class QuitPanelController : MonoSingleton<QuitPanelController>
     {
-        private CanvasGroup canvasGroup;
+        [SerializeField] private ProgressableGroup progressable;
+        [SerializeField] private Progressable canvasProgressable;
 
-        private Image mCatImage;
-        private Image mPersonImage;
 
-        public Vector2 targetPosition;
+        [Header("Settings")]
+        public float SmoothTime = 1f;
 
         private void Awake()
         {
-            canvasGroup = GetComponent<CanvasGroup>();
-
-            mCatImage = transform.Find("Cat").GetComponent<Image>();
-            mPersonImage = transform.Find("Person").GetComponent<Image>();
+            progressable ??= GetComponent<ProgressableGroup>();
+            progressable.Progress = 0f;
+            
+            canvasProgressable ??= GetComponent<CanvasGroupAlphaProgressable>();
+            canvasProgressable.Progress = 0f;
         }
 
         public static void StartQuitting()
@@ -31,20 +33,12 @@ namespace UI
 
         private IEnumerator QuitCoroutine()
         {
-            yield return CanvasGroupHelper.FadeCanvasGroup(canvasGroup, 1f);
+            canvasProgressable.SmoothDamp(0.1f);
+            progressable.SmoothDamp(SmoothTime);
 
-            while (Mathf.Abs(mPersonImage.transform.localPosition.y - targetPosition.y) > 0.3f)
-            {
-                mPersonImage.transform.localPosition = Vector3.Lerp(mPersonImage.transform.localPosition, targetPosition, 0.03f);
-                mCatImage.transform.localScale = Vector3.Lerp(mCatImage.transform.localScale, new Vector3(1.1f, 1.1f, 1), 0.03f);
-                yield return new WaitForFixedUpdate();
+            yield return new WaitUntil(() => progressable.Progress >= 1f || Input.GetMouseButtonDown(0));
 
-                if (Input.GetMouseButtonDown(0))
-                    break;
-            }
-            mPersonImage.transform.localPosition = targetPosition;
-            mCatImage.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-
+            Debug.Log("Quit Application.");
             Application.Quit();
         }
     }

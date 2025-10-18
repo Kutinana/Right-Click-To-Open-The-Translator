@@ -59,7 +59,7 @@
 		"ID":8,
 		"OutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door Open_Outlined",
 		"UnoutlinedSpritePath":"Sprites/puzzles/puzzle3/puzzle3_door Open_Unoutlined",
-		"itemType": 0,
+		"itemType": 99,
 		"target_string":""
 	},
 	{

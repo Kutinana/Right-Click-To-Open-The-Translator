@@ -95,17 +95,6 @@ namespace Steamworks
             if (EResult.k_EResultOK == pCallback.m_eResult)
             {
                 m_bStatsValid = true;
-                foreach (var ach in Enum.GetValues(typeof(Achievement)).Cast<Achievement>())
-                {
-                    if (SteamUserStats.GetAchievement(ach.ToString(), out _))
-                    {
-                        m_Achievements.Add(ach, new AchievementData() {
-                            achievement = ach,
-                            name = SteamUserStats.GetAchievementDisplayAttribute(ach.ToString(), "name"),
-                            description = SteamUserStats.GetAchievementDisplayAttribute(ach.ToString(), "desc")
-                        });
-                    }
-                }
 
                 Debug.Log("User Stats Received");
             }

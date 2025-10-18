@@ -52,6 +52,9 @@ public class InteractivePuzzle: InteractiveObject
                 break;
             case ItemType.NPC:
                 break;
+            case ItemType.QuitGame:
+                UI.QuitPanelController.StartQuitting();
+                break;
             default:
                 break;
         }

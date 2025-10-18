@@ -7,7 +7,8 @@ public enum ItemType
     DOOR = 0,
     PUZZLE = 1,
     NPC = 2,
-    Hint = 3
+    Hint = 3,
+    QuitGame = 99
 }
 
 [Serializable]

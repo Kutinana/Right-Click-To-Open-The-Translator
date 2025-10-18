@@ -23,31 +23,31 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RS01.unity
     guid: 8f1f90c2337527b47941648d7d0d594c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BeginPlace.unity
     guid: 8a199f727303ab543854e39e7ceacf04
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InEnergy.unity
     guid: 23c0697c169fda04ba95aa46b724fc71
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/OutWish.unity
     guid: c999d702b617c2945a7960dd69628edc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Classroom.unity
     guid: 8752e1d1ba1e8fd4687b7e6f4e190c7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InMarket.unity
     guid: 326b99414bb050641ae25825e12db29b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/OutCenter.unity
     guid: 0c10d2d8af7bc1943a0f1d841069db8c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Church.unity
     guid: f16fb447b2732f4428e1ad66b993910b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InCenter.unity
     guid: 3b18006e81892674795f88f779688be7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InWish.unity
     guid: f4c320c914d02f248aafc0200436aa8f
   m_configObjects: {}
